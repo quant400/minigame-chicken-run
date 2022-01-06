@@ -8,6 +8,7 @@ TagManager:
   - Chicken
   - MapObject
   - CinemachineTarget
+  - LeaderBoardCanvas
   layers:
   - Default
   - TransparentFX

@@ -21,6 +21,8 @@ public class SingleplayerGameControler : MonoBehaviour
     int initialChickenCount;
     [SerializeField]
     float spawnIntervals;
+    [SerializeField]
+    float mushroomPowerUpChance;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -72,6 +74,11 @@ public class SingleplayerGameControler : MonoBehaviour
     public int GetSinglePlayerScene()
     {
         return singleplayerScene;
+    }
+
+    public float GetMushroomPowerUpChance()
+    {
+        return mushroomPowerUpChance;
     }
 
 }

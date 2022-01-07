@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -52,9 +52,6 @@
     <UnityBuildTarget>WebGL:20</UnityBuildTarget>
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
@@ -107,19 +104,73 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ChickenScript.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Library\WebGL\Web3GL.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendContractExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20DecimalsExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155URIExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20SymbolExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20TotalSupplyExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20NameExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\TxStatus.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\EthBalanceOfExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfBatchExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSignMessageExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasLimitExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721URIExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendTransactionExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Library\ERC721.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Library\EVM.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer1155.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer20.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomCallExample.cs" />
+    <Compile Include="Assets\Web3Unity\Prefabs\ERC1155\ImportNFTTextureExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Library\ERC20.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Scenes\WebLogin.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20BalanceOfExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721BalanceOfExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSignOut.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomRPCExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer721.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasPriceExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\BlockNumberExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\VerifyExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Library\ERC1155.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfBatchExample.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\JsonHelper.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\NFTGetter.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\PlayerAccount.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\36.56120f7d.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\13.6114608f.chunk.js.LICENSE.txt" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\static\js\25.5c73f2c8.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\static\js\13.6114608f.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\static\js\23.dd63b9fe.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\static\js\26.f2d32b7f.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\27.3bebd742.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\23.dd63b9fe.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\static\js\7.81b2580d.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\static\js\24.6644bc4c.chunk.js.LICENSE.txt" />
     <None Include="Assets\POLY_Jungle\Shaders\SimpleLayer.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\static\js\24.6644bc4c.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\25.5c73f2c8.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\static\js\27.3bebd742.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\POLY_Jungle\Shaders\SimpleBillboard.shader" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\static\js\26.f2d32b7f.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\robots.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\22.9af1c185.chunk.js.LICENSE.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -130,20 +181,37 @@
     <None Include="Assets\Photon\PhotonLibs\changes-library.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\24.6644bc4c.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\robots.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\static\js\22.9af1c185.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\static\js\13.6114608f.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\26.f2d32b7f.chunk.js.LICENSE.txt" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.dll" />
     <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.dll" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\static\js\31.3dd1677a.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Photon\PhotonLibs\Metro\Photon3Unity3D.dll" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\robots.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\static\js\22.9af1c185.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\static\js\36.56120f7d.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\7.81b2580d.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\static\js\31.3dd1677a.chunk.js.LICENSE.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\ArmatureShader.shader" />
     <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\static\js\23.dd63b9fe.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2019\static\js\7.81b2580d.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\static\js\36.56120f7d.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\31.3dd1677a.chunk.js.LICENSE.txt" />
     <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\static\js\25.5c73f2c8.chunk.js.LICENSE.txt" />
+    <None Include="Assets\WebGLTemplates\Web3GL-2021\static\js\27.3bebd742.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>

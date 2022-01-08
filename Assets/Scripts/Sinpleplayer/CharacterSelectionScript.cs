@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using System;
+
 public class CharacterSelectionScript : MonoBehaviour
 {
     [SerializeField]
@@ -9,10 +11,15 @@ public class CharacterSelectionScript : MonoBehaviour
     Transform[] characters;
     int currentCharacter;
     bool selected;
-  [SerializeField]
+    [SerializeField]
     float sideCharZdisp;
     [SerializeField]
     Button rightButton,leftButton;
+    Info[] myNFT;
+
+    [SerializeField]
+    GameObject buttonsToEnable, ButtonToDisable;
+
     public void MoveRight()
     {
         rightButton.interactable = false;
@@ -84,6 +91,7 @@ public class CharacterSelectionScript : MonoBehaviour
         
     }
 
+   
     public void Selected()
     {
         GameRoom.room.ChooseAvatar("PlayerAvatar" + currentCharacter);
@@ -116,6 +124,28 @@ public class CharacterSelectionScript : MonoBehaviour
         characters[currentCharacter].GetComponent<Animator>().SetBool("Selected", true);
         rightButton.interactable = false;
         leftButton.interactable = false;
+
+    }
+
+
+
+    internal void SetData(Info[] nFTData)
+    {
+        //will be respossible for setting up characters according to nft
+        myNFT = nFTData;
+        SetUpCharacters();
+        
+    }
+
+    private void SetUpCharacters()
+    {
+        if (myNFT[0].id == 538)
+            characters[2].gameObject.SetActive(false);
+
+
+
+        buttonsToEnable.SetActive(true);
+        ButtonToDisable.SetActive(false);
 
     }
 }

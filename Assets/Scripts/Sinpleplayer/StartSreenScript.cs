@@ -10,7 +10,11 @@ public class StartSreenScript : MonoBehaviour
 
     public void PlayButton()
     {
-        characterSelectionPanel.SetActive(true);
+        //characterSelectionPanel.SetActive(true);
+        
+        //characterSelectionPanel.transform.localScale = Vector3.one;
+        //Debug.Log("ok");
         this.gameObject.SetActive(false);
+
     }
 }

@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 #if UNITY_WEBGL
 public class WebLogin : MonoBehaviour
 {
@@ -21,7 +21,8 @@ public class WebLogin : MonoBehaviour
    
     [SerializeField]
     NFTGetter nftGetter;
-
+    [SerializeField]
+    GameObject loginButton;
 
     public void OnLogin()
     {
@@ -42,6 +43,7 @@ public class WebLogin : MonoBehaviour
         SetConnectAccount("");
         // load next scene
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        loginButton.GetComponent<Button>().interactable = false;
         nftGetter.GetNFT();
        
 

@@ -27458,7 +27458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -232879.62}
+  m_AnchoredPosition: {x: 0, y: -247210.1}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &797675590
@@ -29065,15 +29065,15 @@ RectTransform:
   m_GameObject: {fileID: 850443919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: -2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 943638527}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 200, y: 250}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 292, y: 301}
+  m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &850443921
 MonoBehaviour:
@@ -29095,7 +29095,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2ead0eba31f8f2d409dd1954fa4c018a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef8fbd7e23bcfcc499c56b7a334a4e1f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -58505,7 +58505,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a7f2f8be62025be45bfe7ffef758f49d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34ac0860880b59b4a95563382e2c5390, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -62169,7 +62169,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0905d7926e2774d419efc5d262268750, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef8fbd7e23bcfcc499c56b7a334a4e1f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -68198,7 +68198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19a400c211ab4e46a0e592d1377dd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chickenPrefab: {fileID: 1969419073538870, guid: 7eee0fcc067c36a4a8b99c99a6971eca, type: 3}
+  chickenPrefab: {fileID: 5468443596144700198, guid: 22eb7cb0de5a04330b101a3d113c1fd0, type: 3}
   characters:
   - {fileID: 8702709569058536842, guid: cd4fb1423fe37d14b9061f5f699d570d, type: 3}
   - {fileID: 8702709569058536842, guid: c3e677481776d1e428ccad3420465dae, type: 3}
@@ -70167,7 +70167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a7f2f8be62025be45bfe7ffef758f49d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34ac0860880b59b4a95563382e2c5390, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

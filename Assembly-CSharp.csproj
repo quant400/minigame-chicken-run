@@ -54,94 +54,93 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20SymbolExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasLimitExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721URIExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer721.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardController.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfExample.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\Singleplayer3RdPersonController.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\StartSreenScript.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfExample.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\PlayerAccount.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerSpawner.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
     <Compile Include="Assets\POLY_Jungle\Scripts\FreeCamera.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\GameSetup.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20DecimalsExample.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendTransactionExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Library\EVM.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Scenes\WebLogin.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721BalanceOfExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\VerifyExample.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\PowerUpMushroom.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155URIExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatAppIdCheckerUI.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\AppSettingsExtensions.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\CaharcterButtonScript.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSignOut.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20TotalSupplyExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
+    <Compile Include="Assets\Web3Unity\Prefabs\ERC1155\ImportNFTTextureExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomRPCExample.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\Lobby.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardScript.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\PhotonPlayer.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ScoreUIController.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer1155.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerGameControler.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ThirdPersonUserControl.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\BlockNumberExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\TxStatus.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomCallExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasPriceExample.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\GameRoom.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerChickenScript.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer20.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\GameOverScript.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardEntry.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\JsonHelper.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerScoreBoardScript.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\EthBalanceOfExample.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Library\ERC1155.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\AICharacterControl.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\WaitingTextAnim.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSignMessageExample.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Library\ERC20.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfBatchExample.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\CharacterSelectionScript.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20NameExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
-    <Compile Include="Assets\VoxelAnimals\Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Library\ERC721.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\CountDownScript.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Library\WebGL\Web3GL.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfBatchExample.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\MultiplayerSettings.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ThirdPersonCharacter.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20BalanceOfExample.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\NFTGetter.cs" />
+    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendContractExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ChickenScript.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Library\WebGL\Web3GL.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendContractExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20DecimalsExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155URIExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20SymbolExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20TotalSupplyExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20NameExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\TxStatus.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\EthBalanceOfExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfBatchExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSignMessageExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasLimitExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721URIExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendTransactionExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Library\ERC721.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Library\EVM.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer1155.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer20.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomCallExample.cs" />
-    <Compile Include="Assets\Web3Unity\Prefabs\ERC1155\ImportNFTTextureExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Library\ERC20.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Scenes\WebLogin.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20BalanceOfExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721BalanceOfExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSignOut.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomRPCExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer721.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasPriceExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\BlockNumberExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\VerifyExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Library\ERC1155.cs" />
-    <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfBatchExample.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\JsonHelper.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\NFTGetter.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\PlayerAccount.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -861,10 +860,6 @@
       <Project>{126FDED2-B431-E70A-069B-6B3D1C5F0461}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
-    <ProjectReference Include="PunDemos.DemoHubEditor.csproj">
-      <Project>{C8DD50E4-A4F3-4FCD-D6FF-E9DA4D7A8DB6}</Project>
-      <Name>PunDemos.DemoHubEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
       <Project>{6AB4B280-8D0C-8F78-198E-EA91E8243C4D}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
@@ -872,14 +867,6 @@
     <ProjectReference Include="PhotonUnityNetworking.csproj">
       <Project>{A1BF0E1A-9B16-CC07-8659-13690639C5D5}</Project>
       <Name>PhotonUnityNetworking</Name>
-    </ProjectReference>
-    <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
-      <Project>{9C6A4E7D-8588-E721-B721-DB9C04318979}</Project>
-      <Name>PhotonUnityNetworking.Demos</Name>
-    </ProjectReference>
-    <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
-      <Project>{031E04F9-2600-A9E4-199B-060375AE07C3}</Project>
-      <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
       <Project>{A44EDEA2-07DC-338E-B676-DF6906B176A4}</Project>

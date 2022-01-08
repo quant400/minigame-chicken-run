@@ -767,10 +767,6 @@
       <Project>{126FDED2-B431-E70A-069B-6B3D1C5F0461}</Project>
       <Name>PhotonRealtime</Name>
     </ProjectReference>
-    <ProjectReference Include="PunDemos.DemoHubEditor.csproj">
-      <Project>{C8DD50E4-A4F3-4FCD-D6FF-E9DA4D7A8DB6}</Project>
-      <Name>PunDemos.DemoHubEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
       <Project>{6AB4B280-8D0C-8F78-198E-EA91E8243C4D}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
@@ -778,14 +774,6 @@
     <ProjectReference Include="PhotonUnityNetworking.csproj">
       <Project>{A1BF0E1A-9B16-CC07-8659-13690639C5D5}</Project>
       <Name>PhotonUnityNetworking</Name>
-    </ProjectReference>
-    <ProjectReference Include="PhotonUnityNetworking.Demos.csproj">
-      <Project>{9C6A4E7D-8588-E721-B721-DB9C04318979}</Project>
-      <Name>PhotonUnityNetworking.Demos</Name>
-    </ProjectReference>
-    <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
-      <Project>{031E04F9-2600-A9E4-199B-060375AE07C3}</Project>
-      <Name>PunDemos.DemoSlotcarEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
       <Project>{A44EDEA2-07DC-338E-B676-DF6906B176A4}</Project>

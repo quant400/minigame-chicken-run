@@ -15,7 +15,7 @@ public class SinglePlayerChickenScript : MonoBehaviour
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         Wander();
-        anim.SetInteger("Walk", 1);
+       // anim.SetInteger("Walk", 1);
     }
 
     void Update()

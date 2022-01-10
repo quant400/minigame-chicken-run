@@ -6,7 +6,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/Users/patat/OneDrive/Desktop/Catch the chicken/minigame-chicken-run/WebGL Builds;C:/Users/patat/OneDrive/Desktop/Catch the chicken/CatchTheChicken/Build;/Users/qasimali/Documents/Work/Felix/CatchTheChicken/WebGL Builds;C:/xampp/htdocs/testbuilds;E:/xampp/htdocs/testbuilds;/Users/qasimali/Documents/Work/Felix/CatchTheChickenBuild/CatchTheChickenBuild;/Users/qasimali/Documents/Work/Felix/CatchTheChickenBuild;;;\"}"
+                "value": "{\"m_Value\":\"/Users/qasimali/Documents/Work/Felix/minigame-chicken-run/WebGL Builds;C:/Users/patat/OneDrive/Desktop/Catch the chicken/minigame-chicken-run/WebGL Builds;C:/Users/patat/OneDrive/Desktop/Catch the chicken/CatchTheChicken/Build;/Users/qasimali/Documents/Work/Felix/CatchTheChicken/WebGL Builds;C:/xampp/htdocs/testbuilds;E:/xampp/htdocs/testbuilds;/Users/qasimali/Documents/Work/Felix/CatchTheChickenBuild/CatchTheChickenBuild;/Users/qasimali/Documents/Work/Felix/CatchTheChickenBuild;;\"}"
             },
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",

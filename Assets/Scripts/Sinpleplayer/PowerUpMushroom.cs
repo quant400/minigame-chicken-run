@@ -6,7 +6,7 @@ using StarterAssets;
 public class PowerUpMushroom : MonoBehaviour
 {
     [SerializeField]
-    float PowerupSpeedMultiplier, powerUpDuration;
+    float PowerupSpeedMultiplier, jumpMultiplier, powerUpDuration;
 
     private void Start()
     {
@@ -35,12 +35,18 @@ public class PowerUpMushroom : MonoBehaviour
     {
         ThirdPersonController TPC = player.GetComponent<ThirdPersonController>();
         TPC.MoveSpeed *= PowerupSpeedMultiplier;
+        TPC.JumpHeight *= jumpMultiplier;
         TPC.SprintSpeed = TPC.MoveSpeed;
+        //for testing 
+        player.transform.GetChild(3).gameObject.SetActive(true);
         
         yield return new WaitForSeconds(powerUpDuration);
 
         TPC.MoveSpeed /= PowerupSpeedMultiplier;
+        TPC.JumpHeight /= jumpMultiplier;
         TPC.SprintSpeed = TPC.MoveSpeed*1.5f;
+        //for testing 
+        player.transform.GetChild(3).gameObject.SetActive(false);
         Destroy(gameObject);
 
     }

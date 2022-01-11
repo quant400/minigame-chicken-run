@@ -24,6 +24,10 @@ public class WebLogin : MonoBehaviour
     [SerializeField]
     GameObject loginButton;
 
+    // temp for skip
+    [SerializeField]
+    GameObject skipButton;
+
     public void OnLogin()
     {
         Web3Connect();
@@ -44,6 +48,7 @@ public class WebLogin : MonoBehaviour
         // load next scene
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         loginButton.GetComponent<Button>().interactable = false;
+        skipButton.GetComponent<Button>().interactable = false;
         nftGetter.GetNFT();
        
 
@@ -51,8 +56,7 @@ public class WebLogin : MonoBehaviour
 
     public void OnSkip()
     {
-        // move to next scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        nftGetter.Skip();
     }
 }
 #endif

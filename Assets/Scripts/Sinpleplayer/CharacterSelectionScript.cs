@@ -139,13 +139,24 @@ public class CharacterSelectionScript : MonoBehaviour
 
     private void SetUpCharacters()
     {
+        // change later to cycle through all characters in returned list and load according to names or id
         if (myNFT[0].id == 538)
-            characters[2].gameObject.SetActive(false);
+            characters[1].gameObject.SetActive(true);
+        
+        if (myNFT[1].id == 542)
+            characters[2].gameObject.SetActive(true);
 
 
 
+        Done();
+       
+
+    }
+
+    //change to private when skip removed
+    public void Done()
+    {
         buttonsToEnable.SetActive(true);
         ButtonToDisable.SetActive(false);
-
     }
 }

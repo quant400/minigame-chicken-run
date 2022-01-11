@@ -17765,17 +17765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8536f615a8edab4b88ccb7a94abf84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 680193108}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spawnPoints: []
   chickenSpawnPoints:
   - {fileID: 445389303}
   - {fileID: 1663344343}
@@ -25471,7 +25461,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -611310.4}
+  m_AnchoredPosition: {x: 0, y: -688401.4}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &797675590
@@ -64113,9 +64103,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chickenPrefab: {fileID: 5468443596144700198, guid: 22eb7cb0de5a04330b101a3d113c1fd0, type: 3}
   characters:
-  - {fileID: 8702709569058536842, guid: cd4fb1423fe37d14b9061f5f699d570d, type: 3}
-  - {fileID: 8702709569058536842, guid: c3e677481776d1e428ccad3420465dae, type: 3}
-  - {fileID: 8702709569058536842, guid: 20fcf66f1c718ca499f8abefcffdf736, type: 3}
+  - {fileID: 4988382459727280837, guid: cd4fb1423fe37d14b9061f5f699d570d, type: 3}
+  - {fileID: 7336166372550722991, guid: be00d8323de4166469f23742bd7edb9a, type: 3}
+  - {fileID: 3612123102479535027, guid: 63665bd16ac1e4644aeef4d36fafb12a, type: 3}
+  - {fileID: 2416829333004479447, guid: 42a240f8d94e09f42a8501ff97c8ad65, type: 3}
+  - {fileID: 3691656641590799953, guid: 96ca7b5cadff15f43b97225be1e6fe7d, type: 3}
+  - {fileID: 830727624693677129, guid: 81c29773fd4cb90469bcc0752d578daf, type: 3}
+  - {fileID: 5158688225282652577, guid: 718330f662b2b564ba209ab2f99cf7ea, type: 3}
+  - {fileID: 762345616840595234, guid: 76fb9e8985c742d49a590cdbd3486b8c, type: 3}
+  - {fileID: 5479246004295643399, guid: 3d896f703ccce834c9c877037ca8cdad, type: 3}
+  - {fileID: 2100460704390582310, guid: 263a6e6851397e54692d4d808a91e860, type: 3}
   spawnPoint: {fileID: 680193108}
   chickenSpawnPoints:
   - {fileID: 445389303}

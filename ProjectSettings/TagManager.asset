@@ -9,6 +9,7 @@ TagManager:
   - MapObject
   - CinemachineTarget
   - LeaderBoardCanvas
+  - Leaderboard
   layers:
   - Default
   - TransparentFX

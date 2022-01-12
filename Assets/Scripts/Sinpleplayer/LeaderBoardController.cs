@@ -35,17 +35,24 @@ public class LeaderBoardController : MonoBehaviour
     public void UpDateLeaderBoardDaily()
     {
         Clean();
-        var temp =Instantiate(leaderboardEntryPrefab, layoutGroup);
-        temp.GetComponent<LeaderBoardEntry>().Set("Player Daily", "10");
+        for(int i=0;i<20;i++)
+        {
+            var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
+            temp.GetComponent<LeaderBoardEntry>().Set((i+1).ToString(), "0x134...F7H92", "0123", "10");
+        }
+       
 
         //will load records from api call later;
     }
     public void UpDateLeaderBoardMonthly()
     {
         Clean();
-        var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
-        temp.GetComponent<LeaderBoardEntry>().Set("Player Monthly", "10");
-       
+        for (int i = 0; i < 20; i++)
+        {
+            var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
+            temp.GetComponent<LeaderBoardEntry>().Set((i + 1).ToString(), "0x134...F7H92", "0123", "10");
+        }
+
         //will load records from api call later;
     }
 

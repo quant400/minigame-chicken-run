@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Sinpleplayer\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardEntry.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
+     <Compile Include="Assets\Saif\Code\DontDestroy.cs" />
      <Compile Include="Assets\Saif\Code\DatabaseManager.cs" />
      <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerScoreBoardScript.cs" />
      <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
@@ -95,7 +96,7 @@
      <Compile Include="Assets\Scripts\PhotonMultiplayer\ChickenScript.cs" />
      <Compile Include="Assets\Saif\Code\Manager.cs" />
      <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
-     <Compile Include="Assets\Saif\Code\DontDestroy.cs" />
+     <Compile Include="Assets\Saif\Code\AuthManager.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-functions-unity\maven-metadata.xml" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />

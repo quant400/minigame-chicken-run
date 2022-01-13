@@ -9,6 +9,8 @@ TagManager:
   - MapObject
   - CinemachineTarget
   - LeaderBoardCanvas
+  - Water
+  - Bump
   layers:
   - Default
   - TransparentFX

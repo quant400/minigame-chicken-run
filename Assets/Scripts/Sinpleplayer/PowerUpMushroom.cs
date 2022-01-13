@@ -7,9 +7,10 @@ public class PowerUpMushroom : MonoBehaviour
 {
     [SerializeField]
     float PowerupSpeedMultiplier, jumpMultiplier, powerUpDuration;
-
+    AudioSource audio;
     private void Start()
     {
+        audio = GetComponent<AudioSource>();
         int chance = Random.Range(0 , 100);
         if (chance > SingleplayerGameControler.instance.GetMushroomPowerUpChance()) 
         {
@@ -31,8 +32,14 @@ public class PowerUpMushroom : MonoBehaviour
         }
     }
 
+    public void PlayPowerUp()
+    {
+        audio.Play();
+    }
+
     IEnumerator Powerup(GameObject player)
     {
+        PlayPowerUp();
         ThirdPersonController TPC = player.GetComponent<ThirdPersonController>();
         TPC.MoveSpeed *= PowerupSpeedMultiplier;
         TPC.JumpHeight *= jumpMultiplier;

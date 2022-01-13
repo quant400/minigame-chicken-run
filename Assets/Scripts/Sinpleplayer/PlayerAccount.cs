@@ -6,10 +6,10 @@ public class PlayerAccount : MonoBehaviour
 {
     [SerializeField]
     GameObject[] players;
-    Info[] myNFT;
+    NFTInfo[] myNFT;
 
 
-    public void SetData(Info[] Pdata)
+    public void SetData(NFTInfo[] Pdata)
     {
         myNFT = Pdata;
         SetDefault();

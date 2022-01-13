@@ -5,6 +5,7 @@ using TMPro;
 using StarterAssets;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.IO;
 
 public class GameOverScript : MonoBehaviour
 {
@@ -15,13 +16,14 @@ public class GameOverScript : MonoBehaviour
     TMP_Text currentScore, highScore, leaderboard;
     [SerializeField]
     GameObject canvasToDisable;
-    [SerializeField]
-    SinglePlayerSpawner spawner;
+   // [SerializeField]
+    //SinglePlayerSpawner spawner;
     private void OnEnable()
     {
-        characters = spawner.GetCharacterList();
+        //characters = spawner.GetCharacterList();
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-        var temp=Instantiate(characters[SingleplayerGameControler.instance.chosenAvatar], characterDisplay.position, Quaternion.identity,characterDisplay);
+        GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", SingleplayerGameControler.instance.chosenNFT.name)) as GameObject;
+        var temp=Instantiate(displayChar, characterDisplay.position, Quaternion.identity,characterDisplay);
         
         //destroying all player related components
         Destroy(temp.transform.GetChild(1).gameObject);

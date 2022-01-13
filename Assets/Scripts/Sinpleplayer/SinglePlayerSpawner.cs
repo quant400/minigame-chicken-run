@@ -39,7 +39,7 @@ public class SinglePlayerSpawner : MonoBehaviour
             var temp=Instantiate(chickenPrefab, chickenSpawnPoints[index].position, Quaternion.identity);
             temp.transform.parent = chickenHolder;
             index++;
-            if (index >= 9)
+            if (index >= 19)
                 index = 0;
             remainingToSpwan--;
         }

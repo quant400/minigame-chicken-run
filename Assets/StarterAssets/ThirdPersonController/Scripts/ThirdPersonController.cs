@@ -95,6 +95,7 @@ namespace StarterAssets
 		//AddedForGame
 		bool started=false;
 		bool ended=false;
+		PlayerSfxController pSfxC;
 		private void Awake()
 		{
 			// get a reference to our main camera
@@ -115,6 +116,8 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+
+			pSfxC = GetComponent<PlayerSfxController>();
 		}
 
 		private void Update()
@@ -128,8 +131,9 @@ namespace StarterAssets
 				Move();
 			}
 		}
+      
 
-		private void LateUpdate()
+        private void LateUpdate()
 		{
 			if(started && !ended)
 				CameraRotation();
@@ -225,6 +229,7 @@ namespace StarterAssets
 
 				// rotate to face input direction relative to camera position
 				transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+				
 			}
 
 
@@ -239,6 +244,9 @@ namespace StarterAssets
 				_animator.SetFloat(_animIDSpeed, _animationBlend);
 				_animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
 			}
+
+			//added for gameSfx 
+			pSfxC.ProgressStepCycle(targetSpeed, _input.move.x,_input.move.y);
 		}
 
 		private void JumpAndGravity()
@@ -272,6 +280,7 @@ namespace StarterAssets
 					{
 						_animator.SetBool(_animIDJump, true);
 					}
+
 				}
 
 				// jump timeout
@@ -345,6 +354,7 @@ namespace StarterAssets
 				GetComponent<StarterAssetsInputs>().SetCursorLock(false);
 
 		}
+		
 
         
     }

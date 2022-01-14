@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 3665320670160639066}
   - component: {fileID: 2605333951580746858}
   m_Layer: 6
-  m_Name: Aegis
+  m_Name: aegis
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

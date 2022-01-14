@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 
 [Serializable]
-public class Info
+public class NFTInfo
 {
     public int id;
     public string name;
@@ -63,7 +63,7 @@ public class NFTGetter : MonoBehaviour
     {
         string data = "{\"Items\":" + temp.downloadHandler.text + "}";
 
-        Info[] NFTData = JsonHelper.FromJson<Info>(data);
+        NFTInfo[] NFTData = JsonHelper.FromJson<NFTInfo>(data);
         cS.SetData(NFTData);
      
     }
@@ -71,7 +71,7 @@ public class NFTGetter : MonoBehaviour
     //temp Fuction for skip
     public void Skip()
     {
-        cS.Done();
+        cS.Skip();
     }
 }
 

@@ -114,6 +114,7 @@
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\Lobby.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\PlayerSfxController.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerGameControler.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasPriceExample.cs" />
@@ -141,7 +142,6 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ChickenScript.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\PlayerSfxController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

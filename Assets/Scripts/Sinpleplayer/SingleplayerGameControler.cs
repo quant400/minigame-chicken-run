@@ -10,7 +10,7 @@ public class SingleplayerGameControler : MonoBehaviour
     [SerializeField]
     int singleplayerScene;
     public int toSpawn;
-    public int chosenAvatar;
+    //public int chosenAvatar; changed to nft object 
     [SerializeField]
     GameObject[] toDestroyOnload;
     GameObject player;
@@ -23,6 +23,8 @@ public class SingleplayerGameControler : MonoBehaviour
     float spawnIntervals;
     [SerializeField]
     float mushroomPowerUpChance;
+
+    public NFTInfo chosenNFT;
     private void Awake()
     {
         if (instance != null && instance != this)

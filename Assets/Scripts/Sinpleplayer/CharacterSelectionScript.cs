@@ -2,6 +2,7 @@
 using DG.Tweening;
 using UnityEngine.UI;
 using System;
+using System.IO;
 
 public class CharacterSelectionScript : MonoBehaviour
 {
@@ -9,17 +10,25 @@ public class CharacterSelectionScript : MonoBehaviour
     Camera cam;
     [SerializeField]
     Transform[] characters;
+    [SerializeField]
+    Transform characterList;
     int currentCharacter;
     bool selected;
     [SerializeField]
     float sideCharZdisp;
     [SerializeField]
     Button rightButton,leftButton;
-    Info[] myNFT;
-
+    NFTInfo[] myNFT;
+    [SerializeField]
+    RuntimeAnimatorController controller;
     [SerializeField]
     GameObject buttonsToEnable, ButtonToDisable;
 
+    NFTInfo[] characterNFTMap;
+
+
+    //temp flag for skip 
+    bool skip=false;
     public void MoveRight()
     {
         rightButton.interactable = false;
@@ -100,7 +109,7 @@ public class CharacterSelectionScript : MonoBehaviour
 
     }
 
-    public void FinalSelect()
+    /*public void FinalSelect()
     {
         GameRoom.room.ChooseAvatar("PlayerAvatar" + currentCharacter);
         selected = true;
@@ -108,7 +117,7 @@ public class CharacterSelectionScript : MonoBehaviour
         rightButton.interactable = false;
         leftButton.interactable = false;
 
-    }
+    }*/
 
     public void UndoFinalSelect()
     {
@@ -119,7 +128,7 @@ public class CharacterSelectionScript : MonoBehaviour
     //added for single player
     public void FinalSelectSinglePlayer()
     {
-        SingleplayerGameControler.instance.chosenAvatar = currentCharacter;
+        SingleplayerGameControler.instance.chosenNFT = characterNFTMap[currentCharacter];
         selected = true;
         characters[currentCharacter].GetComponent<Animator>().SetBool("Selected", true);
         rightButton.interactable = false;
@@ -129,7 +138,7 @@ public class CharacterSelectionScript : MonoBehaviour
 
 
 
-    internal void SetData(Info[] nFTData)
+    internal void SetData(NFTInfo[] nFTData)
     {
         //will be respossible for setting up characters according to nft
         myNFT = nFTData;
@@ -137,24 +146,96 @@ public class CharacterSelectionScript : MonoBehaviour
         
     }
 
+   
     private void SetUpCharacters()
     {
-        // change later to cycle through all characters in returned list and load according to names or id
-        if (myNFT[0].id == 538)
-            characters[1].gameObject.SetActive(true);
-        
-        if (myNFT[1].id == 542)
-            characters[2].gameObject.SetActive(true);
+        characters = new Transform[myNFT.Length];
+        characterNFTMap = new NFTInfo[myNFT.Length];
+        int currentindex=1;
+        for(int i = 0; i<myNFT.Length;i++)
+        {
 
+            GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", myNFT[i].name)) as GameObject;
+            GameObject temp= Instantiate(charModel, characterList);
+            if (i == 0)
+            {
+                temp.transform.localPosition = new Vector3(0, -0.1f, 0);
+                characters[0] = temp.transform;
+                characterNFTMap[0] = myNFT[i];
+            }
+            else if (i % 2 == 0)
+            {
+                temp.transform.localPosition = new Vector3(-currentindex, -0.1f, 0.2f);
+                characters[characters.Length - currentindex] = temp.transform;
+                characterNFTMap[characters.Length - currentindex] = myNFT[i];
+                currentindex++;
+            }
+            else if (i % 2 != 0)
+            {
+                temp.transform.localPosition = new Vector3(currentindex, -0.1f, 0.2f);
+                characters[currentindex] = temp.transform;
+                characterNFTMap[currentindex] = myNFT[i];
 
+            }
+            temp.GetComponent<Animator>().runtimeAnimatorController = controller;
+
+        }
+
+        if(myNFT.Length==0)
+        {
+            GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", "a-rod")) as GameObject;
+            GameObject temp = Instantiate(charModel, characterList);
+            temp.transform.localPosition = new Vector3(0, -0.1f, 0);
+            characters[0] = temp.transform;
+            characterNFTMap[0] = new NFTInfo { id = 0000, name = "a-rod" };
+        }
 
         Done();
        
 
     }
 
-    //change to private when skip removed
-    public void Done()
+    // for skip to test all characters
+    public void Skip()
+    {
+       
+        var info = Resources.LoadAll("SinglePlayerPrefabs/DisplayModels",typeof (GameObject));
+        characters = new Transform[info.Length];
+        characterNFTMap = new NFTInfo[info.Length];
+        int currentindex = 1;
+        for (int i = 0; i < characters.Length; i++)
+        {
+            string name = info[i].name;
+            GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplayModels", name)) as GameObject;
+            GameObject temp = Instantiate(charModel, characterList);
+            temp.transform.localEulerAngles = new Vector3(0, 180, 0);
+            if (i == 0)
+            {
+                temp.transform.localPosition = new Vector3(0, -0.1f, 0);
+                characters[0] = temp.transform;
+                characterNFTMap[0] = new NFTInfo { id = 000, name = name};
+            }
+            else if (i % 2 == 0)
+            {
+                temp.transform.localPosition = new Vector3(-currentindex, -0.1f, 0.2f);
+                characters[characters.Length - currentindex ] = temp.transform;
+                characterNFTMap[characters.Length - currentindex] = new NFTInfo { id = 000, name = name };
+                currentindex++;
+            }
+            else if (i % 2 != 0)
+            {
+                temp.transform.localPosition = new Vector3(currentindex, -0.1f, 0.2f);
+                characters[currentindex] = temp.transform;
+                characterNFTMap[currentindex] = new NFTInfo { id = 000, name = name };
+            }
+            
+            temp.GetComponent<Animator>().runtimeAnimatorController = controller;
+        }
+
+        Done();
+    }
+    
+    private void Done()
     {
         buttonsToEnable.SetActive(true);
         ButtonToDisable.SetActive(false);

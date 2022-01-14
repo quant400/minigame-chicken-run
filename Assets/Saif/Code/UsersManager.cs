@@ -14,22 +14,23 @@ public class UsersManager : MonoBehaviour
 
     private void Start() {
         databaseRefrence = FirebaseDatabase.DefaultInstance.RootReference;
+        DatabaseManager._instance.setScore(456);
     }
     
-    public void registerUser(string _userName,string _userID)
+    public void registerUser(string _userName,string _assetID)
     {
         LeaderboardUser _user = new LeaderboardUser()
         {
-            userID = _userID,
+            assetID = _assetID,
             userName = _userName,
-            userRank = "0",
-            userScore = "0"
+            userRank = 0,
+            userScore = 0
         };
         string jsonUser = JsonUtility.ToJson(_user);
         databaseRefrence
         .Child("Leaderboard")
         .Child("Users")
-        .Child(_userID)
+        .Child(AuthManager._instance.getcurrentUser().UserId)
         .SetRawJsonValueAsync(jsonUser).ContinueWith(task=>
         {
             if(task.IsFaulted)
@@ -42,13 +43,14 @@ public class UsersManager : MonoBehaviour
                 Debug.Log("TASK CANCELED");
                 return;
             }
-            Debug.Log("USER REGISTERED SUCCESSFULLY");
+            Debug.Log("USER REGISTERED SUCCESSFULLY IN ALL TIME LEADERBOARD");
+            AuthManager._instance.SignInAnonymously();
         });
    
         databaseRefrence
         .Child("DailyLeaderboard")
         .Child("Users")
-        .Child(_userID)
+        .Child(AuthManager._instance.getcurrentUser().UserId)
         .SetRawJsonValueAsync(jsonUser).ContinueWith(task=>
         {
             if(task.IsFaulted)
@@ -61,7 +63,7 @@ public class UsersManager : MonoBehaviour
                 Debug.Log("TASK CANCELED");
                 return;
             }
-            Debug.Log("USER REGISTERED SUCCESSFULLY");
+            Debug.Log("USER REGISTERED SUCCESSFULLY IN DAILY LEADERBOARD");
         });
     }
 

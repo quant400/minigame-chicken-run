@@ -6,10 +6,11 @@ using StarterAssets;
 public class PowerUpMushroom : MonoBehaviour
 {
     [SerializeField]
-    float PowerupSpeedMultiplier, powerUpDuration;
-
+    float PowerupSpeedMultiplier, jumpMultiplier, powerUpDuration;
+    AudioSource audio;
     private void Start()
     {
+        audio = GetComponent<AudioSource>();
         int chance = Random.Range(0 , 100);
         if (chance > SingleplayerGameControler.instance.GetMushroomPowerUpChance()) 
         {
@@ -31,16 +32,28 @@ public class PowerUpMushroom : MonoBehaviour
         }
     }
 
+    public void PlayPowerUp()
+    {
+        audio.Play();
+    }
+
     IEnumerator Powerup(GameObject player)
     {
+        PlayPowerUp();
         ThirdPersonController TPC = player.GetComponent<ThirdPersonController>();
         TPC.MoveSpeed *= PowerupSpeedMultiplier;
+        TPC.JumpHeight *= jumpMultiplier;
         TPC.SprintSpeed = TPC.MoveSpeed;
+        //for testing 
+        player.transform.GetChild(3).gameObject.SetActive(true);
         
         yield return new WaitForSeconds(powerUpDuration);
 
         TPC.MoveSpeed /= PowerupSpeedMultiplier;
+        TPC.JumpHeight /= jumpMultiplier;
         TPC.SprintSpeed = TPC.MoveSpeed*1.5f;
+        //for testing 
+        player.transform.GetChild(3).gameObject.SetActive(false);
         Destroy(gameObject);
 
     }

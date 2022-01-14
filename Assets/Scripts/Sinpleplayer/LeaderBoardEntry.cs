@@ -6,13 +6,16 @@ using TMPro;
 public class LeaderBoardEntry : MonoBehaviour
 {
     [SerializeField]
-    TMP_Text pName, score;
+    TMP_Text rank, wallet, nftID, score;
 
 
-    public void Set(string PName,string Score)
+    public void Set(string Rank,string Wallet,string ID,string Score)
     {
-        pName.text = PName;
+        rank.text = Rank;
+        wallet.text = Wallet;
+        nftID.text = ID;
         score.text = Score;
+
     }
         
 }

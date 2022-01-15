@@ -4,7 +4,6 @@ using UnityEngine;
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof (UnityEngine.AI.NavMeshAgent))]
-    [RequireComponent(typeof (ThirdPersonCharacter))]
     public class AICharacterControl : MonoBehaviour
     {
         public UnityEngine.AI.NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
@@ -27,11 +26,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 	        agent.updateRotation = false;
 	        agent.updatePosition = true;
             originalRadius = searchRadius;
+            StartGame();
             
         }
         public void StartGame()
         {
-            StartCoroutine("FollowChicken");
+            StartCoroutine(FollowChicken());
         }
 
         private void Update()
@@ -42,12 +42,20 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                     agent.SetDestination(target.position);
 
                 if (agent.remainingDistance > agent.stoppingDistance)
+                {
                     character.Move(agent.desiredVelocity, false, false);
+                    GetComponent<Animator>().SetBool("Walking", true);
+                }
                 else
+                {
                     character.Move(Vector3.zero, false, false);
+                    
+                }
+
 
                 if (!found)
                 {
+                    GetComponent<Animator>().SetBool("Walking", false);
                     timeLeft -= Time.deltaTime;
                     if(timeLeft<=0)
                     {
@@ -68,7 +76,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         IEnumerator FollowChicken()
         {
             chickens = GameObject.FindGameObjectsWithTag("Chicken");
-            SetTarget(chickens[int.Parse(number)].transform);
+            SetTarget(chickens[Random.Range(0,50)].transform);
+            found = true;
             yield return new WaitForSeconds(10);
             StartCoroutine("FindNearestChicken");
         }

@@ -25,6 +25,9 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
     bool started = false;
     [SerializeField]
     GameObject endGameObject;
+    [SerializeField]
+    TMP_Text timerValue;
+    float currentTime;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -41,11 +44,25 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
     {
         started = true;
         time = SingleplayerGameControler.instance.GetTimeForGame();
+        currentTime = time;
     }
     private void Update()
     {
         if (started)
+
+        {
             timerFill.fillAmount -= Time.deltaTime / time;
+            currentTime -= Time.deltaTime;
+            if(currentTime>20)
+            {
+                timerValue.text = ((int)(currentTime)).ToString();
+            }
+            else if(currentTime<=20)
+            {
+                timerValue.text = "<color=red>" + ((int)(currentTime)).ToString()+"</color>";
+            }
+           
+        }
 
         if(timerFill.fillAmount<=0)
         {

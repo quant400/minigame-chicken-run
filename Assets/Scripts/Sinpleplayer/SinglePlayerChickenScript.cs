@@ -72,6 +72,10 @@ public class SinglePlayerChickenScript : MonoBehaviour
             SinglePlayerScoreBoardScript.instance.AnimChickenCollected();
             Collected();
         }
+        if (other.CompareTag("Bot"))
+        {
+            Collected();
+        }
     }
 
 

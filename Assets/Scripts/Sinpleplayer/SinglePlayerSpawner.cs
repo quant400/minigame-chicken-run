@@ -17,7 +17,10 @@ public class SinglePlayerSpawner : MonoBehaviour
     Transform[] chickenSpawnPoints;
     [SerializeField]
     Transform chickenHolder;
-
+    [SerializeField]
+    GameObject NPCPrefab;
+    [SerializeField]
+    Transform[] NPCSPawnPoints;
     private void Start()
     {
         //SinglePlayerScoreBoardScript.instance.PlayerJoined("1", 1);
@@ -29,6 +32,7 @@ public class SinglePlayerSpawner : MonoBehaviour
         GameObject temp = Instantiate(resource, spawnPoint.position, Quaternion.identity);
         
         SpawnChickens();
+        SpawnNpc();
     }
 
 
@@ -56,7 +60,13 @@ public class SinglePlayerSpawner : MonoBehaviour
         StartCoroutine("SpawnRandomChicken");
     }
 
-
+    void SpawnNpc()
+    {
+        for(int i=0;i<NPCSPawnPoints.Length;i++)
+        {
+            Instantiate(NPCPrefab, NPCSPawnPoints[i].position, Quaternion.identity);
+        }
+    }
 
     public GameObject[] GetCharacterList()
     {

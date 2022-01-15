@@ -885,13 +885,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 725c7aea873bda64c8374c3f71f22af8, type: 3}
   - {fileID: 8300000, guid: a39f2eebb8d56b748a88763ffc91ddd6, type: 3}
   - {fileID: 8300000, guid: ec4ab16fdf4d7954e8ce1e188c2f67df, type: 3}
-  Jump: {fileID: 0}
+  Jump: {fileID: 8300000, guid: 276603e3b3123834684557ed3a1a782d, type: 3}
   land: {fileID: 0}
   waterWalk: {fileID: 8300000, guid: 8630630c088282e46b78de93f3404b1b, type: 3}
   waterEnter: {fileID: 8300000, guid: 848ca5f4b6f2d704ab229bcf9f7d7dde, type: 3}
   waterExit: {fileID: 8300000, guid: 7cd15e821fb4f564f8855654e0dd8117, type: 3}
   bump: {fileID: 8300000, guid: ecbc34f34c621584a89c86103251c3e2, type: 3}
-  powerUp: {fileID: 8300000, guid: 3c957f17bb7318049ac76a3b39bea91e, type: 3}
+  powerUp: {fileID: 0}
   m_StepInterval: 7
 --- !u!82 &6886300997052270662
 AudioSource:

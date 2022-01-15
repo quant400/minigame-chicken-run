@@ -12,6 +12,7 @@ TagManager:
   - Water
   - Bump
   - Bot
+  - SFXPlayer
   layers:
   - Default
   - TransparentFX

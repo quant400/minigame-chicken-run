@@ -10,10 +10,19 @@ public class SinglePlayerChickenScript : MonoBehaviour
     NavMeshAgent nav;
     [SerializeField]
     int score;
+    [SerializeField]
+    AudioClip sound1, sound2;
+    AudioSource aS;
+
+    GameObject player;
+    bool played;
+    float timefornextSound;
     void Start()
     {
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+        aS = GetComponent<AudioSource>();
+        player = GameObject.FindGameObjectWithTag("Player");
         Wander();
     }
 
@@ -34,6 +43,26 @@ public class SinglePlayerChickenScript : MonoBehaviour
         {
             Wander();
 
+        }
+        if (player != null)
+        {
+            if ((transform.position - player.transform.position).magnitude < 10)
+            {
+                if (timefornextSound <= 0)
+                {
+                    aS.clip = sound1;
+                    aS.Play();
+                    timefornextSound = Random.Range(2, 6);
+                }
+                else
+                {
+                    timefornextSound -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                timefornextSound = 0;
+            }
         }
         //transform.LookAt(nav.destination);
 
@@ -69,8 +98,15 @@ public class SinglePlayerChickenScript : MonoBehaviour
         }
         if (other.CompareTag("Player"))
         {
+            aS.clip = sound2;
+            aS.Play();
+            foreach(Transform t in transform)
+            {
+                Destroy(t.gameObject);
+            }
+            GetComponent<BoxCollider>().enabled = false;
             SinglePlayerScoreBoardScript.instance.AnimChickenCollected();
-            Collected();
+            Invoke("Collected", 1f);
         }
         if (other.CompareTag("Bot"))
         {

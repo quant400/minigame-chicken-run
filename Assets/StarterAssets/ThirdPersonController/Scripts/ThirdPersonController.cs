@@ -281,6 +281,8 @@ namespace StarterAssets
 						_animator.SetBool(_animIDJump, true);
 					}
 
+					//added for SFX
+					pSfxC.PlayJump(); ;
 				}
 
 				// jump timeout

@@ -24,6 +24,7 @@ public class NFTGetter : MonoBehaviour
     }
     public void GetNFT()
     {
+        Debug.LogWarningFormat("Change this before final build and also rename youngin, sledghammer and long shot");
         string acc = PlayerPrefs.GetString("Account");
         //StartCoroutine(GetRequest("https://api.cryptofightclub.io/game/sdk/"+acc));
 

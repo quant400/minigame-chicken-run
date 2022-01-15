@@ -142,6 +142,7 @@ public class CharacterSelectionScript : MonoBehaviour
     {
         //will be respossible for setting up characters according to nft
         myNFT = nFTData;
+        Debug.Log(myNFT);
         SetUpCharacters();
         
     }
@@ -154,9 +155,10 @@ public class CharacterSelectionScript : MonoBehaviour
         int currentindex=1;
         for(int i = 0; i<myNFT.Length;i++)
         {
-
-            GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", myNFT[i].name)) as GameObject;
+            Debug.Log(myNFT[i].name);
+            GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplayModels", myNFT[i].name)) as GameObject;
             GameObject temp= Instantiate(charModel, characterList);
+            temp.transform.localEulerAngles = new Vector3(0, 180, 0);
             if (i == 0)
             {
                 temp.transform.localPosition = new Vector3(0, -0.1f, 0);
@@ -183,7 +185,7 @@ public class CharacterSelectionScript : MonoBehaviour
 
         if(myNFT.Length==0)
         {
-            GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", "a-rod")) as GameObject;
+            GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplayModels", "a-rod")) as GameObject;
             GameObject temp = Instantiate(charModel, characterList);
             temp.transform.localPosition = new Vector3(0, -0.1f, 0);
             characters[0] = temp.transform;

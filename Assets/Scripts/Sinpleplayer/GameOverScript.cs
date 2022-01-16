@@ -13,7 +13,7 @@ public class GameOverScript : MonoBehaviour
     Transform characterDisplay;
     GameObject[] characters;
     [SerializeField]
-    TMP_Text currentScore, highScore, leaderboard;
+    TMP_Text currentScore, dailyScore, allTimeScore;
     [SerializeField]
     GameObject canvasToDisable;
     [SerializeField]
@@ -46,7 +46,9 @@ public class GameOverScript : MonoBehaviour
         temp.transform.localPosition = Vector3.zero;
         temp.transform.localRotation = Quaternion.identity;
         temp.transform.localScale = Vector3.one * 2;
-        currentScore.text = SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+        currentScore.text = "CHICKENS CAUGHT : "+SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+        dailyScore.text = "DAILY SCORE : "+ "00";
+        allTimeScore.text = "ALL TIME SCORE : " + "00";
         //upddate other values here form leaderboard
         canvasToDisable.SetActive(false);
     }

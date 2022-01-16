@@ -16,18 +16,21 @@ namespace DataApi
         public int userRank;
 
         public LeaderboardUser() { }
-        public LeaderboardUser(string id, string name)
+        public LeaderboardUser(string _assetID,string name,int _sessionCounter,int _score)
         {
-            this.assetID = id;
+            this.assetID = _assetID;
             this.userName = name;
+            this.sessionCounter = _sessionCounter;
+            this.userScore = _score;
+
         }
-        public LeaderboardUser(string id, string name, int score, int rank)
-        {
-            this.assetID = id;
-            this.userName = name;
-            this.userScore = 0;
-            this.userRank = 0;
-        }
+        // public LeaderboardUser(string id, string name, int score, int rank)
+        // {
+        //     this.assetID = id;
+        //     this.userName = name;
+        //     this.userScore = 0;
+        //     this.userRank = 0;
+        // }
     }
 
     [Serializable]

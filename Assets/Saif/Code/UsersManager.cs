@@ -14,17 +14,22 @@ public class UsersManager : MonoBehaviour
         _instance = this;
     }
 
-    public async void registerUser(string _userName, string _userID)
+    private void Update() {
+        // if(Input.GetKeyDown(KeyCode.X))
+        //     // registerUser("CUSTOM USER IDD","ASSET ID","NAME");
+
+    }
+
+    public async void registerUser(string assetID,string userName)
     {
-        await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
-        var _user = new LeaderboardUser(_userID, _userName, 0, 0);
+        // await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
+        // var _user = new LeaderboardUser(assetID, userName,0,0,0);
+        // //As this is the only function in this class, we are not referencing the API, as its a singleton we can acces it from anywhere! 
+        // //one can acces child nodes in the realtimedb (JSONTREE) by seperating childs with /
+        // await FirebaseAPI.Instance.database.SetRawAsync($"Leaderboard/Users/{PlayerPrefs.GetString("UserID","0000ERRROR")}", _user);
+        // await FirebaseAPI.Instance.database.SetRawAsync($"DailyLeaderboard/Users/{PlayerPrefs.GetString("UserID","0000ERRROR")}", _user);
 
-        //As this is the only function in this class, we are not referencing the API, as its a singleton we can acces it from anywhere! 
-        //one can acces child nodes in the realtimedb (JSONTREE) by seperating childs with /
-        await FirebaseAPI.Instance.database.SetRawAsync($"Leaderboard/Users/{_userID}", _user);
-        await FirebaseAPI.Instance.database.SetRawAsync($"DailyLeaderboard/Users/{_userID}", _user);
-
-        Debug.Log("USER REGISTERED SUCCESSFULLY");
+        // Debug.Log("USER REGISTERED SUCCESSFULLY");
         /*
                 string jsonUser = JsonUtility.ToJson(_user);
                 databaseRefrence

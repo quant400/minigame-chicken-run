@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 90.8, y: 0.6959}
+  m_AnchoredPosition: {x: 83.7, y: 0.6959}
   m_SizeDelta: {x: 86.2586, y: 69.3109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3380790448109415273
@@ -113,7 +113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 188.9239, y: 19.099903}
+  m_AnchoredPosition: {x: 187.6, y: -17.6}
   m_SizeDelta: {x: 86.2586, y: 32.5026}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4958899541035879290
@@ -192,7 +192,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 190.7, y: -15.4}
+  m_AnchoredPosition: {x: 190.7, y: 16.4}
   m_SizeDelta: {x: 89.813, y: 32.5026}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4187031611994337511
@@ -315,7 +315,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Saif Ahmed Ahmed
+  m_Text: FIGHTERNAME
 --- !u!1 &8500473797799871127
 GameObject:
   m_ObjectHideFlags: 0

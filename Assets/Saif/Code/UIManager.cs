@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
         {
             GameObject _userRak = Instantiate(userRankPrefab, _leaderboardParent) as GameObject;
             //it is better to store values in their respective types, than convert to string, than storing as string than convert into something else! 
-            _userRak.GetComponent<RankUser>().setRankInfo(_user.userName, _user.userScore.ToString(), _user.userRank.ToString());
+            _userRak.GetComponent<RankUser>().setRankInfo(_user.userName,""+_user.userScore,""+_user.userRank,_user.assetID,_user.sessionCounter);
         }
     }
 }

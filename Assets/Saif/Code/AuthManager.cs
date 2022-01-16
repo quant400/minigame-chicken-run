@@ -9,10 +9,19 @@ using Tamarin.FirebaseX;
 public class AuthManager : MonoBehaviour
 {
     //This firebase user is not the same as the native api!
+    public static AuthManager _instance;
     public FirebaseUser user;
+    private void Awake()
+    {
+        _instance = this;
+    }
     private void Start()
     {
-        SignInAnonymously();
+        // SignInAnonymously();
+    }
+
+    private void Update() {
+        
     }
 
     //Call this from code, do not reference async functions from the UI thread. 
@@ -29,6 +38,12 @@ public class AuthManager : MonoBehaviour
             return;
         }
         Debug.LogFormat("User signed in successfully: {0} ({1})", user.DisplayName, user.UserId);
+        PlayerPrefs.SetString("UserID",user.UserId);
+    }
+
+    public FirebaseUser getcurrentUser()
+    {
+       return user;
     }
 
 }

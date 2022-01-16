@@ -11,6 +11,8 @@ TagManager:
   - LeaderBoardCanvas
   - Water
   - Bump
+  - Bot
+  - SFXPlayer
   layers:
   - Default
   - TransparentFX

@@ -83,4 +83,8 @@ public class SingleplayerGameControler : MonoBehaviour
         return mushroomPowerUpChance;
     }
 
+    public void PlayClick()
+    {
+        GetComponent<AudioSource>().Play();
+    }
 }

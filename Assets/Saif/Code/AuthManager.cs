@@ -7,15 +7,18 @@ using System;
 
 public class AuthManager : MonoBehaviour
 {
+    public static AuthManager _instance;
     FirebaseAuth auth;
 
-    private void Start()
+    private void Awake()
     {
+        _instance = this;
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-        SignInAnonymously();
+        // if(getcurrentUser() == null)
+        //     SignInAnonymously();
     }
     
-    void SignInAnonymously()
+    public void SignInAnonymously()
     {
         auth.SignInAnonymouslyAsync().ContinueWith(task => {
         if (task.IsCanceled) {
@@ -31,5 +34,10 @@ public class AuthManager : MonoBehaviour
         Debug.LogFormat("User signed in successfully: {0} ({1})",
             newUser.DisplayName, newUser.UserId);
         });
+    }
+
+    public FirebaseUser getcurrentUser()
+    {
+       return auth.CurrentUser;
     }
 }

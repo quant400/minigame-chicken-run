@@ -16,10 +16,17 @@ public class GameOverScript : MonoBehaviour
     TMP_Text currentScore, highScore, leaderboard;
     [SerializeField]
     GameObject canvasToDisable;
+    [SerializeField]
+    AudioClip gameOverClip;
    // [SerializeField]
     //SinglePlayerSpawner spawner;
     private void OnEnable()
     {
+        AudioSource ad = GameObject.FindGameObjectWithTag("SFXPlayer").GetComponent<AudioSource>();
+        ad.clip = gameOverClip;
+        ad.loop = false;
+        ad.volume = 0.2f;
+        ad.Play();
         //characters = spawner.GetCharacterList();
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", SingleplayerGameControler.instance.chosenNFT.name)) as GameObject;

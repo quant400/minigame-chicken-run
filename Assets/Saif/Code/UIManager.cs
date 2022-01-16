@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
         foreach(LeaderboardUser _user in _leaderboardObject.users)
         {
             GameObject _userRak = Instantiate(userRankPrefab,_leaderboardParent) as GameObject;
-            _userRak.GetComponent<RankUser>().setRankInfo(_user.userName,_user.userScore,_user.userRank);
+            _userRak.GetComponent<RankUser>().setRankInfo(_user.userName,""+_user.userScore,""+_user.userRank,_user.assetID,_user.sessionCounter);
         }
     }
 }

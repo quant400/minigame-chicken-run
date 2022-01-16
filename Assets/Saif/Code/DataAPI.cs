@@ -8,10 +8,11 @@ namespace DataApi
     [Serializable]
     public class LeaderboardUser
     {
-        public string userID;
+        public string assetID;
+        public int sessionCounter;
         public string userName;
-        public string userScore;
-        public string userRank;
+        public int userScore;
+        public int userRank;
     }
     [Serializable]
     public class leaderboardObject

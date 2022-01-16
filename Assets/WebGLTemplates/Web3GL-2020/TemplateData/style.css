@@ -73,6 +73,7 @@ body {
     height: 38px;
     background: url('fullscreen-button.png') no-repeat center;
     background-size: contain;
+    display: none;
 }
 
 .spinner,

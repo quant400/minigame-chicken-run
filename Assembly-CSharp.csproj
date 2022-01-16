@@ -87,6 +87,7 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\TxStatus.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomCallExample.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\NoNFTCanvasScript.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\GameOverScript.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\Saif\Code\DatabaseManager.cs" />
@@ -153,7 +154,6 @@
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ChickenScript.cs" />
     <Compile Include="Assets\Saif\Code\Manager.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\NoNFTCanvasScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Firebase\Plugins\iOS\Firebase.Functions.dll" />

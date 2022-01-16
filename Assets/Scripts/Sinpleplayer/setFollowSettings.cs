@@ -30,7 +30,7 @@ public class setFollowSettings : MonoBehaviour
             followCameraSettings.LookAt = followCameraSettings.Follow;
              thirdperson = followCameraSettings.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
             followCameraSettings.AddCinemachineComponent<CinemachineHardLookAt>();
-            thirdperson.Damping.z = 1;
+            thirdperson.Damping.z = 0.5f;
         }
         
     }
@@ -43,11 +43,11 @@ public class setFollowSettings : MonoBehaviour
 
             if (_input.sprint)
             {
-                thirdperson.Damping.z = 2;
+                thirdperson.Damping.z = 1.2f;
             }
             else
             {
-                thirdperson.Damping.z = 1;
+                thirdperson.Damping.z = 0.5f;
             }
         }
     }

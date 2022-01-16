@@ -142,7 +142,6 @@ public class CharacterSelectionScript : MonoBehaviour
     {
         //will be respossible for setting up characters according to nft
         myNFT = nFTData;
-        Debug.Log(myNFT);
         SetUpCharacters();
         
     }
@@ -155,8 +154,9 @@ public class CharacterSelectionScript : MonoBehaviour
         int currentindex=1;
         for(int i = 0; i<myNFT.Length;i++)
         {
-            Debug.Log(myNFT[i].name);
-            GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplayModels", myNFT[i].name)) as GameObject;
+            string charName = NameToSlugConvert(myNFT[i].name);
+            Debug.Log(charName);
+            GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplayModels", charName)) as GameObject;
             GameObject temp= Instantiate(charModel, characterList);
             temp.transform.localEulerAngles = new Vector3(0, 180, 0);
             if (i == 0)
@@ -200,7 +200,6 @@ public class CharacterSelectionScript : MonoBehaviour
     // for skip to test all characters
     public void Skip()
     {
-       
         var info = Resources.LoadAll("SinglePlayerPrefabs/DisplayModels",typeof (GameObject));
         characters = new Transform[info.Length];
         characterNFTMap = new NFTInfo[info.Length];
@@ -241,5 +240,15 @@ public class CharacterSelectionScript : MonoBehaviour
     {
         buttonsToEnable.SetActive(true);
         ButtonToDisable.SetActive(false);
+    }
+
+
+
+    string NameToSlugConvert(string name)
+    {
+        string slug;
+        slug=name.ToLower().Replace(" ","-");
+        return slug;
+
     }
 }

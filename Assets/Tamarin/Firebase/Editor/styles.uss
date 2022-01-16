@@ -1,0 +1,315 @@
+.container {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: rgb(45, 45, 45);
+    flex-shrink: 1;
+    border-left-width: 2px;
+    border-left-color: rgba(255, 255, 255, 0.55);
+    border-right-color: rgba(255, 255, 255, 0.55);
+    border-top-color: rgba(255, 255, 255, 0.55);
+    border-bottom-color: rgba(255, 255, 255, 0.55);
+}
+
+.container:hover {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: rgb(48, 48, 48);
+    flex-shrink: 1;
+    border-left-width: 2px;
+}
+
+.effect-purple {
+    border-left-color: rgb(199, 80, 219);
+    border-left-width: 2px;
+}
+
+.header {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    flex-direction: row;
+    color: rgb(210, 210, 210);
+}
+
+.headerText {
+    font-size: 12px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    margin-left: 8px;
+    color: rgb(210, 210, 210);
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+.Icon {
+    width: 24px;
+    height: 24px;
+    flex-direction: row;
+    margin-left: 8px;
+    padding-top: 0;
+    margin-top: 2px;
+}
+
+.IconButton {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    width: auto;
+    height: auto;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.08);
+    align-items: center;
+    justify-content: center;
+}
+
+.IconButton:hover {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    width: auto;
+    height: auto;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba(250, 150, 175, 0.39);
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-row {
+    flex-grow: 1;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.flex-col {
+    flex-grow: 0;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.visible {
+    visibility: visible;
+    overflow: visible;
+    display: flex;
+}
+
+.content {
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.smallText {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 10px;
+}
+
+.actionButton {
+    background-color: rgba(0, 0, 0, 0.12);
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    margin-top: 6px;
+    margin-bottom: 2px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    -unity-text-align: upper-center;
+}
+
+.actionButton:hover {
+    background-color: rgb(250, 150, 175);
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    margin-top: 6px;
+    margin-bottom: 2px;
+}
+
+.linkButton {
+    background-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+}
+
+.linkButton:hover {
+    background-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    color: rgb(250, 150, 175);
+}
+
+.unity-text-field {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: rgb(210, 210, 210);
+}
+
+.unity-text-field__label {
+    font-size: 12px;
+    -unity-font-style: normal;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: rgb(210, 210, 210);
+}
+
+.unity-base-text-field__input {
+    padding-left: 4px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-left-width: 2px;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+    background-color: rgba(0, 0, 0, 0.02);
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: rgb(140, 140, 140);
+    border-left-color: rgba(0, 0, 0, 0.04);
+}
+
+.unity-base-text-field__input:hover {
+    border-bottom-color: rgb(250, 150, 175);
+    border-bottom-width: 0;
+    border-left-width: 2px;
+    border-left-color: rgb(250, 150, 175);
+    background-color: rgba(250, 150, 175, 0.04);
+    border-right-color: rgb(250, 150, 175);
+    border-top-color: rgb(250, 150, 175);
+}
+
+.unity-base-text-field__input:focus {
+    border-bottom-color: rgb(250, 150, 175);
+    border-bottom-width: 0;
+    border-left-width: 2px;
+    border-left-color: rgb(250, 150, 175);
+    background-color: rgba(250, 150, 175, 0.08);
+    border-right-color: rgb(250, 150, 175);
+    border-top-color: rgb(250, 150, 175);
+}
+
+.unity-text-element {
+    color: rgb(210, 210, 210);
+}
+
+.c-enabled {
+    border-left-width: 2px;
+    border-left-color: rgb(150, 200, 250);
+    border-right-color: rgb(150, 200, 250);
+    border-top-color: rgb(150, 200, 250);
+    border-bottom-color: rgb(150, 200, 250);
+}
+
+.unity-button {
+    color: rgb(230, 230, 230);
+}
+
+.view {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.view {
+    background-color: rgb(40, 40, 40);
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-grow: 1;
+    padding-left: 4px;
+    padding-right: 4px;
+}

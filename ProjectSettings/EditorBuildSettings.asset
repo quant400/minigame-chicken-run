@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Saif/Scenes/LeaderboardTemplate.unity
     guid: 75b6986b6bc72e14d8d0b2b249949f9d
   - enabled: 1

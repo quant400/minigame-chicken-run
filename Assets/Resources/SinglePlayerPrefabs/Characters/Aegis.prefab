@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 3665320670160639066}
   - component: {fileID: 2605333951580746858}
   m_Layer: 6
-  m_Name: Aegis
+  m_Name: aegis
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -972,8 +972,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   CinemachineCameraTarget: {fileID: 6370864652535641935}
-  TopClamp: 70
-  BottomClamp: -30
+  TopClamp: 40
+  BottomClamp: -10
   CameraAngleOverride: 0
   LockCameraPosition: 0
 --- !u!114 &8728885729225420001

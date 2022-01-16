@@ -30,7 +30,7 @@ public class SinglePlayerSpawner : MonoBehaviour
 
         //span point chaged to index 4 intead of 0 will make it a single point intead of array if only one player in game decided
         //GameObject temp = Instantiate(characters[SingleplayerGameControler.instance.chosenAvatar], spawnPoint.position, Quaternion.identity);
-        chosenNFTName = SingleplayerGameControler.instance.chosenNFT.name;
+        chosenNFTName = NameToSlugConvert(SingleplayerGameControler.instance.chosenNFT.name);
         GameObject resource = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", chosenNFTName)) as GameObject;
         GameObject temp = Instantiate(resource, spawnPoint.position, Quaternion.identity);
         
@@ -80,4 +80,13 @@ public class SinglePlayerSpawner : MonoBehaviour
     {
         return characters;
     }
+
+    string NameToSlugConvert(string name)
+    {
+        string slug;
+        slug = name.ToLower().Replace(" ", "-");
+        return slug;
+
+    }
+    
 }

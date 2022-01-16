@@ -2221,7 +2221,7 @@ GameObject:
   - component: {fileID: 8808529290917847212}
   - component: {fileID: 8808529290917847213}
   m_Layer: 6
-  m_Name: Sledgehammer
+  m_Name: sledgehammer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2360,8 +2360,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   CinemachineCameraTarget: {fileID: 8237229064548316840}
-  TopClamp: 70
-  BottomClamp: -30
+  TopClamp: 40
+  BottomClamp: -10
   CameraAngleOverride: 0
   LockCameraPosition: 0
 --- !u!114 &8808529290917847212

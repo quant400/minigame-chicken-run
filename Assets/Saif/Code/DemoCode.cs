@@ -2,54 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class DemoCode : MonoBehaviour
 {
-    public InputField _userName;
-    public InputField assetID;
-    public TextMeshProUGUI LeaderboardScore;
-    public TextMeshProUGUI DailyLeaderboardScore;
-    public TextMeshProUGUI SessionsCounter;
-    
 
-    public void RegisterUser()
+    // public InputField _userName;
+    // public InputField R_userID;
+    // public InputField Leaderboard_userID_Save;
+    // public InputField newLeaderboardScore;
+    // public InputField DailyLeaderboardScore_userID_Save;
+    // public InputField newDailyLeaderboardScore;
+    // public InputField LeaderboardScore_userID_load;
+    // public Text fetchedLeaderboardScore;
+    // public InputField DailyLeaderboardScore_userID_load;
+    // public Text fetchedDailyLeaderboardScore;
+
+    void test()
     {
-        UsersManager._instance.registerUser(_userName.text,assetID.text);
+        DatabaseManager._instance.setScore("ASSETId","FIGHTER NAME",123132);
+        LeaderboardManager._instance.DisplayLeaderboard();
+        LeaderboardManager._instance.DisplayDailyLeaderboard();
+        // DatabaseManager._instance.setScore(99999);
+        // LeaderboardManager._instance.DisplayLeaderboard();
+        // LeaderboardManager._instance.DisplayDailyLeaderboard();
     }
 
-    private void Start() {
-        InvokeRepeating("loadLeaderboardScore",1f,2.5f);
-        InvokeRepeating("loadSessionCounter",1f,2.5f);
-        InvokeRepeating("loadDailyLeaderboardScore",1f,2.5f);
-    }
+    // public void RegisterUser()
+    // {
+    //     UsersManager._instance.registerUser(_userName.text, R_userID.text);
+    // }
     // public void setLeaderboardScore()
     // {
-    //     DatabaseManager._instance.setScoreInLeaderboard(Leaderboard_userID_Save.text,int.Parse(newLeaderboardScore.text));
+    //     DatabaseManager._instance.setScoreInLeaderboard(Leaderboard_userID_Save.text, int.Parse(newLeaderboardScore.text));
     // }
     // public void setDailyLeaderboardScore()
     // {
-    //     DatabaseManager._instance.setScoreInDailyLeaderboard(DailyLeaderboardScore_userID_Save.text,int.Parse(newDailyLeaderboardScore.text));
+    //     DatabaseManager._instance.setScoreInDailyLeaderboard(DailyLeaderboardScore_userID_Save.text, int.Parse(newDailyLeaderboardScore.text));
     // }
-    public void loadLeaderboardScore()
-    {
-        LeaderboardScore.text = "Leaderboard Score: "+DatabaseManager._instance.getLS();
-    }
-    public void loadSessionCounter()
-    {
-        SessionsCounter.text = "Sessions today: "+DatabaseManager._instance.getSessionsCounter();
-    }
-    public void loadDailyLeaderboardScore()
-    {
-        DailyLeaderboardScore.text = "Daily Leaderboard Score: "+DatabaseManager._instance.getDLS();
-    }
+    // public void loadLeaderboardScore()
+    // {
+    //     Debug.Log("FETCHED SCORE");
+    //     DatabaseManager._instance.getLeaderboardScore(LeaderboardScore_userID_load.text, loadedScore =>
+    //      {
+    //          fetchedLeaderboardScore.text = "SCORE IS : " + loadedScore;
+    //      });
+    // }
     // public void loadDailyLeaderboardScore()
     // {
     //     Debug.Log("FETCHED DAILY SCORE");
-    //     DatabaseManager._instance.getDailyLeaderboardScore(LeaderboardScore_userID_load.text,loadedScore=>
-    //     {
-    //         fetchedDailyLeaderboardScore.text = "SCORE IS : " + loadedScore;
-    //     });
+    //     DatabaseManager._instance.getDailyLeaderboardScore(LeaderboardScore_userID_load.text, loadedScore =>
+    //      {
+    //          fetchedDailyLeaderboardScore.text = "SCORE IS : " + loadedScore;
+    //      });
     // }
-    
 }

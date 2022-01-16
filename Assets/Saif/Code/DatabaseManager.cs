@@ -1,139 +1,134 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase.Database;
-using System;
-using Firebase.Extensions;
+
+
+using Tamarin.Common;
+using Tamarin.FirebaseX;
+
 public class DatabaseManager : MonoBehaviour
 {
     public static DatabaseManager _instance;
-    DatabaseReference databaseRefrence;
-    long SessionCounter;
-    long leaderboardScore;
-    long dailyleaderboardScore;
+    FirebaseAPI firebase;
 
-    private void Awake() {
+    private void Awake()
+    {
         _instance = this;
     }
-    private void Start() {
-        databaseRefrence = FirebaseDatabase.DefaultInstance.RootReference;
-        InvokeRepeating("getSessionCounter",1f,2f);
-        InvokeRepeating("getLeaderboardScore",1f,2f);
-        InvokeRepeating("getDailyLeaderboardScore",1f,2f);
-    }
-    public void setScore(int _score)
+
+    //Most of the calls in the api are async calls, which makes code clean and tidy, and powerful! 
+    //async calls are running on threads (depending on the platform) therefore it is advised to avoid threadhopping, and editor events (like button clicks)
+    //if not familiar with async/await go and have a read on it! it is awesome :) 
+    private async void Start()
     {
-        setScoreInDailyLeaderboard(_score+(int)dailyleaderboardScore);
-        setScoreInLeaderboard(_score+(int)leaderboardScore);
-    }
-    void setScoreInLeaderboard(int newScore)
-    {
-        databaseRefrence
-        .Child("Leaderboard")
-        .Child("Users")
-        .Child(AuthManager._instance.getcurrentUser().UserId)
-        .Child("userScore")
-        .SetValueAsync(newScore)
-        .ContinueWithOnMainThread(task=>
-        {
-            if(task.IsFaulted)
-            {
-                Debug.Log("TASK FAULTED");
-                return;
-            }
-            else if(task.IsCanceled)
-            {
-                Debug.Log("TASK CANCELED");
-                return;
-            }
-            Debug.Log("SCORE STORED IN LEADERBOARD!");   
-        });
-    }
-    public void setScoreInDailyLeaderboard(int newScore)
-    {
-        if(SessionCounter >= 10)
-            return;
-        databaseRefrence
-        .Child("DailyLeaderboard")
-        .Child("Users")
-        .Child(AuthManager._instance.getcurrentUser().UserId)
-        .Child("userScore")
-        .SetValueAsync(newScore)
-        .ContinueWithOnMainThread(task=>
-        {
-            if(task.IsFaulted)
-            {
-                Debug.Log("TASK FAULTED");
-                return;
-            }
-            else if(task.IsCanceled)
-            {
-                Debug.Log("TASK CANCELED");
-                return;
-            }
-            Debug.Log("SCORE STORED IN DAILY LEADERBOARD!");
-            IncremeantSessionCounter();   
-        });
-    }
-    public void getDailyLeaderboardScore()
-    {
-        databaseRefrence
-        .Child("DailyLeaderboard")
-        .Child("Users")
-        .Child(AuthManager._instance.getcurrentUser().UserId)
-        .Child("userScore")
-        .GetValueAsync().ContinueWith(task=>
-        {
-            if(task.IsFaulted)
-            {
-                Debug.Log("TASK FAULTED");
-                return;
-            }
-            else if(task.IsCanceled)
-            {
-                Debug.Log("TASK CANCELED");
-                return;
-            }
-            DataSnapshot snapshot = task.Result;
-            dailyleaderboardScore = (long)snapshot.Value;
-            // Debug.Log("DAILY LEADERBOARD SCORE IS : " + dailyleaderboardScore);
-            // result((int)snapshot.Value);
-        });
-    }
-    public void getLeaderboardScore()
-    {
-        databaseRefrence
-        .Child("Leaderboard")
-        .Child("Users")
-        .Child(AuthManager._instance.getcurrentUser().UserId)
-        .Child("userScore")
-        .GetValueAsync().ContinueWith(task=>
-        {
-            if(task.IsFaulted)
-            {
-                Debug.Log("TASK FAULTED");
-                return;
-            }
-            else if(task.IsCanceled)
-            {
-                Debug.Log("TASK CANCELED");
-                return;
-            }
-            DataSnapshot snapshot = task.Result;
-            leaderboardScore = (long)snapshot.Value;
-            // Debug.Log("LEADERBOARD SCORE IS : " + leaderboardScore);
-            // result((int)snapshot.Value);
-        });
+        //here we are referencing the api, to make a shorthand for firebase. (cause we are lazy devs, and Firebase.Instance is too long to write every time :))
+        await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
+        firebase = FirebaseAPI.Instance;
     }
 
-    public void getSessionCounter()
+    public async void setScoreInLeaderboard(string _userID, int newScore)
     {
+        await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
+        await firebase.database.SetAsync($"Leaderboard/Users/{_userID}/userScore", newScore);
+        Debug.Log("SCORE STORED IN LEADERBOARD!");
+
+        /*
+        databaseRefrence
+        .Child("Leaderboard")
+        .Child("Users")
+        .Child(_userID)
+        .Child("userScore")
+        .SetValueAsync(newScore)
+        .ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.Log("TASK FAULTED");
+                return;
+            }
+            else if (task.IsCanceled)
+            {
+                Debug.Log("TASK CANCELED");
+                return;
+            }
+            Debug.Log("SCORE STORED IN LEADERBOARD!");
+        });
+        */
+    }
+    public async void setScoreInDailyLeaderboard(string _userID, int newScore)
+    {
+        await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
+        await firebase.database.SetAsync($"DailyLeaderboard/Users/{_userID}/userScore", newScore);
+        Debug.Log("SCORE STORED IN LEADERBOARD!");
+
+        /*
         databaseRefrence
         .Child("DailyLeaderboard")
         .Child("Users")
-        .Child(AuthManager._instance.getcurrentUser().UserId)
-        .Child("sessionCounter")
-        .GetValueAsync().ContinueWith(task=>
+        .Child(_userID)
+        .Child("userScore")
+        .SetValueAsync(newScore)
+        .ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.Log("TASK FAULTED");
+                return;
+            }
+            else if (task.IsCanceled)
+            {
+                Debug.Log("TASK CANCELED");
+                return;
+            }
+            Debug.Log("SCORE STORED IN LEADERBOARD!");
+        });
+        */
+    }
+    public async void getDailyLeaderboardScore(string _userID, Action<long> result)
+    {
+        await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
+        //we store the userScore as a long, so we ask the api to return a long type, the type here can be any type which represents the result.
+        //eg: it could be QueryAsync<LeaderboardUser>($"DailyLeaderboard/Users/{_userID}") to retrieve the whole user. 
+        //eg: or QueryAsync<Dictionary<string, LeaderboardUser>>($"DailyLeaderboard/Users") to retreive the whole list of Users
+        var score = await firebase.database.QueryAsync<long>($"DailyLeaderboard/Users/{_userID}/userScore");
+        result(score);
+
+        /*
+        databaseRefrence
+        .Child("DailyLeaderboard")
+        .Child("Users")
+        .Child(_userID)
+        .Child("userScore")
+        .GetValueAsync().ContinueWithOnMainThread(task=>
+        {
+        if(task.IsFaulted)
+        {
+            Debug.Log("TASK FAULTED");
+            return;
+        }
+        else if(task.IsCanceled)
+        {
+            Debug.Log("TASK CANCELED");
+            return;
+        }
+        DataSnapshot snapshot = task.Result;
+        result((long)snapshot.Value);
+        });
+        */
+    }
+    public async void getLeaderboardScore(string _userID, Action<long> result)
+    {
+        var score = await firebase.database.QueryAsync<long>($"Leaderboard/Users/{_userID}/userScore");
+        result(score);
+
+        /*
+        databaseRefrence
+        .Child("Leaderboard")
+        .Child("Users")
+        .Child(_userID)
+        .Child("userScore")
+        .GetValueAsync().ContinueWithOnMainThread(task=>
         {
             if(task.IsFaulted)
             {
@@ -146,43 +141,8 @@ public class DatabaseManager : MonoBehaviour
                 return;
             }
             DataSnapshot snapshot = task.Result;
-            Debug.Log("CURRENT SESSION COUNTER : " + SessionCounter);
-            SessionCounter = (long)snapshot.Value;
+            result((long)snapshot.Value);
         });
-    }
-    public void IncremeantSessionCounter()
-    {
-        databaseRefrence
-        .Child("DailyLeaderboard")
-        .Child("Users")
-        .Child(AuthManager._instance.getcurrentUser().UserId)
-        .Child("sessionCounter")
-        .SetValueAsync(SessionCounter+1)
-        .ContinueWithOnMainThread(task=>
-        {
-            if(task.IsFaulted)
-            {
-                Debug.Log("TASK FAULTED");
-                return;
-            }
-            else if(task.IsCanceled)
-            {
-                Debug.Log("TASK CANCELED");
-                return;
-            }
-            Debug.Log("Counter Increased");   
-        });
-    }
-    public long getSessionsCounter()
-    {
-        return SessionCounter;
-    }
-    public long getLS()
-    {
-        return leaderboardScore;
-    }
-    public long getDLS()
-    {
-        return dailyleaderboardScore;
+        */
     }
 }

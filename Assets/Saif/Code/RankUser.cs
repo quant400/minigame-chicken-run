@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class RankUser : MonoBehaviour
 {
     public Text userName;
     public Text userScore;
     public Text userRank;
-    public Text assetID;
-    public Text SessionsToday;
 
-    public void setRankInfo(string _name, string _score, string _rank,string _assetID,int _sessions)
+    public void setRankInfo(string _name, string _score, string _rank)
     {
         userName.text = _name;
-        userScore.text = "Score : " +_score;
+        userScore.text = _score;
         userRank.text = _rank;
-        assetID.text = "AssetID : "+_assetID;
-        SessionsToday.text = "Session : "+_sessions;
     }
 }

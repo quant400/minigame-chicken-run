@@ -1,43 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase.Auth;
 using System;
 
+using Tamarin.Common;
+using Tamarin.FirebaseX;
 
 public class AuthManager : MonoBehaviour
 {
-    public static AuthManager _instance;
-    FirebaseAuth auth;
-
-    private void Awake()
+    //This firebase user is not the same as the native api!
+    public FirebaseUser user;
+    private void Start()
     {
-        _instance = this;
-        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-        // if(getcurrentUser() == null)
-        //     SignInAnonymously();
+        SignInAnonymously();
     }
-    
-    public void SignInAnonymously()
+
+    //Call this from code, do not reference async functions from the UI thread. 
+    async void SignInAnonymously()
     {
-        auth.SignInAnonymouslyAsync().ContinueWith(task => {
-        if (task.IsCanceled) {
+        //Is best to always wait for the api to be ready, if the time of the execution cannot be controlled. 
+        await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
+
+        //For different auth methods. and references please visit the docs. https://twistedtamarin.com/docs/firebase
+        user = await FirebaseAPI.Instance.auth.SignInWithAnon();
+        if (user == null || !user.Status)
+        {
             Debug.LogError("SignInAnonymouslyAsync was canceled.");
             return;
         }
-        if (task.IsFaulted) {
-            Debug.LogError("SignInAnonymouslyAsync encountered an error: " + task.Exception);
-            return;
-        }
-
-        Firebase.Auth.FirebaseUser newUser = task.Result;
-        Debug.LogFormat("User signed in successfully: {0} ({1})",
-            newUser.DisplayName, newUser.UserId);
-        });
+        Debug.LogFormat("User signed in successfully: {0} ({1})", user.DisplayName, user.UserId);
     }
 
-    public FirebaseUser getcurrentUser()
-    {
-       return auth.CurrentUser;
-    }
 }

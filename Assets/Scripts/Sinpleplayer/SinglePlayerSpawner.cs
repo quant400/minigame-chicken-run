@@ -18,17 +18,20 @@ public class SinglePlayerSpawner : MonoBehaviour
     [SerializeField]
     Transform chickenHolder;
     [SerializeField]
-    GameObject NPCPrefab;
+    GameObject[] NPCPrefab;
     [SerializeField]
     Transform[] NPCSPawnPoints;
+
+    private string chosenNFTName;
+
     private void Start()
     {
         //SinglePlayerScoreBoardScript.instance.PlayerJoined("1", 1);
 
         //span point chaged to index 4 intead of 0 will make it a single point intead of array if only one player in game decided
         //GameObject temp = Instantiate(characters[SingleplayerGameControler.instance.chosenAvatar], spawnPoint.position, Quaternion.identity);
-        string name = SingleplayerGameControler.instance.chosenNFT.name;
-        GameObject resource = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", name)) as GameObject;
+        chosenNFTName = SingleplayerGameControler.instance.chosenNFT.name;
+        GameObject resource = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", chosenNFTName)) as GameObject;
         GameObject temp = Instantiate(resource, spawnPoint.position, Quaternion.identity);
         
         SpawnChickens();
@@ -64,7 +67,12 @@ public class SinglePlayerSpawner : MonoBehaviour
     {
         for(int i=0;i<NPCSPawnPoints.Length;i++)
         {
-            Instantiate(NPCPrefab, NPCSPawnPoints[i].position, Quaternion.identity);
+            var randomNPCNo = Random.Range(0, NPCPrefab.Length);
+            if (NPCPrefab[randomNPCNo].name == chosenNFTName)
+            {
+                randomNPCNo = randomNPCNo < NPCPrefab.Length ? randomNPCNo + 1 : 0;
+            }
+            Instantiate(NPCPrefab[randomNPCNo], NPCSPawnPoints[i].position, Quaternion.identity);
         }
     }
 

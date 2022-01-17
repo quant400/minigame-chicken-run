@@ -46,11 +46,13 @@ public class LeaderBoardController : MonoBehaviour
         Clean();
 
         var query = new Dictionary<string, object>();
-        query.Add("NumResults", 10);
+        query.Add("NumResults", 15);
         leaderboardObject _Leaderboard = await firebase.functions.HttpsCall<leaderboardObject>("getDailyLeaderboard", query);
         Clean();
         foreach (LeaderboardUser _user in _Leaderboard.users)
         {
+            if (_user.userScore == 0)
+                continue;
             var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
             temp.GetComponent<LeaderBoardEntry>().Set(_user.userRank.ToString(), _user.userName, _user.assetID, _user.userScore.ToString());
         }
@@ -60,11 +62,13 @@ public class LeaderBoardController : MonoBehaviour
         Clean();
 
         var query = new Dictionary<string, object>();
-        query.Add("NumResults", 10);
+        query.Add("NumResults", 15);
         leaderboardObject _Leaderboard = await firebase.functions.HttpsCall<leaderboardObject>("getLeaderboard", query);
         Clean();
         foreach (LeaderboardUser _user in _Leaderboard.users)
         {
+            if (_user.userScore == 0)
+                continue;
             var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
             temp.GetComponent<LeaderBoardEntry>().Set(_user.userRank.ToString(), _user.userName, _user.assetID, _user.userScore.ToString());
         }

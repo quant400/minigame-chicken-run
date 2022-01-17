@@ -36,17 +36,15 @@ public class DatabaseManager : MonoBehaviour
     {
         getSessionsCounter(_assetID,ss=>
         {
-            if((int)ss < 10)
+            if((int)ss <= 10)
             {
                 getLeaderboardScore(_assetID,res=>
                 {
-                    res = res == -1 ? 0 : res;
-                    setScoreInLeaderboard(_assetID,_FighterName,_score + (int)res);
+                    setScoreInLeaderboard(_assetID,_FighterName,_score + (((int)res) == -1 ? 0 : (int)res));
                 });
                 getDailyLeaderboardScore(_assetID,res=>
                 {
-                    res = res == -1 ? 0 : res;
-                    setScoreInDailyLeaderboard(_assetID,_FighterName,(int)ss,_score + (int)res);
+                    setScoreInDailyLeaderboard(_assetID,_FighterName,(int)ss,_score + (((int)res) == -1 ? 0 : (int)res));
                 });
             }else
                 Debug.Log("REACHED DAILY SESSIONS LIMIT...");

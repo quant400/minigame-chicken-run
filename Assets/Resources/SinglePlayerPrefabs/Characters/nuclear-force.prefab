@@ -1519,7 +1519,7 @@ GameObject:
   - component: {fileID: 2622568027467027474}
   - component: {fileID: 2622568027467027475}
   m_Layer: 6
-  m_Name: nuclearforce
+  m_Name: nuclear-force
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

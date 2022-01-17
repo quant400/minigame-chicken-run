@@ -93,10 +93,14 @@ public class SingleplayerGameControler : MonoBehaviour
 
     public int GetDailyScore()
     {
+        if (dailyScore == -1)
+            return 0;
         return dailyScore;
     }
     public int GetAllTimeScore()
     {
+        if (AlltimeScore == -1)
+            return 0;
         return AlltimeScore;
     }
     public int GetSessions()

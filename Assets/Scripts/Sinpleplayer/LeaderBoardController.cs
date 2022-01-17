@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DataApi;
+using Tamarin.Common;
+using Tamarin.FirebaseX;
 public class LeaderBoardController : MonoBehaviour
 {
     [SerializeField]
@@ -9,13 +12,19 @@ public class LeaderBoardController : MonoBehaviour
     GameObject leaderboardEntryPrefab;
     [SerializeField]
     Transform layoutGroup;
- 
+    FirebaseAPI firebase;
+
 
     private void Awake()
     {
         transform.localScale = Vector3.zero;
     }
-
+    private async void Start()
+    {
+        //here we are referencing the api, to make a shorthand for firebase. (cause we are lazy devs, and Firebase.Instance is too long to write every time :))
+        await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
+        firebase = FirebaseAPI.Instance;
+    }
 
     public void ToggleLeaderBoard(bool b)
     {
@@ -32,28 +41,33 @@ public class LeaderBoardController : MonoBehaviour
         }
     }
 
-    public void UpDateLeaderBoardDaily()
+    public async void UpDateLeaderBoardDaily()
     {
         Clean();
-        for(int i=0;i<20;i++)
+
+        var query = new Dictionary<string, object>();
+        query.Add("NumResults", 10);
+        leaderboardObject _Leaderboard = await firebase.functions.HttpsCall<leaderboardObject>("getDailyLeaderboard", query);
+
+        foreach (LeaderboardUser _user in _Leaderboard.users)
         {
             var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
-            temp.GetComponent<LeaderBoardEntry>().Set((i+1).ToString(), "0x134...F7H92", "0123", "10");
+            temp.GetComponent<LeaderBoardEntry>().Set(_user.userRank.ToString(), _user.userName, _user.assetID, _user.userScore.ToString());
         }
-       
-
-        //will load records from api call later;
     }
-    public void UpDateLeaderBoardMonthly()
+    public async void UpDateLeaderBoardMonthly()
     {
         Clean();
-        for (int i = 0; i < 20; i++)
+
+        var query = new Dictionary<string, object>();
+        query.Add("NumResults", 10);
+        leaderboardObject _Leaderboard = await firebase.functions.HttpsCall<leaderboardObject>("getLeaderboard", query);
+
+        foreach (LeaderboardUser _user in _Leaderboard.users)
         {
             var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
-            temp.GetComponent<LeaderBoardEntry>().Set((i + 1).ToString(), "0x134...F7H92", "0123", "10");
+            temp.GetComponent<LeaderBoardEntry>().Set(_user.userRank.ToString(), _user.userName, _user.assetID, _user.userScore.ToString());
         }
-
-        //will load records from api call later;
     }
 
     void Clean()

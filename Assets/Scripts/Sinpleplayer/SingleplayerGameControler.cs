@@ -25,6 +25,8 @@ public class SingleplayerGameControler : MonoBehaviour
     float mushroomPowerUpChance;
 
     public NFTInfo chosenNFT;
+
+    int dailyScore, AlltimeScore, sessions;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -38,11 +40,11 @@ public class SingleplayerGameControler : MonoBehaviour
         }
     }
 
-   
+
     public void LoadSingleplayer()
     {
         SceneManager.LoadScene(singleplayerScene);
-        foreach(GameObject g in toDestroyOnload)
+        foreach (GameObject g in toDestroyOnload)
         {
             Destroy(g);
         }
@@ -53,6 +55,7 @@ public class SingleplayerGameControler : MonoBehaviour
         SinglePlayerScoreBoardScript.instance.StartGame();
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetStarted(true);
+        GetScores();
     }
     public void EndGame()
     {
@@ -86,5 +89,25 @@ public class SingleplayerGameControler : MonoBehaviour
     public void PlayClick()
     {
         GetComponent<AudioSource>().Play();
+    }
+
+    public int GetDailyScore()
+    {
+        return dailyScore;
+    }
+    public int GetAllTimeScore()
+    {
+        return AlltimeScore;
+    }
+    public int GetSessions()
+    {
+        return sessions;
+    }
+
+    void GetScores()
+    {
+        DatabaseManager._instance.getDailyLeaderboardScore(chosenNFT.id.ToString(), x => { dailyScore = (int)x; });
+        DatabaseManager._instance.getLeaderboardScore(chosenNFT.id.ToString(), x => { AlltimeScore = (int)x; });
+        DatabaseManager._instance.getSessionsCounter(chosenNFT.id.ToString(), x => { sessions = (int)x; });
     }
 }

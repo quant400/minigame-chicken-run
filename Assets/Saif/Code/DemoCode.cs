@@ -29,11 +29,13 @@ public class DemoCode : MonoBehaviour
         // DatabaseManager._instance.setScore(99999);
         // LeaderboardManager._instance.DisplayLeaderboard();
         // LeaderboardManager._instance.DisplayDailyLeaderboard();
-        //for(int i=0; i<=5000;i++)
-        //{
-        //    DatabaseManager._instance.setScore(i.ToString(), "", 0);
-        //}
-        DatabaseManager._instance.setScore("344", "test user", 45);
+
+        for (int i = 0; i <= 5000; i++)
+        {
+            DatabaseManager._instance.setScore(i.ToString(), "test", -1);
+        }
+
+        //DatabaseManager._instance.setScore("5", "test user", 1);
     }
 
     // public void RegisterUser()

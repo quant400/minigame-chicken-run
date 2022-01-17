@@ -26,6 +26,24 @@ public class GameOverScript : MonoBehaviour
     private void OnEnable()
     {
         currentNFT = SingleplayerGameControler.instance.chosenNFT;
+        if (SingleplayerGameControler.instance.GetSessions() < 10)
+        {
+            DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
+            sessionsLeft.SetActive(true);
+            sessionsNotLeft.SetActive(false);
+            currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() + SinglePlayerScoreBoardScript.instance.GetScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() + SinglePlayerScoreBoardScript.instance.GetScore());
+        }
+        else if (SingleplayerGameControler.instance.GetSessions() >= 10)
+        {
+            sessionsLeft.SetActive(false);
+            sessionsNotLeft.SetActive(true);
+            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore());
+        }
+
+
         AudioSource ad = GameObject.FindGameObjectWithTag("SFXPlayer").GetComponent<AudioSource>();
         ad.clip = gameOverClip;
         ad.loop = false;
@@ -50,25 +68,6 @@ public class GameOverScript : MonoBehaviour
         temp.transform.localPosition = Vector3.zero;
         temp.transform.localRotation = Quaternion.identity;
         temp.transform.localScale = Vector3.one * 2;
-        
-
-        if (SingleplayerGameControler.instance.GetSessions()<10)
-        {
-            DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
-            sessionsLeft.SetActive(true);
-            sessionsNotLeft.SetActive(false);
-            currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
-            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() + SinglePlayerScoreBoardScript.instance.GetScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() + SinglePlayerScoreBoardScript.instance.GetScore());
-        }
-        else if(SingleplayerGameControler.instance.GetSessions() >=10)
-        {
-            sessionsLeft.SetActive(false);
-            sessionsNotLeft.SetActive(true);
-            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore());
-        }
-
        
         //upddate other values here form leaderboard
         canvasToDisable.SetActive(false);

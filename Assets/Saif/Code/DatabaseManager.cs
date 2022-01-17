@@ -40,10 +40,12 @@ public class DatabaseManager : MonoBehaviour
             {
                 getLeaderboardScore(_assetID,res=>
                 {
+                    res = res == -1 ? 0 : res;
                     setScoreInLeaderboard(_assetID,_FighterName,_score + (int)res);
                 });
                 getDailyLeaderboardScore(_assetID,res=>
                 {
+                    res = res == -1 ? 0 : res;
                     setScoreInDailyLeaderboard(_assetID,_FighterName,(int)ss,_score + (int)res);
                 });
             }else
@@ -51,6 +53,28 @@ public class DatabaseManager : MonoBehaviour
         });
         
     }
+
+    public void SetDemoScore(string _assetID, string _FighterName, int _score)
+    {
+        SetDemoScoreInLeaderboard(_assetID, _FighterName, _score);
+        SetDemoScoreInDailyLeaderboard(_assetID, _FighterName, 1, _score);
+    }
+    public async void SetDemoScoreInLeaderboard(string _assetID, string _name, int newScore)
+    {
+        await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
+        LeaderboardUser _user = new LeaderboardUser(_assetID, _name, 1, newScore);
+        await firebase.database.SetRawAsync($"Leaderboard/Assets/{_assetID}", _user);
+        Debug.Log("SCORE STORED IN LEADERBOARD!");
+    }
+    public async void SetDemoScoreInDailyLeaderboard(string _assetID, string _name, int _sessionCounter, int newScore)
+    {
+        await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
+        LeaderboardUser _user = new LeaderboardUser(_assetID, _name, 1, newScore);
+        await firebase.database.SetRawAsync($"DailyLeaderboard/Assets/{_assetID}", _user);
+        increaseSessionCounter(_assetID);
+        Debug.Log("SCORE STORED IN Daily LEADERBOARD!");
+    }
+
     public async void setScoreInLeaderboard(string _assetID,string _name,int newScore)
     {
         await Waiter.Until(() => FirebaseAPI.Instance.ready == true);

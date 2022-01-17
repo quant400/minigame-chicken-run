@@ -32,7 +32,7 @@ public class DemoCode : MonoBehaviour
 
         for (int i = 0; i <= 5000; i++)
         {
-            DatabaseManager._instance.setScore(i.ToString(), "test", -1);
+            DatabaseManager._instance.SetDemoScore(i.ToString(), "test", -1);
         }
 
         //DatabaseManager._instance.setScore("5", "test user", 1);

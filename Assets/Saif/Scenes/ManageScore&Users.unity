@@ -522,10 +522,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982393313}
-        m_TargetAssemblyTypeName: DatabaseManager, Assembly-CSharp
-        m_MethodName: setScore
-        m_Mode: 3
+      - m_Target: {fileID: 544853573}
+        m_TargetAssemblyTypeName: DemoCode, Assembly-CSharp
+        m_MethodName: test
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1162,11 +1162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbf129cd5061894ebca9ff200d71ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _userName: {fileID: 1073407839}
-  assetID: {fileID: 2078039704}
-  LeaderboardScore: {fileID: 1710530278}
-  DailyLeaderboardScore: {fileID: 1781084732}
-  SessionsCounter: {fileID: 2103902684}
 --- !u!1 &596646195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,17 +1672,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980071364}
   m_CullTransparentMesh: 1
---- !u!114 &982393313 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4072396649830280810, guid: 3408362c06f4a9a40b6d45ebb1640906, type: 3}
-  m_PrefabInstance: {fileID: 1912898955}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f3b2cd792c2757439ff97f9db29f91c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1021535000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4067,7 +4051,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 544853573}
         m_TargetAssemblyTypeName: DemoCode, Assembly-CSharp
-        m_MethodName: RegisterUser
+        m_MethodName: test
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

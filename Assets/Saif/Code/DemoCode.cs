@@ -17,7 +17,7 @@ public class DemoCode : MonoBehaviour
     // public InputField DailyLeaderboardScore_userID_load;
     // public Text fetchedDailyLeaderboardScore;
 
-    void test()
+    public void test()
     {
         DatabaseManager._instance.setScore("ASSETId","FIGHTER NAME",123132);
         LeaderboardManager._instance.DisplayLeaderboard();

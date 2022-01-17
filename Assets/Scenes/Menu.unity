@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44971114, g: 0.49977738, b: 0.5756369, a: 1}
+  m_IndirectSpecularColor: {r: 0.44971114, g: 0.49977726, b: 0.5756358, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5383,6 +5383,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1557674315609680767, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557674315609680767, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557674315609680767, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557674316323721858, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557674316323721858, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557674316323721858, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1557674316328290705, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -5401,7 +5425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1557674316674542892, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -27017.553
+      value: -622.55176
       objectReference: {fileID: 0}
     - target: {fileID: 1557674316817523952, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
       propertyPath: m_Camera

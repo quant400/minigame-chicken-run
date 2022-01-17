@@ -51,10 +51,11 @@ public class LeaderBoardController : MonoBehaviour
         Clean();
         foreach (LeaderboardUser _user in _Leaderboard.users)
         {
-            if (_user.userScore == 0)
-                continue;
-            var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
-            temp.GetComponent<LeaderBoardEntry>().Set(_user.userRank.ToString(), _user.userName, _user.assetID, _user.userScore.ToString());
+            if (_user.userScore > 0)
+            {
+                var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
+                temp.GetComponent<LeaderBoardEntry>().Set(_user.userRank.ToString(), _user.userName, _user.assetID, _user.userScore.ToString());
+            }
         }
     }
     public async void UpDateLeaderBoardMonthly()
@@ -67,10 +68,12 @@ public class LeaderBoardController : MonoBehaviour
         Clean();
         foreach (LeaderboardUser _user in _Leaderboard.users)
         {
-            if (_user.userScore <= 0)
-                continue;
-            var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
-            temp.GetComponent<LeaderBoardEntry>().Set(_user.userRank.ToString(), _user.userName, _user.assetID, _user.userScore.ToString());
+            if (_user.userScore > 0)
+            {
+                var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
+                temp.GetComponent<LeaderBoardEntry>().Set(_user.userRank.ToString(), _user.userName, _user.assetID, _user.userScore.ToString());
+            }
+           
         }
     }
 

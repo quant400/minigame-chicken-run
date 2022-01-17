@@ -48,7 +48,7 @@ public class LeaderBoardController : MonoBehaviour
         var query = new Dictionary<string, object>();
         query.Add("NumResults", 10);
         leaderboardObject _Leaderboard = await firebase.functions.HttpsCall<leaderboardObject>("getDailyLeaderboard", query);
-
+        Clean();
         foreach (LeaderboardUser _user in _Leaderboard.users)
         {
             var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
@@ -62,7 +62,7 @@ public class LeaderBoardController : MonoBehaviour
         var query = new Dictionary<string, object>();
         query.Add("NumResults", 10);
         leaderboardObject _Leaderboard = await firebase.functions.HttpsCall<leaderboardObject>("getLeaderboard", query);
-
+        Clean();
         foreach (LeaderboardUser _user in _Leaderboard.users)
         {
             var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);

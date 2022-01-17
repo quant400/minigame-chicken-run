@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44971114, g: 0.49977726, b: 0.5756358, a: 1}
+  m_IndirectSpecularColor: {r: 0.44971114, g: 0.49977738, b: 0.5756369, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1764,7 +1764,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  timeForOneGame: 120
+  timeForOneGame: 15
   initialChickenCount: 50
   spawnIntervals: 5
   mushroomPowerUpChance: 30
@@ -5397,7 +5397,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1557674316674542892, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -9346.296
+      value: -43011.203
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557674316674542893, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
+      propertyPath: m_Spacing
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1557674316817523952, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
       propertyPath: m_Camera

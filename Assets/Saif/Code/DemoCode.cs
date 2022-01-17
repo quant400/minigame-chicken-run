@@ -17,14 +17,23 @@ public class DemoCode : MonoBehaviour
     // public InputField DailyLeaderboardScore_userID_load;
     // public Text fetchedDailyLeaderboardScore;
 
-    void test()
+    private void Start()
     {
-        DatabaseManager._instance.setScore("ASSETId","FIGHTER NAME",123132);
-        LeaderboardManager._instance.DisplayLeaderboard();
-        LeaderboardManager._instance.DisplayDailyLeaderboard();
+       
+    }
+    public void Make5000Nodes()
+    {
+
+        //LeaderboardManager._instance.DisplayLeaderboard();
+        //LeaderboardManager._instance.DisplayDailyLeaderboard();
         // DatabaseManager._instance.setScore(99999);
         // LeaderboardManager._instance.DisplayLeaderboard();
         // LeaderboardManager._instance.DisplayDailyLeaderboard();
+        //for(int i=0; i<=5000;i++)
+        //{
+        //    DatabaseManager._instance.setScore(i.ToString(), "", 0);
+        //}
+        DatabaseManager._instance.setScore("344", "test user", 45);
     }
 
     // public void RegisterUser()

@@ -15,7 +15,8 @@ public class NFTGetter : MonoBehaviour
 {
     CharacterSelectionScript cS;
     UnityWebRequest temp;
-
+    [SerializeField]
+    GameObject noNFTCanvas;
     
 
     void Start()
@@ -52,7 +53,7 @@ public class NFTGetter : MonoBehaviour
                     Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
                     break;
                 case UnityWebRequest.Result.Success:
-                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                    //Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                     temp = webRequest;
                     Display();
                     break;
@@ -65,7 +66,16 @@ public class NFTGetter : MonoBehaviour
         string data = "{\"Items\":" + temp.downloadHandler.text + "}";
 
         NFTInfo[] NFTData = JsonHelper.FromJson<NFTInfo>(data);
-        cS.SetData(NFTData);
+        if(NFTData.Length==0)
+        {
+            noNFTCanvas.SetActive(true);
+        }
+        else
+        {
+            noNFTCanvas.SetActive(false);
+            cS.SetData(NFTData);
+        }
+        
      
     }
 

@@ -13,15 +13,37 @@ public class GameOverScript : MonoBehaviour
     Transform characterDisplay;
     GameObject[] characters;
     [SerializeField]
-    TMP_Text currentScore, highScore, leaderboard;
+    TMP_Text currentScore, dailyScore, allTimeScore;
     [SerializeField]
     GameObject canvasToDisable;
     [SerializeField]
     AudioClip gameOverClip;
+    NFTInfo currentNFT;
+    [SerializeField]
+    GameObject sessionsLeft, sessionsNotLeft;
    // [SerializeField]
     //SinglePlayerSpawner spawner;
     private void OnEnable()
     {
+        currentNFT = SingleplayerGameControler.instance.chosenNFT;
+        if (SingleplayerGameControler.instance.GetSessions() < 10)
+        {
+            DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
+            sessionsLeft.SetActive(true);
+            sessionsNotLeft.SetActive(false);
+            currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() + SinglePlayerScoreBoardScript.instance.GetScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() + SinglePlayerScoreBoardScript.instance.GetScore());
+        }
+        else if (SingleplayerGameControler.instance.GetSessions() >= 10)
+        {
+            sessionsLeft.SetActive(false);
+            sessionsNotLeft.SetActive(true);
+            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore());
+        }
+
+
         AudioSource ad = GameObject.FindGameObjectWithTag("SFXPlayer").GetComponent<AudioSource>();
         ad.clip = gameOverClip;
         ad.loop = false;
@@ -29,7 +51,7 @@ public class GameOverScript : MonoBehaviour
         ad.Play();
         //characters = spawner.GetCharacterList();
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-        GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", SingleplayerGameControler.instance.chosenNFT.name)) as GameObject;
+        GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", currentNFT.name)) as GameObject;
         var temp=Instantiate(displayChar, characterDisplay.position, Quaternion.identity,characterDisplay);
         
         //destroying all player related components
@@ -46,7 +68,7 @@ public class GameOverScript : MonoBehaviour
         temp.transform.localPosition = Vector3.zero;
         temp.transform.localRotation = Quaternion.identity;
         temp.transform.localScale = Vector3.one * 2;
-        currentScore.text = SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+       
         //upddate other values here form leaderboard
         canvasToDisable.SetActive(false);
     }

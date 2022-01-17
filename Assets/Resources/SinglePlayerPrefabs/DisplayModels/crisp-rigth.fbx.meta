@@ -85,7 +85,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: HipPart1_L
+    - boneName: Hip_L
       humanName: LeftUpperLeg
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -93,7 +93,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: HipPart1_R
+    - boneName: Hip_R
       humanName: RightUpperLeg
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -181,7 +181,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: ElbowPart1_L
+    - boneName: Elbow_L
       humanName: LeftLowerArm
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -189,7 +189,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: ElbowPart1_R
+    - boneName: Elbow_R
       humanName: RightLowerArm
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -214,13 +214,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: crisp rigth(Clone)
+    - name: crisp-rigth(Clone)
       parentName: 
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: DeformationSystem
-      parentName: crisp rigth(Clone)
+      parentName: crisp-rigth(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -390,7 +390,7 @@ ModelImporter:
       rotation: {x: -0.05914105, y: 0.0059128487, z: 0.09930692, w: 0.9932802}
       scale: {x: 1, y: 1, z: 1}
     - name: Geometry
-      parentName: crisp rigth(Clone)
+      parentName: crisp-rigth(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}

@@ -5,8 +5,9 @@ using UnityEngine;
 public class DontDestroy : MonoBehaviour
 {
     public static DontDestroy _instance;
-    private void Awake() {
-        if(_instance != null && _instance != this)
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
             Destroy(this.gameObject);
         else
         {
@@ -15,7 +16,8 @@ public class DontDestroy : MonoBehaviour
         }
     }
 
-    private void Start() {
-        
+    private void Start()
+    {
+
     }
 }

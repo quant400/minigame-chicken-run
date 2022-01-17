@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Cinemachine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -118,6 +119,16 @@ namespace StarterAssets
 			_fallTimeoutDelta = FallTimeout;
 
 			pSfxC = GetComponent<PlayerSfxController>();
+			fixFollowCamera();
+		}
+		public void fixFollowCamera()
+		{
+			GameObject obj=  transform.GetChild(1).gameObject;
+
+			if(obj.name== "CM FreeLook1")
+			{
+				obj.AddComponent<setFollowSettings>();
+			}
 		}
 
 		private void Update()

@@ -7,10 +7,10 @@ public class PowerUpMushroom : MonoBehaviour
 {
     [SerializeField]
     float PowerupSpeedMultiplier, jumpMultiplier, powerUpDuration;
-    AudioSource audio;
+    AudioSource audioS;
     private void Start()
     {
-        audio = GetComponent<AudioSource>();
+        audioS = GetComponent<AudioSource>();
         int chance = Random.Range(0 , 100);
         if (chance > SingleplayerGameControler.instance.GetMushroomPowerUpChance()) 
         {
@@ -34,7 +34,7 @@ public class PowerUpMushroom : MonoBehaviour
 
     public void PlayPowerUp()
     {
-        audio.Play();
+        audioS.Play();
     }
 
     IEnumerator Powerup(GameObject player)

@@ -183,14 +183,14 @@ public class CharacterSelectionScript : MonoBehaviour
 
         }
 
-        if(myNFT.Length==0)
+        /*if(myNFT.Length==0)
         {
             GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplayModels", "a-rod")) as GameObject;
             GameObject temp = Instantiate(charModel, characterList);
             temp.transform.localPosition = new Vector3(0, -0.1f, 0);
             characters[0] = temp.transform;
             characterNFTMap[0] = new NFTInfo { id = 0000, name = "a-rod" };
-        }
+        }*/
 
         Done();
        
@@ -214,20 +214,20 @@ public class CharacterSelectionScript : MonoBehaviour
             {
                 temp.transform.localPosition = new Vector3(0, -0.1f, 0);
                 characters[0] = temp.transform;
-                characterNFTMap[0] = new NFTInfo { id = 000, name = name};
+                characterNFTMap[0] = new NFTInfo { id = i, name = name};
             }
             else if (i % 2 == 0)
             {
                 temp.transform.localPosition = new Vector3(-currentindex, -0.1f, 0.2f);
                 characters[characters.Length - currentindex ] = temp.transform;
-                characterNFTMap[characters.Length - currentindex] = new NFTInfo { id = 000, name = name };
+                characterNFTMap[characters.Length - currentindex] = new NFTInfo { id = i, name = name };
                 currentindex++;
             }
             else if (i % 2 != 0)
             {
                 temp.transform.localPosition = new Vector3(currentindex, -0.1f, 0.2f);
                 characters[currentindex] = temp.transform;
-                characterNFTMap[currentindex] = new NFTInfo { id = 000, name = name };
+                characterNFTMap[currentindex] = new NFTInfo { id = i, name = name };
             }
             
             temp.GetComponent<Animator>().runtimeAnimatorController = controller;

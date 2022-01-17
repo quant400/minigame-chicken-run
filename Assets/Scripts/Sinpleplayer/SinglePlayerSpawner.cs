@@ -65,13 +65,13 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     void SpawnNpc()
     {
-        for(int i=0;i<NPCSPawnPoints.Length;i++)
+        for (int i=0;i<NPCSPawnPoints.Length;i++)
         {
+            List<int> randomNPCs = new List<int>();
             var randomNPCNo = Random.Range(0, NPCPrefab.Length);
-            if (NPCPrefab[randomNPCNo].name == chosenNFTName)
-            {
-                randomNPCNo = randomNPCNo < NPCPrefab.Length ? randomNPCNo + 1 : 0;
-            }
+            while (randomNPCs.Contains(randomNPCNo) || NPCPrefab[randomNPCNo].name == chosenNFTName)
+                randomNPCNo = Random.Range(0, NPCPrefab.Length);
+
             Instantiate(NPCPrefab[randomNPCNo], NPCSPawnPoints[i].position, Quaternion.identity);
         }
     }

@@ -1764,7 +1764,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  timeForOneGame: 10
+  timeForOneGame: 120
   initialChickenCount: 50
   spawnIntervals: 5
   mushroomPowerUpChance: 30
@@ -5397,7 +5397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1557674316674542892, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -60906.203
+      value: -62360.17
       objectReference: {fileID: 0}
     - target: {fileID: 1557674316674542893, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
       propertyPath: m_Spacing

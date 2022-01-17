@@ -36,7 +36,7 @@ public class DatabaseManager : MonoBehaviour
     {
         getSessionsCounter(_assetID,ss=>
         {
-            if((int)ss < 10)
+            if((int)ss <= 10)
             {
                 getLeaderboardScore(_assetID,res=>
                 {

@@ -144,10 +144,12 @@ public class restApiDataView : MonoBehaviour
         }
         
     }
+    /*
     public LeaderboardUser (leaderboardModel.assetClass mainModel)
     {
         new LeaderboardUser user = new LeaderboardUser();
     }
+    */
     string fixJsonName(string value)
     {
         value = value.Substring(0, value.Length - 1);

@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 8773477284093308901}
   - component: {fileID: 6026192863760577013}
   m_Layer: 0
-  m_Name: crisp-rigth
+  m_Name: crisp-right
   m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

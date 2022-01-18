@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 7727068142683506511}
   - component: {fileID: 4902918104739257440}
   m_Layer: 6
-  m_Name: crisp-rigth
+  m_Name: crisp-right
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

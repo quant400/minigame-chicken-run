@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 108755504562598520}
   - component: {fileID: 7372937409714739313}
   m_Layer: 0
-  m_Name: bat-man
+  m_Name: bad-man
   m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

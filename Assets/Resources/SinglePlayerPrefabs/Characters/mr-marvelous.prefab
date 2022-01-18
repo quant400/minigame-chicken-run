@@ -2098,7 +2098,7 @@ GameObject:
   - component: {fileID: 8104382748405398704}
   - component: {fileID: 8104382748405398705}
   m_Layer: 6
-  m_Name: mr-marveolus
+  m_Name: mr-marvelous
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 5614274906153124375}
   - component: {fileID: 4447003065435214479}
   m_Layer: 0
-  m_Name: atlas-androit
+  m_Name: android
   m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 4758313075890525857}
   - component: {fileID: -821083918911220121}
   m_Layer: 6
-  m_Name: atlas-androit
+  m_Name: android
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

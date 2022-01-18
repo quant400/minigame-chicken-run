@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 3833744011565279169}
   - component: {fileID: 3833744011565279170}
   m_Layer: 6
-  m_Name: medallion-stanllion
+  m_Name: medallion-stallion
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

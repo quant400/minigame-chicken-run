@@ -26,7 +26,7 @@ public class GameOverScript : MonoBehaviour
     private void OnEnable()
     {
         currentNFT = SingleplayerGameControler.instance.chosenNFT;
-        if (SingleplayerGameControler.instance.GetSessions() < 10)
+        if (SingleplayerGameControler.instance.GetSessions() <=10)
         {
             DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
             sessionsLeft.SetActive(true);
@@ -35,7 +35,7 @@ public class GameOverScript : MonoBehaviour
             dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() + SinglePlayerScoreBoardScript.instance.GetScore());
             allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() + SinglePlayerScoreBoardScript.instance.GetScore());
         }
-        else if (SingleplayerGameControler.instance.GetSessions() >= 10)
+        else if (SingleplayerGameControler.instance.GetSessions() > 10)
         {
             sessionsLeft.SetActive(false);
             sessionsNotLeft.SetActive(true);
@@ -51,7 +51,7 @@ public class GameOverScript : MonoBehaviour
         ad.Play();
         //characters = spawner.GetCharacterList();
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-        GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", currentNFT.name)) as GameObject;
+        GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", NameToSlugConvert(currentNFT.name))) as GameObject;
         var temp=Instantiate(displayChar, characterDisplay.position, Quaternion.identity,characterDisplay);
         
         //destroying all player related components
@@ -76,5 +76,13 @@ public class GameOverScript : MonoBehaviour
     public void TryAgain()
     {
         SceneManager.LoadScene(SingleplayerGameControler.instance.GetSinglePlayerScene());
+    }
+
+
+    string NameToSlugConvert(string name)
+    {
+        string slug;
+        slug = name.ToLower().Replace(" ", "-");
+        return slug;
     }
 }

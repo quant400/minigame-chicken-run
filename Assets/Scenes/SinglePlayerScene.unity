@@ -11258,7 +11258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1557674316674542892, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -223303.33
+      value: -235494.3
       objectReference: {fileID: 0}
     - target: {fileID: 1557674316817523953, guid: 34b91d0f8855fde4cb6df7af313707f5, type: 3}
       propertyPath: m_Pivot.x
@@ -32138,8 +32138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3444f3315e4195641a7b23f99e69f3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 0e2d0863b09c84246a4e5172804120f4, type: 3}
-  cursorMode: 0
+  cursorTexture: {fileID: 2800000, guid: eed56a8cf635b91428e31cbdf1dfb2de, type: 3}
+  cursorMode: 1
   hotSpot: {x: 0, y: 0}
 --- !u!1001 &965762204
 PrefabInstance:

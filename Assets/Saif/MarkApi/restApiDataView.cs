@@ -130,7 +130,7 @@ public class restApiDataView : MonoBehaviour
 
        // displayLeaderBoard("LEADERBOARD");
         if (leaderboardControllerRestApi != null)
-            leaderboardControllerRestApi.UpDateLeaderBoardAllTimeRestApi(dailyLeaderboardArray, "LEADERBOARD");
+            leaderboardControllerRestApi.UpDateLeaderBoardAllTimeRestApi(leaderboardArray, "LEADERBOARD");
     }
     public void checkLeadboardDaily(string url)
     {

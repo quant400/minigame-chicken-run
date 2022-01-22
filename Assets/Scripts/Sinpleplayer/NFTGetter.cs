@@ -65,7 +65,7 @@ public class NFTGetter : MonoBehaviour
     {
         string data = "{\"Items\":" + temp.downloadHandler.text + "}";
 
-        NFTInfo[] NFTData = JsonUtilNFT.fromJson<NFTInfo[]>(data);
+        NFTInfo[] NFTData = JsonHelper.FromJson<NFTInfo>(data);
         if(NFTData.Length==0)
         {
             noNFTCanvas.SetActive(true);
@@ -78,50 +78,7 @@ public class NFTGetter : MonoBehaviour
         
      
     }
-    public static class JsonUtilNFT
-    {
 
-        /// <summary> Converts an object to a Json string </summary>.
-        /// <param name="obj">object </param>
-        public static string toJson<T>(T obj)
-        {
-            if (obj == null) return "null";
-
-            if (typeof(T).GetInterface("IList") != null)
-            {
-                Pack<T> pack = new Pack<T>();
-                pack.data = obj;
-                string json = JsonUtility.ToJson(pack);
-                return json.Substring(8, json.Length - 9);
-            }
-
-            return JsonUtility.ToJson(obj);
-        }
-
-        /// < summary > parse Json </summary >
-        /// <typeparam name="T">type</typeparam>
-        /// <param name="json">Json string </param>
-        public static T fromJson<T>(string json)
-        {
-            if (json == "null" && typeof(T).IsClass) return default(T);
-
-            if (typeof(T).GetInterface("IList") != null)
-            {
-                json = "{\"data\":{data}}".Replace("{data}", json);
-                Pack<T> Pack = JsonUtility.FromJson<Pack<T>>(json);
-                return Pack.data;
-            }
-
-            return JsonUtility.FromJson<T>(json);
-        }
-
-        /// < summary > inner packaging class </summary >
-        private class Pack<T>
-        {
-            public T data;
-        }
-
-    }
     //temp Fuction for skip
     public void Skip()
     {

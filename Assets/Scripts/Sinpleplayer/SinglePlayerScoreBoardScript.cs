@@ -77,7 +77,7 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         }    
     }
 
-    void DisplayScore()
+    public void DisplayScore()
     {
         //winnerText.text = "You collected " + chickensCollected + " chickens";
         //winnerText.gameObject.SetActive(true);

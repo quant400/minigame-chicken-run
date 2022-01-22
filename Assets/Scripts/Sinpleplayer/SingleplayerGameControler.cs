@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using StarterAssets;
-
+using UniRx.Triggers;
+using UniRx;
+using UniRx.Operators;
 public class SingleplayerGameControler : MonoBehaviour
 {
     public static SingleplayerGameControler instance;
@@ -26,7 +28,9 @@ public class SingleplayerGameControler : MonoBehaviour
 
     public NFTInfo chosenNFT;
 
-    int dailyScore, AlltimeScore, sessions;
+    public int dailyScore, AlltimeScore, sessions;
+    public bool isRestApi;
+    public ReactiveProperty<int> dailysessionReactive = new ReactiveProperty<int>();
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -37,6 +41,10 @@ public class SingleplayerGameControler : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
+            if (isRestApi)
+            {
+                observeReactiveSession();
+            }
         }
     }
 
@@ -49,6 +57,7 @@ public class SingleplayerGameControler : MonoBehaviour
             Destroy(g);
         }
     }
+    
 
     public void StartGame()
     {
@@ -110,8 +119,34 @@ public class SingleplayerGameControler : MonoBehaviour
 
     void GetScores()
     {
-        DatabaseManager._instance.getDailyLeaderboardScore(chosenNFT.id.ToString(), x => { dailyScore = (int)x; });
-        DatabaseManager._instance.getLeaderboardScore(chosenNFT.id.ToString(), x => { AlltimeScore = (int)x; });
-        DatabaseManager._instance.getSessionsCounter(chosenNFT.id.ToString(), x => { sessions = (int)x; });
+        if (isRestApi)
+        {
+            GetSoresRestApi();
+        }
+        else
+        {
+            DatabaseManager._instance.getDailyLeaderboardScore(chosenNFT.id.ToString(), x => { dailyScore = (int)x; });
+            DatabaseManager._instance.getLeaderboardScore(chosenNFT.id.ToString(), x => { AlltimeScore = (int)x; });
+            DatabaseManager._instance.getSessionsCounter(chosenNFT.id.ToString(), x => { sessions = (int)x; });
+        }
+       
+    }
+    void GetSoresRestApi()
+    {
+        DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id);
+
+    }
+    void observeReactiveSession()
+    {
+        dailysessionReactive
+            .Where(_ => _ >= 10)
+            .Do(_ => endGameDirectly())
+            .Subscribe()
+            .AddTo(this);
+    }
+    void endGameDirectly()
+    {
+        SingleplayerGameControler.instance.EndGame();
+        SinglePlayerScoreBoardScript.instance.DisplayScore();
     }
 }

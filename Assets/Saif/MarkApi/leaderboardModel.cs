@@ -12,13 +12,13 @@ namespace leaderboardModel
 
 
 
-    
-        [System.Serializable]
-        public class allTimeLEaderBoard
-        {
 
-            public List<assetClass> allTimeLeadboeardClass;
-        }
+    [System.Serializable]
+    public class allTimeLEaderBoard
+    {
+
+        public List<assetClass> allTimeLeadboeardClass;
+    }
     [System.Serializable]
     public class assetClass
     {
@@ -32,7 +32,21 @@ namespace leaderboardModel
         public int __v;
         public string name;
     }
+    [System.Serializable]
+
+    public class userPostedData
+    {
+        public int id;
+        public int score;
+    }
+    [System.Serializable]
+
+    public class userGetDataModel
+    {
+        public int id;
+    }
 
 }
+
 
 

@@ -17,11 +17,15 @@ public class restApiDataView : MonoBehaviour
     public List<leaderboardModel.assetClass> dailyLeaderboadData;
     public leaderboardModel.assetClass[] dailyLeaderboardArray;
     FirebaseAPI firebase;
-
+    [SerializeField] LeaderBoardControllerRestApi leaderboardControllerRestApi;
     private void Awake()
     {
         _instance = this;
         leaderboadData = new List<leaderboardModel.assetClass>();
+        if (leaderboardControllerRestApi == null)
+        {
+            leaderboardControllerRestApi = GameObject.FindObjectOfType<LeaderBoardControllerRestApi>();
+        }
     }
     private async void Start()
     {
@@ -51,9 +55,20 @@ public class restApiDataView : MonoBehaviour
         Destroy(_spawnedLoadingIcon);
         UIManager._instance.SpawnLeaderboard(_Leaderboard, "Daily LEADERBOARD");
     }
+    public  void DisplayDailyLeaderboardRestApi()
+    {
+        getDailyLeaderboardFronRestApi();
+        
+    }
+    public  void DisplayLeaderboardRestApi()
+    {
+        getLeaderboardFronRestApi();
+      
+
+    }
     public void getLeaderboardFronRestApi()
     {
-        StartCoroutine(getLeaderboardFromApi("https://api.cryptofightclub.io/game/sdk/chicken/leaderboard/daily", "all"));
+        StartCoroutine(getLeaderboardFromApi("https://api.cryptofightclub.io/game/sdk/chicken/leaderboard/alltime", "all"));
     }
     public void getDailyLeaderboardFronRestApi()
     {
@@ -92,7 +107,8 @@ public class restApiDataView : MonoBehaviour
 
 
     }
-    public void checkLeadboardAllTime(string url)
+ 
+        public void checkLeadboardAllTime(string url)
     {
 
         string MatchData = fixJsonName(url);
@@ -102,6 +118,7 @@ public class restApiDataView : MonoBehaviour
         {
             if (leaderboardArray.Length > 0)
             {
+                leaderboadData.Clear();
                 for (int i = 0; i < leaderboardArray.Length; i++)
                 {
                     leaderboadData.Add(leaderboardArray[i]);
@@ -109,7 +126,9 @@ public class restApiDataView : MonoBehaviour
             }
         }
 
-
+       // displayLeaderBoard("LEADERBOARD");
+        if (leaderboardControllerRestApi != null)
+            leaderboardControllerRestApi.UpDateLeaderBoardAllTimeRestApi(dailyLeaderboardArray, "LEADERBOARD");
     }
     public void checkLeadboardDaily(string url)
     {
@@ -117,17 +136,44 @@ public class restApiDataView : MonoBehaviour
         string MatchData = fixJsonName(url);
         Debug.Log(MatchData);
         dailyLeaderboardArray = JsonUtil.fromJson<leaderboardModel.assetClass[]>(url);
-        if (leaderboardArray != null)
+        if (dailyLeaderboardArray != null)
         {
             if (dailyLeaderboardArray.Length > 0)
             {
+                dailyLeaderboadData.Clear();
                 for (int i = 0; i < dailyLeaderboardArray.Length; i++)
                 {
                     dailyLeaderboadData.Add(dailyLeaderboardArray[i]);
                 }
             }
         }
+        //displayLeaderBoard("Daily LEADERBOARD");
+        if(leaderboardControllerRestApi!=null)
+        leaderboardControllerRestApi.UpDateLeaderBoardDailyRestApi(dailyLeaderboardArray, "Daily LEADERBOARD");
 
+    }
+    public void displayLeaderBoard(string type)
+    {
+        _spawnedLoadingIcon = Instantiate(loadingIconPrefab, GameObject.Find("Canvas").transform);
+        var query = new Dictionary<string, object>();
+        query.Add("NumResults", 10);
+        Destroy(_spawnedLoadingIcon);
+        if(type== "LEADERBOARD")
+        {
+            UIManager._instance.SpawnLeaderboardRestApi(leaderboardArray, "LEADERBOARD");
+
+        }
+        else
+        {
+            UIManager._instance.SpawnLeaderboardRestApi(dailyLeaderboardArray, "Daily LEADERBOARD");
+        }
+    }
+    public void setScore()
+    {
+
+    }
+    public void getSessionCounter() 
+    { 
 
     }
     public void setDataOnLeadModel(List<leaderboardModel.assetClass> mainModel, leaderboardObject localObject)

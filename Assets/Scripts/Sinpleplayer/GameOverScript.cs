@@ -6,7 +6,9 @@ using StarterAssets;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.IO;
-
+using UniRx;
+using UniRx.Triggers;
+using UniRx.Operators;
 public class GameOverScript : MonoBehaviour
 {
     [SerializeField]
@@ -21,21 +23,37 @@ public class GameOverScript : MonoBehaviour
     NFTInfo currentNFT;
     [SerializeField]
     GameObject sessionsLeft, sessionsNotLeft;
-   // [SerializeField]
+    ReactiveProperty<int> scorereactive = new ReactiveProperty<int>();
+    ReactiveProperty<int> sessions = new ReactiveProperty<int>();
+
+    // [SerializeField]
     //SinglePlayerSpawner spawner;
+    public void Start()
+    {
+        observeScoreChange();
+    }
     private void OnEnable()
     {
         currentNFT = SingleplayerGameControler.instance.chosenNFT;
-        if (SingleplayerGameControler.instance.GetSessions() <=10)
+        if (SingleplayerGameControler.instance.GetSessions() <10)
         {
-            DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
+            if (SingleplayerGameControler.instance.isRestApi)
+            {
+                DatabaseManagerRestApi._instance.setScoreRestApiMain(currentNFT.id.ToString(), SinglePlayerScoreBoardScript.instance.GetScore());
+
+            }
+            else
+            {
+                DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
+
+            }
             sessionsLeft.SetActive(true);
             sessionsNotLeft.SetActive(false);
             currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
             dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() + SinglePlayerScoreBoardScript.instance.GetScore());
             allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() + SinglePlayerScoreBoardScript.instance.GetScore());
         }
-        else if (SingleplayerGameControler.instance.GetSessions() > 10)
+        else if (SingleplayerGameControler.instance.GetSessions() >= 10)
         {
             sessionsLeft.SetActive(false);
             sessionsNotLeft.SetActive(true);
@@ -72,7 +90,32 @@ public class GameOverScript : MonoBehaviour
         //upddate other values here form leaderboard
         canvasToDisable.SetActive(false);
     }
+    public void observeScoreChange()
+    {
+        scorereactive
+            .Do(_ => setScoreToUI())
+            .Subscribe()
+            .AddTo(this);
 
+        sessions
+            .Do(_ => setScoreToUI())
+            .Subscribe()
+            .AddTo(this);
+
+    }
+    private void Update()
+    {
+        scorereactive.Value = SingleplayerGameControler.instance.dailyScore;
+        sessions.Value = SingleplayerGameControler.instance.sessions;
+
+    }
+    public void setScoreToUI()
+    {
+        currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+        dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() + SinglePlayerScoreBoardScript.instance.GetScore());
+        allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() + SinglePlayerScoreBoardScript.instance.GetScore());
+
+    }
     public void TryAgain()
     {
         SceneManager.LoadScene(SingleplayerGameControler.instance.GetSinglePlayerScene());

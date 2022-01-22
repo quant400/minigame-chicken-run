@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
             _userRak.GetComponent<RankUser>().setRankInfo(_user.userName,""+_user.userScore,""+_user.userRank,_user.assetID,_user.sessionCounter);
         }
     }
-    public void SpawnLeaderboardRestApi(leaderboardModel.assetClass[] _leaderboardObject, string _leaderboardHeader , string type)
+    public void SpawnLeaderboardRestApi(leaderboardModel.assetClass[] _leaderboardObject, string _leaderboardHeader )
     {
         if (GameObject.FindGameObjectWithTag("Leaderboard") != null)
             Destroy(GameObject.FindGameObjectWithTag("Leaderboard"));
@@ -59,7 +59,7 @@ public class UIManager : MonoBehaviour
         {
 
             GameObject _userRak = Instantiate(userRankPrefab, _leaderboardParent) as GameObject;
-            if (type == "daily")
+            if (_leaderboardHeader == "Daily LEADERBOARD")
             {
                 score = _user.dailyScore;
             }

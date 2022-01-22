@@ -4,6 +4,9 @@ using UnityEngine;
 using DataApi;
 using Tamarin.Common;
 using Tamarin.FirebaseX;
+using UniRx.Triggers;
+using UniRx;
+using UniRx.Operators;
 public class LeaderBoardController : MonoBehaviour
 {
     [SerializeField]

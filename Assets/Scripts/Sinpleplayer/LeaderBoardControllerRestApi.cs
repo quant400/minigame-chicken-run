@@ -127,7 +127,7 @@ public class LeaderBoardControllerRestApi : MonoBehaviour
             if (_user.dailyScore > 0)
             {
                 var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
-                temp.GetComponent<LeaderBoardEntry>().Set(rank.ToString(), _user.name, _user.id.ToString(), _user.dailyScore.ToString());
+                temp.GetComponent<LeaderBoardEntry>().Set(rank.ToString(), _user.name, _user.id.ToString(), _user.allTimeScore.ToString());
             }
             rank++;
         }

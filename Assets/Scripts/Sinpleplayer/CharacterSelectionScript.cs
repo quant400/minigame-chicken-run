@@ -247,7 +247,7 @@ public class CharacterSelectionScript : MonoBehaviour
     string NameToSlugConvert(string name)
     {
         string slug;
-        slug=name.ToLower().Replace(" ","-");
+        slug = name.ToLower().Replace(".", "").Replace("'", "").Replace(" ", "-");
         return slug;
 
     }

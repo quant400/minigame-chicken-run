@@ -11,6 +11,9 @@ public class SingleplayerGameControler : MonoBehaviour
     public static SingleplayerGameControler instance;
     [SerializeField]
     int singleplayerScene;
+    [SerializeField]
+    int mainScene;
+
     public int toSpawn;
     //public int chosenAvatar; changed to nft object 
     [SerializeField]
@@ -70,6 +73,11 @@ public class SingleplayerGameControler : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetEnded(true);
+    }
+    public void loadMain()
+    {
+
+        SceneManager.LoadScene(mainScene);
     }
 
     public float GetTimeForGame()

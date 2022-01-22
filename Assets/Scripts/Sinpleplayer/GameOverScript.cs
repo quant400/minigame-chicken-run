@@ -120,7 +120,10 @@ public class GameOverScript : MonoBehaviour
     {
         SceneManager.LoadScene(SingleplayerGameControler.instance.GetSinglePlayerScene());
     }
-
+    public void goToMain()
+    {
+        SingleplayerGameControler.instance.loadMain();
+    }
 
     string NameToSlugConvert(string name)
     {

@@ -48,6 +48,8 @@ public class restApiDataView : MonoBehaviour
     }
     public async void DisplayDailyLeaderboard()
     {
+        getDailyLeaderboardFronRestApi();
+
         _spawnedLoadingIcon = Instantiate(loadingIconPrefab, GameObject.Find("Canvas").transform);
         var query = new Dictionary<string, object>();
         query.Add("NumResults", 10);

@@ -34,6 +34,8 @@ public class SingleplayerGameControler : MonoBehaviour
     public int dailyScore, AlltimeScore, sessions;
     public bool isRestApi;
     public ReactiveProperty<int> dailysessionReactive = new ReactiveProperty<int>();
+    public static NFTInfo[] nftDataArray;
+    public static bool playerLogged;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -125,7 +127,7 @@ public class SingleplayerGameControler : MonoBehaviour
         return sessions;
     }
 
-    void GetScores()
+    public void GetScores()
     {
         if (isRestApi)
         {

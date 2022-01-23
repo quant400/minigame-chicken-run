@@ -15,7 +15,7 @@ public class GameOverScript : MonoBehaviour
     Transform characterDisplay;
     GameObject[] characters;
     [SerializeField]
-    TMP_Text currentScore, dailyScore, allTimeScore;
+    TMP_Text currentScore, dailyScore, allTimeScore , sessionCounterText;
     [SerializeField]
     GameObject canvasToDisable;
     [SerializeField]
@@ -25,12 +25,13 @@ public class GameOverScript : MonoBehaviour
     GameObject sessionsLeft, sessionsNotLeft;
     ReactiveProperty<int> scorereactive = new ReactiveProperty<int>();
     ReactiveProperty<int> sessions = new ReactiveProperty<int>();
-
+    ReactiveProperty<bool> gameEnded = new ReactiveProperty<bool>();
     // [SerializeField]
     //SinglePlayerSpawner spawner;
     public void Start()
     {
         observeScoreChange();
+        endGameAfterValueChange();
     }
     private void OnEnable()
     {
@@ -47,11 +48,24 @@ public class GameOverScript : MonoBehaviour
                 DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
 
             }
+        }
+        SingleplayerGameControler.instance.GetScores();
+
+
+    }
+    public void setScoreResutls()
+    {
+       
+        if (SingleplayerGameControler.instance.GetSessions() < 10)
+        {
+            
             sessionsLeft.SetActive(true);
             sessionsNotLeft.SetActive(false);
             currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
-            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() + SinglePlayerScoreBoardScript.instance.GetScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() + SinglePlayerScoreBoardScript.instance.GetScore());
+            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() );
+            sessionCounterText.text = "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions()) + "/10";
+
         }
         else if (SingleplayerGameControler.instance.GetSessions() >= 10)
         {
@@ -59,6 +73,8 @@ public class GameOverScript : MonoBehaviour
             sessionsNotLeft.SetActive(true);
             dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
             allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore());
+            sessionCounterText.text = "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions()) + "/10";
+
         }
 
 
@@ -70,8 +86,8 @@ public class GameOverScript : MonoBehaviour
         //characters = spawner.GetCharacterList();
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", NameToSlugConvert(currentNFT.name))) as GameObject;
-        var temp=Instantiate(displayChar, characterDisplay.position, Quaternion.identity,characterDisplay);
-        
+        var temp = Instantiate(displayChar, characterDisplay.position, Quaternion.identity, characterDisplay);
+
         //destroying all player related components
         Destroy(temp.transform.GetChild(1).gameObject);
         Destroy(temp.transform.GetChild(0).gameObject);
@@ -86,9 +102,17 @@ public class GameOverScript : MonoBehaviour
         temp.transform.localPosition = Vector3.zero;
         temp.transform.localRotation = Quaternion.identity;
         temp.transform.localScale = Vector3.one * 2;
-       
+
         //upddate other values here form leaderboard
         canvasToDisable.SetActive(false);
+    }
+    public void endGameAfterValueChange()
+    {
+        gameEnded
+            .Where(_ => _ == true)
+            .Do(_ => setScoreResutls())
+            .Subscribe()
+            .AddTo(this);
     }
     public void observeScoreChange()
     {
@@ -111,10 +135,11 @@ public class GameOverScript : MonoBehaviour
     }
     public void setScoreToUI()
     {
-        currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
-        dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() + SinglePlayerScoreBoardScript.instance.GetScore());
-        allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() + SinglePlayerScoreBoardScript.instance.GetScore());
-
+        gameEnded.Value = true;
+        currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString() ;
+        dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() );
+        allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() );
+        sessionCounterText.text= "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions())+"/10";
     }
     public void TryAgain()
     {

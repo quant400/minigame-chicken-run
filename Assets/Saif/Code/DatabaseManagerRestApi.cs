@@ -139,11 +139,10 @@ public class DatabaseManagerRestApi : MonoBehaviour
         postedData.score = scoreAdded;
         string idJsonData = JsonUtility.ToJson(postedData);
 
-        using (UnityWebRequest request = UnityWebRequest.Post("https://api.cryptofightclub.io/game/sdk/chicken/increment", idJsonData))
+        using (UnityWebRequest request = UnityWebRequest.Put("https://api.cryptofightclub.io/game/sdk/chicken/increment", idJsonData))
         {
-            request.method = UnityWebRequest.kHttpVerbPOST;
-            request.downloadHandler = new DownloadHandlerBuffer();
-            request.uploadHandler = new UploadHandlerRaw(string.IsNullOrEmpty(idJsonData) ? null : Encoding.UTF8.GetBytes(idJsonData));
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(idJsonData);
+            request.method = "POST";
             request.SetRequestHeader("Accept", "application/json");
             request.SetRequestHeader("Content-Type", "application/json");
             yield return request.SendWebRequest();
@@ -151,9 +150,8 @@ public class DatabaseManagerRestApi : MonoBehaviour
             {
 
 
+                getDataFromRestApi(postedData.id);
 
-
-                Debug.Log(Encoding.UTF8.GetString(request.downloadHandler.data));
 
             }
             else

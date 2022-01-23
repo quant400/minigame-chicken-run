@@ -97,11 +97,10 @@ public class LeaderBoardControllerRestApi : MonoBehaviour
             {
                 score = _user.allTimeScore;
             }
-            if (_user.dailyScore > 0)
-            {
+           
                 var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
                 temp.GetComponent<LeaderBoardEntry>().Set(rank.ToString(), _user.name, _user.id.ToString(), _user.dailyScore.ToString());
-            }
+            
             rank++;
         }
     }
@@ -124,11 +123,10 @@ public class LeaderBoardControllerRestApi : MonoBehaviour
             {
                 score = _user.allTimeScore;
             }
-            if (_user.dailyScore > 0)
-            {
+           
                 var temp = Instantiate(leaderboardEntryPrefab, layoutGroup);
                 temp.GetComponent<LeaderBoardEntry>().Set(rank.ToString(), _user.name, _user.id.ToString(), _user.allTimeScore.ToString());
-            }
+            
             rank++;
         }
     }

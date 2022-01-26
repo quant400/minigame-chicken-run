@@ -1,4 +1,5 @@
-﻿using System.Collections;
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,18 +7,13 @@ using StarterAssets;
 using UniRx.Triggers;
 using UniRx;
 using UniRx.Operators;
-public class SingleplayerGameControler : MonoBehaviour
+public class gameplayView : MonoBehaviour
 {
-    public static SingleplayerGameControler instance;
-    [SerializeField]
-    int singleplayerScene;
-    [SerializeField]
-    int mainScene;
+    public static gameplayView instance;
 
     public int toSpawn;
     //public int chosenAvatar; changed to nft object 
     [SerializeField]
-    GameObject[] toDestroyOnload;
     GameObject player;
     //public int startDelay;
     [SerializeField]
@@ -45,7 +41,7 @@ public class SingleplayerGameControler : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(this);
+           
             if (isRestApi)
             {
                 observeReactiveSession();
@@ -54,15 +50,7 @@ public class SingleplayerGameControler : MonoBehaviour
     }
 
 
-    public void LoadSingleplayer()
-    {
-        SceneManager.LoadScene(singleplayerScene);
-        foreach (GameObject g in toDestroyOnload)
-        {
-            Destroy(g);
-        }
-    }
-    
+ 
 
     public void StartGame()
     {
@@ -71,6 +59,7 @@ public class SingleplayerGameControler : MonoBehaviour
         player.GetComponent<ThirdPersonController>().SetStarted(true);
         GetScores();
         DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id);
+        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameRunning;
 
     }
     public void EndGame()
@@ -78,11 +67,7 @@ public class SingleplayerGameControler : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetEnded(true);
     }
-    public void loadMain()
-    {
-
-        SceneManager.LoadScene(mainScene);
-    }
+   
 
     public float GetTimeForGame()
     {
@@ -97,10 +82,7 @@ public class SingleplayerGameControler : MonoBehaviour
         return spawnIntervals;
     }
 
-    public int GetSinglePlayerScene()
-    {
-        return singleplayerScene;
-    }
+   
 
     public float GetMushroomPowerUpChance()
     {
@@ -137,11 +119,11 @@ public class SingleplayerGameControler : MonoBehaviour
         }
         else
         {
-           // DatabaseManager._instance.getDailyLeaderboardScore(chosenNFT.id.ToString(), x => { dailyScore = (int)x; });
-           // DatabaseManager._instance.getLeaderboardScore(chosenNFT.id.ToString(), x => { AlltimeScore = (int)x; });
-          //  DatabaseManager._instance.getSessionsCounter(chosenNFT.id.ToString(), x => { sessions = (int)x; });
+            // DatabaseManager._instance.getDailyLeaderboardScore(chosenNFT.id.ToString(), x => { dailyScore = (int)x; });
+            // DatabaseManager._instance.getLeaderboardScore(chosenNFT.id.ToString(), x => { AlltimeScore = (int)x; });
+            //  DatabaseManager._instance.getSessionsCounter(chosenNFT.id.ToString(), x => { sessions = (int)x; });
         }
-       
+
     }
     void GetSoresRestApi()
     {
@@ -162,3 +144,4 @@ public class SingleplayerGameControler : MonoBehaviour
         SinglePlayerScoreBoardScript.instance.DisplayScore();
     }
 }
+

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.26f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20SymbolExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasLimitExample.cs" />
@@ -67,7 +64,9 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfExample.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\Singleplayer3RdPersonController.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\StartSreenScript.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardControllerRestApi.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfExample.cs" />
+    <Compile Include="Assets\Saif\Code\DatabaseManagerRestApi.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\PlayerAccount.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerSpawner.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\PlaySounds.cs" />
@@ -95,6 +94,7 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20TotalSupplyExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
     <Compile Include="Assets\Tamarin\Firebase\Examples\FirebaseExamples.cs" />
+    <Compile Include="Assets\Saif\MarkApi\restApiDataView.cs" />
     <Compile Include="Assets\Web3Unity\Prefabs\ERC1155\ImportNFTTextureExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomRPCExample.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
@@ -161,9 +161,15 @@
     <Compile Include="Assets\Saif\Code\Manager.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Saif\MarkApi\restApiDataView.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardControllerRestApi.cs" />
-    <Compile Include="Assets\Saif\Code\DatabaseManagerRestApi.cs" />
+    <Compile Include="Assets\Scripts\MVRP\mainPresenter.cs" />
+    <Compile Include="Assets\Scripts\MVRP\chickenGameModel.cs" />
+    <Compile Include="Assets\Scripts\MVRP\scenesView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\webLoginView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\uiView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\characterSelectionView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\menuView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\gameplayView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\NFTGetView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\36.56120f7d.chunk.js.LICENSE.txt" />
@@ -917,6 +923,10 @@
       <Project>{6AB4B280-8D0C-8F78-198E-EA91E8243C4D}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{C9463A7C-1D3E-4D97-9B06-293DE27646C5}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
       <Project>{A1BF0E1A-9B16-CC07-8659-13690639C5D5}</Project>
       <Name>PhotonUnityNetworking</Name>
@@ -924,10 +934,6 @@
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
       <Project>{A44EDEA2-07DC-338E-B676-DF6906B176A4}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{C9463A7C-1D3E-4D97-9B06-293DE27646C5}</Project>
-      <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

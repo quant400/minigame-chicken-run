@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DataApi;
 using UnityEngine.Networking;
-using Tamarin.Common;
-using Tamarin.FirebaseX;
-using Newtonsoft.Json;
+
 
 public class restApiDataView : MonoBehaviour
 {
@@ -16,7 +14,6 @@ public class restApiDataView : MonoBehaviour
     public leaderboardModel.assetClass[] leaderboardArray;
     public List<leaderboardModel.assetClass> dailyLeaderboadData;
     public leaderboardModel.assetClass[] dailyLeaderboardArray;
-    FirebaseAPI firebase;
     [SerializeField] LeaderBoardControllerRestApi leaderboardControllerRestApi;
     private void Awake()
     {
@@ -27,35 +24,17 @@ public class restApiDataView : MonoBehaviour
             leaderboardControllerRestApi = GameObject.FindObjectOfType<LeaderBoardControllerRestApi>();
         }
     }
-    private async void Start()
-    {
-        //here we are referencing the api, to make a shorthand for firebase. (cause we are lazy devs, and Firebase.Instance is too long to write every time :))
-        await Waiter.Until(() => FirebaseAPI.Instance.ready == true);
-        firebase = FirebaseAPI.Instance;
-    }
+ 
     // Start is called before the first frame update
     //callable function versions of the plain request for the leaderboard
     public async void DisplayLeaderboard()
     {
-        getLeaderboardFronRestApi();
-        _spawnedLoadingIcon = Instantiate(loadingIconPrefab, GameObject.Find("Canvas").transform);
-        var query = new Dictionary<string, object>();
-        query.Add("NumResults", 10);
-        leaderboardObject _Leaderboard = await firebase.functions.HttpsCall<leaderboardObject>("getLeaderboard", query);
-        Destroy(_spawnedLoadingIcon);
-        UIManager._instance.SpawnLeaderboard(_Leaderboard, "LEADERBOARD");
+        
 
     }
     public async void DisplayDailyLeaderboard()
     {
-        getDailyLeaderboardFronRestApi();
-
-        _spawnedLoadingIcon = Instantiate(loadingIconPrefab, GameObject.Find("Canvas").transform);
-        var query = new Dictionary<string, object>();
-        query.Add("NumResults", 10);
-        leaderboardObject _Leaderboard = await firebase.functions.HttpsCall<leaderboardObject>("getDailyLeaderboard", query);
-        Destroy(_spawnedLoadingIcon);
-        UIManager._instance.SpawnLeaderboard(_Leaderboard, "Daily LEADERBOARD");
+       
     }
     public  void DisplayDailyLeaderboardRestApi()
     {

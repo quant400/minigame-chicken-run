@@ -40,10 +40,10 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         }
        
     }
-    public void StartGame()
+    public void StartGame(float timeOfGame)
     {
         started = true;
-        time = SingleplayerGameControler.instance.GetTimeForGame();
+        time = timeOfGame;
         currentTime = time;
     }
     private void Update()
@@ -68,7 +68,12 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         {
             if(started)
             {
-                SingleplayerGameControler.instance.EndGame();
+             if (SingleplayerGameControler.instance != null)
+                {
+                    SingleplayerGameControler.instance.EndGame();
+
+                }
+                chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameEnded;
                 DisplayScore();
             }
             started = false;

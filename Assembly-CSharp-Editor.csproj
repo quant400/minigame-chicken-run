@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.26f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\StarterAssets\Editor\ScriptingDefineUtils.cs" />
     <Compile Include="Assets\StarterAssets\Editor\ThirdPersonStarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\StarterAssets\Editor\StarterAssetsDeployMenu.cs" />
@@ -63,10 +60,7 @@
     <Compile Include="Assets\StarterAssets\Editor\PackageChecker\PackageChecker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Tamarin\Firebase\Editor\Tamarin.Firebase.Manager.dll" />
     <None Include="Assets\StarterAssets\Editor\PackageChecker\PackageImportList.txt" />
-    <None Include="Assets\Tamarin\Firebase\Editor\styles.uxml" />
-    <None Include="Assets\Tamarin\Firebase\Editor\styles.uss" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -309,23 +303,11 @@
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.dll</HintPath>
     </Reference>
-    <Reference Include="Firebase.Functions">
-      <HintPath>Library\PackageCache\com.google.firebase.functions@0aa525f4fb80-1642363904609\Firebase\Plugins\Firebase.Functions.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.PackageManagerResolver">
-      <HintPath>Library\PackageCache\com.google.external-dependency-manager@bff9737e48a1-1642363902705\ExternalDependencyManager\Editor\1.2.167\Google.PackageManagerResolver.dll</HintPath>
-    </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.7\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
-    </Reference>
-    <Reference Include="Tamarin.Common">
-      <HintPath>Assets\Tamarin\Common\Scripts\Tamarin.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.App">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Firebase\Plugins\Firebase.App.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.1-preview.1\Runtime\Newtonsoft.Json.dll</HintPath>
@@ -333,23 +315,11 @@
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.7\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Firebase.Editor">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Firebase\Editor\Firebase.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Firestore">
-      <HintPath>Library\PackageCache\com.google.firebase.firestore@a9e0858b8987-1642363904559\Firebase\Plugins\Firebase.Firestore.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Database">
-      <HintPath>Library\PackageCache\com.google.firebase.database@b6d84bd82b3c-1642363904338\Firebase\Plugins\Firebase.Database.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.7\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
       <HintPath>Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Tamarin.Firebase">
-      <HintPath>Assets\Tamarin\Firebase\Scripts\Tamarin.Firebase.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression.FileSystem">
       <HintPath>Library\PackageCache\com.unity.connect.share@4.2.3\Plugins\System.IO.Compression.FileSystem.dll</HintPath>
@@ -359,39 +329,6 @@
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Tasks">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Parse\Plugins\dotNet45\Unity.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="Tamarin.Firebase.Manager">
-      <HintPath>Assets\Tamarin\Firebase\Editor\Tamarin.Firebase.Manager.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.TaskExtension">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.JarResolver">
-      <HintPath>Library\PackageCache\com.google.external-dependency-manager@bff9737e48a1-1642363902705\ExternalDependencyManager\Editor\1.2.167\Google.JarResolver.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.VersionHandler">
-      <HintPath>Library\PackageCache\com.google.external-dependency-manager@bff9737e48a1-1642363902705\ExternalDependencyManager\Editor\Google.VersionHandler.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.VersionHandlerImpl">
-      <HintPath>Library\PackageCache\com.google.external-dependency-manager@bff9737e48a1-1642363902705\ExternalDependencyManager\Editor\1.2.167\Google.VersionHandlerImpl.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.MiniJson">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Firebase\Plugins\Google.MiniJson.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Platform">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Firebase\Plugins\Firebase.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Compat">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Parse\Plugins\dotNet45\Unity.Compat.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Auth">
-      <HintPath>Library\PackageCache\com.google.firebase.auth@8b6048ea4497-1642363904246\Firebase\Plugins\Firebase.Auth.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.IOSResolver">
-      <HintPath>Library\PackageCache\com.google.external-dependency-manager@bff9737e48a1-1642363902705\ExternalDependencyManager\Editor\1.2.167\Google.IOSResolver.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -831,6 +768,10 @@
       <Project>{6AB4B280-8D0C-8F78-198E-EA91E8243C4D}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{C9463A7C-1D3E-4D97-9B06-293DE27646C5}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
       <Project>{A1BF0E1A-9B16-CC07-8659-13690639C5D5}</Project>
       <Name>PhotonUnityNetworking</Name>
@@ -838,10 +779,6 @@
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
       <Project>{A44EDEA2-07DC-338E-B676-DF6906B176A4}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{C9463A7C-1D3E-4D97-9B06-293DE27646C5}</Project>
-      <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -57,6 +57,8 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20SymbolExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasLimitExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721URIExample.cs" />
+    <Compile Include="Assets\Scripts\MVRP\webLoginView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\chickenGameModel.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer721.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardController.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Assets\Scripts\Sinpleplayer\Singleplayer3RdPersonController.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\StartSreenScript.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardControllerRestApi.cs" />
+    <Compile Include="Assets\Scripts\MVRP\menuView.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfExample.cs" />
     <Compile Include="Assets\Saif\Code\DatabaseManagerRestApi.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\PlayerAccount.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendTransactionExample.cs" />
+    <Compile Include="Assets\Scripts\MVRP\NFTGetView.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\EVM.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Scenes\WebLogin.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721BalanceOfExample.cs" />
@@ -113,6 +117,8 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\BlockNumberExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\TxStatus.cs" />
+    <Compile Include="Assets\Scripts\MVRP\characterSelectionView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\mainPresenter.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomCallExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasPriceExample.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\GameRoom.cs" />
@@ -127,6 +133,7 @@
     <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardEntry.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\Saif\Code\DontDestroy.cs" />
+    <Compile Include="Assets\Scripts\MVRP\uiView.cs" />
     <Compile Include="Assets\Saif\Code\DatabaseManager.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\JsonHelper.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerScoreBoardScript.cs" />
@@ -147,6 +154,7 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20NameExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\ERC721.cs" />
+    <Compile Include="Assets\Scripts\MVRP\scenesView.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\CountDownScript.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\WebGL\Web3GL.cs" />
@@ -158,18 +166,12 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendContractExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ChickenScript.cs" />
+    <Compile Include="Assets\Scripts\MVRP\gameplayView.cs" />
     <Compile Include="Assets\Saif\Code\Manager.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Scripts\MVRP\mainPresenter.cs" />
-    <Compile Include="Assets\Scripts\MVRP\chickenGameModel.cs" />
-    <Compile Include="Assets\Scripts\MVRP\scenesView.cs" />
-    <Compile Include="Assets\Scripts\MVRP\webLoginView.cs" />
-    <Compile Include="Assets\Scripts\MVRP\uiView.cs" />
-    <Compile Include="Assets\Scripts\MVRP\characterSelectionView.cs" />
-    <Compile Include="Assets\Scripts\MVRP\menuView.cs" />
-    <Compile Include="Assets\Scripts\MVRP\gameplayView.cs" />
-    <Compile Include="Assets\Scripts\MVRP\NFTGetView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\gameEndView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\onSceneLoad.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\36.56120f7d.chunk.js.LICENSE.txt" />

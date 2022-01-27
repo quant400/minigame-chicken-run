@@ -14,11 +14,16 @@ public class uiView : MonoBehaviour
     [SerializeField] GameObject loginCanvas;
     [SerializeField] GameObject resultsCanvas;
     [SerializeField] GameObject leaderBoeardCanvas;
+    [SerializeField] GameObject startCanvas;
 
 
-    public Button loginBtn, PlayMode, Play, LeaderBoard, Back,Skip,backFromLeaderboard;
+    public Button loginBtn, PlayMode, Play, LeaderBoard, BackToCharacterSelection,Skip,backFromLeaderboard;
     [SerializeField] webLoginView webloginView;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        scenesView.LoadScene(chickenGameModel.mainSceneLoadname);
+    }
     void Start()
     {
         ObserveBtns();
@@ -50,6 +55,40 @@ public class uiView : MonoBehaviour
            .Do(_ => PlaySounds.instance.Play())
            .Subscribe()
            .AddTo(this);
+        LeaderBoard.OnClickAsObservable()
+          .Do(_ => openLeaderBoard())
+          .Where(_ => PlaySounds.instance != null)
+          .Do(_ => PlaySounds.instance.Play())
+          .Subscribe()
+          .AddTo(this);
+        BackToCharacterSelection.OnClickAsObservable()
+          .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnBackToCharacterSelection)
+          .Where(_ => PlaySounds.instance != null)
+          .Do(_ => PlaySounds.instance.Play())
+          .Subscribe()
+          .AddTo(this);
+        backFromLeaderboard.OnClickAsObservable()
+          .Do(_ => closeLeaderBoard())
+          .Where(_ => PlaySounds.instance != null)
+          .Do(_ => PlaySounds.instance.Play())
+          .Subscribe()
+          .AddTo(this);
+        Skip.OnClickAsObservable()
+        .Do(_ => webloginView.OnSkip())
+        .Where(_ => PlaySounds.instance != null)
+        .Do(_ => PlaySounds.instance.Play())
+        .Subscribe()
+        .AddTo(this);
+
+    }
+    public void closeLeaderBoard()
+    {
+        leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(false);
+
+    }
+    public void openLeaderBoard()
+    {
+        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnLeaderBoard;
 
     }
     public void PlayMainButton()
@@ -71,12 +110,15 @@ public class uiView : MonoBehaviour
                 mainMenuCanvas.gameObject.SetActive(false);
                 characterSelectionPanel.SetActive(false);
                 loginCanvas.gameObject.SetActive(true);
+                startCanvas.gameObject.SetActive(true);
+
                 leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(false);
                 resultsCanvas.SetActive(false);
 
                 break;
             case "main":
                 mainMenuCanvas.gameObject.SetActive(true);
+                startCanvas.gameObject.SetActive(true);
                 characterSelectionPanel.SetActive(false);
                 loginCanvas.gameObject.SetActive(false);
                 resultsCanvas.SetActive(false);
@@ -84,6 +126,7 @@ public class uiView : MonoBehaviour
                 break;
             case "characterSelection":
                 mainMenuCanvas.gameObject.SetActive(false);
+                startCanvas.gameObject.SetActive(false);
                 characterSelectionPanel.SetActive(true);
                 loginCanvas.gameObject.SetActive(false);
                 resultsCanvas.SetActive(false);
@@ -95,10 +138,21 @@ public class uiView : MonoBehaviour
                 leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(false);
                 loginCanvas.gameObject.SetActive(false);
                 resultsCanvas.SetActive(true);
+                startCanvas.gameObject.SetActive(false);
+
                 break;
             case "leaderboeard":
                 leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(true);
                 break;
+            case "characterSelected":
+                mainMenuCanvas.gameObject.SetActive(false);
+                characterSelectionPanel.SetActive(false);
+                loginCanvas.gameObject.SetActive(false);
+                startCanvas.gameObject.SetActive(false);
+                resultsCanvas.SetActive(false);
+                leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(false);
+                break;
+
         }
     }
 }

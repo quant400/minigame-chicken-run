@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -10,13 +10,13 @@ using System.IO;
 using UniRx;
 using UniRx.Triggers;
 using UniRx.Operators;
-public class GameOverScript : MonoBehaviour
+public class gameEndView : MonoBehaviour
 {
     [SerializeField]
     Transform characterDisplay;
     GameObject[] characters;
     [SerializeField]
-    TMP_Text currentScore, dailyScore, allTimeScore , sessionCounterText;
+    TMP_Text currentScore, dailyScore, allTimeScore, sessionCounterText;
     [SerializeField]
     GameObject canvasToDisable;
     [SerializeField]
@@ -34,28 +34,29 @@ public class GameOverScript : MonoBehaviour
     {
         observeScoreChange();
         endGameAfterValueChange();
+        ObserveGameObverBtns();
     }
     private void OnEnable()
     {
         if (canvasToDisable == null)
         {
-            canvasToDisable = SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject;
+            canvasToDisable = gameplayView.instance.gameObject.transform.GetChild(0).gameObject;
         }
-        currentNFT = SingleplayerGameControler.instance.chosenNFT;
-        if (SingleplayerGameControler.instance.GetSessions() <10)
+        currentNFT = gameplayView.instance.chosenNFT;
+        if (gameplayView.instance.GetSessions() < 10)
         {
-            if (SingleplayerGameControler.instance.isRestApi)
+            if (gameplayView.instance.isRestApi)
             {
                 DatabaseManagerRestApi._instance.setScoreRestApiMain(currentNFT.id.ToString(), SinglePlayerScoreBoardScript.instance.GetScore());
 
             }
             else
             {
-               // DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
+                // DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
 
             }
         }
-        SingleplayerGameControler.instance.GetScores();
+        gameplayView.instance.GetScores();
 
 
     }
@@ -68,39 +69,34 @@ public class GameOverScript : MonoBehaviour
             .Do(_ => PlaySounds.instance.Play())
             .Subscribe()
             .AddTo(this);
-        back.OnClickAsObservable()
-           .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnPlayMenu)
-           .Where(_ => PlaySounds.instance != null)
-           .Do(_ => PlaySounds.instance.Play())
-           .Subscribe()
-           .AddTo(this);
+       
     }
     public void setScoreResutls()
     {
-       
-        if (SingleplayerGameControler.instance.GetSessions() < 10)
+
+        if (gameplayView.instance.GetSessions() < 10)
         {
-            
+
             sessionsLeft.SetActive(true);
             sessionsNotLeft.SetActive(false);
             currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
-            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() );
-            sessionCounterText.text = "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions()) + "/10";
+            dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
 
         }
-        else if (SingleplayerGameControler.instance.GetSessions() >= 10)
+        else if (gameplayView.instance.GetSessions() >= 10)
         {
             sessionsLeft.SetActive(false);
             sessionsNotLeft.SetActive(true);
-            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore());
-            sessionCounterText.text = "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions()) + "/10";
+            dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
 
         }
 
 
-        AudioSource ad = GameObject.FindGameObjectWithTag("SFXPlayer").GetComponent<AudioSource>();
+        AudioSource ad =GetComponent<AudioSource>();
         ad.clip = gameOverClip;
         ad.loop = false;
         ad.volume = 0.2f;
@@ -153,22 +149,21 @@ public class GameOverScript : MonoBehaviour
     {
         if (chickenGameModel.gameCurrentStep.Value == chickenGameModel.GameSteps.OnGameEnded)
         {
-            scorereactive.Value = SingleplayerGameControler.instance.dailyScore;
-            sessions.Value = SingleplayerGameControler.instance.sessions;
+            scorereactive.Value = gameplayView.instance.dailyScore;
+            sessions.Value = gameplayView.instance.sessions;
         }
     }
     public void setScoreToUI()
     {
         gameEnded.Value = true;
-        currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString() ;
-        dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() );
-        allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() );
-        sessionCounterText.text= "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions())+"/10";
+        currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+        dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
+        allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+        sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
     }
     public void TryAgain()
     {
-        scenesView.LoadScene(chickenGameModel.singlePlayerSceneName);
-
+        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnCharacterSelected;
     }
     public void goToMain()
     {

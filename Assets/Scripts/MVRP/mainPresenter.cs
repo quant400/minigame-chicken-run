@@ -6,7 +6,7 @@ using UniRx.Toolkit;
 using UniRx.Triggers;
 using UniRx.Operators;
 using System;
-
+using UnityEngine.SceneManagement;
 
     public class mainPresenter : MonoBehaviour
     {
@@ -20,11 +20,24 @@ using System;
     {
         DontDestroyOnLoad(this.gameObject);
     }
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == chickenGameModel.singlePlayerSceneName) 
+        {
+            Observable.Timer(TimeSpan.Zero)
+                        .DelayFrame(2)
+                        .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnStartGame)
+                        .Subscribe()
+                        .AddTo(this);
+        }
+    }
     // Start is called before the first frame update
     void Start()
         {
         ObservePanelsStatus();
-        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -71,15 +84,16 @@ using System;
                     break;
                 case chickenGameModel.GameSteps.OnCharacterSelection:
                     uiView.goToMenu("characterSelection");
-                    webView.checkUSerLoggedAtStart(); /// condisder when start load again .....  !!!! 
+                    //webView.checkUSerLoggedAtStart(); /// condisder when start load again .....  !!!! 
                     break;
                 case chickenGameModel.GameSteps.OnCharacterSelected:
+                    uiView.goToMenu("characterSelected");
+                    scenesView.LoadScene(chickenGameModel.singlePlayerSceneName);
 
-                    scenesView.AddScene(chickenGameModel.singlePlayerSceneName);
                     break;
                 case chickenGameModel.GameSteps.OnStartGame:
                     Observable.Timer(TimeSpan.Zero)
-                        .Delay(TimeSpan.FromSeconds(500))
+                        .DelayFrame(2)
                         .Do(_ => gameView.StartGame())
                         .Subscribe()
                         .AddTo(this);
@@ -91,10 +105,20 @@ using System;
                     Debug.Log("game Is running");
                     break;
                 case chickenGameModel.GameSteps.OnGameEnded:
+                    uiView.goToMenu("results");
+
                     gameView.EndGame();
                     break;
                 case chickenGameModel.GameSteps.OnBackToCharacterSelection:
-                    scenesView.AddScene(chickenGameModel.mainSceneLoadname);
+                    scenesView.LoadScene(chickenGameModel.mainSceneLoadname);
+                    Observable.Timer(TimeSpan.Zero)
+                       .DelayFrame(2)
+                       .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnCharacterSelection)
+                       .Subscribe()
+                       .AddTo(this);
+                    break;
+                case chickenGameModel.GameSteps.onSceneLoaded:
+                    Debug.Log("sceneLoaded");
                     break;
 
 

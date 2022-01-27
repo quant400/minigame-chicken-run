@@ -29,7 +29,10 @@ public class characterSelectionView : MonoBehaviour
 
     NFTInfo[] characterNFTMap;
 
-
+    public void Start()
+    {
+        observeCharacterSelectionBtns();
+    }
     void observeCharacterSelectionBtns()
     {
         rightButton.OnClickAsObservable()
@@ -144,11 +147,10 @@ public class characterSelectionView : MonoBehaviour
     //added for single player
     public void FinalSelectSinglePlayer()
     {
-        SingleplayerGameControler.instance.chosenNFT = characterNFTMap[currentCharacter];
+        gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
         selected = true;
         characters[currentCharacter].GetComponent<Animator>().SetBool("Selected", true);
-        rightButton.interactable = false;
-        leftButton.interactable = false;
+   
 
     }
 

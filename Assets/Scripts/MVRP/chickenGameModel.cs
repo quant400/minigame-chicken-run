@@ -32,11 +32,14 @@ public struct chickenGameModel
         OnBackToMenu,
         OnBackToCharacterSelection,
         OnExit,
+        onSceneLoaded,
     }
 
 
     public static ReactiveProperty<bool> userIsLogged = new ReactiveProperty<bool>();
     public static ReactiveProperty<GameSteps> gameCurrentStep = new ReactiveProperty<GameSteps>();
+    public static GameSteps lastSavedStep;
+
     public static string currentNFTString;
     public static NFTInfo[] currentNFTArray;
     public static int mainSceneLoad=0;

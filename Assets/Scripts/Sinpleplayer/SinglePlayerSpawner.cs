@@ -30,7 +30,7 @@ public class SinglePlayerSpawner : MonoBehaviour
 
         //span point chaged to index 4 intead of 0 will make it a single point intead of array if only one player in game decided
         //GameObject temp = Instantiate(characters[SingleplayerGameControler.instance.chosenAvatar], spawnPoint.position, Quaternion.identity);
-        chosenNFTName = NameToSlugConvert(SingleplayerGameControler.instance.chosenNFT.name);
+        chosenNFTName = NameToSlugConvert(gameplayView.instance.chosenNFT.name);
         GameObject resource = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", chosenNFTName)) as GameObject;
         GameObject temp = Instantiate(resource, spawnPoint.position, Quaternion.identity);
         
@@ -41,7 +41,7 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     void SpawnChickens()
     {
-        int remainingToSpwan = SingleplayerGameControler.instance.GetChickenCount();
+        int remainingToSpwan = gameplayView.instance.GetChickenCount();
         int index = 0;
         while(remainingToSpwan>0)
         {
@@ -57,7 +57,7 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     IEnumerator SpawnRandomChicken()
     {
-        yield return new WaitForSeconds(SingleplayerGameControler.instance.GetSpawnInterval());
+        yield return new WaitForSeconds(gameplayView.instance.GetSpawnInterval());
         var temp=Instantiate(chickenPrefab, chickenSpawnPoints[Random.Range(0,10)].position, Quaternion.identity);
         temp.transform.parent = chickenHolder;
         StartCoroutine("SpawnRandomChicken");

@@ -12,13 +12,13 @@ public class SingleplayerCountdown : MonoBehaviour
     float timeLeft;
     void OnEnable()
     {
-        Invoke("StartCountDown", 0.5f);
+        //Invoke("StartCountDown", 0.5f);
         //time = SingleplayerGameControler.instance.startDelay;
         //StartCountDown();
     }
     public void StartCountDown()
     {
-        SingleplayerGameControler.instance.StartGame();
+        gameplayView.instance.StartGame();
         //StartCoroutine("SinglePlayerCountDown",1f);
     }
 
@@ -35,7 +35,7 @@ public class SingleplayerCountdown : MonoBehaviour
             DOTween.To(() => countdownText.fontSize, x => countdownText.fontSize = x, 0, 1f);
             yield return new WaitForSeconds(1);
         }
-        SingleplayerGameControler.instance.StartGame();
+        gameplayView.instance.StartGame();
         this.gameObject.SetActive(false);
     }
 

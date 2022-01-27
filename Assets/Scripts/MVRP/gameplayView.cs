@@ -32,6 +32,7 @@ public class gameplayView : MonoBehaviour
     public ReactiveProperty<int> dailysessionReactive = new ReactiveProperty<int>();
     public static NFTInfo[] nftDataArray;
     public static bool playerLogged;
+    public GameObject gameOverObject;
     private void Awake()
     {
         if (instance != null && instance != this)

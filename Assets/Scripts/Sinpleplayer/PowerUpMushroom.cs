@@ -12,7 +12,7 @@ public class PowerUpMushroom : MonoBehaviour
     {
         audioS = GetComponent<AudioSource>();
         int chance = Random.Range(0 , 100);
-        if (chance > SingleplayerGameControler.instance.GetMushroomPowerUpChance()) 
+        if (chance > gameplayView.instance.GetMushroomPowerUpChance()) 
         {
            
             GetComponent<BoxCollider>().enabled = false;
@@ -45,15 +45,22 @@ public class PowerUpMushroom : MonoBehaviour
         TPC.JumpHeight *= jumpMultiplier;
         TPC.SprintSpeed = TPC.MoveSpeed;
         //for testing 
-        player.transform.GetChild(3).gameObject.SetActive(true);
-        
+        if (player != null)
+        {
+            player.transform.GetChild(3).gameObject.SetActive(true);
+
+        }
+
         yield return new WaitForSeconds(powerUpDuration);
 
         TPC.MoveSpeed /= PowerupSpeedMultiplier;
         TPC.JumpHeight /= jumpMultiplier;
         TPC.SprintSpeed = TPC.MoveSpeed*1.5f;
         //for testing 
-        player.transform.GetChild(3).gameObject.SetActive(false);
+        if (player != null)
+        {
+            player.transform.GetChild(3).gameObject.SetActive(false);
+        }
         Destroy(gameObject);
 
     }

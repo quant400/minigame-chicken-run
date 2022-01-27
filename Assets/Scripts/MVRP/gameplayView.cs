@@ -135,8 +135,9 @@ public class gameplayView : MonoBehaviour
     void observeReactiveSession()
     {
         dailysessionReactive
-            .Where(_ => _ >= 10)
+            .Where(_ => _ > 10)
             .Do(_ => endGameDirectly())
+            .Do(_ => dailysessionReactive.Value = 0)
             .Subscribe()
             .AddTo(this);
     }

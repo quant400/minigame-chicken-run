@@ -87,6 +87,9 @@ using UnityEngine.SceneManagement;
                     break;
                 case chickenGameModel.GameSteps.OnCharacterSelection:
                     uiView.goToMenu("characterSelection");
+                    characterSelectionView.MoveRight();
+                    characterSelectionView.MoveLeft();
+
                     //webView.checkUSerLoggedAtStart(); /// condisder when start load again .....  !!!! 
                     break;
                 case chickenGameModel.GameSteps.OnCharacterSelected:

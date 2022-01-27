@@ -162,10 +162,27 @@ public class gameEndView : MonoBehaviour
     public void setScoreToUI()
     {
         gameEnded.Value = true;
-        currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
-        dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
-        allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
-        sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
+        if (gameplayView.instance.GetSessions() < 10)
+        {
+
+            sessionsLeft.SetActive(true);
+            sessionsNotLeft.SetActive(false);
+            currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+            dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
+
+        }
+        else if (gameplayView.instance.GetSessions() >= 10)
+        {
+            sessionsLeft.SetActive(false);
+            sessionsNotLeft.SetActive(true);
+            dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
+
+        }
+
     }
     public void TryAgain()
     {

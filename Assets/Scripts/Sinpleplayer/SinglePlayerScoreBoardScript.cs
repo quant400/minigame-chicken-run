@@ -76,7 +76,7 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
 
                 }
                 chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameEnded;
-                //DisplayScore();
+                DisplayScore();
             }
             started = false;
             //SingleplayerGameControler.instance.EndGame();

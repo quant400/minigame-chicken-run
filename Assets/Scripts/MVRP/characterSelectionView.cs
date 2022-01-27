@@ -27,12 +27,31 @@ public class characterSelectionView : MonoBehaviour
     RuntimeAnimatorController controller;
     [SerializeField]
     GameObject buttonsToEnable, ButtonToDisable;
-
     NFTInfo[] characterNFTMap;
-
     public void Start()
     {
         observeCharacterSelectionBtns();
+        observesessionCounter();
+    }
+    public void observesessionCounter()
+    {
+      
+        gameplayView.instance.dailysessionReactive
+            .Do(_ => setPlayButtonDependtoSessions(_))
+            .Subscribe()
+            .AddTo(this);
+    }
+    void setPlayButtonDependtoSessions(int sessions)
+    {
+        if (sessions >= 10)
+        {
+            select.interactable = false;
+            
+        }
+        else
+        {
+            select.interactable = true;
+        }
     }
     void observeCharacterSelectionBtns()
     {
@@ -91,7 +110,8 @@ public class characterSelectionView : MonoBehaviour
                 leftButton.interactable = true;
             });
         }
-
+        gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
+        gameplayView.instance.GetScores();
     }
 
     public void MoveLeft()
@@ -125,7 +145,8 @@ public class characterSelectionView : MonoBehaviour
                 leftButton.interactable = true;
             });
         }
-
+        gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
+        gameplayView.instance.GetScores();
 
     }
 

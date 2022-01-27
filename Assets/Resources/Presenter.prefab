@@ -4999,7 +4999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toSpawn: 4
   player: {fileID: 0}
-  timeForOneGame: 10
+  timeForOneGame: 120
   initialChickenCount: 50
   spawnIntervals: 5
   mushroomPowerUpChance: 30
@@ -5705,7 +5705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8126445882378478316
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7882,7 +7882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5479180407007317759, guid: dcade7979c3da534db27311c23ab15d5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -279361.9
+      value: -331145.56
       objectReference: {fileID: 0}
     - target: {fileID: 5479180407339953635, guid: dcade7979c3da534db27311c23ab15d5, type: 3}
       propertyPath: m_Size

@@ -119,10 +119,10 @@ public class DatabaseManagerRestApi : MonoBehaviour
         if (playerData != null)
         {
             sessionCounterReactive.Value = playerData.dailySessionPlayed;
-            SingleplayerGameControler.instance.dailyScore = playerData.dailyScore;
-            SingleplayerGameControler.instance.sessions = playerData.dailySessionPlayed;
-            SingleplayerGameControler.instance.AlltimeScore = playerData.allTimeScore;
-            SingleplayerGameControler.instance.dailysessionReactive.Value = playerData.dailySessionPlayed;
+            gameplayView.instance.dailyScore = playerData.dailyScore;
+            gameplayView.instance.sessions = playerData.dailySessionPlayed;
+            gameplayView.instance.AlltimeScore = playerData.allTimeScore;
+            gameplayView.instance.dailysessionReactive.Value = playerData.dailySessionPlayed;
 
 
 
@@ -218,7 +218,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
             if (request.error == null)
             {
 
-                Debug.Log(Encoding.UTF8.GetString(request.downloadHandler.data));
+                Debug.Log("all is good in server");
 
             }
             else

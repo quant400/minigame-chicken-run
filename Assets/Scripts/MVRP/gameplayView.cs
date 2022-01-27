@@ -141,7 +141,7 @@ public class gameplayView : MonoBehaviour
     }
     void endGameDirectly()
     {
-        SingleplayerGameControler.instance.EndGame();
+        EndGame();
         SinglePlayerScoreBoardScript.instance.DisplayScore();
     }
 }

@@ -88,7 +88,7 @@ public class NFTGetView : MonoBehaviour
     }
     public void savedLoggedDisplay()
     {
-        if (SingleplayerGameControler.nftDataArray.Length == 0)
+        if (gameplayView.nftDataArray.Length == 0)
         {
             noNFTCanvas.SetActive(true);
             chickenGameModel.userIsLogged.Value = false;
@@ -96,7 +96,7 @@ public class NFTGetView : MonoBehaviour
         else
         {
             noNFTCanvas.SetActive(false);
-            characterSelectView.SetData(SingleplayerGameControler.nftDataArray);
+            characterSelectView.SetData(gameplayView.nftDataArray);
             chickenGameModel.userIsLogged.Value = true;
         }
     }

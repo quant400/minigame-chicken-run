@@ -11,14 +11,15 @@ public class LeaderBoardScript : MonoBehaviour
     private Button[] buttons;
     internal void Activate()
     {
+        SetAllButtonsInteractable();
         transform.DOScale(Vector3.one, 1f);
         defaultButton.Select();
-        defaultButton.interactable = false;
     }
 
     internal void Deactivate()
     {
-        transform.DOScale(Vector3.zero, 1f).OnComplete(()=>gameObject.SetActive(false));
+        transform.DOScale(Vector3.zero, 1f);
+
     }
 
     public void SetAllButtonsInteractable()

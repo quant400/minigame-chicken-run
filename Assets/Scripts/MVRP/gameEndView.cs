@@ -60,6 +60,12 @@ public class gameEndView : MonoBehaviour
 
 
     }
+    public void initializeValues()
+    {
+        scorereactive.Value = -1;
+        sessions.Value = -1;
+        gameEnded.Value = true;
+    }
     public void ObserveGameObverBtns()
     {
 

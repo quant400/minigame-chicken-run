@@ -4908,6 +4908,8 @@ MonoBehaviour:
   webView: {fileID: 5563223587690245332}
   characterSelectionView: {fileID: 6924860310091710693}
   uiView: {fileID: 8126445882098143855}
+  gameEndView: {fileID: 8089622875746646426}
+  dataView: {fileID: 2491955374990107174}
 --- !u!114 &8126445882098143855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4964,6 +4966,7 @@ MonoBehaviour:
   cam: {fileID: 8126445881779636313}
   characters: []
   characterList: {fileID: 8126445881471331389}
+  currentCharacter: 0
   sideCharZdisp: 0
   rightButton: {fileID: 8126445882553293768}
   leftButton: {fileID: 8126445881215749214}
@@ -4999,7 +5002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toSpawn: 4
   player: {fileID: 0}
-  timeForOneGame: 120
+  timeForOneGame: 5
   initialChickenCount: 50
   spawnIntervals: 5
   mushroomPowerUpChance: 30
@@ -5009,7 +5012,7 @@ MonoBehaviour:
   dailyScore: 0
   AlltimeScore: 0
   sessions: 0
-  isRestApi: 0
+  isRestApi: 1
   dailysessionReactive:
     value: 0
   gameOverObject: {fileID: 8126445882752200601}
@@ -7882,7 +7885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5479180407007317759, guid: dcade7979c3da534db27311c23ab15d5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -331145.56
+      value: -346468.16
       objectReference: {fileID: 0}
     - target: {fileID: 5479180407339953635, guid: dcade7979c3da534db27311c23ab15d5, type: 3}
       propertyPath: m_Size

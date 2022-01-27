@@ -66,10 +66,12 @@ public class SingleplayerGameControler : MonoBehaviour
 
     public void StartGame()
     {
-        SinglePlayerScoreBoardScript.instance.StartGame();
+        SinglePlayerScoreBoardScript.instance.StartGame(GetTimeForGame());
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetStarted(true);
         GetScores();
+        DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id);
+
     }
     public void EndGame()
     {
@@ -135,9 +137,9 @@ public class SingleplayerGameControler : MonoBehaviour
         }
         else
         {
-            DatabaseManager._instance.getDailyLeaderboardScore(chosenNFT.id.ToString(), x => { dailyScore = (int)x; });
-            DatabaseManager._instance.getLeaderboardScore(chosenNFT.id.ToString(), x => { AlltimeScore = (int)x; });
-            DatabaseManager._instance.getSessionsCounter(chosenNFT.id.ToString(), x => { sessions = (int)x; });
+           // DatabaseManager._instance.getDailyLeaderboardScore(chosenNFT.id.ToString(), x => { dailyScore = (int)x; });
+           // DatabaseManager._instance.getLeaderboardScore(chosenNFT.id.ToString(), x => { AlltimeScore = (int)x; });
+          //  DatabaseManager._instance.getSessionsCounter(chosenNFT.id.ToString(), x => { sessions = (int)x; });
         }
        
     }

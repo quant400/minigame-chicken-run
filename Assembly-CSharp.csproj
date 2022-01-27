@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,21 +53,22 @@
     <UnityVersion>2020.3.26f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20SymbolExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasLimitExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721URIExample.cs" />
+    <Compile Include="Assets\Scripts\MVRP\webLoginView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\chickenGameModel.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer721.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardController.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfExample.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\Singleplayer3RdPersonController.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\StartSreenScript.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardControllerRestApi.cs" />
+    <Compile Include="Assets\Scripts\MVRP\menuView.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfExample.cs" />
+    <Compile Include="Assets\Saif\Code\DatabaseManagerRestApi.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\PlayerAccount.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerSpawner.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\PlaySounds.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendTransactionExample.cs" />
+    <Compile Include="Assets\Scripts\MVRP\NFTGetView.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\EVM.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Scenes\WebLogin.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721BalanceOfExample.cs" />
@@ -94,7 +96,7 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSignOut.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20TotalSupplyExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
-    <Compile Include="Assets\Tamarin\Firebase\Examples\FirebaseExamples.cs" />
+    <Compile Include="Assets\Saif\MarkApi\restApiDataView.cs" />
     <Compile Include="Assets\Web3Unity\Prefabs\ERC1155\ImportNFTTextureExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomRPCExample.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
@@ -102,17 +104,17 @@
     <Compile Include="Assets\Scripts\PhotonMultiplayer\Lobby.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardScript.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\PhotonPlayer.cs" />
-    <Compile Include="Assets\Saif\Code\LeaderboardManager.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ScoreUIController.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\PlayerSfxController.cs" />
     <Compile Include="Assets\Saif\MarkApi\leaderboardModel.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer1155.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerGameControler.cs" />
-    <Compile Include="Assets\Saif\Code\UsersManager.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\BlockNumberExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\TxStatus.cs" />
+    <Compile Include="Assets\Scripts\MVRP\characterSelectionView.cs" />
+    <Compile Include="Assets\Scripts\MVRP\mainPresenter.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomCallExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasPriceExample.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\GameRoom.cs" />
@@ -120,6 +122,7 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerChickenScript.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
+    <Compile Include="Assets\Scripts\MVRP\gameEndView.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer20.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\NoNFTCanvasScript.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\GameOverScript.cs" />
@@ -127,13 +130,12 @@
     <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardEntry.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\Saif\Code\DontDestroy.cs" />
-    <Compile Include="Assets\Saif\Code\DatabaseManager.cs" />
+    <Compile Include="Assets\Scripts\MVRP\uiView.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\JsonHelper.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerScoreBoardScript.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\EthBalanceOfExample.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
-    <Compile Include="Assets\Saif\Code\AuthManager.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\ERC1155.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\AICharacterControl.cs" />
@@ -141,12 +143,13 @@
     <Compile Include="Assets\Saif\Code\DataAPI.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSignMessageExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\ERC20.cs" />
+    <Compile Include="Assets\Scripts\MVRP\onSceneLoad.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfBatchExample.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\CharacterSelectionScript.cs" />
-    <Compile Include="Assets\Saif\Code\DemoCode.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20NameExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\ERC721.cs" />
+    <Compile Include="Assets\Scripts\MVRP\scenesView.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\CountDownScript.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\WebGL\Web3GL.cs" />
@@ -158,12 +161,9 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendContractExample.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ChickenScript.cs" />
-    <Compile Include="Assets\Saif\Code\Manager.cs" />
+    <Compile Include="Assets\Scripts\MVRP\gameplayView.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Saif\MarkApi\restApiDataView.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardControllerRestApi.cs" />
-    <Compile Include="Assets\Saif\Code\DatabaseManagerRestApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\36.56120f7d.chunk.js.LICENSE.txt" />
@@ -183,8 +183,6 @@
     <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\25.5c73f2c8.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll" />
-    <None Include="Assets\Tamarin\Firebase\Scripts\Tamarin.Firebase.dll" />
-    <None Include="Assets\Tamarin\Firebase\Scripts\Tamarin.Firebase.Web.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\POLY_Jungle\Shaders\SimpleBillboard.shader" />
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\27.3bebd742.chunk.js.LICENSE.txt" />
@@ -214,7 +212,6 @@
     <None Include="Assets\Parse\Plugins\Unity.Compat.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Photon\PhotonLibs\Metro\Photon3Unity3D.dll" />
-    <None Include="Assets\Tamarin\Common\Scripts\Tamarin.Common.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\7.81b2580d.chunk.js.LICENSE.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\ArmatureShader.shader" />
@@ -447,53 +444,17 @@
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.dll</HintPath>
     </Reference>
-    <Reference Include="Firebase.Functions">
-      <HintPath>Library\PackageCache\com.google.firebase.functions@0aa525f4fb80-1642363904609\Firebase\Plugins\Firebase.Functions.dll</HintPath>
-    </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
-    </Reference>
-    <Reference Include="Tamarin.Common">
-      <HintPath>Assets\Tamarin\Common\Scripts\Tamarin.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.App">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Firebase\Plugins\Firebase.App.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.1-preview.1\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Firebase.Firestore">
-      <HintPath>Library\PackageCache\com.google.firebase.firestore@a9e0858b8987-1642363904559\Firebase\Plugins\Firebase.Firestore.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Database">
-      <HintPath>Library\PackageCache\com.google.firebase.database@b6d84bd82b3c-1642363904338\Firebase\Plugins\Firebase.Database.dll</HintPath>
-    </Reference>
     <Reference Include="websocket-sharp">
       <HintPath>Assets\Photon\PhotonLibs\WebSocket\websocket-sharp.dll</HintPath>
     </Reference>
-    <Reference Include="Tamarin.Firebase">
-      <HintPath>Assets\Tamarin\Firebase\Scripts\Tamarin.Firebase.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Compression.FileSystem">
       <HintPath>Library\PackageCache\com.unity.connect.share@4.2.3\Plugins\System.IO.Compression.FileSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Tasks">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Parse\Plugins\dotNet45\Unity.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.TaskExtension">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.MiniJson">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Firebase\Plugins\Google.MiniJson.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Platform">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Firebase\Plugins\Firebase.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Compat">
-      <HintPath>Library\PackageCache\com.google.firebase.app@b01af033f02e-1642363904168\Parse\Plugins\dotNet45\Unity.Compat.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Auth">
-      <HintPath>Library\PackageCache\com.google.firebase.auth@8b6048ea4497-1642363904246\Firebase\Plugins\Firebase.Auth.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\2020.3.26f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -917,6 +878,10 @@
       <Project>{6AB4B280-8D0C-8F78-198E-EA91E8243C4D}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{C9463A7C-1D3E-4D97-9B06-293DE27646C5}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.csproj">
       <Project>{A1BF0E1A-9B16-CC07-8659-13690639C5D5}</Project>
       <Name>PhotonUnityNetworking</Name>
@@ -924,10 +889,6 @@
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
       <Project>{A44EDEA2-07DC-338E-B676-DF6906B176A4}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{C9463A7C-1D3E-4D97-9B06-293DE27646C5}</Project>
-      <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

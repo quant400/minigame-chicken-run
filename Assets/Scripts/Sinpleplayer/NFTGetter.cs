@@ -5,12 +5,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-[Serializable]
-public class NFTInfo
-{
-    public int id;
-    public string name;
-}
 public class NFTGetter : MonoBehaviour
 {
     CharacterSelectionScript cS;

@@ -1,51 +1,5 @@
 {
   "dependencies": {
-    "com.google.external-dependency-manager": {
-      "version": "file:./firebase/com.google.external-dependency-manager-1.2.167.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {}
-    },
-    "com.google.firebase.app": {
-      "version": "file:./firebase/com.google.firebase.app-8.4.0.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {
-        "com.google.external-dependency-manager": "1.2.167"
-      }
-    },
-    "com.google.firebase.auth": {
-      "version": "file:./firebase/com.google.firebase.auth-8.4.0.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {
-        "com.google.firebase.app": "8.4.0"
-      }
-    },
-    "com.google.firebase.database": {
-      "version": "file:./firebase/com.google.firebase.database-8.4.0.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {
-        "com.google.firebase.auth": "8.4.0"
-      }
-    },
-    "com.google.firebase.firestore": {
-      "version": "file:./firebase/com.google.firebase.firestore-8.4.0.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {
-        "com.google.firebase.app": "8.4.0"
-      }
-    },
-    "com.google.firebase.functions": {
-      "version": "file:./firebase/com.google.firebase.functions-8.4.0.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {
-        "com.google.firebase.app": "8.4.0"
-      }
-    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

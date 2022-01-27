@@ -5,6 +5,7 @@ using TMPro;
 using StarterAssets;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using System.IO;
 using UniRx;
 using UniRx.Triggers;
@@ -26,6 +27,7 @@ public class GameOverScript : MonoBehaviour
     ReactiveProperty<int> scorereactive = new ReactiveProperty<int>();
     ReactiveProperty<int> sessions = new ReactiveProperty<int>();
     ReactiveProperty<bool> gameEnded = new ReactiveProperty<bool>();
+    [SerializeField] Button tryAgain, back;
     // [SerializeField]
     //SinglePlayerSpawner spawner;
     public void Start()
@@ -35,6 +37,10 @@ public class GameOverScript : MonoBehaviour
     }
     private void OnEnable()
     {
+        if (canvasToDisable == null)
+        {
+            canvasToDisable = SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject;
+        }
         currentNFT = SingleplayerGameControler.instance.chosenNFT;
         if (SingleplayerGameControler.instance.GetSessions() <10)
         {
@@ -45,13 +51,29 @@ public class GameOverScript : MonoBehaviour
             }
             else
             {
-                DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
+               // DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
 
             }
         }
         SingleplayerGameControler.instance.GetScores();
 
 
+    }
+    public void ObserveGameObverBtns()
+    {
+
+        tryAgain.OnClickAsObservable()
+            .Do(_ => TryAgain())
+            .Where(_ => PlaySounds.instance != null)
+            .Do(_ => PlaySounds.instance.Play())
+            .Subscribe()
+            .AddTo(this);
+        back.OnClickAsObservable()
+           .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnPlayMenu)
+           .Where(_ => PlaySounds.instance != null)
+           .Do(_ => PlaySounds.instance.Play())
+           .Subscribe()
+           .AddTo(this);
     }
     public void setScoreResutls()
     {
@@ -104,7 +126,7 @@ public class GameOverScript : MonoBehaviour
         temp.transform.localScale = Vector3.one * 2;
 
         //upddate other values here form leaderboard
-        canvasToDisable.SetActive(false);
+        SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject.SetActive(false);
     }
     public void endGameAfterValueChange()
     {
@@ -129,9 +151,11 @@ public class GameOverScript : MonoBehaviour
     }
     private void Update()
     {
-        scorereactive.Value = SingleplayerGameControler.instance.dailyScore;
-        sessions.Value = SingleplayerGameControler.instance.sessions;
-
+        if (chickenGameModel.gameCurrentStep.Value == chickenGameModel.GameSteps.OnGameEnded)
+        {
+            scorereactive.Value = SingleplayerGameControler.instance.dailyScore;
+            sessions.Value = SingleplayerGameControler.instance.sessions;
+        }
     }
     public void setScoreToUI()
     {
@@ -143,11 +167,13 @@ public class GameOverScript : MonoBehaviour
     }
     public void TryAgain()
     {
-        SceneManager.LoadScene(SingleplayerGameControler.instance.GetSinglePlayerScene());
+        scenesView.LoadScene(chickenGameModel.singlePlayerSceneName);
+
     }
     public void goToMain()
     {
-        SingleplayerGameControler.instance.loadMain();
+        scenesView.LoadScene(chickenGameModel.mainSceneLoadname);
+        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnBackToMenu;
     }
 
     string NameToSlugConvert(string name)

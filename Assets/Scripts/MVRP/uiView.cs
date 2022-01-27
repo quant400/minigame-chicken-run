@@ -88,8 +88,9 @@ public class uiView : MonoBehaviour
     }
     public void openLeaderBoard()
     {
-        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnLeaderBoard;
+        leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(true);
 
+        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnLeaderBoard;
     }
     public void PlayMainButton()
     {
@@ -142,7 +143,6 @@ public class uiView : MonoBehaviour
 
                 break;
             case "leaderboeard":
-                leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(true);
                 break;
             case "characterSelected":
                 mainMenuCanvas.gameObject.SetActive(false);

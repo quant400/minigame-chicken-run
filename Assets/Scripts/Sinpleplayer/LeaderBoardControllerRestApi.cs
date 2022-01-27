@@ -20,9 +20,8 @@ public class LeaderBoardControllerRestApi : MonoBehaviour
    
     public void ToggleLeaderBoard(bool b)
     {
-        if (b)
+        if (b==true)
         {
-            leaderBoard.SetActive(true);
             restApiView.DisplayDailyLeaderboardRestApi();
             leaderBoard.GetComponent<LeaderBoardScript>().Activate();
         }

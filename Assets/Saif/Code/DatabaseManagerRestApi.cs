@@ -57,9 +57,10 @@ public class DatabaseManagerRestApi : MonoBehaviour
     }
     public void setScoreWithRestApi(int assetID,int score)
     {
-        StartCoroutine(getSessionCounterAndSetScoreFromApi("https://api.cryptofightclub.io/game/sdk/chicken/score",assetID,score));
+        setScoreInLeaderBoard(score);
 
     }
+  
     public void setScoreInLeaderBoard(int scoreAdded)
     {
         if (sessionCounterReactive.Value < 10)
@@ -95,7 +96,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
                 checkSessionCounter(Encoding.UTF8.GetString(request.downloadHandler.data));
 
 
-                setScoreInLeaderBoard(score);
+                //setScoreInLeaderBoard(score);
                 Debug.Log(Encoding.UTF8.GetString(request.downloadHandler.data));
 
             }
@@ -131,6 +132,16 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
 
     }
+    public void initilizeValues()
+    {
+
+        sessionCounterReactive.Value = -1;
+        gameplayView.instance.dailyScore = -1;
+        gameplayView.instance.sessions = -1;
+        gameplayView.instance.AlltimeScore = -1;
+        gameplayView.instance.dailysessionReactive.Value = -1;
+
+    }
 
     public IEnumerator setScoreInLeaderBoeardRestApi( int scoreAdded)
     {
@@ -139,10 +150,11 @@ public class DatabaseManagerRestApi : MonoBehaviour
         postedData.score = scoreAdded;
         string idJsonData = JsonUtility.ToJson(postedData);
 
-        using (UnityWebRequest request = UnityWebRequest.Put("https://api.cryptofightclub.io/game/sdk/chicken/end-session", idJsonData))
+        using (UnityWebRequest request = UnityWebRequest.Post("https://api.cryptofightclub.io/game/sdk/chicken/end-session", idJsonData))
         {
-            byte[] bodyRaw = Encoding.UTF8.GetBytes(idJsonData);
-            request.method = "POST";
+            request.method = UnityWebRequest.kHttpVerbPOST;
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.uploadHandler = new UploadHandlerRaw(string.IsNullOrEmpty(idJsonData) ? null : Encoding.UTF8.GetBytes(idJsonData));
             request.SetRequestHeader("Accept", "application/json");
             request.SetRequestHeader("Content-Type", "application/json");
             yield return request.SendWebRequest();
@@ -217,8 +229,9 @@ public class DatabaseManagerRestApi : MonoBehaviour
             yield return request.SendWebRequest();
             if (request.error == null)
             {
+                getDataFromRestApi(assetId);
 
-                Debug.Log("all is good in server");
+                Debug.Log("all is good in server" + Encoding.UTF8.GetString(request.downloadHandler.data));
 
             }
             else

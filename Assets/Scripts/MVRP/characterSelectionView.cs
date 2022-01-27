@@ -9,13 +9,14 @@ using UniRx;
 using UniRx.Operators;
 public class characterSelectionView : MonoBehaviour
 {
+    public int currentCharacter;
     [SerializeField]
     Camera cam;
     [SerializeField]
     Transform[] characters;
     [SerializeField]
     Transform characterList;
-    int currentCharacter;
+   
     bool selected;
     [SerializeField]
     float sideCharZdisp;

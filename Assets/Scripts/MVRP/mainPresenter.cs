@@ -15,6 +15,9 @@ using UnityEngine.SceneManagement;
     [SerializeField] webLoginView webView;
     [SerializeField] characterSelectionView characterSelectionView;
     [SerializeField] uiView uiView;
+    [SerializeField] gameEndView gameEndView;
+    [SerializeField] DatabaseManagerRestApi dataView;
+
 
     private void Awake()
     {
@@ -110,6 +113,8 @@ using UnityEngine.SceneManagement;
                     gameView.EndGame();
                     break;
                 case chickenGameModel.GameSteps.OnBackToCharacterSelection:
+                    gameEndView.initializeValues();
+                    dataView.initilizeValues();
                     scenesView.LoadScene(chickenGameModel.mainSceneLoadname);
                     Observable.Timer(TimeSpan.Zero)
                        .DelayFrame(2)

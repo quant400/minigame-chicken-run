@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 
     public class mainPresenter : MonoBehaviour
     {
-    [SerializeField] menuView mainMenuView;
     [SerializeField] gameplayView gameView;
     [SerializeField] webLoginView webView;
     [SerializeField] characterSelectionView characterSelectionView;
@@ -112,7 +111,7 @@ using UnityEngine.SceneManagement;
                     break;
                 case chickenGameModel.GameSteps.OnGameEnded:
                     uiView.goToMenu("results");
-
+                    gameEndView.setScoreAtStart();
                     gameView.EndGame();
                     break;
                 case chickenGameModel.GameSteps.OnBackToCharacterSelection:

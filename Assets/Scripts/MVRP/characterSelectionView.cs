@@ -27,6 +27,7 @@ public class characterSelectionView : MonoBehaviour
     RuntimeAnimatorController controller;
     [SerializeField]
     GameObject buttonsToEnable, ButtonToDisable;
+    [SerializeField]
     NFTInfo[] characterNFTMap;
     public void Start()
     {
@@ -189,38 +190,43 @@ public class characterSelectionView : MonoBehaviour
 
     private void SetUpCharacters()
     {
-        characters = new Transform[myNFT.Length];
-        characterNFTMap = new NFTInfo[myNFT.Length];
-        int currentindex = 1;
-        for (int i = 0; i < myNFT.Length; i++)
+        if (chickenGameModel.charactersSetted == false)
         {
-            string charName = NameToSlugConvert(myNFT[i].name);
-            Debug.Log(charName);
-            GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplayModels", charName)) as GameObject;
-            GameObject temp = Instantiate(charModel, characterList);
-            temp.transform.localEulerAngles = new Vector3(0, 180, 0);
-            if (i == 0)
+
+            characters = new Transform[myNFT.Length];
+            characterNFTMap = new NFTInfo[myNFT.Length];
+            int currentindex = 1;
+            for (int i = 0; i < myNFT.Length; i++)
             {
-                temp.transform.localPosition = new Vector3(0, -0.1f, 0);
-                characters[0] = temp.transform;
-                characterNFTMap[0] = myNFT[i];
-            }
-            else if (i % 2 == 0)
-            {
-                temp.transform.localPosition = new Vector3(-currentindex, -0.1f, 0.2f);
-                characters[characters.Length - currentindex] = temp.transform;
-                characterNFTMap[characters.Length - currentindex] = myNFT[i];
-                currentindex++;
-            }
-            else if (i % 2 != 0)
-            {
-                temp.transform.localPosition = new Vector3(currentindex, -0.1f, 0.2f);
-                characters[currentindex] = temp.transform;
-                characterNFTMap[currentindex] = myNFT[i];
+                string charName = NameToSlugConvert(myNFT[i].name);
+                Debug.Log(charName);
+                GameObject charModel = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplayModels", charName)) as GameObject;
+                GameObject temp = Instantiate(charModel, characterList);
+                temp.transform.localEulerAngles = new Vector3(0, 180, 0);
+                if (i == 0)
+                {
+                    temp.transform.localPosition = new Vector3(0, -0.1f, 0);
+                    characters[0] = temp.transform;
+                    characterNFTMap[0] = myNFT[i];
+                }
+                else if (i % 2 == 0)
+                {
+                    temp.transform.localPosition = new Vector3(-currentindex, -0.1f, 0.2f);
+                    characters[characters.Length - currentindex] = temp.transform;
+                    characterNFTMap[characters.Length - currentindex] = myNFT[i];
+                    currentindex++;
+                }
+                else if (i % 2 != 0)
+                {
+                    temp.transform.localPosition = new Vector3(currentindex, -0.1f, 0.2f);
+                    characters[currentindex] = temp.transform;
+                    characterNFTMap[currentindex] = myNFT[i];
+
+                }
+                temp.GetComponent<Animator>().runtimeAnimatorController = controller;
 
             }
-            temp.GetComponent<Animator>().runtimeAnimatorController = controller;
-
+            chickenGameModel.charactersSetted = true;
         }
 
         Done();

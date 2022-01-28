@@ -36,14 +36,14 @@ public class gameEndView : MonoBehaviour
         endGameAfterValueChange();
         ObserveGameObverBtns();
     }
-    private void OnEnable()
+    public void setScoreAtStart()
     {
         if (canvasToDisable == null)
         {
             canvasToDisable = gameplayView.instance.gameObject.transform.GetChild(0).gameObject;
         }
         currentNFT = gameplayView.instance.chosenNFT;
-        if (gameplayView.instance.GetSessions() < 10)
+        if (gameplayView.instance.GetSessions() <= 10)
         {
             if (gameplayView.instance.isRestApi)
             {

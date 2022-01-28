@@ -42,7 +42,7 @@ public class GameOverScript : MonoBehaviour
             canvasToDisable = SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject;
         }
         currentNFT = SingleplayerGameControler.instance.chosenNFT;
-        if (SingleplayerGameControler.instance.GetSessions() <10)
+        if (SingleplayerGameControler.instance.GetSessions() <=10)
         {
             if (SingleplayerGameControler.instance.isRestApi)
             {

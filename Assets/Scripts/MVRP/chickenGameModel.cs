@@ -39,6 +39,7 @@ public struct chickenGameModel
     public static ReactiveProperty<bool> userIsLogged = new ReactiveProperty<bool>();
     public static ReactiveProperty<GameSteps> gameCurrentStep = new ReactiveProperty<GameSteps>();
     public static GameSteps lastSavedStep;
+    public static bool charactersSetted;
 
     public static string currentNFTString;
     public static NFTInfo[] currentNFTArray;

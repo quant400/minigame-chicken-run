@@ -93,6 +93,7 @@ using UnityEngine.SceneManagement;
                     break;
                 case chickenGameModel.GameSteps.OnCharacterSelected:
                     uiView.goToMenu("characterSelected");
+                    gameEndView.resetDisplay();
                     scenesView.LoadScene(chickenGameModel.singlePlayerSceneName);
 
                     break;
@@ -116,6 +117,7 @@ using UnityEngine.SceneManagement;
                     break;
                 case chickenGameModel.GameSteps.OnBackToCharacterSelection:
                     gameEndView.initializeValues();
+                    gameEndView.resetDisplay();
                     dataView.initilizeValues();
                     scenesView.LoadScene(chickenGameModel.mainSceneLoadname);
                     Observable.Timer(TimeSpan.Zero)

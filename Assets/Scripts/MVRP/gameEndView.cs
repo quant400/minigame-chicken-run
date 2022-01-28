@@ -28,6 +28,7 @@ public class gameEndView : MonoBehaviour
     ReactiveProperty<int> sessions = new ReactiveProperty<int>();
     ReactiveProperty<bool> gameEnded = new ReactiveProperty<bool>();
     [SerializeField] Button tryAgain, back;
+    GameObject localDisplay;
     // [SerializeField]
     //SinglePlayerSpawner spawner;
     public void Start()
@@ -57,7 +58,7 @@ public class gameEndView : MonoBehaviour
             }
         }
         gameplayView.instance.GetScores();
-
+        setScoreResutls();
 
     }
     public void initializeValues()
@@ -76,6 +77,31 @@ public class gameEndView : MonoBehaviour
             .Subscribe()
             .AddTo(this);
        
+    }
+    public void updateResults()
+    {
+        if (gameplayView.instance.GetSessions() < 10)
+        {
+
+            sessionsLeft.SetActive(true);
+            sessionsNotLeft.SetActive(false);
+            currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+            dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
+
+        }
+        else if (gameplayView.instance.GetSessions() >= 10)
+        {
+            sessionsLeft.SetActive(false);
+            sessionsNotLeft.SetActive(true);
+            dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
+            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
+
+        }
+        SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+
     }
     public void setScoreResutls()
     {
@@ -108,6 +134,7 @@ public class gameEndView : MonoBehaviour
         ad.volume = 0.2f;
         ad.Play();
         //characters = spawner.GetCharacterList();
+        Debug.Log("Load character");
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", NameToSlugConvert(currentNFT.name))) as GameObject;
         var temp = Instantiate(displayChar, characterDisplay.position, Quaternion.identity, characterDisplay);
@@ -126,7 +153,7 @@ public class gameEndView : MonoBehaviour
         temp.transform.localPosition = Vector3.zero;
         temp.transform.localRotation = Quaternion.identity;
         temp.transform.localScale = Vector3.one * 2;
-
+        localDisplay = temp;
         //upddate other values here form leaderboard
         SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject.SetActive(false);
     }
@@ -134,7 +161,7 @@ public class gameEndView : MonoBehaviour
     {
         gameEnded
             .Where(_ => _ == true)
-            .Do(_ => setScoreResutls())
+            .Do(_ => updateResults())
             .Subscribe()
             .AddTo(this);
     }
@@ -150,6 +177,11 @@ public class gameEndView : MonoBehaviour
             .Subscribe()
             .AddTo(this);
 
+    }
+    public void resetDisplay()
+    {
+        if (localDisplay!=null)
+        Destroy(localDisplay);
     }
     private void Update()
     {

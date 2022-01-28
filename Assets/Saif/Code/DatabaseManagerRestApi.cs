@@ -63,7 +63,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
   
     public void setScoreInLeaderBoard(int scoreAdded)
     {
-        if (sessionCounterReactive.Value < 10)
+        if (sessionCounterReactive.Value <= 10)
         {
             StartCoroutine(setScoreInLeaderBoeardRestApi(scoreAdded));
         }
@@ -75,6 +75,11 @@ public class DatabaseManagerRestApi : MonoBehaviour
     public void startSessionFromRestApi(int _assetID)
     {
         StartCoroutine(startSessionApi("https://api.cryptofightclub.io/game/sdk/chicken/start-session", _assetID));
+    }
+
+    public void getDataFromRestApi(int assetId)
+    {
+        StartCoroutine(getDataRestApi(assetId));
     }
     public IEnumerator getSessionCounterAndSetScoreFromApi(string url,int assetId, int score)
     {
@@ -111,38 +116,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
 
     }
-    public void checkSessionCounter(string url)
-    {
-
-        string MatchData = url;
-        Debug.Log(MatchData);
-        leaderboardModel.assetClass playerData = restApiDataView.JsonUtil.fromJson<leaderboardModel.assetClass>(url);
-        if (playerData != null)
-        {
-            sessionCounterReactive.Value = playerData.dailySessionPlayed;
-            gameplayView.instance.dailyScore = playerData.dailyScore;
-            gameplayView.instance.sessions = playerData.dailySessionPlayed;
-            gameplayView.instance.AlltimeScore = playerData.allTimeScore;
-            gameplayView.instance.dailysessionReactive.Value = playerData.dailySessionPlayed;
-
-
-
-        }
-
-
-
-    }
-    public void initilizeValues()
-    {
-
-        sessionCounterReactive.Value = -1;
-        gameplayView.instance.dailyScore = -1;
-        gameplayView.instance.sessions = -1;
-        gameplayView.instance.AlltimeScore = -1;
-        gameplayView.instance.dailysessionReactive.Value = -1;
-
-    }
-
+   
     public IEnumerator setScoreInLeaderBoeardRestApi( int scoreAdded)
     {
          leaderboardModel.userPostedData postedData = new leaderboardModel.userPostedData();
@@ -150,11 +124,10 @@ public class DatabaseManagerRestApi : MonoBehaviour
         postedData.score = scoreAdded;
         string idJsonData = JsonUtility.ToJson(postedData);
 
-        using (UnityWebRequest request = UnityWebRequest.Post("https://api.cryptofightclub.io/game/sdk/chicken/end-session", idJsonData))
+        using (UnityWebRequest request = UnityWebRequest.Put("https://api.cryptofightclub.io/game/sdk/chicken/end-session", idJsonData))
         {
-            request.method = UnityWebRequest.kHttpVerbPOST;
-            request.downloadHandler = new DownloadHandlerBuffer();
-            request.uploadHandler = new UploadHandlerRaw(string.IsNullOrEmpty(idJsonData) ? null : Encoding.UTF8.GetBytes(idJsonData));
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(idJsonData);
+            request.method = "POST";
             request.SetRequestHeader("Accept", "application/json");
             request.SetRequestHeader("Content-Type", "application/json");
             yield return request.SendWebRequest();
@@ -178,10 +151,6 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
     }
 
-    public void getDataFromRestApi(int assetId)
-    {
-        StartCoroutine(getDataRestApi(assetId));
-    }
     public IEnumerator getDataRestApi(int assetId)
     {
         leaderboardModel.userGetDataModel idData = new leaderboardModel.userGetDataModel();
@@ -245,6 +214,38 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
 
     }
+    public void checkSessionCounter(string url)
+    {
+
+        string MatchData = url;
+        Debug.Log(MatchData);
+        leaderboardModel.assetClass playerData = restApiDataView.JsonUtil.fromJson<leaderboardModel.assetClass>(url);
+        if (playerData != null)
+        {
+            sessionCounterReactive.Value = playerData.dailySessionPlayed;
+            gameplayView.instance.dailyScore = playerData.dailyScore;
+            gameplayView.instance.sessions = playerData.dailySessionPlayed;
+            gameplayView.instance.AlltimeScore = playerData.allTimeScore;
+            gameplayView.instance.dailysessionReactive.Value = playerData.dailySessionPlayed;
+
+
+
+        }
+
+
+
+    }
+    public void initilizeValues()
+    {
+
+        sessionCounterReactive.Value = -1;
+        gameplayView.instance.dailyScore = -1;
+        gameplayView.instance.sessions = -1;
+        gameplayView.instance.AlltimeScore = -1;
+        gameplayView.instance.dailysessionReactive.Value = -1;
+
+    }
+
     public void SetDemoScore(string _assetID, string _FighterName, int _score)
     {
         SetDemoScoreInLeaderboard(_assetID, _FighterName, _score);

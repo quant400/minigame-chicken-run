@@ -96,7 +96,7 @@ public class NFTGetView : MonoBehaviour
         else
         {
             noNFTCanvas.SetActive(false);
-            characterSelectView.SetData(gameplayView.nftDataArray);
+            characterSelectView.SetData(chickenGameModel.currentNFTArray);
             chickenGameModel.userIsLogged.Value = true;
         }
     }

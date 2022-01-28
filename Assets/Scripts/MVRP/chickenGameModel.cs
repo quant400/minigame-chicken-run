@@ -45,7 +45,7 @@ public struct chickenGameModel
     public static int mainSceneLoad=0;
     public static int singlePlayerSceneInt=1;
     public static string mainSceneLoadname = "Menu";
-    public static string singlePlayerSceneName = "SinglePlayerScene";
+    public static string singlePlayerSceneName = "SinglePlayerScene 2";
 
 
 

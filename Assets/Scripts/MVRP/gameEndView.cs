@@ -65,12 +65,13 @@ public class gameEndView : MonoBehaviour
     {
         scorereactive.Value = -1;
         sessions.Value = -1;
-        gameEnded.Value = true;
+        gameEnded.Value = false;
     }
     public void ObserveGameObverBtns()
     {
 
         tryAgain.OnClickAsObservable()
+            .Where(_=>gameEnded.Value==true)
             .Do(_ => TryAgain())
             .Where(_ => PlaySounds.instance != null)
             .Do(_ => PlaySounds.instance.Play())

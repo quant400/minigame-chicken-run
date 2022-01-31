@@ -21,6 +21,8 @@ public class SinglePlayerSpawner : MonoBehaviour
     GameObject[] NPCPrefab;
     [SerializeField]
     Transform[] NPCSPawnPoints;
+    [SerializeField]
+    int startingChickensForLevel;
 
     private string chosenNFTName;
 
@@ -41,7 +43,7 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     void SpawnChickens()
     {
-        int remainingToSpwan = gameplayView.instance.GetChickenCount();
+        int remainingToSpwan = startingChickensForLevel;//gameplayView.instance.GetChickenCount();
         int index = 0;
         while(remainingToSpwan>0)
         {

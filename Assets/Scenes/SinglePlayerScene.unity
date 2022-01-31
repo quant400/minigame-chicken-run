@@ -63473,6 +63473,7 @@ MonoBehaviour:
   - {fileID: 185577381}
   - {fileID: 831240327}
   - {fileID: 915577166}
+  startingChickensForLevel: 50
 --- !u!4 &1968929569
 Transform:
   m_ObjectHideFlags: 0

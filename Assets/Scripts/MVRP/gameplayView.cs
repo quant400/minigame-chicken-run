@@ -18,8 +18,8 @@ public class gameplayView : MonoBehaviour
     //public int startDelay;
     [SerializeField]
     float timeForOneGame;
-    [SerializeField]
-    int initialChickenCount;
+    //[SerializeField]
+    //int initialChickenCount;
     [SerializeField]
     float spawnIntervals;
     [SerializeField]
@@ -75,10 +75,10 @@ public class gameplayView : MonoBehaviour
     {
         return timeForOneGame;
     }
-    public int GetChickenCount()
+    /*public int GetChickenCount()
     {
         return initialChickenCount;
-    }
+    }*/
     public float GetSpawnInterval()
     {
         return spawnIntervals;

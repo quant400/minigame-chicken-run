@@ -29,7 +29,7 @@ public class PlayerSfxController : MonoBehaviour
 
     public void PlayJump()
     {
-        if (Jump != null)
+        if (Jump != null && !gameplayView.instance.GetSFXMuted())
         {
             playerAudio.clip = Jump;
             playerAudio.Play();
@@ -50,14 +50,21 @@ public class PlayerSfxController : MonoBehaviour
 
     public void PlayWaterEnter()
     {
-        playerAudio.clip = waterEnter;
-        playerAudio.Play();
+        if (!gameplayView.instance.GetSFXMuted())
+        {
+            playerAudio.clip = waterEnter;
+            playerAudio.Play();
+        }
     }
 
     public void PlayeWaterExit()
     {
-        playerAudio.clip = waterExit;
-        playerAudio.Play();
+
+        if (!gameplayView.instance.GetSFXMuted())
+        {
+            playerAudio.clip = waterExit;
+            playerAudio.Play();
+        }
     }
 
    
@@ -74,12 +81,16 @@ public class PlayerSfxController : MonoBehaviour
         }
         else
         {
-            int n = Random.Range(1, grassWalk.Length);
-            playerAudio.clip = grassWalk[n];
-            playerAudio.PlayOneShot(playerAudio.clip);
 
-            grassWalk[n] = grassWalk[0];
-            grassWalk[0] = playerAudio.clip;
+            if (!gameplayView.instance.GetSFXMuted())
+            {
+                int n = Random.Range(1, grassWalk.Length);
+                playerAudio.clip = grassWalk[n];
+                playerAudio.PlayOneShot(playerAudio.clip);
+
+                grassWalk[n] = grassWalk[0];
+                grassWalk[0] = playerAudio.clip;
+            }
         }
        
     }

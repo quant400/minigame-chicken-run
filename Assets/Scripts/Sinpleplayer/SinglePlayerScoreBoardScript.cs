@@ -19,10 +19,10 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
     int chickensCollected;
     [SerializeField]
     GameObject chickenCollectedImage;
-    float time;
+    public float time;
     [SerializeField]
     Image timerFill;
-    bool started = false;
+    public bool started = false;
     [SerializeField]
     GameObject endGameObject;
     [SerializeField]
@@ -40,11 +40,13 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         }
        
     }
-    public void StartGame()
+    public void StartGame(float timeOfGame)
     {
-        started = true;
-        time = SingleplayerGameControler.instance.GetTimeForGame();
+        Debug.Log("timeSetted");
+        time = timeOfGame;
         currentTime = time;
+        started = true;
+
     }
     private void Update()
     {
@@ -68,7 +70,12 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         {
             if(started)
             {
-                SingleplayerGameControler.instance.EndGame();
+             if (gameplayView.instance != null)
+                {
+                    gameplayView.instance.EndGame();
+
+                }
+                chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameEnded;
                 DisplayScore();
             }
             started = false;
@@ -77,11 +84,14 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         }    
     }
 
-    void DisplayScore()
+    public void DisplayScore()
     {
         //winnerText.text = "You collected " + chickensCollected + " chickens";
         //winnerText.gameObject.SetActive(true);
-        endGameObject.SetActive(true);
+        if (gameplayView.instance != null)
+        {
+            gameplayView.instance.gameOverObject.SetActive(true);
+        }
     }
     public void AnimChickenCollected()
     {

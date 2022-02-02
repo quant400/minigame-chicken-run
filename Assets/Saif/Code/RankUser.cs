@@ -19,4 +19,12 @@ public class RankUser : MonoBehaviour
         assetID.text = "AssetID : "+_assetID;
         SessionsToday.text = "Session : "+_sessions;
     }
+    public void setRankInfoRestApi(string _name, string _score, string _rank, int _assetID, int _sessions)
+    {
+        userName.text = _name;
+        userScore.text = "Score : " + _score;
+        userRank.text = _rank;
+        assetID.text = "AssetID : " + _assetID.ToString();
+        SessionsToday.text = "Session : " + _sessions;
+    }
 }

@@ -27,11 +27,27 @@ public class WebLogin : MonoBehaviour
     // temp for skip
     [SerializeField]
     GameObject skipButton;
-
+    private void Start()
+    {
+        if (SingleplayerGameControler.playerLogged)
+        {
+            nftGetter.savedLoggedDisplay();
+        }
+    }
     public void OnLogin()
     {
-        Web3Connect();
-        OnConnected();
+        if (SingleplayerGameControler.playerLogged)
+        {
+            loginButton.GetComponent<Button>().interactable = false;
+            skipButton.GetComponent<Button>().interactable = false;
+            nftGetter.savedLoggedDisplay();
+        }
+        else
+        {
+            Web3Connect();
+            OnConnected();
+        }
+        
     }
 
     async private void OnConnected()

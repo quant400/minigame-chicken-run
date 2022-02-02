@@ -18,7 +18,7 @@ body {
     height: 100%;
 }
 #unity-canvas {
-    width: 100%;
+     width: 100%;
     height: 100%;
     background: url("bg.png");
 }
@@ -76,15 +76,11 @@ body {
     display: none;
 }
 
-#unity-mobile-warning, #unity-build-title {
-    display: none;
-}
-
 .spinner,
 .spinner:after {
-    border-radius: 50%;
-    width: 5em;
-    height: 5em;
+  border-radius: 50%;
+  width: 5em;
+  height: 5em;
 }
 .spinner {
   margin: 10px;

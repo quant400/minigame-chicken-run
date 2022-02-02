@@ -1,38 +1,16 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <title>Chicken Run by Crypto Fight Club</title>
-
-    <meta content="Start training your NFT 2.0 prizefighter in our first trial, inspired by a Muay Thai speed challenge. Play to earn using your minted avatar and dive into a fast pace, mini-game designed to reward daily, and monthly with unique NFTs and native $FIGHT tokens!" name="description" />
-
-    <meta content="Chicken Run by Crypto Fight Club" property="og:title" />
-
-    <meta content="Start training your NFT 2.0 prizefighter in our first trial, inspired by a Muay Thai speed challenge. Play to earn using your minted avatar and dive into a fast pace, mini-game designed to reward daily, and monthly with unique NFTs and native $FIGHT tokens!" property="og:description" />
-
-    <meta content="https://assets.website-files.com/6163eb381edee2ab77696010/61e4488407651e125e7963d9_Chicken%20Run.png" property="og:image" />
-
-    <meta content="Chicken Run by Crypto Fight Club" property="twitter:title" />
-
-    <meta content="Start training your NFT 2.0 prizefighter in our first trial, inspired by a Muay Thai speed challenge. Play to earn using your minted avatar and dive into a fast pace, mini-game designed to reward daily, and monthly with unique NFTs and native $FIGHT tokens!" property="twitter:description" />
-
-    <meta content="https://assets.website-files.com/6163eb381edee2ab77696010/61e4488407651e125e7963d9_Chicken%20Run.png" property="twitter:image" />
-
-    <meta property="og:type" content="website" />
-
-    <meta content="summary_large_image" name="twitter:card" />
-
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Chicken Run</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
-    <link rel="stylesheet" href="TemplateData/style.css" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script src="network.js"></script>
-    <script src="./polyfills.js"></script>
-    <link rel="manifest" href="./manifest.json" />
-    <link href="./static/css/main.1359096b.chunk.css" rel="stylesheet">
-</head>
+   <head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <title>Chicken Run</title>
+      <link rel="shortcut icon" href="TemplateData/favicon.ico"/>
+      <link rel="stylesheet" href="TemplateData/style.css"/>
+      <meta name="viewport" content="width=device-width,initial-scale=1"/>
+      <script src="network.js"></script>
+      <link rel="manifest" href="./manifest.json"/>
+      <link href="./static/css/main.1359096b.chunk.css" rel="stylesheet">
+   </head>
    <body>
       <noscript>You need to enable JavaScript to run this app.</noscript>
       <div id="root"></div>
@@ -44,11 +22,9 @@
                <div id="unity-progress-bar-full"></div>
             </div>
          </div>
-         <div id="unity-mobile-warning">WebGL builds are not supported on mobile devices.</div>
          <div id="unity-footer">
             <div id="unity-webgl-logo"></div>
             <div id="unity-fullscreen-button"></div>
-            <div id="unity-build-title">Chicken Run</div>
          </div>
       </div>
       <script>var buildUrl = "Build";
@@ -66,7 +42,6 @@
          var container = document.querySelector("#unity-container");
          var canvas = document.querySelector("#unity-canvas");
          var loadingBar = document.querySelector("#unity-loading-bar");
-         var progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
          var progressBarFull = document.querySelector("#unity-progress-bar-full");
          
          // By default Unity keeps WebGL canvas render target size matched with
@@ -98,7 +73,7 @@
         companyName: "Crypto Fight Club",
         productName: "Chicken Run",
         productVersion: "1.0",
-           })
+      })
       .then((instance) =>
       {
         unityInstance = instance;

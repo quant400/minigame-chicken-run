@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using StarterAssets;
-
+using UniRx.Triggers;
+using UniRx;
+using UniRx.Operators;
 public class SingleplayerGameControler : MonoBehaviour
 {
     public static SingleplayerGameControler instance;
     [SerializeField]
     int singleplayerScene;
+    [SerializeField]
+    int mainScene;
+
     public int toSpawn;
     //public int chosenAvatar; changed to nft object 
     [SerializeField]
@@ -26,7 +31,11 @@ public class SingleplayerGameControler : MonoBehaviour
 
     public NFTInfo chosenNFT;
 
-    int dailyScore, AlltimeScore, sessions;
+    public int dailyScore, AlltimeScore, sessions;
+    public bool isRestApi;
+    public ReactiveProperty<int> dailysessionReactive = new ReactiveProperty<int>();
+    public static NFTInfo[] nftDataArray;
+    public static bool playerLogged;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -37,6 +46,10 @@ public class SingleplayerGameControler : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
+            if (isRestApi)
+            {
+                observeReactiveSession();
+            }
         }
     }
 
@@ -49,18 +62,26 @@ public class SingleplayerGameControler : MonoBehaviour
             Destroy(g);
         }
     }
+    
 
     public void StartGame()
     {
-        SinglePlayerScoreBoardScript.instance.StartGame();
+        SinglePlayerScoreBoardScript.instance.StartGame(GetTimeForGame());
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetStarted(true);
         GetScores();
+        DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id);
+
     }
     public void EndGame()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetEnded(true);
+    }
+    public void loadMain()
+    {
+
+        SceneManager.LoadScene(mainScene);
     }
 
     public float GetTimeForGame()
@@ -108,10 +129,36 @@ public class SingleplayerGameControler : MonoBehaviour
         return sessions;
     }
 
-    void GetScores()
+    public void GetScores()
     {
-        DatabaseManager._instance.getDailyLeaderboardScore(chosenNFT.id.ToString(), x => { dailyScore = (int)x; });
-        DatabaseManager._instance.getLeaderboardScore(chosenNFT.id.ToString(), x => { AlltimeScore = (int)x; });
-        DatabaseManager._instance.getSessionsCounter(chosenNFT.id.ToString(), x => { sessions = (int)x; });
+        if (isRestApi)
+        {
+            GetSoresRestApi();
+        }
+        else
+        {
+           // DatabaseManager._instance.getDailyLeaderboardScore(chosenNFT.id.ToString(), x => { dailyScore = (int)x; });
+           // DatabaseManager._instance.getLeaderboardScore(chosenNFT.id.ToString(), x => { AlltimeScore = (int)x; });
+          //  DatabaseManager._instance.getSessionsCounter(chosenNFT.id.ToString(), x => { sessions = (int)x; });
+        }
+       
+    }
+    void GetSoresRestApi()
+    {
+        DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id);
+
+    }
+    void observeReactiveSession()
+    {
+        dailysessionReactive
+            .Where(_ => _ >= 10)
+            .Do(_ => endGameDirectly())
+            .Subscribe()
+            .AddTo(this);
+    }
+    void endGameDirectly()
+    {
+        SingleplayerGameControler.instance.EndGame();
+        SinglePlayerScoreBoardScript.instance.DisplayScore();
     }
 }

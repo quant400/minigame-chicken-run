@@ -21,6 +21,10 @@ public class SinglePlayerSpawner : MonoBehaviour
     GameObject[] NPCPrefab;
     [SerializeField]
     Transform[] NPCSPawnPoints;
+    [SerializeField]
+    int startingChickensForLevel;
+    [SerializeField]
+    float spawnInterval;
 
     private string chosenNFTName;
 
@@ -30,7 +34,7 @@ public class SinglePlayerSpawner : MonoBehaviour
 
         //span point chaged to index 4 intead of 0 will make it a single point intead of array if only one player in game decided
         //GameObject temp = Instantiate(characters[SingleplayerGameControler.instance.chosenAvatar], spawnPoint.position, Quaternion.identity);
-        chosenNFTName = NameToSlugConvert(SingleplayerGameControler.instance.chosenNFT.name);
+        chosenNFTName = NameToSlugConvert(gameplayView.instance.chosenNFT.name);
         GameObject resource = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", chosenNFTName)) as GameObject;
         GameObject temp = Instantiate(resource, spawnPoint.position, Quaternion.identity);
         
@@ -41,7 +45,7 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     void SpawnChickens()
     {
-        int remainingToSpwan = SingleplayerGameControler.instance.GetChickenCount();
+        int remainingToSpwan = startingChickensForLevel;//gameplayView.instance.GetChickenCount();
         int index = 0;
         while(remainingToSpwan>0)
         {
@@ -57,7 +61,7 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     IEnumerator SpawnRandomChicken()
     {
-        yield return new WaitForSeconds(SingleplayerGameControler.instance.GetSpawnInterval());
+        yield return new WaitForSeconds(spawnInterval);
         var temp=Instantiate(chickenPrefab, chickenSpawnPoints[Random.Range(0,10)].position, Quaternion.identity);
         temp.transform.parent = chickenHolder;
         StartCoroutine("SpawnRandomChicken");
@@ -84,7 +88,7 @@ public class SinglePlayerSpawner : MonoBehaviour
     string NameToSlugConvert(string name)
     {
         string slug;
-        slug = name.ToLower().Replace(" ", "-");
+        slug = name.ToLower().Replace(".", "").Replace("'", "").Replace(" ", "-");
         return slug;
 
     }

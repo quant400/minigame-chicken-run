@@ -5,16 +5,10 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-[Serializable]
-public class NFTInfo
-{
-    public int id;
-    public string name;
-}
 public class NFTGetter : MonoBehaviour
 {
     CharacterSelectionScript cS;
-    UnityWebRequest temp;
+    public static UnityWebRequest temp;
     [SerializeField]
     GameObject noNFTCanvas;
     
@@ -66,17 +60,34 @@ public class NFTGetter : MonoBehaviour
         string data = "{\"Items\":" + temp.downloadHandler.text + "}";
 
         NFTInfo[] NFTData = JsonHelper.FromJson<NFTInfo>(data);
-        if(NFTData.Length==0)
+        SingleplayerGameControler.nftDataArray = NFTData;
+        if (NFTData.Length==0)
         {
             noNFTCanvas.SetActive(true);
+            SingleplayerGameControler.playerLogged = false;
         }
         else
         {
             noNFTCanvas.SetActive(false);
             cS.SetData(NFTData);
+            SingleplayerGameControler.playerLogged = true;
         }
-        
-     
+
+
+    }
+    public void savedLoggedDisplay()
+    {
+        if (SingleplayerGameControler.nftDataArray.Length == 0)
+        {
+            noNFTCanvas.SetActive(true);
+            SingleplayerGameControler.playerLogged = false;
+        }
+        else
+        {
+            noNFTCanvas.SetActive(false);
+            cS.SetData(SingleplayerGameControler.nftDataArray);
+            SingleplayerGameControler.playerLogged = true;
+        }
     }
 
     //temp Fuction for skip

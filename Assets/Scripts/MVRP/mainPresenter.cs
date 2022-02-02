@@ -24,7 +24,7 @@ using UnityEngine.SceneManagement;
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == chickenGameModel.singlePlayerSceneName) 
+        if ((scene.name == chickenGameModel.singlePlayerScene1.sceneName)||(scene.name == chickenGameModel.singlePlayerScene2.sceneName)) 
         {
             Observable.Timer(TimeSpan.Zero)
                         .DelayFrame(2)
@@ -94,7 +94,7 @@ using UnityEngine.SceneManagement;
                 case chickenGameModel.GameSteps.OnCharacterSelected:
                     uiView.goToMenu("characterSelected");
                     gameEndView.resetDisplay();
-                    scenesView.LoadScene(chickenGameModel.singlePlayerSceneName);
+                    scenesView.loadSinglePlayerScene();
 
                     break;
                 case chickenGameModel.GameSteps.OnStartGame:
@@ -119,7 +119,7 @@ using UnityEngine.SceneManagement;
                     gameEndView.initializeValues();
                     gameEndView.resetDisplay();
                     dataView.initilizeValues();
-                    scenesView.LoadScene(chickenGameModel.mainSceneLoadname);
+                    scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
                     Observable.Timer(TimeSpan.Zero)
                        .DelayFrame(2)
                        .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnCharacterSelection)

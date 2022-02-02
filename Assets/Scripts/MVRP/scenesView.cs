@@ -43,4 +43,17 @@ public class scenesView : MonoBehaviour
         SceneManager.LoadScene(sceneName);
 
     }
+    public static void loadSinglePlayerScene()
+    {
+        if (chickenGameModel.currentNFTSession % 2 == 0)
+        {
+            SceneManager.LoadScene(chickenGameModel.singlePlayerScene1.sceneName);
+
+        }
+        else
+        {
+            SceneManager.LoadScene(chickenGameModel.singlePlayerScene2.sceneName);
+
+        }
+    }
 }

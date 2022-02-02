@@ -167,12 +167,12 @@ public class GameOverScript : MonoBehaviour
     }
     public void TryAgain()
     {
-        scenesView.LoadScene(chickenGameModel.singlePlayerSceneName);
+        scenesView.loadSinglePlayerScene();
 
     }
     public void goToMain()
     {
-        scenesView.LoadScene(chickenGameModel.mainSceneLoadname);
+        scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
         chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnBackToMenu;
     }
 

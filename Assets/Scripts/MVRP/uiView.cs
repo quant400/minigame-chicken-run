@@ -22,7 +22,7 @@ public class uiView : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        scenesView.LoadScene(chickenGameModel.mainSceneLoadname);
+        scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
     }
     void Start()
     {

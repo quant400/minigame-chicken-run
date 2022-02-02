@@ -223,7 +223,7 @@ public class gameEndView : MonoBehaviour
     }
     public void goToMain()
     {
-        scenesView.LoadScene(chickenGameModel.mainSceneLoadname);
+        scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
         chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnBackToMenu;
     }
 

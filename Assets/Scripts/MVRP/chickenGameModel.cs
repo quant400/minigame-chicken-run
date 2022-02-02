@@ -34,7 +34,22 @@ public struct chickenGameModel
         OnExit,
         onSceneLoaded,
     }
-
+    public enum sceneLoadType
+    {
+        menu,
+        mountainsAndForest,
+        japan,
+    }
+    public class sceneLoadData
+    {
+        public sceneLoadType type;
+        public string sceneName;
+        public sceneLoadData(sceneLoadType typeInput , string name)
+        {
+            type = typeInput;
+            sceneName = name;
+        }
+    }
 
     public static ReactiveProperty<bool> userIsLogged = new ReactiveProperty<bool>();
     public static ReactiveProperty<GameSteps> gameCurrentStep = new ReactiveProperty<GameSteps>();
@@ -45,9 +60,11 @@ public struct chickenGameModel
     public static NFTInfo[] currentNFTArray;
     public static int mainSceneLoad=0;
     public static int singlePlayerSceneInt=1;
-    public static string mainSceneLoadname = "Menu";
-    public static string singlePlayerSceneName = "SinglePlayerScene 2";// change this to "SinglePlayerScene" top load old scene like normal
+    public static int currentNFTSession = 0;
 
+    public static sceneLoadData mainSceneLoadname = new sceneLoadData(sceneLoadType.menu, "Menu");
+    public static sceneLoadData singlePlayerScene1 = new sceneLoadData(sceneLoadType.mountainsAndForest, "SinglePlayerScene");// change this to "SinglePlayerScene" top load old scene like normal
+    public static sceneLoadData singlePlayerScene2 = new sceneLoadData(sceneLoadType.japan, "SinglePlayerScene 2");
 
 
 

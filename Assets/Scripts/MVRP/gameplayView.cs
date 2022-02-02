@@ -18,10 +18,11 @@ public class gameplayView : MonoBehaviour
     //public int startDelay;
     [SerializeField]
     float timeForOneGame;
+    // moved to spawners of each level
     //[SerializeField]
     //int initialChickenCount;
-    [SerializeField]
-    float spawnIntervals;
+    //[SerializeField]
+    //float spawnIntervals;
     [SerializeField]
     float mushroomPowerUpChance;
 
@@ -33,6 +34,8 @@ public class gameplayView : MonoBehaviour
     public static NFTInfo[] nftDataArray;
     public static bool playerLogged;
     public GameObject gameOverObject;
+
+    bool sfxMuted = false;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -75,17 +78,26 @@ public class gameplayView : MonoBehaviour
     {
         return timeForOneGame;
     }
+
+
     /*public int GetChickenCount()
     {
         return initialChickenCount;
-    }*/
+    }
     public float GetSpawnInterval()
     {
         return spawnIntervals;
+    }*/
+
+    public bool GetSFXMuted()
+    {
+        return sfxMuted;
     }
 
-   
-
+    public void SetSFXMuted(bool b)
+    {
+        sfxMuted = b;
+    }
     public float GetMushroomPowerUpChance()
     {
         return mushroomPowerUpChance;

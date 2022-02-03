@@ -63,8 +63,8 @@ public struct chickenGameModel
     public static int currentNFTSession = 0;
 
     public static sceneLoadData mainSceneLoadname = new sceneLoadData(sceneLoadType.menu, "Menu");
-    public static sceneLoadData singlePlayerScene1 = new sceneLoadData(sceneLoadType.mountainsAndForest, "SinglePlayerScene");// change this to "SinglePlayerScene" top load old scene like normal
-    public static sceneLoadData singlePlayerScene2 = new sceneLoadData(sceneLoadType.japan, "SinglePlayerScene 2");
+    public static sceneLoadData singlePlayerScene1 = new sceneLoadData(sceneLoadType.mountainsAndForest, "SinglePlayerScene 3");// change to SinglePlayerScene
+    public static sceneLoadData singlePlayerScene2 = new sceneLoadData(sceneLoadType.japan, "SinglePlayerScene 3");// change to SinglePlayerScene 2
 
 
 

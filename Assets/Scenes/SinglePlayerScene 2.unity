@@ -15520,13 +15520,13 @@ Transform:
   - {fileID: 4853251}
   - {fileID: 730179082}
   - {fileID: 716110403}
+  - {fileID: 1482699287}
   - {fileID: 721498187}
   - {fileID: 989610601}
   - {fileID: 1012672824}
   - {fileID: 1715908884}
   - {fileID: 519073678}
   - {fileID: 2134903809}
-  - {fileID: 1482699287}
   - {fileID: 1639419223}
   - {fileID: 2038279303}
   - {fileID: 1250508482}
@@ -15571,6 +15571,7 @@ Transform:
   - {fileID: 1463100382}
   - {fileID: 770388104}
   - {fileID: 1582239450}
+  - {fileID: 1969956594}
   - {fileID: 1599746031}
   - {fileID: 1311101128}
   - {fileID: 2080787956}
@@ -15608,7 +15609,6 @@ Transform:
   - {fileID: 1369358749}
   - {fileID: 1932767668}
   - {fileID: 356788822}
-  - {fileID: 1969956594}
   - {fileID: 187897006}
   - {fileID: 1454208626}
   - {fileID: 644572329}
@@ -58226,7 +58226,7 @@ Transform:
   m_LocalScale: {x: 135, y: 2, z: 50}
   m_Children: []
   m_Father: {fileID: 393259791}
-  m_RootOrder: 29
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1482699288
 MeshRenderer:
@@ -67842,7 +67842,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5c8eb2f5360d0804a8a77946bf804b8e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -75341,7 +75341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19a400c211ab4e46a0e592d1377dd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chickenPrefab: {fileID: 5468443596144700198, guid: 22eb7cb0de5a04330b101a3d113c1fd0, type: 3}
+  chickenPrefab: {fileID: 4480396793836357830, guid: 241890f281ca3fb4291233bef5aba50e, type: 3}
   characters: []
   spawnPoint: {fileID: 680193108}
   chickenSpawnPoints:
@@ -75701,7 +75701,7 @@ Transform:
   m_LocalScale: {x: 50, y: 2, z: 44}
   m_Children: []
   m_Father: {fileID: 393259791}
-  m_RootOrder: 111
+  m_RootOrder: 74
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1969956595
 MeshRenderer:

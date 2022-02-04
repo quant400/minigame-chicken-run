@@ -12,23 +12,37 @@ public class PowerUpMushroom : MonoBehaviour
     {
         audioS = GetComponent<AudioSource>();
         int chance = Random.Range(0 , 100);
-        if (chance > gameplayView.instance.GetMushroomPowerUpChance()) 
+        if (chance > gameplayView.instance.GetMushroomPowerUpChance())
         {
-           
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<Light>().enabled = false;
+        }
+        else if (tag == "Manhole")
+        {
+            transform.GetChild(0).GetComponent<ParticleSystem>().startColor = GetComponent<Light>().color;
+            transform.GetChild(0).gameObject.SetActive(true);
+            
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-       
-        if(other.CompareTag("Player"))
+
+        if (other.CompareTag("Player"))
         {
-            GetComponent<MeshRenderer>().enabled = false;
+            Debug.Log("Collided");
+            if (tag == "Manhole")
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
+            }
+            else
+            {
+                GetComponent<MeshRenderer>().enabled = false;
+
+            }
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<Light>().enabled = false;
-            StartCoroutine( Powerup(other.gameObject));
+            StartCoroutine(Powerup(other.gameObject));
         }
     }
 
@@ -62,7 +76,8 @@ public class PowerUpMushroom : MonoBehaviour
         {
             player.transform.GetChild(3).gameObject.SetActive(false);
         }
-        Destroy(gameObject);
+        if(tag!="Manhole")
+            Destroy(gameObject);
 
     }
 

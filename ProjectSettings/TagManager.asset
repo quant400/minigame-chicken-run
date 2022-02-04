@@ -10,6 +10,9 @@ TagManager:
   - CinemachineTarget
   - LeaderBoardCanvas
   - Leaderboard
+  - SFXPlayer
+  - Bot
+  - Manhole
   layers:
   - Default
   - TransparentFX

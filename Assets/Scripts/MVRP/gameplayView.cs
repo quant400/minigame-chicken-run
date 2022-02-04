@@ -51,6 +51,11 @@ public class gameplayView : MonoBehaviour
                 observeReactiveSession();
             }
         }
+        if(PlayerPrefs.HasKey("SFX"))
+        {
+            if (PlayerPrefs.GetString("SFX") == "off")
+                sfxMuted = true;
+        }
     }
 
 

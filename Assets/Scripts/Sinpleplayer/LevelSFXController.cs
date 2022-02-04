@@ -18,7 +18,7 @@ public class LevelSFXController : MonoBehaviour
         music = transform.GetChild(1).GetComponent<AudioSource>();
         defaultMusicVol = music.volume;
         defaultSFXVol = SFX.volume;
-
+        //Debug.Log((PlayerPrefs.GetString("SFX"), PlayerPrefs.GetString("Music"), gameplayView.instance.GetSFXMuted()));
         if(PlayerPrefs.HasKey("Music"))
         {
             if (PlayerPrefs.GetString("Music") == "off")
@@ -28,7 +28,7 @@ public class LevelSFXController : MonoBehaviour
         }
 
         if (PlayerPrefs.HasKey("SFX"))
-            {
+        {
             if (PlayerPrefs.GetString("SFX") == "off")
             {
                 MuteSFX();
@@ -39,12 +39,13 @@ public class LevelSFXController : MonoBehaviour
 
     public void MuteSFX()
     {
-        if (gameplayView.instance.GetSFXMuted())
+        if (SFX.volume==0)
         {
             SFX.volume = defaultMusicVol;
             sfxButton.color += new Color(0, 0, 0, 0.5f);
             sfxButton.transform.GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, 0.5f);
             PlayerPrefs.SetString("SFX", "on");
+            gameplayView.instance.SetSFXMuted(false);
         }
         else
         {
@@ -52,9 +53,9 @@ public class LevelSFXController : MonoBehaviour
             sfxButton.transform.GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, 0.5f);
             SFX.volume = 0;
             PlayerPrefs.SetString("SFX", "off");
+            gameplayView.instance.SetSFXMuted(true);
         }
 
-        gameplayView.instance.SetSFXMuted(!gameplayView.instance.GetSFXMuted());
     }
 
     public void MuteMusic()

@@ -142,7 +142,7 @@ namespace StarterAssets
 				JumpAndGravity();
 				GroundedCheck();
 				Move();
-				if (Keyboard.current[Key.Escape].wasPressedThisFrame)
+				if (!cursorUnlocked && Keyboard.current[Key.Escape].wasPressedThisFrame)
                 {
 					cursorUnlocked = true;
 					GetComponent<StarterAssetsInputs>().SetCursorLock(false);
@@ -382,7 +382,9 @@ namespace StarterAssets
 		IEnumerator LockCursorAfter(float x)
         {
 			yield return new WaitForSeconds(x);
+			cursorUnlocked = false;
 			GetComponent<StarterAssetsInputs>().SetCursorLock(true);
+			
 		}
 
         

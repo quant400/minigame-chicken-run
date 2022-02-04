@@ -66032,6 +66032,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c91eb80ef1ec4047afe4c9109ab0be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxButton: {fileID: 955938371}
+  musicButton: {fileID: 1520685820}
 --- !u!4 &2039679310
 Transform:
   m_ObjectHideFlags: 0

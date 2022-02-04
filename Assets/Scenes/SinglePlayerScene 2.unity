@@ -5122,6 +5122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c91eb80ef1ec4047afe4c9109ab0be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxButton: {fileID: 1144372313}
+  musicButton: {fileID: 325061418}
 --- !u!4 &144250054
 Transform:
   m_ObjectHideFlags: 0
@@ -15527,6 +15529,7 @@ Transform:
   - {fileID: 1715908884}
   - {fileID: 519073678}
   - {fileID: 2134903809}
+  - {fileID: 1969956594}
   - {fileID: 1639419223}
   - {fileID: 2038279303}
   - {fileID: 1250508482}
@@ -15571,7 +15574,6 @@ Transform:
   - {fileID: 1463100382}
   - {fileID: 770388104}
   - {fileID: 1582239450}
-  - {fileID: 1969956594}
   - {fileID: 1599746031}
   - {fileID: 1311101128}
   - {fileID: 2080787956}
@@ -75701,7 +75703,7 @@ Transform:
   m_LocalScale: {x: 50, y: 2, z: 44}
   m_Children: []
   m_Father: {fileID: 393259791}
-  m_RootOrder: 74
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1969956595
 MeshRenderer:

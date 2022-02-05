@@ -48,8 +48,10 @@ public class gameEndView : MonoBehaviour
         {
             if (gameplayView.instance.isRestApi)
             {
-                DatabaseManagerRestApi._instance.setScoreRestApiMain(currentNFT.id.ToString(), SinglePlayerScoreBoardScript.instance.GetScore());
+                Debug.Log("before Score");
 
+                DatabaseManagerRestApi._instance.setScoreRestApiMain(currentNFT.id.ToString(), SinglePlayerScoreBoardScript.instance.GetScore());
+                Debug.Log("posted Score");
             }
             else
             {

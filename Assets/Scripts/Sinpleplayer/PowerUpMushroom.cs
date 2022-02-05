@@ -34,7 +34,8 @@ public class PowerUpMushroom : MonoBehaviour
 
     public void PlayPowerUp()
     {
-        audioS.Play();
+        if(!gameplayView.instance.GetSFXMuted())
+            audioS.Play();
     }
 
     IEnumerator Powerup(GameObject player)

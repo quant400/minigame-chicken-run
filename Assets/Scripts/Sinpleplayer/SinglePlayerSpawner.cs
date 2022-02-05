@@ -23,6 +23,8 @@ public class SinglePlayerSpawner : MonoBehaviour
     Transform[] NPCSPawnPoints;
     [SerializeField]
     int startingChickensForLevel;
+    [SerializeField]
+    float spawnInterval;
 
     private string chosenNFTName;
 
@@ -59,7 +61,7 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     IEnumerator SpawnRandomChicken()
     {
-        yield return new WaitForSeconds(gameplayView.instance.GetSpawnInterval());
+        yield return new WaitForSeconds(spawnInterval);
         var temp=Instantiate(chickenPrefab, chickenSpawnPoints[Random.Range(0,10)].position, Quaternion.identity);
         temp.transform.parent = chickenHolder;
         StartCoroutine("SpawnRandomChicken");

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Cinemachine;
+using System.Collections;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -96,6 +97,7 @@ namespace StarterAssets
 		//AddedForGame
 		bool started=false;
 		bool ended=false;
+		bool cursorUnlocked=false;
 		PlayerSfxController pSfxC;
 		private void Awake()
 		{
@@ -140,6 +142,15 @@ namespace StarterAssets
 				JumpAndGravity();
 				GroundedCheck();
 				Move();
+				if (!cursorUnlocked && Keyboard.current[Key.Escape].wasPressedThisFrame)
+                {
+					cursorUnlocked = true;
+					GetComponent<StarterAssetsInputs>().SetCursorLock(false);
+				}
+				if(cursorUnlocked && Mouse.current.leftButton.wasPressedThisFrame)
+                {
+					StartCoroutine(LockCursorAfter(1));
+                }
 			}
 		}
       
@@ -368,6 +379,13 @@ namespace StarterAssets
 
 		}
 		
+		IEnumerator LockCursorAfter(float x)
+        {
+			yield return new WaitForSeconds(x);
+			cursorUnlocked = false;
+			GetComponent<StarterAssetsInputs>().SetCursorLock(true);
+			
+		}
 
         
     }

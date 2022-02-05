@@ -53,8 +53,8 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         if (started)
 
         {
-            timerFill.fillAmount -= Time.deltaTime / time;
-            currentTime -= Time.deltaTime;
+            timerFill.fillAmount -= Time.realtimeSinceStartup / time;
+            currentTime -= Time.realtimeSinceStartup;
             if(currentTime>20)
             {
                 timerValue.text = ((int)(currentTime)).ToString();

@@ -10,6 +10,7 @@ TagManager:
   - CinemachineTarget
   - LeaderBoardCanvas
   - Leaderboard
+  - Bump
   layers:
   - Default
   - TransparentFX

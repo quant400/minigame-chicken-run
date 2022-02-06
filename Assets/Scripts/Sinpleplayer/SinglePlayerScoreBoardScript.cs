@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using System;
 using UnityEngine.UI;
+using UniRx;
+using UniRx.Triggers;
+using UniRx.Operators;
 public class SinglePlayerScoreBoardScript : MonoBehaviour
 {
     public static SinglePlayerScoreBoardScript instance;
@@ -28,6 +32,8 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
     [SerializeField]
     TMP_Text timerValue;
     float currentTime;
+    public ReactiveProperty<bool> timeIsUp = new ReactiveProperty<bool>();
+    public ReactiveProperty<float> reactiveTime = new ReactiveProperty<float>();
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -38,39 +44,61 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         {
             instance = this;
         }
-       
+        timeIsUp.Value = true;
+
+
     }
     public void StartGame(float timeOfGame)
     {
         Debug.Log("timeSetted");
         time = timeOfGame;
         currentTime = time;
+        reactiveTime.Value = time;
         started = true;
+        timeIsUp.Value = false;
+        counterObservation();
+    }
+    public void counterObservation()
+    {
+        timeIsUp
+            .Where(_ => _ == false)
+            .Where(_ => started)
+            .Do(_ => timeIsUp.Value = true)
+            .Delay(TimeSpan.FromSeconds(1))
+            .Subscribe(_ => SetReactiveTime())
+            .AddTo(this);
+        reactiveTime
+            .Where(_ => started)
+            .Do(_ => SetTimeTimeAndEndGame(_))
+            .Subscribe()
+            .AddTo(this);
+
 
     }
-    private void Update()
+    public void SetReactiveTime()
     {
+        reactiveTime.Value -= 1;
+        currentTime = reactiveTime.Value;
         if (started)
-
         {
-            timerFill.fillAmount -= Time.realtimeSinceStartup / time;
-            currentTime -= Time.realtimeSinceStartup;
-            if(currentTime>20)
-            {
-                timerValue.text = ((int)(currentTime)).ToString();
-            }
-            else if(currentTime<=20)
-            {
-                timerValue.text = "<color=red>" + ((int)(currentTime)).ToString()+"</color>";
-            }
-           
+            timeIsUp.Value = false;
         }
-
-        if(timerFill.fillAmount<=0)
+    }
+    public void SetTimeTimeAndEndGame(float time)
+    {
+        if (time > 20)
         {
-            if(started)
+            timerValue.text = ((int)(currentTime)).ToString();
+        }
+        else if (time <= 20)
+        {
+            timerValue.text = "<color=red>" + ((int)(currentTime)).ToString() + "</color>";
+        }
+        if (time <= 0)
+        {
+            if (started)
             {
-             if (gameplayView.instance != null)
+                if (gameplayView.instance != null)
                 {
                     gameplayView.instance.EndGame();
 
@@ -79,9 +107,13 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
                 DisplayScore();
             }
             started = false;
-            //SingleplayerGameControler.instance.EndGame();
-            
-        }    
+            timerValue.text = "<color=red>" + time.ToString() + "</color>";
+
+        }
+    }
+    private void Update()
+    {
+       
     }
 
     public void DisplayScore()

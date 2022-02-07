@@ -57,21 +57,16 @@ public class DatabaseManagerRestApi : MonoBehaviour
     }
     public void setScoreWithRestApi(int assetID,int score)
     {
-        setScoreInLeaderBoard(score);
-
-    }
-  
-    public void setScoreInLeaderBoard(int scoreAdded)
-    {
         if (sessionCounterReactive.Value <= 10)
         {
-            StartCoroutine(setScoreInLeaderBoeardRestApi(scoreAdded));
+            StartCoroutine(setScoreInLeaderBoeardRestApi(assetID, score));
         }
         else
         {
             Debug.Log("you reach daily Limits");
         }
     }
+  
     public void startSessionFromRestApi(int _assetID)
     {
         StartCoroutine(startSessionApi("https://api.cryptofightclub.io/game/sdk/chicken/start-session", _assetID));
@@ -117,10 +112,10 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
     }
    
-    public IEnumerator setScoreInLeaderBoeardRestApi( int scoreAdded)
+    public IEnumerator setScoreInLeaderBoeardRestApi(int id,  int scoreAdded)
     {
          leaderboardModel.userPostedData postedData = new leaderboardModel.userPostedData();
-        postedData.id = localID;
+        postedData.id = id;
         postedData.score = scoreAdded;
         string idJsonData = JsonUtility.ToJson(postedData);
 
@@ -134,6 +129,8 @@ public class DatabaseManagerRestApi : MonoBehaviour
             if (request.error == null)
             {
 
+                Debug.Log("posted Score in function");
+                Debug.Log(idJsonData);
 
                 getDataFromRestApi(postedData.id);
 

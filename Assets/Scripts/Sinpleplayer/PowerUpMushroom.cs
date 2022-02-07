@@ -30,7 +30,7 @@ public class PowerUpMushroom : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Collided");
+            
             if (tag == "Manhole")
             {
                 transform.GetChild(0).gameObject.SetActive(false);

@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SinglePlayerScene 2.unity
     guid: eb2d1f2818ac38e40952e28164fe779a
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayerScene 3.unity
+    guid: 89d5439f1bcae0f42994011088e0c419
   - enabled: 0
     path: Assets/Saif/Scenes/ManageScore&Users.unity
     guid: 8c28d5557e6cd4d4cac63dc5467f63ea

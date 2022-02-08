@@ -62,16 +62,26 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
     {
         timeIsUp
             .Where(_ => _ == false)
+            .Where(_=>reactiveTime.Value>0)
             .Where(_ => started)
             .Do(_ => timeIsUp.Value = true)
+            .Do(_=> SetReactiveTime())
             .Delay(TimeSpan.FromSeconds(1))
-            .Subscribe(_ => SetReactiveTime())
-            .AddTo(this);
-        reactiveTime
-            .Where(_ => started)
-            .Do(_ => SetTimeTimeAndEndGame(_))
+            .Where(_=>started)
+            .Do(_=> timeIsUp.Value = false)
             .Subscribe()
             .AddTo(this);
+        
+        reactiveTime
+           .Where(_ => started)
+           .Where(_ => _ == 0)
+           .Do(_=>started=false)
+           .Do(_ => timerValue.text = "<color=red>" + _.ToString() + "</color>")
+           .Delay(TimeSpan.FromSeconds(1))
+           .Do(_ => SetTimeEndGame(_))
+           .Subscribe()
+           .AddTo(this);
+
 
 
     }
@@ -79,12 +89,11 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
     {
         reactiveTime.Value -= 1;
         currentTime = reactiveTime.Value;
-        if (started)
-        {
-            timeIsUp.Value = false;
-        }
+        SetTimeInUI(currentTime);
+
+
     }
-    public void SetTimeTimeAndEndGame(float time)
+    public void SetTimeInUI(float time)
     {
         if (time > 20)
         {
@@ -94,22 +103,25 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         {
             timerValue.text = "<color=red>" + ((int)(currentTime)).ToString() + "</color>";
         }
-        if (time <= 0)
-        {
-            if (started)
-            {
-                if (gameplayView.instance != null)
+       
+    }
+    public void SetTimeEndGame(float time)
+    {
+
+
+        timerValue.text = "<color=red>" + "0" + "</color>";
+
+        if (gameplayView.instance != null)
                 {
                     gameplayView.instance.EndGame();
 
                 }
                 chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameEnded;
                 DisplayScore();
-            }
-            started = false;
-            timerValue.text = "<color=red>" + time.ToString() + "</color>";
+            
 
-        }
+
+        
     }
     private void Update()
     {

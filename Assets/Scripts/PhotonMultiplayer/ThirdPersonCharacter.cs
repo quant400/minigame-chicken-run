@@ -1,5 +1,5 @@
 using UnityEngine;
-using Photon.Pun;
+//using Photon.Pun;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {

@@ -3366,17 +3366,17 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9558824, g: 0.90165675, b: 0.7169118, a: 1}
-  m_Intensity: 1.32
+  m_Color: {r: 0.9622642, g: 0.9072011, b: 0.72234654, a: 1}
+  m_Intensity: 1.55
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
-    m_Resolution: 3
+    m_Resolution: 1
     m_CustomResolution: -1
-    m_Strength: 0.413
+    m_Strength: 0.112
     m_Bias: 0.05
     m_NormalBias: 0.05
     m_NearPlane: 0.2

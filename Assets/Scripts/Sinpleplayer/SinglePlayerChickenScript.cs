@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Photon.Pun;
+//using Photon.Pun;
 using UnityEngine.AI;
 
 public class SinglePlayerChickenScript : MonoBehaviour

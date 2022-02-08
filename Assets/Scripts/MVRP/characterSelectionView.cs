@@ -155,7 +155,7 @@ public class characterSelectionView : MonoBehaviour
 
     public void Selected()
     {
-        GameRoom.room.ChooseAvatar("PlayerAvatar" + currentCharacter);
+       // GameRoom.room.ChooseAvatar("PlayerAvatar" + currentCharacter);
         selected = true;
         characters[currentCharacter].GetComponent<Animator>().SetBool("Selected", true);
 

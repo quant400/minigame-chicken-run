@@ -103,7 +103,7 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         {
             timerValue.text = "<color=red>" + ((int)(currentTime)).ToString() + "</color>";
         }
-       
+        timerFill.fillAmount = (float)currentTime / (float)SinglePlayerScoreBoardScript.instance.time;
     }
     public void SetTimeEndGame(float time)
     {

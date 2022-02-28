@@ -45,7 +45,43 @@ public class scenesView : MonoBehaviour
     }
     public static void loadSinglePlayerScene()
     {
-        if (chickenGameModel.currentNFTSession % 2 == 0)
+        int scene = chickenGameModel.currentNFTSession;
+        switch (scene)
+        {
+            case 0:
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene3.sceneName);
+                break;
+            case 1:
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene1.sceneName);
+                break;
+            case 2:
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene2.sceneName);
+                break;
+            case 3:
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene3.sceneName);
+                break;
+            case 4:
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene1.sceneName);
+                break;
+            case 5:
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene2.sceneName);
+                break;
+            case 6:
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene3.sceneName);
+                break;
+            case 7:
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene1.sceneName);
+                break;
+            case 8:
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene2.sceneName);
+                break;
+            case 9:
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene3.sceneName);
+                break;
+        }
+
+
+            /*    if (chickenGameModel.currentNFTSession % 2 == 0)
         {
             SceneManager.LoadScene(chickenGameModel.singlePlayerScene1.sceneName);
 
@@ -54,6 +90,6 @@ public class scenesView : MonoBehaviour
         {
             SceneManager.LoadScene(chickenGameModel.singlePlayerScene2.sceneName);
 
+        }*/
         }
-    }
 }

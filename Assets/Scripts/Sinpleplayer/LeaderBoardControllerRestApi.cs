@@ -22,7 +22,8 @@ public class LeaderBoardControllerRestApi : MonoBehaviour
     {
         if (b==true)
         {
-            restApiView.DisplayDailyLeaderboardRestApi();
+            //restApiView.DisplayDailyLeaderboardRestApi();
+            restApiView.DisplayLeaderboardRestApi();
             leaderBoard.GetComponent<LeaderBoardScript>().Activate();
         }
         else

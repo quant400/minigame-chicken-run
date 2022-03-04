@@ -13,7 +13,7 @@ public class LeaderBoardScript : MonoBehaviour
     {
         SetAllButtonsInteractable();
         transform.DOScale(Vector3.one, 1f);
-        defaultButton.Select();
+        defaultButton.interactable=false;
     }
 
     internal void Deactivate()

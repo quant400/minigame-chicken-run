@@ -39,6 +39,7 @@ public struct chickenGameModel
         menu,
         mountainsAndForest,
         japan,
+        city,
     }
     public class sceneLoadData
     {
@@ -63,8 +64,9 @@ public struct chickenGameModel
     public static int currentNFTSession = 0;
 
     public static sceneLoadData mainSceneLoadname = new sceneLoadData(sceneLoadType.menu, "Menu");
-    public static sceneLoadData singlePlayerScene1 = new sceneLoadData(sceneLoadType.mountainsAndForest, "SinglePlayerScene 4");// change to SinglePlayerScene
-    public static sceneLoadData singlePlayerScene2 = new sceneLoadData(sceneLoadType.japan, "SinglePlayerScene 4");// change to SinglePlayerScene 2
+    public static sceneLoadData singlePlayerScene1 = new sceneLoadData(sceneLoadType.mountainsAndForest, "SinglePlayerScene");
+    public static sceneLoadData singlePlayerScene2 = new sceneLoadData(sceneLoadType.japan, "SinglePlayerScene 2");
+    public static sceneLoadData singlePlayerScene3 = new sceneLoadData(sceneLoadType.city, "SinglePlayerScene 3");
 
 
 

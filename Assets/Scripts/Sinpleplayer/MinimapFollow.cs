@@ -6,7 +6,7 @@ public class MinimapFollow : MonoBehaviour
 {
     [SerializeField]
     Transform player;
-    float storedShadowDistance;
+
     private void LateUpdate()
     {
         if(player==null)
@@ -20,16 +20,4 @@ public class MinimapFollow : MonoBehaviour
         }
         
     }
-    /*
-    void OnPreRender()
-    {
-        storedShadowDistance = QualitySettings.shadowDistance;
-        QualitySettings.shadowDistance = 0;
-    }
-
-    void OnPostRender()
-    {
-        QualitySettings.shadowDistance = storedShadowDistance;
-    }
-    */
 }

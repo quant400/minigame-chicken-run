@@ -40,7 +40,8 @@ public struct chickenGameModel
         mountainsAndForest,
         japan,
         city,
-        egypt
+        egypt,
+        moon
     }
     public class sceneLoadData
     {
@@ -69,6 +70,7 @@ public struct chickenGameModel
     public static sceneLoadData singlePlayerScene2 = new sceneLoadData(sceneLoadType.japan, "SinglePlayerScene 2");
     public static sceneLoadData singlePlayerScene3 = new sceneLoadData(sceneLoadType.city, "SinglePlayerScene 3");
     public static sceneLoadData singlePlayerScene4 = new sceneLoadData(sceneLoadType.egypt, "SinglePlayerScene 4");
+    public static sceneLoadData singlePlayerScene5 = new sceneLoadData(sceneLoadType.moon, "SinglePlayerScene 5");
 
 
 

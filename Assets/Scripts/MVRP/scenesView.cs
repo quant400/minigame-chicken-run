@@ -76,7 +76,7 @@ public class scenesView : MonoBehaviour
                 SceneManager.LoadScene(chickenGameModel.singlePlayerScene4.sceneName);
                 break;
             case 9:
-                SceneManager.LoadScene(chickenGameModel.singlePlayerScene4.sceneName);
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene3.sceneName);
                 break;
         }
 

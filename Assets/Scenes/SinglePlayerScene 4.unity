@@ -542,15 +542,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -218.78322
+      value: -199.81
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.6978
+      value: 11.36
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 166.48633
+      value: 162.96
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8838,7 +8838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -235.59
+      value: -223.1
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8846,7 +8846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 323.38998
+      value: 315.9
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18497,7 +18497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4453128042721754226, guid: 44df762bf6016204482a23a0951c2d51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -74.28002
+      value: -67.6
       objectReference: {fileID: 0}
     - target: {fileID: 4453128042721754226, guid: 44df762bf6016204482a23a0951c2d51, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18505,7 +18505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4453128042721754226, guid: 44df762bf6016204482a23a0951c2d51, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 54.93663
+      value: 58.2
       objectReference: {fileID: 0}
     - target: {fileID: 4453128042721754226, guid: 44df762bf6016204482a23a0951c2d51, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31605,7 +31605,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0c23a9c571d26ae4290a8dea55c39650, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4b4f7f1933080c347b9e5cb9f0ab68ac, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.25
   m_Pitch: 1
@@ -34748,7 +34748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4453128042721754226, guid: 44df762bf6016204482a23a0951c2d51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 155.96558
+      value: 146.05
       objectReference: {fileID: 0}
     - target: {fileID: 4453128042721754226, guid: 44df762bf6016204482a23a0951c2d51, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38178,7 +38178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 62.758972
+      value: 65.26
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -60560,7 +60560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19a400c211ab4e46a0e592d1377dd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chickenPrefab: {fileID: 5468443596144700198, guid: 22eb7cb0de5a04330b101a3d113c1fd0, type: 3}
+  chickenPrefab: {fileID: 2940121240857420082, guid: 24babb34f1d79c246b1e71704d072561, type: 3}
   characters: []
   spawnPoint: {fileID: 680193108}
   chickenSpawnPoints:
@@ -66061,7 +66061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 385.00833
+      value: 372.1
       objectReference: {fileID: 0}
     - target: {fileID: 3343102687601781380, guid: 7852dd5e5371dcf41b64c2c14336ab1d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66295,7 +66295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 595990482035395297, guid: 5cd164a5e83decc4f83fe43d4f2ac598, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.256
+      value: 14.43
       objectReference: {fileID: 0}
     - target: {fileID: 595990482035395297, guid: 5cd164a5e83decc4f83fe43d4f2ac598, type: 3}
       propertyPath: m_LocalPosition.z

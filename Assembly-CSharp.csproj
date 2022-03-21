@@ -116,6 +116,7 @@
     <Compile Include="Assets\Scripts\Sinpleplayer\GameOverScript.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\setFollowSettings.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardEntry.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\TestingBypassScript.cs" />
     <Compile Include="Assets\Saif\Code\DontDestroy.cs" />
     <Compile Include="Assets\Scripts\MVRP\uiView.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\JsonHelper.cs" />
@@ -138,14 +139,14 @@
     <Compile Include="Assets\Web3Unity\Scripts\Library\WebGL\Web3GL.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfBatchExample.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ThirdPersonCharacter.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\FPScounter.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20BalanceOfExample.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\NFTGetter.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendContractExample.cs" />
     <Compile Include="Assets\Scripts\MVRP\gameplayView.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\FPScounter.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\TestingBypassScript.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\PortalScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\36.56120f7d.chunk.js.LICENSE.txt" />

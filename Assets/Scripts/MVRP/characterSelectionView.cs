@@ -29,6 +29,12 @@ public class characterSelectionView : MonoBehaviour
     GameObject buttonsToEnable, ButtonToDisable;
     [SerializeField]
     NFTInfo[] characterNFTMap;
+
+    //for new screen 
+    //for new screen
+    [SerializeField]
+    Transform[] charButtons;
+
     public void Start()
     {
         observeCharacterSelectionBtns();
@@ -79,9 +85,12 @@ public class characterSelectionView : MonoBehaviour
     }
     //temp flag for skip 
     bool skip = false;
+
+   
+
     public void MoveRight()
     {
-        rightButton.interactable = false;
+       /* rightButton.interactable = false;
         leftButton.interactable = false;
         if (currentCharacter < characters.Length - 1)
         {
@@ -113,11 +122,11 @@ public class characterSelectionView : MonoBehaviour
             });
         }
         gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
-        gameplayView.instance.GetScores();
+        gameplayView.instance.GetScores();*/
     }
 
     public void MoveLeft()
-    {
+    {/*
         if (currentCharacter > 0)
         {
             if (selected)
@@ -149,7 +158,7 @@ public class characterSelectionView : MonoBehaviour
         }
         gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
         gameplayView.instance.GetScores();
-
+        */
     }
 
 
@@ -173,7 +182,7 @@ public class characterSelectionView : MonoBehaviour
     {
         gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
         selected = true;
-        characters[currentCharacter].GetComponent<Animator>().SetBool("Selected", true);
+        //characters[currentCharacter].GetComponent<Animator>().SetBool("Selected", true);
    
 
     }
@@ -228,6 +237,19 @@ public class characterSelectionView : MonoBehaviour
 
             }
             chickenGameModel.charactersSetted = true;
+
+
+
+           /*characters = new Transform[myNFT.Length];
+           characterNFTMap = new NFTInfo[myNFT.Length];
+            for (int i = 0; i < myNFT.Length; i++)
+            {
+                string charName = NameToSlugConvert(myNFT[i].name);
+                charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(charName);
+                characterNFTMap[i] = myNFT[i];
+
+            }
+           chickenGameModel.charactersSetted = true;*/
         }
 
         Done();
@@ -236,7 +258,7 @@ public class characterSelectionView : MonoBehaviour
     }
 
     // for skip to test all characters
-    public void Skip()
+    /*public void Skip()
     {
         var info = Resources.LoadAll("SinglePlayerPrefabs/DisplayModels", typeof(GameObject));
         characters = new Transform[info.Length];
@@ -271,6 +293,19 @@ public class characterSelectionView : MonoBehaviour
             temp.GetComponent<Animator>().runtimeAnimatorController = controller;
         }
 
+        Done();
+    }*/
+    //skip for new screen
+    public void Skip()
+    {
+        var info = Resources.LoadAll("SinglePlayerPrefabs/DisplaySprites/HeadShots", typeof(Sprite));
+        characterNFTMap = new NFTInfo[info.Length];
+        for (int i = 0; i < 5; i++)
+        {
+            string name = info[i].name;
+            charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(name);
+            characterNFTMap[i] = new NFTInfo { id = 175, name = name };
+        }
         Done();
     }
 

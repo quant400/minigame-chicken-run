@@ -30,15 +30,18 @@ public class characterSelectionView : MonoBehaviour
     [SerializeField]
     NFTInfo[] characterNFTMap;
 
-    //for new screen 
     //for new screen
     [SerializeField]
     Transform[] charButtons;
-
+    int currentStartIndex;
+    //for skip
+    bool skipping;
+    UnityEngine.Object[] info;
     public void Start()
     {
         observeCharacterSelectionBtns();
         observesessionCounter();
+        DisablePlay();
     }
     public void observesessionCounter()
     {
@@ -83,46 +86,67 @@ public class characterSelectionView : MonoBehaviour
          .Subscribe()
          .AddTo(this);
     }
-    //temp flag for skip 
-    bool skip = false;
-
    
 
     public void MoveRight()
     {
-       /* rightButton.interactable = false;
-        leftButton.interactable = false;
-        if (currentCharacter < characters.Length - 1)
-        {
-            if (selected)
-            {
-                characters[currentCharacter].GetComponent<Animator>().SetBool("Selected", false);
-                selected = false;
-            }
-            characters[currentCharacter].transform.localPosition += new Vector3(0, 0, sideCharZdisp);
-            currentCharacter++;
-            characters[currentCharacter].transform.DOLocalMove(characters[currentCharacter].transform.localPosition + new Vector3(0, 0, -sideCharZdisp), 0.5f);
-            cam.transform.DOMoveX(characters[currentCharacter].transform.position.x, 0.5f).OnStepComplete(() =>
-            {
+         /*rightButton.interactable = false;
+         leftButton.interactable = false;
+         if (currentCharacter < characters.Length - 1)
+         {
+             if (selected)
+             {
+                 characters[currentCharacter].GetComponent<Animator>().SetBool("Selected", false);
+                 selected = false;
+             }
+             characters[currentCharacter].transform.localPosition += new Vector3(0, 0, sideCharZdisp);
+             currentCharacter++;
+             characters[currentCharacter].transform.DOLocalMove(characters[currentCharacter].transform.localPosition + new Vector3(0, 0, -sideCharZdisp), 0.5f);
+             cam.transform.DOMoveX(characters[currentCharacter].transform.position.x, 0.5f).OnStepComplete(() =>
+             {
 
-                rightButton.interactable = true;
-                leftButton.interactable = true;
-            });
+                 rightButton.interactable = true;
+                 leftButton.interactable = true;
+             });
+         }
+         else
+         {
+             characters[currentCharacter].transform.localPosition += new Vector3(0, 0, sideCharZdisp);
+             currentCharacter = 0;
+             characters[currentCharacter].transform.DOLocalMove(characters[currentCharacter].transform.localPosition + new Vector3(0, 0, -sideCharZdisp), 0.5f);
+             cam.transform.DOMoveX(characters[currentCharacter].transform.position.x, 0.5f).OnStepComplete(() =>
+             {
+
+                 rightButton.interactable = true;
+                 leftButton.interactable = true;
+             });
+         }
+         gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
+         gameplayView.instance.GetScores();*/
+
+        currentStartIndex += 5;
+        if (skipping) 
+        {
+            if (currentStartIndex+5 >info.Length-1)
+                rightButton.gameObject.SetActive(false);
+            else
+                rightButton.gameObject.SetActive(true);
+            if(currentStartIndex>0)
+                leftButton.gameObject.SetActive(true);
+            SkipDisplayChars(currentStartIndex);
         }
         else
         {
-            characters[currentCharacter].transform.localPosition += new Vector3(0, 0, sideCharZdisp);
-            currentCharacter = 0;
-            characters[currentCharacter].transform.DOLocalMove(characters[currentCharacter].transform.localPosition + new Vector3(0, 0, -sideCharZdisp), 0.5f);
-            cam.transform.DOMoveX(characters[currentCharacter].transform.position.x, 0.5f).OnStepComplete(() =>
-            {
-
-                rightButton.interactable = true;
-                leftButton.interactable = true;
-            });
+            if (currentStartIndex+5 > myNFT.Length-1)
+                rightButton.gameObject.SetActive(false);
+            else
+                rightButton.gameObject.SetActive(true);
+            if (currentStartIndex > 0)
+                leftButton.gameObject.SetActive(true);
+            DisplayChar(currentStartIndex);
         }
-        gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
-        gameplayView.instance.GetScores();*/
+        
+      
     }
 
     public void MoveLeft()
@@ -159,8 +183,37 @@ public class characterSelectionView : MonoBehaviour
         gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
         gameplayView.instance.GetScores();
         */
-    }
 
+        currentStartIndex -= 5;
+        if (skipping)
+        {
+            if (currentStartIndex - 5 < 0)
+                leftButton.gameObject.SetActive(false);
+            else
+                leftButton.gameObject.SetActive(true);
+            if (currentStartIndex < info.Length)
+                rightButton.gameObject.SetActive(true);
+            SkipDisplayChars(currentStartIndex);
+        }
+        else
+        {
+            if (currentStartIndex - 5 < 0)
+                leftButton.gameObject.SetActive(false);
+            else
+                leftButton.gameObject.SetActive(true);
+            if (currentStartIndex < info.Length)
+                rightButton.gameObject.SetActive(true);
+            DisplayChar(currentStartIndex);
+        }
+    }
+    public void EnablePlay()
+    {
+        select.interactable = true;
+    }
+    public void DisablePlay()
+    {
+        select.interactable = false;
+    }
 
     public void Selected()
     {
@@ -187,6 +240,14 @@ public class characterSelectionView : MonoBehaviour
 
     }
 
+    // foire new character selection
+    public void UpdateSelected(int selected)
+    {
+        currentCharacter = currentStartIndex+selected;
+        gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
+        gameplayView.instance.GetScores();
+        
+    }
 
 
     internal void SetData(NFTInfo[] nFTData)
@@ -242,7 +303,7 @@ public class characterSelectionView : MonoBehaviour
 
            /*characters = new Transform[myNFT.Length];
            characterNFTMap = new NFTInfo[myNFT.Length];
-            for (int i = 0; i < myNFT.Length; i++)
+            for (int i = 0; i < 5; i++)
             {
                 string charName = NameToSlugConvert(myNFT[i].name);
                 charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(charName);
@@ -298,17 +359,38 @@ public class characterSelectionView : MonoBehaviour
     //skip for new screen
     public void Skip()
     {
-        var info = Resources.LoadAll("SinglePlayerPrefabs/DisplaySprites/HeadShots", typeof(Sprite));
+        skipping = true;
+        info = Resources.LoadAll("SinglePlayerPrefabs/DisplaySprites/HeadShots", typeof(Sprite));
         characterNFTMap = new NFTInfo[info.Length];
-        for (int i = 0; i < 5; i++)
-        {
-            string name = info[i].name;
-            charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(name);
-            characterNFTMap[i] = new NFTInfo { id = 175, name = name };
-        }
+        SkipDisplayChars(0);
         Done();
     }
+   
+    void SkipDisplayChars(int startingindex)
+    {
+        for (int i = 0; i < 5; i++)
+        { 
+            
+            if (i+startingindex>=info.Length)
+                charButtons[i].GetComponent<ButtonInfoHolder>().SetChar("null");
+            else
+            {
+                string name = info[i + startingindex].name;
+                charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(name);
+                characterNFTMap[i + startingindex] = new NFTInfo { id = 175, name = name };
+            }
+        }
+    }
+    void DisplayChar(int startingindex)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            string charName = NameToSlugConvert(myNFT[i+startingindex].name);
+            charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(charName);
+            characterNFTMap[i+startingindex] = myNFT[i+startingindex];
 
+        }
+    }
     private void Done()
     {
         buttonsToEnable.SetActive(true);

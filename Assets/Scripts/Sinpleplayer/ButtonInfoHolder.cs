@@ -33,9 +33,9 @@ public class ButtonInfoHolder : MonoBehaviour
 
     public void SetCurrent(Sprite img, int index)
     {
-        background.sprite = bg[index];
-        charPic.sprite = img;
-        charPic.color = new Color(225, 225, 225, 225);
+        //background.sprite = bg[index];
+        //charPic.sprite = img;
+        //charPic.color = new Color(225, 225, 225, 225);
     }
     public void SetChar(string name)
     {

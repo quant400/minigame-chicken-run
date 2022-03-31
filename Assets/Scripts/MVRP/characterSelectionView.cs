@@ -124,10 +124,10 @@ public class characterSelectionView : MonoBehaviour
          gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
          gameplayView.instance.GetScores();*/
 
-        currentStartIndex += 5;
+        currentStartIndex += 4;
         if (skipping) 
         {
-            if (currentStartIndex+5 >info.Length-1)
+            if (currentStartIndex+4 >info.Length-1)
                 rightButton.gameObject.SetActive(false);
             else
                 rightButton.gameObject.SetActive(true);
@@ -137,7 +137,7 @@ public class characterSelectionView : MonoBehaviour
         }
         else
         {
-            if (currentStartIndex+5 > myNFT.Length-1)
+            if (currentStartIndex+4 > myNFT.Length-1)
                 rightButton.gameObject.SetActive(false);
             else
                 rightButton.gameObject.SetActive(true);
@@ -184,10 +184,10 @@ public class characterSelectionView : MonoBehaviour
         gameplayView.instance.GetScores();
         */
 
-        currentStartIndex -= 5;
+        currentStartIndex -= 4;
         if (skipping)
         {
-            if (currentStartIndex - 5 < 0)
+            if (currentStartIndex - 4 < 0)
                 leftButton.gameObject.SetActive(false);
             else
                 leftButton.gameObject.SetActive(true);
@@ -197,7 +197,7 @@ public class characterSelectionView : MonoBehaviour
         }
         else
         {
-            if (currentStartIndex - 5 < 0)
+            if (currentStartIndex - 4 < 0)
                 leftButton.gameObject.SetActive(false);
             else
                 leftButton.gameObject.SetActive(true);
@@ -368,7 +368,7 @@ public class characterSelectionView : MonoBehaviour
    
     void SkipDisplayChars(int startingindex)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         { 
             
             if (i+startingindex>=info.Length)
@@ -383,7 +383,7 @@ public class characterSelectionView : MonoBehaviour
     }
     void DisplayChar(int startingindex)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         {
             string charName = NameToSlugConvert(myNFT[i+startingindex].name);
             charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(charName);

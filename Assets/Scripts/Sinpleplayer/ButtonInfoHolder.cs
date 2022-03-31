@@ -20,6 +20,8 @@ public class ButtonInfoHolder : MonoBehaviour
     [SerializeField]
     TMP_Text nameText, info;
     characterSelectionView CSV;
+    [SerializeField]
+    ButtonInfoHolder currentSelected;
     private void Awake()
     {
         bgIndex = Random.Range(0, bg.Length);
@@ -29,6 +31,12 @@ public class ButtonInfoHolder : MonoBehaviour
         ResetSlot();
     }
 
+    public void SetCurrent(Sprite img, int index)
+    {
+        background.sprite = bg[index];
+        charPic.sprite = img;
+        charPic.color = new Color(225, 225, 225, 225);
+    }
     public void SetChar(string name)
     {
         charName = name;
@@ -63,6 +71,7 @@ public class ButtonInfoHolder : MonoBehaviour
             CSV.DisablePlay();
             CSV.UpdateSelected(transform.GetSiblingIndex());
             UpdateInfo();
+            currentSelected.SetCurrent(charPic.sprite, bgIndex);
         }
        
     }

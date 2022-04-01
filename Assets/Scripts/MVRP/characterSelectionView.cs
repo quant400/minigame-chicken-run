@@ -300,7 +300,7 @@ public class characterSelectionView : MonoBehaviour
              chickenGameModel.charactersSetted = true;*/
 
 
-            Debug.Log("A");
+           skipping = false;
            characters = new Transform[myNFT.Length];
            characterNFTMap = new NFTInfo[myNFT.Length];
             
@@ -379,17 +379,16 @@ public class characterSelectionView : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            Debug.Log(i);
-            if (i + currentStartIndex >= myNFT.Length)
+            if (i + startingindex >= myNFT.Length)
             {
                 charButtons[i].GetComponent<ButtonInfoHolder>().SetChar("null");
             }
 
             else
             {
-                string charName = NameToSlugConvert(myNFT[i].name);
+                string charName = NameToSlugConvert(myNFT[i+startingindex].name);
                 charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(charName);
-                characterNFTMap[i] = myNFT[i];
+                characterNFTMap[i+startingindex] = myNFT[i+startingindex];
             }
         }
         chickenGameModel.charactersSetted = true;

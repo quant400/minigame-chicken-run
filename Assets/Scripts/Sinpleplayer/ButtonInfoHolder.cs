@@ -71,7 +71,7 @@ public class ButtonInfoHolder : MonoBehaviour
             CSV.DisablePlay();
             CSV.UpdateSelected(transform.GetSiblingIndex());
             UpdateInfo();
-            currentSelected.SetCurrent(charPic.sprite, bgIndex);
+            //currentSelected.SetCurrent(charPic.sprite, bgIndex);
         }
        
     }

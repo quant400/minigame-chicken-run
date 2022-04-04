@@ -24,7 +24,7 @@ public class ButtonInfoHolder : MonoBehaviour
     ButtonInfoHolder currentSelected;
     private void Awake()
     {
-        bgIndex = Random.Range(0, bg.Length);
+        //bgIndex = Random.Range(0, bg.Length);
         background = gameObject.GetComponent<Image>();
         charPic = transform.GetChild(0).GetComponent<Image>();
         CSV = transform.GetComponentInParent<characterSelectionView>();
@@ -47,6 +47,7 @@ public class ButtonInfoHolder : MonoBehaviour
         }
         else
         {
+            bgIndex = Random.Range(0, bg.Length);
             background.sprite = bg[bgIndex];
             charPic.sprite = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplaySprites/HeadShots", name), typeof(Sprite)) as Sprite;
             charPic.color = new Color(225, 225, 225, 225);

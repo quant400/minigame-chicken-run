@@ -137,6 +137,7 @@ public class characterSelectionView : MonoBehaviour
         }
         else
         {
+            Debug.Log(myNFT.Length);
             if (currentStartIndex+4 > myNFT.Length-1)
                 rightButton.gameObject.SetActive(false);
             else
@@ -201,7 +202,7 @@ public class characterSelectionView : MonoBehaviour
                 leftButton.gameObject.SetActive(false);
             else
                 leftButton.gameObject.SetActive(true);
-            if (currentStartIndex < myNFT.Length)
+            if (currentStartIndex < myNFT.Length && currentStartIndex > 0)
                 rightButton.gameObject.SetActive(true);
             DisplayChar(currentStartIndex);
         }

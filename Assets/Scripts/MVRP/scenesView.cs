@@ -49,13 +49,13 @@ public class scenesView : MonoBehaviour
         switch (scene)
         {
             case 0:
-                SceneManager.LoadScene(chickenGameModel.singlePlayerScene4.sceneName);
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene5.sceneName);
                 break;
             case 1:
-                SceneManager.LoadScene(chickenGameModel.singlePlayerScene3.sceneName);
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene5.sceneName);
                 break;
             case 2:
-                SceneManager.LoadScene(chickenGameModel.singlePlayerScene2.sceneName);
+                SceneManager.LoadScene(chickenGameModel.singlePlayerScene5.sceneName);
                 break;
             case 3:
                 SceneManager.LoadScene(chickenGameModel.singlePlayerScene1.sceneName);

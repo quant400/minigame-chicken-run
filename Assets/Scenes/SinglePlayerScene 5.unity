@@ -986,9 +986,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0838984d5bb958843896bbbfac1ec624, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d5d579c56eefda9478511efeb7aea22a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12545,9 +12545,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a96db865d083ea446b14e8305f01aff0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0cf6e817c8a1d284ca1841cc1f4536d6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -19151,7 +19151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19a400c211ab4e46a0e592d1377dd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chickenPrefab: {fileID: 8380432902268795466, guid: ffc820d0190e24a4b93d26077dab78ae, type: 3}
+  chickenPrefab: {fileID: 213036252266223120, guid: 985c485b38e19d242a7bfbd1de7f00c7, type: 3}
   characters: []
   spawnPoint: {fileID: 680193108}
   chickenSpawnPoints:

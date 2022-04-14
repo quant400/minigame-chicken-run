@@ -24,7 +24,7 @@ using UnityEngine.SceneManagement;
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if ((scene.name == chickenGameModel.singlePlayerScene1.sceneName)||(scene.name == chickenGameModel.singlePlayerScene2.sceneName) || (scene.name == chickenGameModel.singlePlayerScene3.sceneName) || (scene.name == chickenGameModel.singlePlayerScene4.sceneName)) 
+        if ((scene.name == chickenGameModel.singlePlayerScene1.sceneName)||(scene.name == chickenGameModel.singlePlayerScene2.sceneName) || (scene.name == chickenGameModel.singlePlayerScene3.sceneName) || (scene.name == chickenGameModel.singlePlayerScene4.sceneName) || (scene.name == chickenGameModel.singlePlayerScene5.sceneName)) 
         {
             Observable.Timer(TimeSpan.Zero)
                         .DelayFrame(2)

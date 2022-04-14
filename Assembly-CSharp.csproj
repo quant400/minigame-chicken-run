@@ -76,6 +76,7 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20DecimalsExample.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\MoonLevelSettings.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendTransactionExample.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\ERC1155.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\ButtonInfoHolder.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\AICharacterControl.cs" />
     <Compile Include="Assets\Saif\Code\DataAPI.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\LevelSFXController.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20NameExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\ERC721.cs" />
     <Compile Include="Assets\Scripts\MVRP\scenesView.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\PortalScript.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\WebGL\Web3GL.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfBatchExample.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ThirdPersonCharacter.cs" />
@@ -146,7 +149,6 @@
     <Compile Include="Assets\Scripts\MVRP\gameplayView.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\PortalScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\36.56120f7d.chunk.js.LICENSE.txt" />

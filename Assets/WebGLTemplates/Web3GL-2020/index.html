@@ -74,7 +74,9 @@
          var script = document.createElement("script");
          script.src = loaderUrl;
          script.onload = () => {
-           createUnityInstance(document.querySelector("#unity-canvas"), {
+          createUnityInstance(canvas, config, (progress) => {
+             progressBarFull.style.width = 100 * progress + "%";
+           },{
         dataUrl: "Build/{{{ DATA_FILENAME }}}",
         frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
         codeUrl: "Build/{{{ CODE_FILENAME }}}",
@@ -91,6 +93,7 @@
       })
       .then((instance) =>
       {
+        loadingBar.style.display = "none"
         unityInstance = instance;
       })
       .catch((message) => { console.warn(message); });

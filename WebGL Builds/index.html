@@ -31,9 +31,9 @@
       <script>var buildUrl = "Build";
          var loaderUrl = buildUrl + "/WebGL Builds.loader.js";
          var config = {
-           dataUrl: buildUrl + "/WebGL Builds.data",
-           frameworkUrl: buildUrl + "/WebGL Builds.framework.js",
-           codeUrl: buildUrl + "/WebGL Builds.wasm",
+           dataUrl: buildUrl + "/WebGL Builds.data.unityweb",
+           frameworkUrl: buildUrl + "/WebGL Builds.framework.js.unityweb",
+           codeUrl: buildUrl + "/WebGL Builds.wasm.unityweb",
            streamingAssetsUrl: "StreamingAssets",
            companyName: "Crypto Fight Club",
            productName: "Chicken Run",
@@ -69,9 +69,9 @@
           createUnityInstance(canvas, config, (progress) => {
              progressBarFull.style.width = 100 * progress + "%";
            },{
-        dataUrl: "Build/WebGL Builds.data",
-        frameworkUrl: "Build/WebGL Builds.framework.js",
-        codeUrl: "Build/WebGL Builds.wasm",
+        dataUrl: "Build/WebGL Builds.data.unityweb",
+        frameworkUrl: "Build/WebGL Builds.framework.js.unityweb",
+        codeUrl: "Build/WebGL Builds.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Crypto Fight Club",
         productName: "Chicken Run",

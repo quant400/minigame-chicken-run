@@ -70,7 +70,7 @@
          #if BACKGROUND_FILENAME
          canvas.style.background = "url('" + buildUrl + "/{{{ BACKGROUND_FILENAME.replace(/'/g, '%27') }}}') center / cover";
          #endif
-         loadingBar.style.display = "block";
+         loadingBar.style.display = "flex";
          
          var script = document.createElement("script");
          script.src = loaderUrl;

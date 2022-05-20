@@ -36,8 +36,7 @@ body {
     align-items: center;
 }
 #unity-loading-bar {
-    position: absolute; 
-    width:100%;
+    position: absolute;
     left: 50%; 
     top: 50%; 
     transform: translate(-50%, -50%); 
@@ -49,13 +48,14 @@ body {
 }
 
 #unity-logo {
+    width: 60%
     text-align: center;
 }
 #unity-logo img {
-    max-width: 80%;
+    max-width: 100%;
 }
 #unity-progress-bar-empty {
-    width: 80%;
+    width: 60%;
     height: 24px;
     margin: 10px 20px 20px 10px;
     text-align: center;

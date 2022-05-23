@@ -340,6 +340,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8124086255594914589, guid: 4a3c32b1f9bf2864a902eec21550b42d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a3c32b1f9bf2864a902eec21550b42d, type: 3}
 --- !u!4 &83102956 stripped
@@ -363,8 +367,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.529058, y: 0.3558026, z: 1.6333008}
-  m_Center: {x: -0.19882894, y: 0.17726965, z: 0.05130005}
+  m_Size: {x: 3.3642874, y: 2.266673, z: 3.170517}
+  m_Center: {x: -0.20604731, y: 1.1327072, z: 0.16407013}
 --- !u!114 &83102959
 MonoBehaviour:
   m_ObjectHideFlags: 0

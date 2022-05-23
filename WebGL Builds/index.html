@@ -14,14 +14,15 @@
    <body>
       <noscript>You need to enable JavaScript to run this app.</noscript>
       <div id="root"></div>
-      <div id="unity-container" class="unity-desktop">
-         <canvas id="unity-canvas" width="1920" height="1080"></canvas>
-         <div id="unity-loading-bar">
-            <div id="unity-logo"></div>
-            <div id="unity-progress-bar-empty">
-               <div id="unity-progress-bar-full"></div>
-            </div>
+      <div id="unity-container" class="unity-desktop" style="background-color:#0c0c23">
+      	 <div id="unity-loading-bar">
+      	      <img src="logo.png">
+              <div id="unity-logo"></div>
+              <div id="unity-progress-bar-empty">
+                 <div id="unity-progress-bar-full"></div>
+              </div>
          </div>
+         <canvas id="unity-canvas" width="1920" height="1080"></canvas>
          <div id="unity-footer">
             <div id="unity-webgl-logo"></div>
             <div id="unity-fullscreen-button"></div>
@@ -30,9 +31,9 @@
       <script>var buildUrl = "Build";
          var loaderUrl = buildUrl + "/WebGL Builds.loader.js";
          var config = {
-           dataUrl: buildUrl + "/WebGL Builds.data.gz",
-           frameworkUrl: buildUrl + "/WebGL Builds.framework.js.gz",
-           codeUrl: buildUrl + "/WebGL Builds.wasm.gz",
+           dataUrl: buildUrl + "/WebGL Builds.data.unityweb",
+           frameworkUrl: buildUrl + "/WebGL Builds.framework.js.unityweb",
+           codeUrl: buildUrl + "/WebGL Builds.wasm.unityweb",
            streamingAssetsUrl: "StreamingAssets",
            companyName: "Crypto Fight Club",
            productName: "Chicken Run",
@@ -60,15 +61,17 @@
              canvas.style.width = "100vw";
              canvas.style.height = "100vh";
          }
-         loadingBar.style.display = "block";
+         loadingBar.style.display = "flex";
          
          var script = document.createElement("script");
          script.src = loaderUrl;
          script.onload = () => {
-           createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/WebGL Builds.data.gz",
-        frameworkUrl: "Build/WebGL Builds.framework.js.gz",
-        codeUrl: "Build/WebGL Builds.wasm.gz",
+          createUnityInstance(canvas, config, (progress) => {
+             progressBarFull.style.width = 100 * progress + "%";
+           },{
+        dataUrl: "Build/WebGL Builds.data.unityweb",
+        frameworkUrl: "Build/WebGL Builds.framework.js.unityweb",
+        codeUrl: "Build/WebGL Builds.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Crypto Fight Club",
         productName: "Chicken Run",
@@ -76,6 +79,7 @@
       })
       .then((instance) =>
       {
+        loadingBar.style.display = "none"
         unityInstance = instance;
       })
       .catch((message) => { console.warn(message); });

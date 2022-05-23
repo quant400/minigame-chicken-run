@@ -30,7 +30,12 @@ public class webLoginView : MonoBehaviour
 
     // temp for skip
     [SerializeField]
-    GameObject skipButton;
+    GameObject skipButton; 
+    [SerializeField]
+    GameObject tryoutButton;
+    [SerializeField]
+    GameObject tryoutCanvas;
+
     public void checkUSerLoggedAtStart()
     {
         if (chickenGameModel.userIsLogged.Value)
@@ -43,12 +48,13 @@ public class webLoginView : MonoBehaviour
 
         }
     }
-    public void OnLogin(Button loginBtn, Button skipBtn )
+    public void OnLogin(Button loginBtn, Button skipBtn, Button tryoutBtn)
     {
         if (chickenGameModel.userIsLogged.Value)
         {
             loginBtn.GetComponent<Button>().interactable = false;
             skipBtn.GetComponent<Button>().interactable = false;
+            tryoutBtn.GetComponent<Button>().interactable = false;
             nftGetter.savedLoggedDisplay();
         }
         else
@@ -56,7 +62,7 @@ public class webLoginView : MonoBehaviour
             Web3Connect();
             OnConnected();
         }
-
+        gameplayView.instance.isTryout = false;
     }
 
     async private void OnConnected()
@@ -75,6 +81,7 @@ public class webLoginView : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         loginButton.GetComponent<Button>().interactable = false;
         skipButton.GetComponent<Button>().interactable = false;
+        tryoutButton.GetComponent<Button>().interactable = false;
         nftGetter.GetNFT();
 
 
@@ -84,6 +91,19 @@ public class webLoginView : MonoBehaviour
     {
         nftGetter.Skip();
     }
+
+    public void OnTryout()
+    {
+        gameplayView.instance.isTryout = true; 
+        foreach(Transform t in transform)
+        {
+            t.gameObject.SetActive(false);
+        }
+        transform.GetChild(0).gameObject.SetActive(true);
+        tryoutCanvas.SetActive(true);
+        nftGetter.Skip();
+    }
+
 }
 #endif
 

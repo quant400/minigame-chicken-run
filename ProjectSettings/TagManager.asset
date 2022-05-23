@@ -15,6 +15,7 @@ TagManager:
   - SFXPlayer
   - Bot
   - Water
+  - PlayerUI
   layers:
   - Default
   - TransparentFX

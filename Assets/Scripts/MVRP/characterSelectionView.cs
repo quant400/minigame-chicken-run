@@ -123,7 +123,6 @@ public class characterSelectionView : MonoBehaviour
          }
          gameplayView.instance.chosenNFT = characterNFTMap[currentCharacter];
          gameplayView.instance.GetScores();*/
-
         currentStartIndex += 4;
         if (skipping) 
         {
@@ -137,7 +136,6 @@ public class characterSelectionView : MonoBehaviour
         }
         else
         {
-            Debug.Log(myNFT.Length);
             if (currentStartIndex+4 > myNFT.Length-1)
                 rightButton.gameObject.SetActive(false);
             else
@@ -354,11 +352,19 @@ public class characterSelectionView : MonoBehaviour
     //skip for new screen
     public void Skip()
     {
-        skipping = true;
-        info = Resources.LoadAll("SinglePlayerPrefabs/DisplaySprites/HeadShots", typeof(Sprite));
-        characterNFTMap = new NFTInfo[info.Length];
-        SkipDisplayChars(0);
-        Done();
+        if (!gameplayView.instance.isTryout)
+        {
+            skipping = true;
+            info = Resources.LoadAll("SinglePlayerPrefabs/DisplaySprites/HeadShots", typeof(Sprite));
+            characterNFTMap = new NFTInfo[info.Length];
+            SkipDisplayChars(0);
+            Done();
+        }
+        else
+        {
+            gameplayView.instance.chosenNFT = new NFTInfo { name = "a-rod", id = 175 };
+            selected = true;
+        }
     }
    
     void SkipDisplayChars(int startingindex)

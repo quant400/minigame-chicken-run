@@ -42,7 +42,7 @@ public class GameOverScript : MonoBehaviour
             canvasToDisable = SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject;
         }
         currentNFT = SingleplayerGameControler.instance.chosenNFT;
-        if (SingleplayerGameControler.instance.GetSessions() <=10)
+        if (SingleplayerGameControler.instance.GetSessions() <=10 && !gameplayView.instance.isTryout)
         {
             if (SingleplayerGameControler.instance.isRestApi)
             {
@@ -56,7 +56,7 @@ public class GameOverScript : MonoBehaviour
             }
         }
         SingleplayerGameControler.instance.GetScores();
-
+      
 
     }
     public void ObserveGameObverBtns()
@@ -174,6 +174,7 @@ public class GameOverScript : MonoBehaviour
     {
         scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
         chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnBackToMenu;
+       
     }
 
     string NameToSlugConvert(string name)

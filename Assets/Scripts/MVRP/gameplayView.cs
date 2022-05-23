@@ -36,6 +36,8 @@ public class gameplayView : MonoBehaviour
     public GameObject gameOverObject;
 
     bool sfxMuted = false;
+
+    public bool isTryout=false;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -68,7 +70,8 @@ public class gameplayView : MonoBehaviour
         player.GetComponent<ThirdPersonController>().SetStarted(true);
         GetScores();
         Debug.Log(chosenNFT.id);
-        DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id);
+        if(!instance.isTryout)
+            DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id);
         chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameRunning;
 
     }

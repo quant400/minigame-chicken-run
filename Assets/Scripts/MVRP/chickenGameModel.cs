@@ -33,6 +33,7 @@ public struct chickenGameModel
         OnBackToCharacterSelection,
         OnExit,
         onSceneLoaded,
+        onTryOut,
     }
     public enum sceneLoadType
     {

@@ -31,11 +31,20 @@ public class gameEndView : MonoBehaviour
     GameObject localDisplay;
     // [SerializeField]
     //SinglePlayerSpawner spawner;
+    [SerializeField]
+    GameObject tryoutCanvas;
+    private void OnEnable()
+    {
+        if (gameplayView.instance.isTryout)
+            GameObject.FindGameObjectWithTag("PlayerUI").SetActive(false);
+    }
     public void Start()
     {
         observeScoreChange();
         endGameAfterValueChange();
         ObserveGameObverBtns();
+        if (gameplayView.instance.isTryout)
+            tryAgain.gameObject.SetActive(false);
     }
     public void setScoreAtStart()
     {
@@ -220,13 +229,15 @@ public class gameEndView : MonoBehaviour
 
     }
     public void TryAgain()
-    {
-        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnCharacterSelected;
+    { 
+            chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnCharacterSelected;
+   
     }
     public void goToMain()
     {
         scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
         chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnBackToMenu;
+        
     }
 
     string NameToSlugConvert(string name)

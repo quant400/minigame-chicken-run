@@ -37,14 +37,25 @@ public class gameEndView : MonoBehaviour
     {
         if (gameplayView.instance.isTryout)
             GameObject.FindGameObjectWithTag("PlayerUI").SetActive(false);
+        if (gameplayView.instance.isTryout)
+        {
+            tryAgain.gameObject.SetActive(false);
+            currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+            dailyScore.text = "DAILY SCORE : " + 0;
+            allTimeScore.text = "ALL TIME SCORE : " + 0;
+            sessionCounterText.text = "NFT DAILY RUNS : " + 0 + "/10";
+        }
+        else
+        {
+            tryAgain.gameObject.SetActive(true);
+        }
     }
     public void Start()
     {
         observeScoreChange();
         endGameAfterValueChange();
         ObserveGameObverBtns();
-        if (gameplayView.instance.isTryout)
-            tryAgain.gameObject.SetActive(false);
+       
     }
     public void setScoreAtStart()
     {

@@ -42,15 +42,15 @@ public class LevelSFXController : MonoBehaviour
         if (SFX.volume==0)
         {
             SFX.volume = defaultMusicVol;
-            sfxButton.color += new Color(0, 0, 0, 0.5f);
-            sfxButton.transform.GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, 0.5f);
+            sfxButton.color = new Color(0.9450981f, 0.1215686f, 0.172549f, 1f);
+            sfxButton.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1f);
             PlayerPrefs.SetString("SFX", "on");
             gameplayView.instance.SetSFXMuted(false);
         }
         else
         {
-            sfxButton.color -= new Color(0, 0, 0, 0.5f);
-            sfxButton.transform.GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, 0.5f);
+            sfxButton.color = new Color(1,1,1, 0.5f);
+            sfxButton.transform.GetChild(0).GetComponent<Image>().color = new Color(0.9450981f, 0.1215686f, 0.172549f, 0.5f);
             SFX.volume = 0;
             PlayerPrefs.SetString("SFX", "off");
             gameplayView.instance.SetSFXMuted(true);
@@ -62,15 +62,15 @@ public class LevelSFXController : MonoBehaviour
     {
         if(music.volume==0)
         {
-            musicButton.color += new Color(0, 0, 0, 0.5f);
-            musicButton.transform.GetChild(0).GetComponent<Image>().color += new Color(0, 0, 0, 0.5f);
+            musicButton.color = new Color(0.9450981f, 0.1215686f, 0.172549f, 1f);
+            musicButton.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1f);
             music.volume = defaultMusicVol;
             PlayerPrefs.SetString("Music", "on");
         }
         else
         {
-            musicButton.color -= new Color(0, 0, 0, 0.5f);
-            musicButton.transform.GetChild(0).GetComponent<Image>().color -= new Color(0, 0, 0, 0.5f);
+            musicButton.color = new Color(1,1,1, 0.5f);
+            musicButton.transform.GetChild(0).GetComponent<Image>().color = new Color(0.9450981f, 0.1215686f, 0.172549f, 0.5f);
             music.volume = 0;
             PlayerPrefs.SetString("Music", "off");
         }

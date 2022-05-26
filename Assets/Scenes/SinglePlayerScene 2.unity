@@ -6444,18 +6444,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 144250053}
-    - target: {fileID: 251470972025256773, guid: 300385bed0944204daa0d2b1592e14ad, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MuteMusic
-      objectReference: {fileID: 0}
     - target: {fileID: 251470972795370103, guid: 300385bed0944204daa0d2b1592e14ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 144250053}
-    - target: {fileID: 251470972795370103, guid: 300385bed0944204daa0d2b1592e14ad, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MuteSFX
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 300385bed0944204daa0d2b1592e14ad, type: 3}
 --- !u!114 &187630838 stripped

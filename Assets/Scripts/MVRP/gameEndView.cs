@@ -59,6 +59,7 @@ public class gameEndView : MonoBehaviour
     }
     public void setScoreAtStart()
     {
+        tryAgain.gameObject.SetActive(false);
         if (canvasToDisable == null)
         {
             canvasToDisable = gameplayView.instance.gameObject.transform.GetChild(0).gameObject;

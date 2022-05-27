@@ -6,7 +6,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"E:/game-deployment-builds/chicken-run/WebGL Builds;D:/chiken/minigame-chicken-run/WebGL Builds;C:/Users/patat/OneDrive/Desktop/Catch the chicken/minigame-chicken-run/WebGL Builds;/Users/qasimali/Documents/Work/Felix/minigame-chicken-run/WebGL Builds;E:/Contracts/Games/Animi/Builds/web2;E:/Contracts/Games/Animi/Builds/web;/Users/qasimali/Documents/Work/Felix/CatchTheChicken/WebGL Builds;C:/xampp/htdocs/testbuilds;E:/xampp/htdocs/testbuilds;/Users/qasimali/Documents/Work/Felix/CatchTheChickenBuild/CatchTheChickenBuild\"}"
+                "value": "{\"m_Value\":\"E:/minigame-chicken-run/WebGL Builds;E:/game-deployment-builds/chicken-run/WebGL Builds;D:/chiken/minigame-chicken-run/WebGL Builds;C:/Users/patat/OneDrive/Desktop/Catch the chicken/minigame-chicken-run/WebGL Builds;/Users/qasimali/Documents/Work/Felix/minigame-chicken-run/WebGL Builds;E:/Contracts/Games/Animi/Builds/web2;E:/Contracts/Games/Animi/Builds/web;/Users/qasimali/Documents/Work/Felix/CatchTheChicken/WebGL Builds;C:/xampp/htdocs/testbuilds;E:/xampp/htdocs/testbuilds\"}"
             },
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",

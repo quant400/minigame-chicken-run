@@ -15,11 +15,8 @@ body {
     background: #0c0c23;
 }
 #unity-container {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+      width: 100%;
+    height: 100%;
 }
 #unity-canvas {
     width: 100%;
@@ -39,22 +36,23 @@ body {
     align-items: center;
 }
 #unity-loading-bar {
-    width: 100%;
-    flex: 1 1 auto;
+    position: absolute;
+    left: 50%; 
+    top: 50%; 
+    transform: translate(-50%, -50%); 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 60vh;
-    background-color: #0c0c23;
-    margin-left: 40vh;
+    
 }
 
 #unity-logo {
+    width: 60%
     text-align: center;
 }
 #unity-logo img {
-    max-width: 80%;
+    max-width: 100%;
 }
 #unity-progress-bar-empty {
     width: 100%;

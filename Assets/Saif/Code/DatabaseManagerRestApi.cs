@@ -123,6 +123,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
         using (UnityWebRequest request = UnityWebRequest.Put("https://api.cryptofightclub.io/game/sdk/chicken/end-session", idJsonData))
         {
+            request.timeout= 5;
             byte[] bodyRaw = Encoding.UTF8.GetBytes(idJsonData);
             request.method = "POST";
             request.SetRequestHeader("Accept", "application/json");
@@ -145,7 +146,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
                 if (gameplayView.instance.GetSessions() <= 10 && scoreUpdateTried<10)
                 {
                     scoreUpdateTried++;
-                    gameplayView.instance.transform.GetComponentInChildren<gameEndView>().setScoreAtStart();
+                    gameplayView.instance.transform.GetComponentInChildren<gameEndView>().Invoke("setScoreAtStart", 6);
                 }
                 Debug.Log("error in server");
             }

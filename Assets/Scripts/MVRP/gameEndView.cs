@@ -49,6 +49,11 @@ public class gameEndView : MonoBehaviour
         {
             tryAgain.gameObject.SetActive(true);
         }
+        AudioSource ad = GetComponent<AudioSource>();
+        ad.clip = gameOverClip;
+        ad.loop = false;
+        ad.volume = 0.2f;
+        ad.Play();
     }
     public void Start()
     {
@@ -59,6 +64,7 @@ public class gameEndView : MonoBehaviour
     }
     public void setScoreAtStart()
     {
+        tryAgain.gameObject.SetActive(false);
         if (canvasToDisable == null)
         {
             canvasToDisable = gameplayView.instance.gameObject.transform.GetChild(0).gameObject;
@@ -151,11 +157,7 @@ public class gameEndView : MonoBehaviour
         }
 
 
-        AudioSource ad =GetComponent<AudioSource>();
-        ad.clip = gameOverClip;
-        ad.loop = false;
-        ad.volume = 0.2f;
-        ad.Play();
+       
         //characters = spawner.GetCharacterList();
         Debug.Log("Load character");
         Destroy(GameObject.FindGameObjectWithTag("Player"));

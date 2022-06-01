@@ -2905,7 +2905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4381750605995796525, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -862756.06
+      value: -928166.4
       objectReference: {fileID: 0}
     - target: {fileID: 4381750606124767087, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_fontSize
@@ -3283,6 +3283,10 @@ PrefabInstance:
       propertyPath: tryout
       value: 
       objectReference: {fileID: 6324826}
+    - target: {fileID: 8126445882098143855, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
+      propertyPath: tryagain
+      value: 
+      objectReference: {fileID: 1911314304}
     - target: {fileID: 8126445882098143855, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: tryoutcanvas
       value: 
@@ -6277,6 +6281,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828359434}
   m_CullTransparentMesh: 1
+--- !u!114 &1911314304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8126445881769203818, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
+  m_PrefabInstance: {fileID: 922326783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1950855534
 GameObject:
   m_ObjectHideFlags: 0

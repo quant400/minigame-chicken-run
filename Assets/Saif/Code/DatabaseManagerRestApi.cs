@@ -14,6 +14,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
     public static DatabaseManagerRestApi _instance;
     ReactiveProperty<int> sessionCounterReactive = new ReactiveProperty<int>();
     int localID;
+    public int scoreUpdateTried=0;
     private void Awake()
     {
         _instance = this;
@@ -69,6 +70,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
   
     public void startSessionFromRestApi(int _assetID)
     {
+        scoreUpdateTried = 0;
         StartCoroutine(startSessionApi("https://api.cryptofightclub.io/game/sdk/chicken/start-session", _assetID));
     }
 
@@ -121,6 +123,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
         using (UnityWebRequest request = UnityWebRequest.Put("https://api.cryptofightclub.io/game/sdk/chicken/end-session", idJsonData))
         {
+            request.timeout= 5;
             byte[] bodyRaw = Encoding.UTF8.GetBytes(idJsonData);
             request.method = "POST";
             request.SetRequestHeader("Accept", "application/json");
@@ -131,13 +134,20 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
                 Debug.Log("posted Score in function");
                 Debug.Log(idJsonData);
-
+                //Enable try again button once server responds with new score update.
+                gameplayView.instance.gameObject.GetComponent<uiView>().SetTryAgain(true);
                 getDataFromRestApi(postedData.id);
 
 
             }
             else
             {
+                //if server responded with an error and resend score 
+                if (gameplayView.instance.GetSessions() <= 10 && scoreUpdateTried<10)
+                {
+                    scoreUpdateTried++;
+                    gameplayView.instance.transform.GetComponentInChildren<gameEndView>().Invoke("setScoreAtStart", 6);
+                }
                 Debug.Log("error in server");
             }
 

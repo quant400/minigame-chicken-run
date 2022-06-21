@@ -21,7 +21,7 @@ public class characterSelectionView : MonoBehaviour
     [SerializeField]
     float sideCharZdisp;
     [SerializeField]
-    Button rightButton, leftButton , select;
+    Button rightButton, leftButton , select, backButton;
     NFTInfo[] myNFT;
     [SerializeField]
     RuntimeAnimatorController controller;
@@ -83,6 +83,13 @@ public class characterSelectionView : MonoBehaviour
          .Where(_ => PlaySounds.instance != null)
          .Do(_ => PlaySounds.instance.Play())
          .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnCharacterSelected)
+         .Subscribe()
+         .AddTo(this);
+
+        backButton.OnClickAsObservable()
+         .Do(_ => BackButton())
+         .Where(_ => PlaySounds.instance != null)
+         .Do(_ => PlaySounds.instance.Play())
          .Subscribe()
          .AddTo(this);
     }
@@ -406,7 +413,11 @@ public class characterSelectionView : MonoBehaviour
         ButtonToDisable.SetActive(false);
     }
 
-
+    void BackButton()
+    {
+        Debug.Log("reached");
+        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.Onlogged;
+    }
 
     string NameToSlugConvert(string name)
     {

@@ -26,7 +26,7 @@ public class ButtonInfoHolder : MonoBehaviour
     {
         //bgIndex = Random.Range(0, bg.Length);
         background = gameObject.GetComponent<Image>();
-        charPic = transform.GetChild(0).GetComponent<Image>();
+        charPic = transform.GetChild(0).GetChild(0).GetComponent<Image>();
         CSV = transform.GetComponentInParent<characterSelectionView>();
         ResetSlot();
     }
@@ -95,6 +95,6 @@ public class ButtonInfoHolder : MonoBehaviour
     {
         if (chickenGameModel.currentNFTSession<10)
             CSV.EnablePlay();
-        info.text = "PLAYED " + "<color=red>"+ chickenGameModel.currentNFTSession +"</color>" + " OUT OF <color=red> 10 </color> DAILY GAMES";
+        info.text = "PLAYED " + "<color=black>"+ chickenGameModel.currentNFTSession +"</color>" + " OUT OF <color=black> 10 </color> DAILY GAMES";
     }
 }

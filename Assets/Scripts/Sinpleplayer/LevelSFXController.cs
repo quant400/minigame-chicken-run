@@ -12,12 +12,16 @@ public class LevelSFXController : MonoBehaviour
     Image sfxButton, musicButton;
     float defaultMusicVol;
     float defaultSFXVol;
+    Sprite regularImage;
+    [SerializeField]
+    Sprite disableImage;
     private void Start()
     {
         SFX = transform.GetChild(0).GetComponent<AudioSource>();
         music = transform.GetChild(1).GetComponent<AudioSource>();
         defaultMusicVol = music.volume;
         defaultSFXVol = SFX.volume;
+        regularImage = sfxButton.sprite;
         //Debug.Log((PlayerPrefs.GetString("SFX"), PlayerPrefs.GetString("Music"), gameplayView.instance.GetSFXMuted()));
         if(PlayerPrefs.HasKey("Music"))
         {
@@ -42,15 +46,15 @@ public class LevelSFXController : MonoBehaviour
         if (SFX.volume==0)
         {
             SFX.volume = defaultMusicVol;
-            sfxButton.color = new Color(0.9450981f, 0.1215686f, 0.172549f, 1f);
-            sfxButton.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+            sfxButton.sprite = regularImage;// new Color(0.9450981f, 0.1215686f, 0.172549f, 1f);
+            sfxButton.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1);
             PlayerPrefs.SetString("SFX", "on");
             gameplayView.instance.SetSFXMuted(false);
         }
         else
         {
-            sfxButton.color = new Color(1,1,1, 1);
-            sfxButton.transform.GetChild(0).GetComponent<Image>().color = new Color(0.9450981f, 0.1215686f, 0.172549f, 1);
+            sfxButton.sprite = disableImage;
+            sfxButton.transform.GetChild(0).GetComponent<Image>().color = new Color(0.9450981f, 0.1215686f, 0.172549f, 1f);
             SFX.volume = 0;
             PlayerPrefs.SetString("SFX", "off");
             gameplayView.instance.SetSFXMuted(true);
@@ -62,15 +66,15 @@ public class LevelSFXController : MonoBehaviour
     {
         if(music.volume==0)
         {
-            musicButton.color = new Color(0.9450981f, 0.1215686f, 0.172549f, 1f);
-            musicButton.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+            musicButton.sprite = regularImage;//new Color(0.9450981f, 0.1215686f, 0.172549f, 1f);
+            musicButton.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
             music.volume = defaultMusicVol;
             PlayerPrefs.SetString("Music", "on");
         }
         else
         {
-            musicButton.color = new Color(1,1,1, 1);
-            musicButton.transform.GetChild(0).GetComponent<Image>().color = new Color(0.9450981f, 0.1215686f, 0.172549f, 1);
+            musicButton.sprite = disableImage;
+            musicButton.transform.GetChild(0).GetComponent<Image>().color = new Color(0.9450981f, 0.1215686f, 0.172549f, 1f);
             music.volume = 0;
             PlayerPrefs.SetString("Music", "off");
         }

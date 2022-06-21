@@ -58667,6 +58667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxButton: {fileID: 1804235448}
   musicButton: {fileID: 1804235449}
+  disableImage: {fileID: 21300000, guid: 7673312926cd92e42a4942068c5803d8, type: 3}
 --- !u!4 &2039679310
 Transform:
   m_ObjectHideFlags: 0

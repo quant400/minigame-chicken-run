@@ -31,6 +31,8 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
     GameObject endGameObject;
     [SerializeField]
     TMP_Text timerValue;
+    [SerializeField]
+    Image barTimer;
     float currentTime;
     public ReactiveProperty<bool> timeIsUp = new ReactiveProperty<bool>();
     public ReactiveProperty<float> reactiveTime = new ReactiveProperty<float>();
@@ -59,6 +61,8 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         reactiveTime.Value = time;
         started = true;
         timeIsUp.Value = false;
+        barTimer.fillAmount = 1;
+        barTimer.transform.parent.gameObject.SetActive(false);
         counterObservation();
     }
     public void counterObservation()
@@ -104,7 +108,11 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         }
         else if (time <= 20)
         {
-            timerValue.text = "TIME: "+"<color=blue>" + (int)(currentTime / 60) + ":" + ((currentTime) % 60).ToString("00") + "</color>";
+            //timerValue.text = "TIME: "+"<color=blue>" + (int)(currentTime / 60) + ":" + ((currentTime) % 60).ToString("00") + "</color>";
+            timerValue.text = "TIME: " + (int)(currentTime / 60) + ":" + ((currentTime) % 60).ToString("00");
+            if (!barTimer.transform.parent.gameObject.activeInHierarchy)
+                barTimer.transform.parent.gameObject.SetActive(true);
+            barTimer.fillAmount -= (float)1/(float)20;
         }
         //timmer object size was 1.5f
         //timerFill.fillAmount = (float)currentTime / (float)SinglePlayerScoreBoardScript.instance.time;
@@ -113,8 +121,8 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
     {
 
 
-        timerValue.text = "TIME: "+ "<color=blue>" + "0:00" + "</color>";
-
+        timerValue.text = "TIME: "+ "0:00";
+        barTimer.fillAmount =0;
         if (gameplayView.instance != null)
                 {
                     gameplayView.instance.EndGame();

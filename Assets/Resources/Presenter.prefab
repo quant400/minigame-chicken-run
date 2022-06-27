@@ -1097,6 +1097,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 53984b3744f1d4741b24626460f79b9d, type: 3}
   - {fileID: 21300000, guid: feb0c2ce1a8c2c64ea29ed6dce3dee60, type: 3}
   - {fileID: 21300000, guid: 26c59f05d0b6eba4f8a6244a7bcb8f55, type: 3}
+  selectedCharBG: []
   display: {fileID: 132324078}
   defaultImg: {fileID: 21300000, guid: 50d3cd3cbea354e42aaa38a77d896c25, type: 3}
   nameText: {fileID: 1152752406}
@@ -1306,6 +1307,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f03e1cea24ff93646aeea4aee450736a, type: 3}
   - {fileID: 21300000, guid: a4e6d439f8616fd4fbd6da4f3b780f4e, type: 3}
   - {fileID: 21300000, guid: 5a5d1a096cbb61444adb44267ef00808, type: 3}
+  selectedCharBG:
+  - {fileID: 21300000, guid: 408f09134d291644ba05e7acd6656a84, type: 3}
+  - {fileID: 21300000, guid: 29b8df41387f42b4ca1489d1277c718d, type: 3}
+  - {fileID: 21300000, guid: ed05ce454a28da64cbcc8d574f90e9fd, type: 3}
+  - {fileID: 21300000, guid: 1b9d8fa687a2c9c49b38aa8b57c3e749, type: 3}
+  - {fileID: 21300000, guid: 8fc17cee717a8cd4b98520bbc5c1901e, type: 3}
   display: {fileID: 132324078}
   defaultImg: {fileID: 21300000, guid: 4feb12ae77d8522429c465310c6f76b6, type: 3}
   nameText: {fileID: 1152752406}
@@ -2888,6 +2895,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f03e1cea24ff93646aeea4aee450736a, type: 3}
   - {fileID: 21300000, guid: a4e6d439f8616fd4fbd6da4f3b780f4e, type: 3}
   - {fileID: 21300000, guid: 5a5d1a096cbb61444adb44267ef00808, type: 3}
+  selectedCharBG:
+  - {fileID: 21300000, guid: 408f09134d291644ba05e7acd6656a84, type: 3}
+  - {fileID: 21300000, guid: 29b8df41387f42b4ca1489d1277c718d, type: 3}
+  - {fileID: 21300000, guid: ed05ce454a28da64cbcc8d574f90e9fd, type: 3}
+  - {fileID: 21300000, guid: 1b9d8fa687a2c9c49b38aa8b57c3e749, type: 3}
+  - {fileID: 21300000, guid: 8fc17cee717a8cd4b98520bbc5c1901e, type: 3}
   display: {fileID: 132324078}
   defaultImg: {fileID: 21300000, guid: 4feb12ae77d8522429c465310c6f76b6, type: 3}
   nameText: {fileID: 1152752406}
@@ -3699,6 +3712,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f03e1cea24ff93646aeea4aee450736a, type: 3}
   - {fileID: 21300000, guid: a4e6d439f8616fd4fbd6da4f3b780f4e, type: 3}
   - {fileID: 21300000, guid: 5a5d1a096cbb61444adb44267ef00808, type: 3}
+  selectedCharBG:
+  - {fileID: 21300000, guid: 408f09134d291644ba05e7acd6656a84, type: 3}
+  - {fileID: 21300000, guid: 29b8df41387f42b4ca1489d1277c718d, type: 3}
+  - {fileID: 21300000, guid: ed05ce454a28da64cbcc8d574f90e9fd, type: 3}
+  - {fileID: 21300000, guid: 1b9d8fa687a2c9c49b38aa8b57c3e749, type: 3}
+  - {fileID: 21300000, guid: 8fc17cee717a8cd4b98520bbc5c1901e, type: 3}
   display: {fileID: 132324078}
   defaultImg: {fileID: 21300000, guid: 4feb12ae77d8522429c465310c6f76b6, type: 3}
   nameText: {fileID: 1152752406}
@@ -3902,6 +3921,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f03e1cea24ff93646aeea4aee450736a, type: 3}
   - {fileID: 21300000, guid: a4e6d439f8616fd4fbd6da4f3b780f4e, type: 3}
   - {fileID: 21300000, guid: 5a5d1a096cbb61444adb44267ef00808, type: 3}
+  selectedCharBG:
+  - {fileID: 21300000, guid: 408f09134d291644ba05e7acd6656a84, type: 3}
+  - {fileID: 21300000, guid: 29b8df41387f42b4ca1489d1277c718d, type: 3}
+  - {fileID: 21300000, guid: ed05ce454a28da64cbcc8d574f90e9fd, type: 3}
+  - {fileID: 21300000, guid: 1b9d8fa687a2c9c49b38aa8b57c3e749, type: 3}
+  - {fileID: 21300000, guid: 8fc17cee717a8cd4b98520bbc5c1901e, type: 3}
   display: {fileID: 132324078}
   defaultImg: {fileID: 21300000, guid: 4feb12ae77d8522429c465310c6f76b6, type: 3}
   nameText: {fileID: 1152752406}
@@ -6768,8 +6793,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6950,7 +6975,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4abb93baa4ba2cb4a847fd3ece950bc4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8510a875202789c41a06d8a54295d53e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -7129,7 +7154,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4abb93baa4ba2cb4a847fd3ece950bc4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8510a875202789c41a06d8a54295d53e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -7332,8 +7357,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7889,7 +7914,7 @@ MonoBehaviour:
   m_text: OR. <u>SWITCH WALLET</u>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 998104b44106ffa4c9ca546eed89f5a2, type: 2}
-  m_sharedMaterial: {fileID: -7393962115032257950, guid: 998104b44106ffa4c9ca546eed89f5a2, type: 2}
+  m_sharedMaterial: {fileID: 6369857675509540226, guid: 0b5f257dd76890f4cb07fb6139f42cc6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7913,7 +7938,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.5
+  m_fontSize: 40
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9759,7 +9784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4abb93baa4ba2cb4a847fd3ece950bc4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8510a875202789c41a06d8a54295d53e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -10251,7 +10276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4abb93baa4ba2cb4a847fd3ece950bc4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8510a875202789c41a06d8a54295d53e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -10430,7 +10455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4abb93baa4ba2cb4a847fd3ece950bc4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8510a875202789c41a06d8a54295d53e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -11628,8 +11653,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11947,7 +11972,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 40
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12419,8 +12444,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -14440,7 +14465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5479180407007317759, guid: dcade7979c3da534db27311c23ab15d5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1012473
+      value: -1007441.44
       objectReference: {fileID: 0}
     - target: {fileID: 5479180407079113686, guid: dcade7979c3da534db27311c23ab15d5, type: 3}
       propertyPath: m_fontAsset

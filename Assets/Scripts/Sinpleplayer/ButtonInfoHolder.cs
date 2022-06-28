@@ -98,6 +98,6 @@ public class ButtonInfoHolder : MonoBehaviour
     {
         if (chickenGameModel.currentNFTSession<10)
             CSV.EnablePlay();
-        info.text = "PLAYED " + "<color=black>"+ chickenGameModel.currentNFTSession +"</color>" + " OUT OF <color=black> 10 </color> DAILY GAMES";
+        info.text = "PLAYED " + chickenGameModel.currentNFTSession + " OUT OF 10 DAILY GAMES";
     }
 }

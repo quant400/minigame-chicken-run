@@ -5,29 +5,44 @@ using UnityEngine.SceneManagement;
 
 public class TryoutScript : MonoBehaviour
 {
-    
+    [SerializeField]
+    GameObject startscreen;
+    [SerializeField]
+    NFTGetView nftGetter;
     public void ButtonPressed(int i)
     {
         switch(i)
         {
             case 0:
+                nftGetter.Skip();
                 SceneManager.LoadScene(chickenGameModel.singlePlayerScene1.sceneName);
                 break;
             case 1:
+                nftGetter.Skip();
                 SceneManager.LoadScene(chickenGameModel.singlePlayerScene2.sceneName);
                 break;
             case 2:
+                nftGetter.Skip();
                 SceneManager.LoadScene(chickenGameModel.singlePlayerScene3.sceneName);
                 break;
             case 3:
+                nftGetter.Skip();
                 SceneManager.LoadScene(chickenGameModel.singlePlayerScene4.sceneName);
                 break;
             case 4:
+                nftGetter.Skip();
                 SceneManager.LoadScene(chickenGameModel.singlePlayerScene5.sceneName);
                 break;
         }
         transform.gameObject.SetActive(false);
 
+    }
+
+    public void BackButton()
+    {
+        gameObject.SetActive(false);
+        startscreen.SetActive(true);
+        gameplayView.instance.isTryout = false;
     }
 
    public void TryOutHomeBtn()

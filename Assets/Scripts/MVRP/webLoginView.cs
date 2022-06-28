@@ -89,6 +89,7 @@ public class webLoginView : MonoBehaviour
 
     public void OnSkip()
     {
+        gameplayView.instance.isTryout = false;
         nftGetter.Skip();
     }
 
@@ -101,7 +102,7 @@ public class webLoginView : MonoBehaviour
         }
         transform.GetChild(0).gameObject.SetActive(true);
         tryoutCanvas.SetActive(true);
-        nftGetter.Skip();
+       
     }
 
 }

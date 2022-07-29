@@ -38,6 +38,8 @@ public class gameplayView : MonoBehaviour
     bool sfxMuted = false;
 
     public bool isTryout=false;
+
+    public bool isPaused = false;
     private void Awake()
     {
         if (instance != null && instance != this)

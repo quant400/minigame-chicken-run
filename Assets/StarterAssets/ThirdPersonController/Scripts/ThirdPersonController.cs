@@ -97,7 +97,7 @@ namespace StarterAssets
 		//AddedForGame
 		bool started=false;
 		bool ended=false;
-		bool cursorUnlocked=false;
+		public bool cursorUnlocked=false;
 		PlayerSfxController pSfxC;
 		private void Awake()
 		{
@@ -142,15 +142,16 @@ namespace StarterAssets
 				JumpAndGravity();
 				GroundedCheck();
 				Move();
-				if (!cursorUnlocked && Keyboard.current[Key.Escape].wasPressedThisFrame)
-                {
-					cursorUnlocked = true;
-					GetComponent<StarterAssetsInputs>().SetCursorLock(false);
-				}
-				if(cursorUnlocked && Mouse.current.leftButton.wasPressedThisFrame)
-                {
-					StartCoroutine(LockCursorAfter(1));
-                }
+				
+			}
+			if (!cursorUnlocked && Keyboard.current[Key.Enter].wasPressedThisFrame)
+			{
+				cursorUnlocked = true;
+				GetComponent<StarterAssetsInputs>().SetCursorLock(false);
+			}
+			if (cursorUnlocked && Mouse.current.leftButton.wasPressedThisFrame)
+			{
+				StartCoroutine(LockCursorAfter(1));
 			}
 		}
       
@@ -381,10 +382,13 @@ namespace StarterAssets
 		
 		IEnumerator LockCursorAfter(float x)
         {
-			yield return new WaitForSeconds(x);
-			cursorUnlocked = false;
-			GetComponent<StarterAssetsInputs>().SetCursorLock(true);
-			
+			yield return new WaitForSecondsRealtime(x);
+			if (!gameplayView.instance.isPaused)
+			{
+				cursorUnlocked = false;
+				GetComponent<StarterAssetsInputs>().SetCursorLock(true);
+			}
+
 		}
 
         

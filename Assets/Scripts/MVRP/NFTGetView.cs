@@ -29,14 +29,16 @@ public class NFTGetView : MonoBehaviour
     }
     public void GetNFT()
     {
-        Debug.LogWarningFormat("Change this before final build and also rename youngin, sledghammer and long shot");
+        /*Debug.LogWarningFormat("Change this before final build and also rename youngin, sledghammer and long shot");
         string acc = PlayerPrefs.GetString("Account");
-        StartCoroutine(GetRequest("https://api.cryptofightclub.io/game/sdk/" + acc));
-        
+        StartCoroutine(GetRequest("https://api.cryptofightclub.io/game/sdk/" + acc));*/
+
         //testing link
         //StartCoroutine(GetRequest("https://api.cryptofightclub.io/game/sdk/0xbecd7b5cfab483d65662769ad4fecf05be4d4d05"));
-    }
 
+        StartCoroutine(KeyMaker.instance.GetRequest("https://staging-api.cryptofightclub.io/game/sdk/connect"));
+    }
+/*
     IEnumerator GetRequest(string uri)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
@@ -59,18 +61,18 @@ public class NFTGetView : MonoBehaviour
                 case UnityWebRequest.Result.Success:
                     //Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                     temp = webRequest;
-                    Display();
+                    //Display();
                     break;
             }
         }
     }
-
-    void Display()
+*/
+    public void Display(NFTInfo[] NFTData)
     {
-        string data = "{\"Items\":" + temp.downloadHandler.text + "}";
+       /* string data = "{\"Items\":" + temp.downloadHandler.text + "}";
         chickenGameModel.currentNFTString = data;
 
-        NFTInfo[] NFTData = JsonHelper.FromJson<NFTInfo>(data);
+        NFTInfo[] NFTData = JsonHelper.FromJson<NFTInfo>(data);*/
         chickenGameModel.currentNFTArray = NFTData;
         if (NFTData.Length == 0)
         {

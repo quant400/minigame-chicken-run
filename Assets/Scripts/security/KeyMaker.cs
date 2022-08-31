@@ -85,7 +85,7 @@ public class KeyMaker : MonoBehaviour
     #region CodesGenerators
     public string GetAuthString()
     {
-        string auth = "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3" + ":" + currentCode;
+        string auth = PlayerPrefs.GetString("Account") + ":" + currentCode;
         return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(auth));
     }
     public string GetXSeqConnect(string addr, int seq)
@@ -161,7 +161,7 @@ public class KeyMaker : MonoBehaviour
     public IEnumerator GetRequest(string uri)
     {
         int sequence = UnityEngine.Random.Range(1, 8);
-        string xseq = GetXSeqConnect("0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3", sequence);
+        string xseq = GetXSeqConnect(PlayerPrefs.GetString("Account"), sequence);
         using (UnityWebRequest webRequest = UnityWebRequest.Put(uri, JsonUtility.ToJson(currentConnectObj)))
         {
             webRequest.SetRequestHeader("sequence", sequence.ToString());

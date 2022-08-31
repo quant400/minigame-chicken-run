@@ -12,6 +12,21 @@ public struct ConnectObj
     public string g;
     public string b;
 }
+
+struct startObj
+{
+    public string id;
+    public string address;
+}
+struct GameEndObj
+{
+    public string id;
+    public string address;
+    public string score;
+    public string r;
+    public string g;
+    public string b;
+}
 public struct ResponseObject
 {
     public NFTInfo[] nfts;
@@ -36,8 +51,10 @@ public class KeyMaker : MonoBehaviour
 
     string currentAddress;
     int currentSequence;
+    int currentGameEndSequence;
     string currentCode;
     ConnectObj currentConnectObj;
+    GameEndObj currentEndObj;
     //connect variables 
     string connectR;
     string connectG;
@@ -60,10 +77,16 @@ public class KeyMaker : MonoBehaviour
         //StartCoroutine(GetRequest("https://staging-api.cryptofightclub.io/game/sdk/connect"));
 
     }
-
     public void SetCode(string code)
     {
         currentCode = code;
+    }
+
+    #region CodesGenerators
+    public string GetAuthString()
+    {
+        string auth = "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3" + ":" + currentCode;
+        return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(auth));
     }
     public string GetXSeqConnect(string addr, int seq)
     {
@@ -87,18 +110,26 @@ public class KeyMaker : MonoBehaviour
         return xSeq;
     }
 
-    public string GetGameEndKey(int score , int nftID)
+    public string GetGameEndKey(int score, int nftID ,int seq)
     {
         string tmst = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
+        currentGameEndSequence = seq;
 
         endR = SHA256Cal(currentCode + tmst + masterKeys[0] + score.ToString());
-        endG = SHA256Cal(endR + masterKeys[1] + currentSequence + score.ToString());
+        endG = SHA256Cal(endR + masterKeys[1] + seq + score.ToString());
         endB = SHA256Cal(endG + nftID.ToString() + masterKeys[2] + currentAddress + score.ToString());
 
-        int masterKeyNum = currentSequence + 2;
+        int masterKeyNum = seq + 2;
 
         string xSeq = SHA256Cal(endB + score.ToString() + masterKeys[masterKeyNum]);
 
+        currentEndObj = new GameEndObj();
+        currentEndObj.id = nftID.ToString();
+        currentEndObj.address = currentAddress;
+        currentEndObj.score = score.ToString();
+        currentEndObj.r = endR;
+        currentEndObj.g = endG;
+        currentEndObj.b = endB;
 
         return xSeq;
     }
@@ -123,21 +154,21 @@ public class KeyMaker : MonoBehaviour
         }
 
     }
-
+# endregion CodesGenerators
 
 
     #region Requests
     public IEnumerator GetRequest(string uri)
     {
         int sequence = UnityEngine.Random.Range(1, 8);
-        string xseq = GetXSeqConnect(PlayerPrefs.GetString("Account"), sequence);
-        using (UnityWebRequest webRequest = UnityWebRequest.Put(uri,JsonUtility.ToJson(currentConnectObj)))
+        string xseq = GetXSeqConnect("0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3", sequence);
+        using (UnityWebRequest webRequest = UnityWebRequest.Put(uri, JsonUtility.ToJson(currentConnectObj)))
         {
             webRequest.SetRequestHeader("sequence", sequence.ToString());
             webRequest.SetRequestHeader("timestamp", DateTimeOffset.Now.ToUnixTimeSeconds().ToString());
             webRequest.SetRequestHeader("xsequence", xseq);
             webRequest.SetRequestHeader("Content-Type", "application/json");
-           
+
             //webRequest.uploadHandler = new UploadHandlerRaw((System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(currenConnectObj))));
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
@@ -157,14 +188,92 @@ public class KeyMaker : MonoBehaviour
                     Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
                     break;
                 case UnityWebRequest.Result.Success:
-                    //Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                    //temp = webRequest;
-                    //Display();
                     ResponseObject temp = JsonUtility.FromJson<ResponseObject>(webRequest.downloadHandler.text);
+                    SetCode(temp.code);
                     gameplayView.instance.GetComponent<NFTGetView>().Display(temp.nfts);
                     break;
             }
         }
+    }
+
+    public IEnumerator startSessionApi(string url, int assetId)
+    {
+        leaderboardModel.userGetDataModel idData = new leaderboardModel.userGetDataModel();
+        startObj strt = new startObj();
+        strt.id = assetId.ToString();
+        strt.address = PlayerPrefs.GetString("Account");
+        using (UnityWebRequest request = UnityWebRequest.Put(url.ToString(), JsonUtility.ToJson(strt)))
+        {
+            //request.method = UnityWebRequest.kHttpVerbPOST;
+            request.downloadHandler = new DownloadHandlerBuffer();
+            //request.uploadHandler = new UploadHandlerRaw(string.IsNullOrEmpty(idJsonData) ? null : Encoding.UTF8.GetBytes(idJsonData));
+            request.SetRequestHeader("Accept", "application/json");
+            request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Authorization" , "Basic "+GetAuthString());
+            yield return request.SendWebRequest();
+            if (request.error == null)
+            {
+                // getDataFromRestApi(assetId);
+
+                Debug.Log("all is good in server" + Encoding.UTF8.GetString(request.downloadHandler.data));
+
+            }
+            else
+            {
+                Debug.Log(request.error);
+                Debug.Log("error in server");
+            }
+
+
+        }
+
+
+
+    }
+
+    public IEnumerator setScoreInLeaderBoeardRestApi(int id, int scoreAdded)
+    {
+        leaderboardModel.userPostedData postedData = new leaderboardModel.userPostedData();
+        int sequence = UnityEngine.Random.Range(1, 8);
+        string xseq = GetGameEndKey(scoreAdded, id ,sequence);
+        using (UnityWebRequest request = UnityWebRequest.Put("https://staging-api.cryptofightclub.io/game/sdk/chicken/end-session", JsonUtility.ToJson(currentEndObj)))
+        {
+            request.timeout = 5;
+            //byte[] bodyRaw = Encoding.UTF8.GetBytes(idJsonData);
+            //request.method = "POST";
+            request.SetRequestHeader("sequence", currentGameEndSequence.ToString());
+            request.SetRequestHeader("timestamp", DateTimeOffset.Now.ToUnixTimeSeconds().ToString());
+            request.SetRequestHeader("xsequence", xseq);
+            request.SetRequestHeader("Authorization", "Basic " + GetAuthString());
+            request.SetRequestHeader("Accept", "application/json");
+            request.SetRequestHeader("Content-Type", "application/json");
+            yield return request.SendWebRequest();
+            if (request.error == null)
+            {
+
+                Debug.Log("posted Score in function");
+                //Debug.Log(idJsonData);
+                //Enable try again button once server responds with new score update.
+                gameplayView.instance.gameObject.GetComponent<uiView>().SetTryAgain(true);
+                //getDataFromRestApi(postedData.id);
+
+
+            }
+            else
+            {
+                //if server responded with an error and resend score 
+                if (gameplayView.instance.GetSessions() <= 10 /*&& scoreUpdateTried < 10*/)
+                {
+                    //scoreUpdateTried++;
+                    gameplayView.instance.transform.GetComponentInChildren<gameEndView>().Invoke("setScoreAtStart", 6);
+                }
+                Debug.Log(request.error);
+            }
+
+
+        }
+
+       
     }
     #endregion Requests
 }

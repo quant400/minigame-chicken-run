@@ -60,7 +60,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
     {
         if (sessionCounterReactive.Value <= 10)
         {
-            StartCoroutine(setScoreInLeaderBoeardRestApi(assetID, score));
+            StartCoroutine(KeyMaker.instance.setScoreInLeaderBoeardRestApi(assetID, score));
         }
         else
         {
@@ -71,7 +71,8 @@ public class DatabaseManagerRestApi : MonoBehaviour
     public void startSessionFromRestApi(int _assetID)
     {
         scoreUpdateTried = 0;
-        StartCoroutine(startSessionApi("https://api.cryptofightclub.io/game/sdk/chicken/start-session", _assetID));
+        // change url later
+        StartCoroutine(KeyMaker.instance.startSessionApi("https://staging-api.cryptofightclub.io/game/sdk/chicken/start-session", _assetID));
     }
 
     public void getDataFromRestApi(int assetId)

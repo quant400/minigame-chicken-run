@@ -90,7 +90,8 @@ public class webLoginView : MonoBehaviour
     public void OnSkip()
     {
         gameplayView.instance.isTryout = false;
-        nftGetter.Skip();
+        //nftGetter.Skip();
+        nftGetter.GetNFT();
     }
 
     public void OnTryout()

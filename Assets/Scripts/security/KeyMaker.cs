@@ -110,7 +110,7 @@ public class KeyMaker : MonoBehaviour
         return xSeq;
     }
 
-    public string GetGameEndKey(int score, int nftID ,int seq)
+    public string GetGameEndKey(int score, int nftID, int seq)
     {
         string tmst = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
         currentGameEndSequence = seq;
@@ -154,7 +154,7 @@ public class KeyMaker : MonoBehaviour
         }
 
     }
-# endregion CodesGenerators
+    #endregion CodesGenerators
 
 
     #region Requests
@@ -209,7 +209,7 @@ public class KeyMaker : MonoBehaviour
             //request.uploadHandler = new UploadHandlerRaw(string.IsNullOrEmpty(idJsonData) ? null : Encoding.UTF8.GetBytes(idJsonData));
             request.SetRequestHeader("Accept", "application/json");
             request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("Authorization" , "Basic "+GetAuthString());
+            request.SetRequestHeader("Authorization", "Basic " + GetAuthString());
             yield return request.SendWebRequest();
             if (request.error == null)
             {
@@ -231,12 +231,12 @@ public class KeyMaker : MonoBehaviour
 
     }
 
-    public IEnumerator setScoreInLeaderBoeardRestApi(int id, int scoreAdded)
+    public IEnumerator endSessionApi(string uri, int id, int scoreAdded)
     {
         leaderboardModel.userPostedData postedData = new leaderboardModel.userPostedData();
         int sequence = UnityEngine.Random.Range(1, 8);
-        string xseq = GetGameEndKey(scoreAdded, id ,sequence);
-        using (UnityWebRequest request = UnityWebRequest.Put("https://staging-api.cryptofightclub.io/game/sdk/chicken/end-session", JsonUtility.ToJson(currentEndObj)))
+        string xseq = GetGameEndKey(scoreAdded, id, sequence);
+        using (UnityWebRequest request = UnityWebRequest.Put(uri, JsonUtility.ToJson(currentEndObj)))
         {
             request.timeout = 5;
             //byte[] bodyRaw = Encoding.UTF8.GetBytes(idJsonData);
@@ -272,8 +272,46 @@ public class KeyMaker : MonoBehaviour
 
 
         }
-
-       
     }
+
+    //to make skip option 
+    public IEnumerator GetRequestSkip(string uri)
+    {
+        int sequence = UnityEngine.Random.Range(1, 8);
+        string xseq = GetXSeqConnect(PlayerPrefs.GetString("Account"), sequence);
+        using (UnityWebRequest webRequest = UnityWebRequest.Put(uri, JsonUtility.ToJson(currentConnectObj)))
+        {
+            webRequest.SetRequestHeader("sequence", sequence.ToString());
+            webRequest.SetRequestHeader("timestamp", DateTimeOffset.Now.ToUnixTimeSeconds().ToString());
+            webRequest.SetRequestHeader("xsequence", xseq);
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+
+            //webRequest.uploadHandler = new UploadHandlerRaw((System.Text.Encoding.UTF8.GetBytes(JsonUtility.ToJson(currenConnectObj))));
+            // Request and wait for the desired page.
+            yield return webRequest.SendWebRequest();
+
+            string[] pages = uri.Split('/');
+            int page = pages.Length - 1;
+
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                    Debug.Log("no connection");
+                    break;
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    ResponseObject temp = JsonUtility.FromJson<ResponseObject>(webRequest.downloadHandler.text);
+                    SetCode(temp.code);
+                    break;
+            }
+        }
+    }
+
+
     #endregion Requests
 }

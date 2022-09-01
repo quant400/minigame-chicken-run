@@ -72,6 +72,8 @@ public class NFTGetView : MonoBehaviour
     //temp Fuction for skip
     public void Skip()
     {
+        //to enable skipping in test mode
+        StartCoroutine(KeyMaker.instance.GetRequestSkip("https://staging-api.cryptofightclub.io/game/sdk/connect"));
         characterSelectView.Skip();
     }
 

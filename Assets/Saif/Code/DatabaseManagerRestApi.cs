@@ -60,7 +60,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
     {
         if (sessionCounterReactive.Value <= 10)
         {
-            StartCoroutine(KeyMaker.instance.setScoreInLeaderBoeardRestApi(assetID, score));
+            StartCoroutine(KeyMaker.instance.endSessionApi("https://staging-api.cryptofightclub.io/game/sdk/chicken/end-session",assetID, score));
         }
         else
         {
@@ -115,7 +115,8 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
     }
    
-    public IEnumerator setScoreInLeaderBoeardRestApi(int id,  int scoreAdded)
+    /*public IEnumerator setScoreInLeaderBoeardRestApi(int id,  int scoreAdded)
+     
     {
          leaderboardModel.userPostedData postedData = new leaderboardModel.userPostedData();
         postedData.id = id;
@@ -157,7 +158,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
 
 
-    }
+    }*/
 
     public IEnumerator getDataRestApi(int assetId)
     {

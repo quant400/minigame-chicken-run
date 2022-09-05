@@ -66,6 +66,7 @@ public class KeyMaker : MonoBehaviour
     string endG;
     string endB;
 
+    int scoreUpdateTried = 0;
     private void Awake()
     {
         if (instance == null)
@@ -214,7 +215,7 @@ public class KeyMaker : MonoBehaviour
             if (request.error == null)
             {
                 // getDataFromRestApi(assetId);
-
+                scoreUpdateTried = 0;
                 Debug.Log("all is good in server" + Encoding.UTF8.GetString(request.downloadHandler.data));
 
             }
@@ -255,16 +256,16 @@ public class KeyMaker : MonoBehaviour
                 //Debug.Log(idJsonData);
                 //Enable try again button once server responds with new score update.
                 gameplayView.instance.gameObject.GetComponent<uiView>().SetTryAgain(true);
-                //getDataFromRestApi(postedData.id);
+                DatabaseManagerRestApi._instance.getDataFromRestApi(int.Parse(currentEndObj.id));
 
 
             }
             else
             {
                 //if server responded with an error and resend score 
-                if (gameplayView.instance.GetSessions() <= 10 /*&& scoreUpdateTried < 10*/)
+                if (gameplayView.instance.GetSessions() <= 10 && scoreUpdateTried < 5)
                 {
-                    //scoreUpdateTried++;
+                    scoreUpdateTried++;
                     gameplayView.instance.transform.GetComponentInChildren<gameEndView>().Invoke("setScoreAtStart", 6);
                 }
                 Debug.Log(request.error);

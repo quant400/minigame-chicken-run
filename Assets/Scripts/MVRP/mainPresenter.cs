@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
     public class mainPresenter : MonoBehaviour
     {
     [SerializeField] gameplayView gameView;
-    [SerializeField] webLoginView webView;
+    //[SerializeField] webLoginView webView;
     [SerializeField] characterSelectionView characterSelectionView;
     [SerializeField] uiView uiView;
     [SerializeField] gameEndView gameEndView;

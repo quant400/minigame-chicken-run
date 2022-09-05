@@ -17,6 +17,6 @@ public class NoNFTCanvasScript : MonoBehaviour
 
     public void ChangeWallet()
     {
-        gameplayView.instance.GetComponent<WebLogin>().OnLogin();
+        //gameplayView.instance.GetComponent<WebLogin>().OnLogin();
     }
 }

@@ -4988,7 +4988,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 843ebf2d809b9e64892948e51d793534, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 816b2c6a347bb7f45b1ffa5b9bfc8a4f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -8391,7 +8391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 843ebf2d809b9e64892948e51d793534, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 816b2c6a347bb7f45b1ffa5b9bfc8a4f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -8785,7 +8785,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ALL TIME SCORE : 00'
+  m_text: 'WEEKLY SCORE : 00'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 998104b44106ffa4c9ca546eed89f5a2, type: 2}
   m_sharedMaterial: {fileID: -7393962115032257950, guid: 998104b44106ffa4c9ca546eed89f5a2, type: 2}
@@ -11855,6 +11855,7 @@ MonoBehaviour:
     value: 0
   gameOverObject: {fileID: 8126445882752200601}
   isTryout: 0
+  isPaused: 0
 --- !u!114 &2491955374990107174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13525,7 +13526,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 843ebf2d809b9e64892948e51d793534, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 816b2c6a347bb7f45b1ffa5b9bfc8a4f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -14811,7 +14812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5479180407007317759, guid: dcade7979c3da534db27311c23ab15d5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1190446
+      value: -1443507.2
       objectReference: {fileID: 0}
     - target: {fileID: 5479180407079113686, guid: dcade7979c3da534db27311c23ab15d5, type: 3}
       propertyPath: m_fontAsset

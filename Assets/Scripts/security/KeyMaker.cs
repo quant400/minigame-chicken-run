@@ -75,7 +75,7 @@ public class KeyMaker : MonoBehaviour
             Destroy(this);
         DontDestroyOnLoad(this);
 
-        //StartCoroutine(GetRequest("https://staging-api.cryptofightclub.io/game/sdk/connect"));
+        //StartCoroutine(GetRequest("https://api.cryptofightclub.io/game/sdk/connect"));
 
     }
     public void SetCode(string code)

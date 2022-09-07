@@ -136,6 +136,7 @@
     <Compile Include="Assets\Web3Unity\Scripts\Library\ERC20.cs" />
     <Compile Include="Assets\Scripts\MVRP\onSceneLoad.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC1155\ERC1155BalanceOfBatchExample.cs" />
+    <Compile Include="Assets\Scripts\security\KeyMaker.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\CharacterSelectionScript.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20NameExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\ERC721.cs" />
@@ -151,7 +152,6 @@
     <Compile Include="Assets\Scripts\MVRP\gameplayView.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Scripts\security\KeyMaker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\36.56120f7d.chunk.js.LICENSE.txt" />

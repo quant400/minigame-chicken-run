@@ -86,7 +86,8 @@ public class gameEndView : MonoBehaviour
             }
         }
         gameplayView.instance.GetScores();
-        setScoreResutls();
+        Invoke("setScoreResutls", 1);
+        //setScoreResutls();
 
     }
     public void initializeValues()

@@ -30,7 +30,7 @@ public class NFTGetView : MonoBehaviour
     public void GetNFT()
     {
 
-        StartCoroutine(KeyMaker.instance.GetRequest("https://api.cryptofightclub.io/game/sdk/connect"));
+        StartCoroutine(KeyMaker.instance.GetRequest());
     }
 
     public void Display(NFTInfo[] NFTData)
@@ -73,7 +73,7 @@ public class NFTGetView : MonoBehaviour
     public void Skip()
     {
         //to enable skipping in test mode
-        StartCoroutine(KeyMaker.instance.GetRequestSkip("https://api.cryptofightclub.io/game/sdk/connect"));
+        StartCoroutine(KeyMaker.instance.GetRequestSkip());
         characterSelectView.Skip();
     }
 

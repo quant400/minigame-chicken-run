@@ -4,7 +4,11 @@ using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-
+public enum BuildType
+{
+    staging,
+    production
+}
 public struct ConnectObj
 {
     public string address;
@@ -67,6 +71,9 @@ public class KeyMaker : MonoBehaviour
     string endB;
 
     int scoreUpdateTried = 0;
+
+    public BuildType buildType;
+    public string game;
     private void Awake()
     {
         if (instance == null)
@@ -75,7 +82,7 @@ public class KeyMaker : MonoBehaviour
             Destroy(this);
         DontDestroyOnLoad(this);
 
-        //StartCoroutine(GetRequest("https://api.cryptofightclub.io/game/sdk/connect"));
+
 
     }
     public void SetCode(string code)
@@ -159,10 +166,16 @@ public class KeyMaker : MonoBehaviour
 
 
     #region Requests
-    public IEnumerator GetRequest(string uri)
+    public IEnumerator GetRequest()
     {
         int sequence = UnityEngine.Random.Range(1, 8);
         string xseq = GetXSeqConnect(PlayerPrefs.GetString("Account"), sequence);
+        string uri = "";
+        if (buildType == BuildType.staging)
+            uri = "https://staging-api.cryptofightclub.io/game/sdk/connect";
+        else if (buildType == BuildType.production)
+            uri = "https://api.cryptofightclub.io/game/sdk/connect";
+
         using (UnityWebRequest webRequest = UnityWebRequest.Put(uri, JsonUtility.ToJson(currentConnectObj)))
         {
             webRequest.SetRequestHeader("sequence", sequence.ToString());
@@ -197,13 +210,18 @@ public class KeyMaker : MonoBehaviour
         }
     }
 
-    public IEnumerator startSessionApi(string url, int assetId)
+    public IEnumerator startSessionApi(int assetId)
     {
         leaderboardModel.userGetDataModel idData = new leaderboardModel.userGetDataModel();
         startObj strt = new startObj();
         strt.id = assetId.ToString();
         strt.address = PlayerPrefs.GetString("Account");
-        using (UnityWebRequest request = UnityWebRequest.Put(url.ToString(), JsonUtility.ToJson(strt)))
+        string uri = "";
+        if (buildType == BuildType.staging)
+            uri = "https://staging-api.cryptofightclub.io/game/sdk/" + game + "/start-session";
+        else if (buildType == BuildType.production)
+            uri = "https://api.cryptofightclub.io/game/sdk/" + game + "/start-session";
+        using (UnityWebRequest request = UnityWebRequest.Put(uri, JsonUtility.ToJson(strt)))
         {
             //request.method = UnityWebRequest.kHttpVerbPOST;
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -232,11 +250,16 @@ public class KeyMaker : MonoBehaviour
 
     }
 
-    public IEnumerator endSessionApi(string uri, int id, int scoreAdded)
+    public IEnumerator endSessionApi(int id, int scoreAdded)
     {
         leaderboardModel.userPostedData postedData = new leaderboardModel.userPostedData();
         int sequence = UnityEngine.Random.Range(1, 8);
         string xseq = GetGameEndKey(scoreAdded, id, sequence);
+        string uri = "";
+        if (buildType == BuildType.staging)
+            uri = "https://staging-api.cryptofightclub.io/game/sdk/" + game + "/end-session";
+        else if (buildType == BuildType.production)
+            uri = "https://api.cryptofightclub.io/game/sdk/" + game + "/end-session";
         using (UnityWebRequest request = UnityWebRequest.Put(uri, JsonUtility.ToJson(currentEndObj)))
         {
             request.timeout = 5;
@@ -276,10 +299,15 @@ public class KeyMaker : MonoBehaviour
     }
 
     //to make skip option 
-    public IEnumerator GetRequestSkip(string uri)
+    public IEnumerator GetRequestSkip()
     {
         int sequence = UnityEngine.Random.Range(1, 8);
         string xseq = GetXSeqConnect(PlayerPrefs.GetString("Account"), sequence);
+        string uri = "";
+        if (buildType == BuildType.staging)
+            uri = "https://staging-api.cryptofightclub.io/game/sdk/connect";
+        else if (buildType == BuildType.production)
+            uri = "https://api.cryptofightclub.io/game/sdk/connect";
         using (UnityWebRequest webRequest = UnityWebRequest.Put(uri, JsonUtility.ToJson(currentConnectObj)))
         {
             webRequest.SetRequestHeader("sequence", sequence.ToString());

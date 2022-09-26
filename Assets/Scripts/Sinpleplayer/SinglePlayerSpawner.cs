@@ -18,7 +18,11 @@ public class SinglePlayerSpawner : MonoBehaviour
     [SerializeField]
     Transform chickenHolder;
     [SerializeField]
-    GameObject[] NPCPrefab;
+    GameObject[] NPCModels;
+    [SerializeField]
+    GameObject npcBasePrefab;
+    [SerializeField]
+    GameObject playerPrefab;
     [SerializeField]
     Transform[] NPCSPawnPoints;
     [SerializeField]
@@ -30,18 +34,19 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     private void Start()
     {
-        //SinglePlayerScoreBoardScript.instance.PlayerJoined("1", 1);
 
-        //span point chaged to index 4 intead of 0 will make it a single point intead of array if only one player in game decided
-        //GameObject temp = Instantiate(characters[SingleplayerGameControler.instance.chosenAvatar], spawnPoint.position, Quaternion.identity);
-        chosenNFTName = NameToSlugConvert(gameplayView.instance.chosenNFT.name);
-        GameObject resource = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", chosenNFTName)) as GameObject;
-        GameObject temp = Instantiate(resource, spawnPoint.position, Quaternion.identity);
-        
+        SetUpChar();
+
         SpawnChickens();
         SpawnNpc();
     }
 
+    void SetUpChar()
+    {
+        chosenNFTName = NameToSlugConvert(gameplayView.instance.chosenNFT.name);
+        GameObject temp = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
+        temp.GetComponent<SetUpSkin>().SetUpChar(chosenNFTName);
+    }
 
     void SpawnChickens()
     {
@@ -71,12 +76,14 @@ public class SinglePlayerSpawner : MonoBehaviour
     {
         for (int i=0;i<NPCSPawnPoints.Length;i++)
         {
+           
             List<int> randomNPCs = new List<int>();
-            var randomNPCNo = Random.Range(0, NPCPrefab.Length);
-            while (randomNPCs.Contains(randomNPCNo) || NPCPrefab[randomNPCNo].name == chosenNFTName)
-                randomNPCNo = Random.Range(0, NPCPrefab.Length);
+            var randomNPCNo = Random.Range(0, NPCModels.Length);
+            while (randomNPCs.Contains(randomNPCNo) || NPCModels[randomNPCNo].name == chosenNFTName)
+                randomNPCNo = Random.Range(0, NPCModels.Length);
 
-            Instantiate(NPCPrefab[randomNPCNo], NPCSPawnPoints[i].position, Quaternion.identity);
+            GameObject temp = Instantiate(npcBasePrefab, NPCSPawnPoints[i].position, Quaternion.identity);
+            temp.GetComponent<SetUpSkin>().SetUpChar(NPCModels[randomNPCNo].name);
         }
     }
 

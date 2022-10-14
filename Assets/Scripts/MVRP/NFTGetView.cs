@@ -35,11 +35,22 @@ public class NFTGetView : MonoBehaviour
 
     public void Display(NFTInfo[] NFTData)
     {
-       /* string data = "{\"Items\":" + temp.downloadHandler.text + "}";
-        chickenGameModel.currentNFTString = data;
+        if(gameplayView.instance.hasOtherChainNft)
+        {
+            NFTInfo tempNft = new NFTInfo() { name = "grane", id = 100000000 };
+            NFTInfo[] tempArr = new NFTInfo[NFTData.Length + 1];
+            for(int i=0;i<tempArr.Length;i++)
+            {
+                if (i == 0)
+                    tempArr[i] = tempNft;
+                else
+                    tempArr[i] = NFTData[i - 1];
+            }
+            chickenGameModel.currentNFTArray = tempArr;
+        }
 
-        NFTInfo[] NFTData = JsonHelper.FromJson<NFTInfo>(data);*/
-        chickenGameModel.currentNFTArray = NFTData;
+        else
+            chickenGameModel.currentNFTArray = NFTData;
         if (NFTData.Length == 0)
         {
             noNFTCanvas.SetActive(true);

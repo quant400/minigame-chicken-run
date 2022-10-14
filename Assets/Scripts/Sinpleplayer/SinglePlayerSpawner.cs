@@ -30,10 +30,6 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     private void Start()
     {
-        //SinglePlayerScoreBoardScript.instance.PlayerJoined("1", 1);
-
-        //span point chaged to index 4 intead of 0 will make it a single point intead of array if only one player in game decided
-        //GameObject temp = Instantiate(characters[SingleplayerGameControler.instance.chosenAvatar], spawnPoint.position, Quaternion.identity);
         chosenNFTName = NameToSlugConvert(gameplayView.instance.chosenNFT.name);
         GameObject resource = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", chosenNFTName)) as GameObject;
         GameObject temp = Instantiate(resource, spawnPoint.position, Quaternion.identity);

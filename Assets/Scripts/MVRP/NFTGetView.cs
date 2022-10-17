@@ -29,17 +29,18 @@ public class NFTGetView : MonoBehaviour
     }
     public void GetNFT()
     {
-
+        StartCoroutine(KeyMaker.instance.GetOtherNft());
         StartCoroutine(KeyMaker.instance.GetRequest());
     }
 
     public void Display(NFTInfo[] NFTData)
     {
-        if(gameplayView.instance.hasOtherChainNft)
+        NFTInfo[] used;
+        if (gameplayView.instance.hasOtherChainNft)
         {
             NFTInfo tempNft = new NFTInfo() { name = "grane", id = 100000000 };
             NFTInfo[] tempArr = new NFTInfo[NFTData.Length + 1];
-            for(int i=0;i<tempArr.Length;i++)
+            for (int i = 0; i < tempArr.Length; i++)
             {
                 if (i == 0)
                     tempArr[i] = tempNft;
@@ -47,11 +48,15 @@ public class NFTGetView : MonoBehaviour
                     tempArr[i] = NFTData[i - 1];
             }
             chickenGameModel.currentNFTArray = tempArr;
+            used = tempArr;
         }
 
         else
+        {
             chickenGameModel.currentNFTArray = NFTData;
-        if (NFTData.Length == 0)
+            used = NFTData;
+        }
+        if (used.Length == 0)
         {
             noNFTCanvas.SetActive(true);
             chickenGameModel.userIsLogged.Value = false;
@@ -59,7 +64,7 @@ public class NFTGetView : MonoBehaviour
         else
         {
             noNFTCanvas.SetActive(false);
-            characterSelectView.SetData(NFTData);
+            characterSelectView.SetData(used);
             chickenGameModel.userIsLogged.Value = true;
         }
 

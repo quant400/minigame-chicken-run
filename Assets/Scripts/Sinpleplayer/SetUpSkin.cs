@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class SetUpSkin : MonoBehaviour
 {
-
-   Material mat;
+    Material mat;
+    private void Awake()
+    {
+        mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
+    }
 
     public void SetUpChar(string n)
     {
-        mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
+        
         GameObject skin = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplayModels", n)) as GameObject;
         var newMeshRenderer = skin.GetComponentInChildren<SkinnedMeshRenderer>();
-        Debug.Log(newMeshRenderer.name);
         mat.mainTexture = newMeshRenderer.sharedMaterial.mainTexture;
 
         GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = newMeshRenderer.sharedMesh;

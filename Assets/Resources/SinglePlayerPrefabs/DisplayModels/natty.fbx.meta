@@ -2,28 +2,7 @@ fileFormatVersion: 2
 guid: 7f7ea1a2cb427ae4fb8fafc23aa22800
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: 557994043176933325
-    second: Armature|critical hit.002
-  - first:
-      74: 4680196206928581055
-    second: Armature|crouch.002
-  - first:
-      74: -8860726193256165005
-    second: Armature|dodge back.002
-  - first:
-      74: -5134826685928758855
-    second: Armature|dodge to the left.002
-  - first:
-      74: 3909183365442464389
-    second: Armature|dodge to the rigth.002
-  - first:
-      74: -5446607686735679544
-    second: Armature|idle 2.002
-  - first:
-      74: -2377097981430676111
-    second: Armature|idle.002
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -44,7 +23,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -106,10 +85,10 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1

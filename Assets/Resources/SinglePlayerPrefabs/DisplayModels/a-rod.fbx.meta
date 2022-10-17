@@ -2,28 +2,7 @@ fileFormatVersion: 2
 guid: e345f73132f499b4aa204f4962781fa4
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: -2208663989461740515
-    second: Armature|critical hit
-  - first:
-      74: 5337815752489611872
-    second: Armature|crouch
-  - first:
-      74: -5022359700682689567
-    second: Armature|dodge back
-  - first:
-      74: 5266135721624750266
-    second: Armature|dodge to the left
-  - first:
-      74: 6303869166719337727
-    second: Armature|dodge to the rigth
-  - first:
-      74: -1978303741906493279
-    second: Armature|idle
-  - first:
-      74: 471554372732864311
-    second: Armature|idle 2
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2

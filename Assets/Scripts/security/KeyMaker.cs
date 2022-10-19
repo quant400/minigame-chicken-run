@@ -82,7 +82,7 @@ public class KeyMaker : MonoBehaviour
             Destroy(this);
         DontDestroyOnLoad(this);
 
-        StartCoroutine(GetOtherNft());
+        //StartCoroutine(GetOtherNft());
 
     }
     public void SetCode(string code)

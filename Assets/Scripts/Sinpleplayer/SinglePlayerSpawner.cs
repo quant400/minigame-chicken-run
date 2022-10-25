@@ -43,7 +43,10 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     void SetUpChar()
     {
-        chosenNFTName = NameToSlugConvert(gameplayView.instance.chosenNFT.name);
+        // changed for holloween
+        gameplayView.instance.chosenNFT.name = "pumpkin";
+        //end
+        chosenNFTName = NameToSlugConvert(gameplayView.instance.chosenNFT.name); 
         GameObject temp = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
         temp.GetComponent<SetUpSkin>().SetUpChar(chosenNFTName);
     }

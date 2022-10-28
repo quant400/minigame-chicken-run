@@ -20089,7 +20089,7 @@ GameObject:
   - component: {fileID: 539179117}
   - component: {fileID: 539179118}
   - component: {fileID: 539179119}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
   m_TagString: Wall
   m_Icon: {fileID: 0}

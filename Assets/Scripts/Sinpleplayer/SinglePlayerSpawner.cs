@@ -43,8 +43,8 @@ public class SinglePlayerSpawner : MonoBehaviour
 
     void SetUpChar()
     {
-        // changed for holloween
-        gameplayView.instance.chosenNFT.name = "pumpkin";
+        // changed for special events that need character replacement 
+        //gameplayView.instance.chosenNFT.name = "pumpkin";
         //end
         chosenNFTName = NameToSlugConvert(gameplayView.instance.chosenNFT.name); 
         GameObject temp = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);

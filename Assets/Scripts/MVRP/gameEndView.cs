@@ -42,7 +42,7 @@ public class gameEndView : MonoBehaviour
             tryAgain.gameObject.SetActive(false);
             currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
             dailyScore.text = "DAILY SCORE : " + 0;
-            allTimeScore.text = "ALL TIME SCORE : " + 0;
+            allTimeScore.text = "WEEKLY SCORE : " + 0;
             sessionCounterText.text = "NFT DAILY RUNS : " + 0 + "/10";
         }
         else
@@ -86,7 +86,8 @@ public class gameEndView : MonoBehaviour
             }
         }
         gameplayView.instance.GetScores();
-        setScoreResutls();
+        Invoke("setScoreResutls", 1);
+        //setScoreResutls();
 
     }
     public void initializeValues()
@@ -116,7 +117,7 @@ public class gameEndView : MonoBehaviour
             sessionsNotLeft.SetActive(false);
             currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
             dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            allTimeScore.text = "WEEKLY SCORE : " + (gameplayView.instance.GetAllTimeScore());
             sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
 
         }
@@ -125,7 +126,7 @@ public class gameEndView : MonoBehaviour
             sessionsLeft.SetActive(false);
             sessionsNotLeft.SetActive(true);
             dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            allTimeScore.text = "WEEKLY SCORE : " + (gameplayView.instance.GetAllTimeScore());
             sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
 
         }
@@ -142,7 +143,7 @@ public class gameEndView : MonoBehaviour
             sessionsNotLeft.SetActive(false);
             currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
             dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            allTimeScore.text = "WEEKLY SCORE : " + (gameplayView.instance.GetAllTimeScore());
             sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
 
         }
@@ -151,7 +152,7 @@ public class gameEndView : MonoBehaviour
             sessionsLeft.SetActive(false);
             sessionsNotLeft.SetActive(true);
             dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            allTimeScore.text = "WEEKLY SCORE : " + (gameplayView.instance.GetAllTimeScore());
             sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
 
         }
@@ -226,7 +227,7 @@ public class gameEndView : MonoBehaviour
             sessionsNotLeft.SetActive(false);
             currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
             dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            allTimeScore.text = "WEEKLY SCORE : " + (gameplayView.instance.GetAllTimeScore());
             sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
 
         }
@@ -235,7 +236,7 @@ public class gameEndView : MonoBehaviour
             sessionsLeft.SetActive(false);
             sessionsNotLeft.SetActive(true);
             dailyScore.text = "DAILY SCORE : " + (gameplayView.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (gameplayView.instance.GetAllTimeScore());
+            allTimeScore.text = "WEEKLY SCORE : " + (gameplayView.instance.GetAllTimeScore());
             sessionCounterText.text = "NFT DAILY RUNS : " + (gameplayView.instance.GetSessions()) + "/10";
 
         }

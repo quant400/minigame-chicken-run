@@ -85,7 +85,7 @@ public class GameOverScript : MonoBehaviour
             sessionsNotLeft.SetActive(false);
             currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
             dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() );
+            allTimeScore.text = "WEEKLY SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() );
             sessionCounterText.text = "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions()) + "/10";
 
         }
@@ -94,7 +94,7 @@ public class GameOverScript : MonoBehaviour
             sessionsLeft.SetActive(false);
             sessionsNotLeft.SetActive(true);
             dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
-            allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore());
+            allTimeScore.text = "WEEKLY SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore());
             sessionCounterText.text = "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions()) + "/10";
 
         }
@@ -162,7 +162,7 @@ public class GameOverScript : MonoBehaviour
         gameEnded.Value = true;
         currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString() ;
         dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() );
-        allTimeScore.text = "ALL TIME SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() );
+        allTimeScore.text = "WEEKLY SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() );
         sessionCounterText.text= "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions())+"/10";
     }
     public void TryAgain()

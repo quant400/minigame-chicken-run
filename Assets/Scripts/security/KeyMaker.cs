@@ -4,7 +4,11 @@ using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-
+public enum BuildType
+{
+    staging,
+    production
+}
 public struct ConnectObj
 {
     public string address;
@@ -66,6 +70,10 @@ public class KeyMaker : MonoBehaviour
     string endG;
     string endB;
 
+    int scoreUpdateTried = 0;
+
+    public BuildType buildType;
+    public string game;
     private void Awake()
     {
         if (instance == null)
@@ -74,7 +82,7 @@ public class KeyMaker : MonoBehaviour
             Destroy(this);
         DontDestroyOnLoad(this);
 
-        //StartCoroutine(GetRequest("https://staging-api.cryptofightclub.io/game/sdk/connect"));
+
 
     }
     public void SetCode(string code)
@@ -158,10 +166,16 @@ public class KeyMaker : MonoBehaviour
 
 
     #region Requests
-    public IEnumerator GetRequest(string uri)
+    public IEnumerator GetRequest()
     {
         int sequence = UnityEngine.Random.Range(1, 8);
         string xseq = GetXSeqConnect(PlayerPrefs.GetString("Account"), sequence);
+        string uri = "";
+        if (buildType == BuildType.staging)
+            uri = "https://staging-api.cryptofightclub.io/game/sdk/connect";
+        else if (buildType == BuildType.production)
+            uri = "https://api.cryptofightclub.io/game/sdk/connect";
+
         using (UnityWebRequest webRequest = UnityWebRequest.Put(uri, JsonUtility.ToJson(currentConnectObj)))
         {
             webRequest.SetRequestHeader("sequence", sequence.ToString());
@@ -196,13 +210,18 @@ public class KeyMaker : MonoBehaviour
         }
     }
 
-    public IEnumerator startSessionApi(string url, int assetId)
+    public IEnumerator startSessionApi(int assetId)
     {
         leaderboardModel.userGetDataModel idData = new leaderboardModel.userGetDataModel();
         startObj strt = new startObj();
         strt.id = assetId.ToString();
         strt.address = PlayerPrefs.GetString("Account");
-        using (UnityWebRequest request = UnityWebRequest.Put(url.ToString(), JsonUtility.ToJson(strt)))
+        string uri = "";
+        if (buildType == BuildType.staging)
+            uri = "https://staging-api.cryptofightclub.io/game/sdk/" + game + "/start-session";
+        else if (buildType == BuildType.production)
+            uri = "https://api.cryptofightclub.io/game/sdk/" + game + "/start-session";
+        using (UnityWebRequest request = UnityWebRequest.Put(uri, JsonUtility.ToJson(strt)))
         {
             //request.method = UnityWebRequest.kHttpVerbPOST;
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -214,7 +233,7 @@ public class KeyMaker : MonoBehaviour
             if (request.error == null)
             {
                 // getDataFromRestApi(assetId);
-
+                scoreUpdateTried = 0;
                 Debug.Log("all is good in server" + Encoding.UTF8.GetString(request.downloadHandler.data));
 
             }
@@ -231,11 +250,16 @@ public class KeyMaker : MonoBehaviour
 
     }
 
-    public IEnumerator endSessionApi(string uri, int id, int scoreAdded)
+    public IEnumerator endSessionApi(int id, int scoreAdded)
     {
         leaderboardModel.userPostedData postedData = new leaderboardModel.userPostedData();
         int sequence = UnityEngine.Random.Range(1, 8);
         string xseq = GetGameEndKey(scoreAdded, id, sequence);
+        string uri = "";
+        if (buildType == BuildType.staging)
+            uri = "https://staging-api.cryptofightclub.io/game/sdk/" + game + "/end-session";
+        else if (buildType == BuildType.production)
+            uri = "https://api.cryptofightclub.io/game/sdk/" + game + "/end-session";
         using (UnityWebRequest request = UnityWebRequest.Put(uri, JsonUtility.ToJson(currentEndObj)))
         {
             request.timeout = 5;
@@ -255,16 +279,16 @@ public class KeyMaker : MonoBehaviour
                 //Debug.Log(idJsonData);
                 //Enable try again button once server responds with new score update.
                 gameplayView.instance.gameObject.GetComponent<uiView>().SetTryAgain(true);
-                //getDataFromRestApi(postedData.id);
+                DatabaseManagerRestApi._instance.getDataFromRestApi(int.Parse(currentEndObj.id));
 
 
             }
             else
             {
                 //if server responded with an error and resend score 
-                if (gameplayView.instance.GetSessions() <= 10 /*&& scoreUpdateTried < 10*/)
+                if (gameplayView.instance.GetSessions() <= 10 && scoreUpdateTried < 5)
                 {
-                    //scoreUpdateTried++;
+                    scoreUpdateTried++;
                     gameplayView.instance.transform.GetComponentInChildren<gameEndView>().Invoke("setScoreAtStart", 6);
                 }
                 Debug.Log(request.error);
@@ -275,10 +299,15 @@ public class KeyMaker : MonoBehaviour
     }
 
     //to make skip option 
-    public IEnumerator GetRequestSkip(string uri)
+    public IEnumerator GetRequestSkip()
     {
         int sequence = UnityEngine.Random.Range(1, 8);
         string xseq = GetXSeqConnect(PlayerPrefs.GetString("Account"), sequence);
+        string uri = "";
+        if (buildType == BuildType.staging)
+            uri = "https://staging-api.cryptofightclub.io/game/sdk/connect";
+        else if (buildType == BuildType.production)
+            uri = "https://api.cryptofightclub.io/game/sdk/connect";
         using (UnityWebRequest webRequest = UnityWebRequest.Put(uri, JsonUtility.ToJson(currentConnectObj)))
         {
             webRequest.SetRequestHeader("sequence", sequence.ToString());

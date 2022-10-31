@@ -33,6 +33,8 @@ public class gameEndView : MonoBehaviour
     //SinglePlayerSpawner spawner;
     [SerializeField]
     GameObject tryoutCanvas;
+    [SerializeField]
+    GameObject endCharDisplay;
     private void OnEnable()
     {
         if (gameplayView.instance.isTryout)
@@ -72,7 +74,7 @@ public class gameEndView : MonoBehaviour
         currentNFT = gameplayView.instance.chosenNFT;
         if (gameplayView.instance.GetSessions() <= 10)
         {
-            if (gameplayView.instance.isRestApi)
+            if (gameplayView.instance.isRestApi && !gameplayView.instance.usingOtherChainNft)
             {
                 Debug.Log("before Score");
 
@@ -86,6 +88,7 @@ public class gameEndView : MonoBehaviour
             }
         }
         gameplayView.instance.GetScores();
+        SetSkin();
         Invoke("setScoreResutls", 1);
         //setScoreResutls();
 
@@ -157,31 +160,11 @@ public class gameEndView : MonoBehaviour
 
         }
 
-
        
-        //characters = spawner.GetCharacterList();
-        Debug.Log("Load character");
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
-        GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", NameToSlugConvert(currentNFT.name))) as GameObject;
-        var temp = Instantiate(displayChar, characterDisplay.position, Quaternion.identity, characterDisplay);
-
-        //destroying all player related components
-        Destroy(temp.transform.GetChild(1).gameObject);
-        Destroy(temp.transform.GetChild(0).gameObject);
-        Destroy(temp.transform.GetChild(2).gameObject);
-        Destroy(temp.transform.GetChild(3).gameObject);
-        Destroy(temp.GetComponent<StarterAssetsInputs>());
-        Destroy(temp.GetComponent<ThirdPersonController>());
-        Destroy(temp.GetComponent<CharacterController>());
-        Destroy(temp.GetComponent<PlayerInput>());
-        temp.GetComponent<Animator>().SetBool("Ended", true);
-
-        temp.transform.localPosition = Vector3.zero;
-        temp.transform.localRotation = Quaternion.identity;
-        temp.transform.localScale = Vector3.one * 2;
-        localDisplay = temp;
         //upddate other values here form leaderboard
         SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+
+
     }
     public void endGameAfterValueChange()
     {
@@ -252,6 +235,18 @@ public class gameEndView : MonoBehaviour
         scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
         chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnBackToMenu;
         
+    }
+
+    void SetSkin()
+    {
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        endCharDisplay.GetComponent<SetUpSkin>().SetUpChar(NameToSlugConvert(gameplayView.instance.chosenNFT.name));
+        endCharDisplay.GetComponent<Animator>().SetBool("Ended", true);
+
+        endCharDisplay.transform.localPosition = Vector3.zero;
+        endCharDisplay.transform.localRotation = Quaternion.identity;
+        endCharDisplay.transform.localScale = Vector3.one * 2;
+        localDisplay = endCharDisplay;
     }
 
     string NameToSlugConvert(string name)

@@ -113,6 +113,7 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerChickenScript.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\MinimapFollow.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\SetUpSkin.cs" />
     <Compile Include="Assets\Scripts\MVRP\gameEndView.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer20.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\NoNFTCanvasScript.cs" />

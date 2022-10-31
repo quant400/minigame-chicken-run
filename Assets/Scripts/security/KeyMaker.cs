@@ -82,7 +82,7 @@ public class KeyMaker : MonoBehaviour
             Destroy(this);
         DontDestroyOnLoad(this);
 
-
+        //StartCoroutine(GetOtherNft());
 
     }
     public void SetCode(string code)
@@ -205,6 +205,39 @@ public class KeyMaker : MonoBehaviour
                     ResponseObject temp = JsonUtility.FromJson<ResponseObject>(webRequest.downloadHandler.text);
                     SetCode(temp.code);
                     gameplayView.instance.GetComponent<NFTGetView>().Display(temp.nfts);
+                    break;
+            }
+        }
+    }
+
+    public IEnumerator GetOtherNft()
+    {
+        string uri = "https://api.cryptofightclub.io/game/sdk/koakuma/" + PlayerPrefs.GetString("Account");
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri)) 
+        {
+            yield return webRequest.SendWebRequest();
+
+            string[] pages = uri.Split('/');
+            int page = pages.Length - 1;
+
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                    Debug.Log("no connection");
+                    break;
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    string data = "{\"Items\":" + webRequest.downloadHandler.text + "}";
+                    NFTInfo[] Data = JsonHelper.FromJson<NFTInfo>(data);
+                    if (Data.Length>0)
+                    {
+                        gameplayView.instance.hasOtherChainNft = true;
+                    }
                     break;
             }
         }

@@ -6,6 +6,14 @@ public class AndroidLoginskipper : MonoBehaviour
 {
     [SerializeField]
     GameObject tryoutCanvas;
+    [SerializeField]
+    GameObject methodSelect;
+
+
+    public void OpenMethodSelect()
+    {
+        methodSelect.SetActive(true);
+    }
     public void Skip()
     {
         gameplayView.instance.isTryout = true;

@@ -57,11 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20SymbolExample.cs" />
+    <Compile Include="Assets\GoogleSignIn\GoogleSignInStatusCode.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\GasLimitExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721URIExample.cs" />
     <Compile Include="Assets\Scripts\MVRP\webLoginView.cs" />
     <Compile Include="Assets\Scripts\MVRP\chickenGameModel.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer721.cs" />
+    <Compile Include="Assets\GoogleSignIn\Impl\BaseObject.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfExample.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\Singleplayer3RdPersonController.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\StartSreenScript.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Assets\Saif\Code\RankUser.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\CursorChanger.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSignOut.cs" />
+    <Compile Include="Assets\GoogleSignIn\Impl\NativeFuture.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20TotalSupplyExample.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\TryoutScript.cs" />
     <Compile Include="Assets\Saif\MarkApi\restApiDataView.cs" />
@@ -98,13 +101,16 @@
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\LeaderBoardScript.cs" />
+    <Compile Include="Assets\GoogleSignIn\GoogleSignIn.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\PlayerSfxController.cs" />
     <Compile Include="Assets\Saif\MarkApi\leaderboardModel.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer1155.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerGameControler.cs" />
+    <Compile Include="Assets\GoogleSignIn\Future.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\MoonTeleporter.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\BlockNumberExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\TxStatus.cs" />
+    <Compile Include="Assets\GoogleSignIn\GoogleSignInConfiguration.cs" />
     <Compile Include="Assets\Scripts\MVRP\characterSelectionView.cs" />
     <Compile Include="Assets\Scripts\MVRP\mainPresenter.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomCallExample.cs" />
@@ -113,6 +119,7 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerChickenScript.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\MinimapFollow.cs" />
+    <Compile Include="Assets\Scripts\Sinpleplayer\SetUpSkin.cs" />
     <Compile Include="Assets\Scripts\MVRP\gameEndView.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer20.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\NoNFTCanvasScript.cs" />
@@ -128,6 +135,7 @@
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\AndroidLoginskipper.cs" />
+    <Compile Include="Assets\GoogleSignIn\Impl\SignInHelperObject.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\ERC1155.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\ButtonInfoHolder.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\AICharacterControl.cs" />
@@ -141,19 +149,21 @@
     <Compile Include="Assets\Scripts\Sinpleplayer\CharacterSelectionScript.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20NameExample.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\ERC721.cs" />
+    <Compile Include="Assets\Scripts\AuthenticationView.cs" />
     <Compile Include="Assets\Scripts\MVRP\scenesView.cs" />
+    <Compile Include="Assets\GoogleSignIn\GoogleSignInUser.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\PortalScript.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\WebGL\Web3GL.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfBatchExample.cs" />
     <Compile Include="Assets\Scripts\PhotonMultiplayer\ThirdPersonCharacter.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\FPScounter.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20BalanceOfExample.cs" />
+    <Compile Include="Assets\GoogleSignIn\Impl\GoogleSignInImpl.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\NFTGetter.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLSendContractExample.cs" />
     <Compile Include="Assets\Scripts\MVRP\gameplayView.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Scripts\Sinpleplayer\SetUpSkin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\36.56120f7d.chunk.js.LICENSE.txt" />
@@ -168,16 +178,21 @@
     <None Include="Assets\Ancient Egypt Pack - Low Poly (HA)\MATERIALS\Materials.txt" />
     <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\23.dd63b9fe.chunk.js.LICENSE.txt" />
     <None Include="Assets\Ancient Egypt Pack - Low Poly (HA)\CHARACTERS\Characters.txt" />
+    <None Include="Assets\Firebase\Plugins\Firebase.App.dll" />
     <None Include="Assets\POLY_Jungle\Shaders\SimpleLayer.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\25.5c73f2c8.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\Firebase\Plugins\x86_64\FirebaseCppAuth.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\POLY_Jungle\Shaders\SimpleBillboard.shader" />
+    <None Include="Assets\Firebase\Plugins\Firebase.TaskExtension.dll" />
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\27.3bebd742.chunk.js.LICENSE.txt" />
+    <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
     <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\22.9af1c185.chunk.js.LICENSE.txt" />
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\22.9af1c185.chunk.js.LICENSE.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
+    <None Include="Assets\Firebase\Plugins\Firebase.Auth.dll" />
     <None Include="Assets\Parse\Plugins\Unity.Tasks.dll" />
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\24.6644bc4c.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
@@ -190,9 +205,11 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\31.3dd1677a.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
     <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\24.6644bc4c.chunk.js.LICENSE.txt" />
     <None Include="Assets\WebGLTemplates\Web3GL-2020\robots.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Firebase\Plugins\iOS\Firebase.Auth.dll" />
     <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\26.f2d32b7f.chunk.js.LICENSE.txt" />
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\23.dd63b9fe.chunk.js.LICENSE.txt" />
     <None Include="Assets\Parse\Plugins\Unity.Compat.dll" />
@@ -201,13 +218,17 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\7.81b2580d.chunk.js.LICENSE.txt" />
     <None Include="Assets\StarterAssets\Environment\Shaders\Built-in_RP\ArmatureShader.shader" />
+    <None Include="Assets\Firebase\Plugins\Firebase.Platform.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\Firebase\Plugins\Google.MiniJson.dll" />
     <None Include="Assets\WebGLTemplates\Tamarin\robots.txt" />
+    <None Include="Assets\Firebase\Plugins\x86_64\FirebaseCppApp-10_0_1.dll" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\WebGLTemplates\Web3GL-2020\static\js\31.3dd1677a.chunk.js.LICENSE.txt" />
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\25.5c73f2c8.chunk.js.LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\Firebase\Plugins\iOS\Firebase.App.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\7.81b2580d.chunk.js.LICENSE.txt" />
   </ItemGroup>
@@ -425,14 +446,29 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="System.IO.Compression.FileSystem">
-      <HintPath>Library\PackageCache\com.unity.connect.share@4.2.3\Plugins\System.IO.Compression.FileSystem.dll</HintPath>
-    </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
+    <Reference Include="Firebase.App">
+      <HintPath>Assets\Firebase\Plugins\Firebase.App.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem">
+      <HintPath>Library\PackageCache\com.unity.connect.share@4.2.3\Plugins\System.IO.Compression.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.TaskExtension">
+      <HintPath>Assets\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.1-preview.1\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.MiniJson">
+      <HintPath>Assets\Firebase\Plugins\Google.MiniJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Platform">
+      <HintPath>Assets\Firebase\Plugins\Firebase.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Auth">
+      <HintPath>Assets\Firebase\Plugins\Firebase.Auth.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -779,17 +815,8 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridgeDev.001">
-      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridgeDev.001.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
@@ -803,9 +830,6 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
@@ -815,11 +839,11 @@
     <Reference Include="Unity.InputSystem">
       <HintPath>Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Play.Publisher.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Play.Publisher.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Play.Publisher.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Play.Publisher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
@@ -829,6 +853,21 @@
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridgeDev.001">
+      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridgeDev.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mobile.AndroidLogcat.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

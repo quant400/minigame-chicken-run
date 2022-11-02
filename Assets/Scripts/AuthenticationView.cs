@@ -254,7 +254,7 @@ public class AuthenticationView : MonoBehaviour
                 User = auth.CurrentUser;
                 Debug.Log(User.Email);
                 Debug.Log(User.DisplayName);
-                tempInfoDisplay.text = User.Email + "\n\n" + User.DisplayName;
+                tempInfoDisplay.text = User.Email.ToUpper() + "\n\n" + User.DisplayName.ToUpper();
                 tempInfoDisplay.color = Color.green;
                 tempInfoDisplay.gameObject.SetActive(true);
 

@@ -144,6 +144,7 @@ namespace StarterAssets
 				Move();
 				
 			}
+			#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 			if (!cursorUnlocked && Keyboard.current[Key.Enter].wasPressedThisFrame)
 			{
 				cursorUnlocked = true;
@@ -153,6 +154,7 @@ namespace StarterAssets
 			{
 				StartCoroutine(LockCursorAfter(1));
 			}
+#endif
 		}
       
 

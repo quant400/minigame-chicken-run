@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>335488712723-itfbcohjmsmt1q4l6np50e5tpsbeolk1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.335488712723-itfbcohjmsmt1q4l6np50e5tpsbeolk1</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>335488712723-qiprp8ii1b11cl1uob8q4iprqrb9bj1d.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAaXT9bqC8m5WvrYFc-9h0CeKBnTr_rbi0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>335488712723</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.CryptoFightClub.ChickenRun</string>
+	<key>PROJECT_ID</key>
+	<string>cfc-servers-333812</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cfc-servers-333812.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:335488712723:ios:6283ed51735aedc4063fe6</string>
+	<key>DATABASE_URL</key>
+	<string>https://cfc-servers-333812-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

@@ -8,38 +8,27 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:335488712723:android:1fb125f64adec0c0063fe6",
+        "mobilesdk_app_id": "1:335488712723:ios:7d07bfa580899fb2063fe6",
         "android_client_info": {
           "package_name": "com.DefaultCompany.CatchTheChicken"
         }
       },
       "oauth_client": [
         {
-          "client_id": "335488712723-qiprp8ii1b11cl1uob8q4iprqrb9bj1d.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.DefaultCompany.CatchTheChicken",
-            "certificate_hash": "9d593393136f0b2c0d2f412ccce4d49cad767729"
-          }
-        },
-        {
-          "client_id": "335488712723-2hqciv7mto3c7eic8vnpphla02ic9qeq.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "335488712723-tnfcprqisem284dml07iqgn1oqe9cqmc.apps.googleusercontent.com"
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBOSSqgypeYl2q5UiLmQUoHIdbOhXemvhM"
+          "current_key": "AIzaSyAaXT9bqC8m5WvrYFc-9h0CeKBnTr_rbi0"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 0
+        },
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "335488712723-2hqciv7mto3c7eic8vnpphla02ic9qeq.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1
         }
       }
     }

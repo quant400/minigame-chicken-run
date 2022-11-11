@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_android_client_id,@string/default_web_client_id">
+  <string name="firebase_database_url" translatable="false">https://cfc-servers-333812-default-rtdb.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">335488712723</string>
+  <string name="google_storage_bucket" translatable="false">cfc-servers-333812.appspot.com</string>
+  <string name="project_id" translatable="false">cfc-servers-333812</string>
+  <string name="google_api_key" translatable="false">AIzaSyBOSSqgypeYl2q5UiLmQUoHIdbOhXemvhM</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBOSSqgypeYl2q5UiLmQUoHIdbOhXemvhM</string>
+  <string name="google_app_id" translatable="false">1:335488712723:android:1fb125f64adec0c0063fe6</string>
+  <string name="default_android_client_id" translatable="false">335488712723-qiprp8ii1b11cl1uob8q4iprqrb9bj1d.apps.googleusercontent.com</string>
+  <string name="default_web_client_id" translatable="false">335488712723-2hqciv7mto3c7eic8vnpphla02ic9qeq.apps.googleusercontent.com</string>
+</resources>

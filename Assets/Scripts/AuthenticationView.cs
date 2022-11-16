@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase;
-using Firebase.Auth;
-using Firebase.Extensions;
+//using Firebase;
+//using Firebase.Auth;
+//using Firebase.Extensions;
 using TMPro;
 using Google;
 using System.Net.Http;
@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 public class AuthenticationView : MonoBehaviour
 {
     [Header("Firebase")]
-    public DependencyStatus dependencyStatus;
+    /*public DependencyStatus dependencyStatus;
     public FirebaseAuth auth;
-    public FirebaseUser User;
+    public FirebaseUser User;*/
 
     //Login variables
     [Header("Login")]
@@ -41,7 +41,7 @@ public class AuthenticationView : MonoBehaviour
     public string GoogleWebAPI;
     private GoogleSignInConfiguration configuration;
 
-    void Awake()
+   /* void Awake()
     {
         //for Google
         configuration = new GoogleSignInConfiguration
@@ -267,5 +267,5 @@ public class AuthenticationView : MonoBehaviour
             });
         }
     }
-    #endregion Google
+    #endregion Google*/
 }

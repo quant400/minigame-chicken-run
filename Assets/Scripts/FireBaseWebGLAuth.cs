@@ -1,4 +1,4 @@
-using FirebaseWebGL.Examples.Utils;
+/*using FirebaseWebGL.Examples.Utils;
 using FirebaseWebGL.Scripts.FirebaseBridge;
 using FirebaseWebGL.Scripts.Objects;
 using TMPro;
@@ -155,5 +155,5 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
     #endregion utility
 
-}
+}*/
 

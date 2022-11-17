@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 40678501}
   - component: {fileID: 40678500}
   - component: {fileID: 40678499}
-  - component: {fileID: 40678502}
+  - component: {fileID: 40678498}
   m_Layer: 5
   m_Name: Login Panel
   m_TagString: Untagged
@@ -299,6 +299,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &40678498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40678496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373353f7c5f96af438f08c6ca9264773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyStatus: 0
+  SignInPanel: {fileID: 161218421}
+  emailLoginField: {fileID: 1146393449}
+  passwordLoginField: {fileID: 1250857700}
+  warningLoginText: {fileID: 4288788}
+  confirmLoginText: {fileID: 0}
+  registerPanel: {fileID: 241378535}
+  emailRegisterField: {fileID: 737410403}
+  passwordRegisterField: {fileID: 533887180}
+  passwordRegisterVerifyField: {fileID: 684192090}
+  warningRegisterText: {fileID: 173319556}
+  methodSelect: {fileID: 1955383192}
+  infoDisplay: {fileID: 998306960}
+  GoogleWebAPI: 335488712723-2hqciv7mto3c7eic8vnpphla02ic9qeq.apps.googleusercontent.com
 --- !u!114 &40678499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,29 +386,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0
---- !u!114 &40678502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40678496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94fe7556ce38d644080c1fae1e52631e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SignInPanel: {fileID: 161218421}
-  emailLoginField: {fileID: 1146393449}
-  passwordLoginField: {fileID: 1250857700}
-  warningLoginText: {fileID: 4288788}
-  registerPanel: {fileID: 241378535}
-  emailRegisterField: {fileID: 737410403}
-  passwordRegisterField: {fileID: 533887180}
-  passwordRegisterVerifyField: {fileID: 684192090}
-  warningRegisterText: {fileID: 173319556}
-  methodSelect: {fileID: 1955383192}
-  InfoDisplay: {fileID: 998306960}
 --- !u!1 &98066855
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,8 +604,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 40678502}
-        m_TargetAssemblyTypeName: FireBaseWebGLAuth, Assembly-CSharp
+      - m_Target: {fileID: 40678498}
+        m_TargetAssemblyTypeName: AuthenticationView, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
         m_Arguments:
@@ -2581,8 +2584,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 40678502}
-        m_TargetAssemblyTypeName: FireBaseWebGLAuth, Assembly-CSharp
+      - m_Target: {fileID: 40678498}
+        m_TargetAssemblyTypeName: AuthenticationView, Assembly-CSharp
         m_MethodName: OpenSingin
         m_Mode: 1
         m_Arguments:
@@ -2859,7 +2862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4381750605995796525, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3518094
+      value: -3529604.2
       objectReference: {fileID: 0}
     - target: {fileID: 8126445881783437250, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3506,9 +3509,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 40678502}
-        m_TargetAssemblyTypeName: FireBaseWebGLAuth, Assembly-CSharp
-        m_MethodName: SignInWithGoogle
+      - m_Target: {fileID: 40678498}
+        m_TargetAssemblyTypeName: AuthenticationView, Assembly-CSharp
+        m_MethodName: GoogleSignInClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4464,8 +4467,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 40678502}
-        m_TargetAssemblyTypeName: FireBaseWebGLAuth, Assembly-CSharp
+      - m_Target: {fileID: 40678498}
+        m_TargetAssemblyTypeName: AuthenticationView, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
         m_Arguments:
@@ -4928,9 +4931,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 40678502}
-        m_TargetAssemblyTypeName: FireBaseWebGLAuth, Assembly-CSharp
-        m_MethodName: OnSignInClick
+      - m_Target: {fileID: 40678498}
+        m_TargetAssemblyTypeName: AuthenticationView, Assembly-CSharp
+        m_MethodName: LoginButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5683,9 +5686,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 40678502}
-        m_TargetAssemblyTypeName: FireBaseWebGLAuth, Assembly-CSharp
-        m_MethodName: OnRegisterClick
+      - m_Target: {fileID: 40678498}
+        m_TargetAssemblyTypeName: AuthenticationView, Assembly-CSharp
+        m_MethodName: RegisterButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6136,8 +6139,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 40678502}
-        m_TargetAssemblyTypeName: FireBaseWebGLAuth, Assembly-CSharp
+      - m_Target: {fileID: 40678498}
+        m_TargetAssemblyTypeName: AuthenticationView, Assembly-CSharp
         m_MethodName: OpenRegister
         m_Mode: 1
         m_Arguments:
@@ -6427,8 +6430,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 40678502}
-        m_TargetAssemblyTypeName: FireBaseWebGLAuth, Assembly-CSharp
+      - m_Target: {fileID: 40678498}
+        m_TargetAssemblyTypeName: AuthenticationView, Assembly-CSharp
         m_MethodName: OpenSingin
         m_Mode: 1
         m_Arguments:

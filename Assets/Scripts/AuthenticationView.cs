@@ -1,23 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using Firebase;
-//using Firebase.Auth;
-//using Firebase.Extensions;
+using Firebase;
+using Firebase.Auth;
+using Firebase.Extensions;
 using TMPro;
 using Google;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 public class AuthenticationView : MonoBehaviour
 {
     [Header("Firebase")]
-    /*public DependencyStatus dependencyStatus;
+    public DependencyStatus dependencyStatus;
     public FirebaseAuth auth;
-    public FirebaseUser User;*/
+    public FirebaseUser User;
 
     //Login variables
     [Header("Login")]
+    public Transform SignInPanel;
     public TMP_InputField emailLoginField;
     public TMP_InputField passwordLoginField;
     public TMP_Text warningLoginText;
@@ -25,23 +27,24 @@ public class AuthenticationView : MonoBehaviour
 
     //Register variables
     [Header("Register")]
-    public TMP_InputField usernameRegisterField;
+    public Transform registerPanel;
     public TMP_InputField emailRegisterField;
     public TMP_InputField passwordRegisterField;
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
 
-
+    [Header("Others")]
     [SerializeField]
     GameObject methodSelect;
+    GameObject currentOpenWindiow;
     [SerializeField]
-    TMP_Text tempInfoDisplay;
+    TMP_Text infoDisplay;
 
     //for Google
     public string GoogleWebAPI;
     private GoogleSignInConfiguration configuration;
 
-   /* void Awake()
+ void Awake()
     {
         //for Google
         configuration = new GoogleSignInConfiguration
@@ -85,7 +88,7 @@ public class AuthenticationView : MonoBehaviour
     public void RegisterButton()
     {
         //Call the register coroutine passing the email, password, and username
-        StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
+        StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text));
     }
 
     private IEnumerator Login(string _email, string _password)
@@ -136,17 +139,16 @@ public class AuthenticationView : MonoBehaviour
         }
     }
 
-    private IEnumerator Register(string _email, string _password, string _username)
+    private IEnumerator Register(string _email, string _password)
     {
-        if (_username == "")
+        if(!IsValidEmail(_email))
         {
-            //If the username field is blank show a warning
-            warningRegisterText.text = "Missing Username";
+            warningRegisterText.text = "Please enter a valid email!".ToUpper();
         }
-        else if (passwordRegisterField.text != passwordRegisterVerifyField.text)
+         if (passwordRegisterField.text != passwordRegisterVerifyField.text)
         {
             //If the password does not match show a warning
-            warningRegisterText.text = "Password Does Not Match!";
+            warningRegisterText.text = "Password Does Not Match!".ToUpper();
         }
         else
         {
@@ -178,7 +180,7 @@ public class AuthenticationView : MonoBehaviour
                         message = "Email Already In Use";
                         break;
                 }
-                warningRegisterText.text = message;
+                warningRegisterText.text = message.ToUpper();
                 warningRegisterText.color = Color.red;
             }
             else
@@ -190,7 +192,7 @@ public class AuthenticationView : MonoBehaviour
                 if (User != null)
                 {
                     //Create a user profile and set the username
-                    UserProfile profile = new UserProfile { DisplayName = _username };
+                    UserProfile profile = new UserProfile();
 
                     //Call the Firebase auth update user profile function passing the profile with the username
                     var ProfileTask = User.UpdateUserProfileAsync(profile);
@@ -203,14 +205,14 @@ public class AuthenticationView : MonoBehaviour
                         Debug.LogWarning(message: $"Failed to register task with {ProfileTask.Exception}");
                         FirebaseException firebaseEx = ProfileTask.Exception.GetBaseException() as FirebaseException;
                         AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
-                        warningRegisterText.text = "Username Set Failed!";
+                        warningRegisterText.text = "Username Set Failed!".ToUpper();
                         warningRegisterText.color = Color.red;
                     }
                     else
                     {
                         //Username is now set
                         //Now return to login screen
-                       // UIManager.instance.LoginScreen();
+                        SignedIn(User.Email);
                         warningRegisterText.text = "";
                     }
                 }
@@ -254,9 +256,9 @@ public class AuthenticationView : MonoBehaviour
                 User = auth.CurrentUser;
                 Debug.Log(User.Email);
                 Debug.Log(User.DisplayName);
-                tempInfoDisplay.text = User.Email.ToUpper() + "\n\n" + User.DisplayName.ToUpper();
-                tempInfoDisplay.color = Color.green;
-                tempInfoDisplay.gameObject.SetActive(true);
+                infoDisplay.text = User.Email.ToUpper() + "\n\n" + User.DisplayName.ToUpper();
+                infoDisplay.color = Color.green;
+                infoDisplay.gameObject.SetActive(true);
 
                 //load game into skip
                 methodSelect.SetActive(false);
@@ -268,4 +270,52 @@ public class AuthenticationView : MonoBehaviour
         }
     }
     #endregion Google*/
+
+
+    #region utility
+    void SignedIn(string info)
+    {
+        infoDisplay.text = info.ToUpper();
+        currentOpenWindiow.SetActive(false);
+        PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
+        gameplayView.instance.isTryout = false;
+        GetComponentInParent<NFTGetView>().Skip();
+    }
+
+    public void OpenSingin()
+    {
+        if (currentOpenWindiow == null)
+        {
+            currentOpenWindiow = methodSelect;
+        }
+        currentOpenWindiow.SetActive(false);
+        currentOpenWindiow = SignInPanel.gameObject;
+        SignInPanel.gameObject.SetActive(true);
+    }
+
+    public void OpenRegister()
+    {
+        if (currentOpenWindiow == null)
+        {
+            currentOpenWindiow = methodSelect;
+        }
+        currentOpenWindiow.SetActive(false);
+        currentOpenWindiow = registerPanel.gameObject;
+        registerPanel.gameObject.SetActive(true);
+    }
+    public void Close()
+    {
+        if (currentOpenWindiow != null)
+        {
+            currentOpenWindiow.SetActive(false);
+            currentOpenWindiow = methodSelect;
+        }
+    }
+    bool IsValidEmail(string email)
+    {
+        Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
+
+        return emailRegex.IsMatch(email);
+    }
+    #endregion utility 
 }

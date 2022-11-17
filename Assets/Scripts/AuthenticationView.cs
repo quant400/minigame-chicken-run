@@ -67,6 +67,8 @@ public class AuthenticationView : MonoBehaviour
                 Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
             }
         });
+
+        currentOpenWindiow = methodSelect;
     }
 
     private void InitializeFirebase()
@@ -93,6 +95,10 @@ public class AuthenticationView : MonoBehaviour
 
     private IEnumerator Login(string _email, string _password)
     {
+        if(!IsValidEmail(_email))
+        {
+            warningLoginText.text = "Please enter a valid email!".ToUpper();
+        }
         //Call the Firebase auth signin function passing the email and password
         var LoginTask = auth.SignInWithEmailAndPasswordAsync(_email, _password);
         //Wait until the task completes
@@ -124,7 +130,7 @@ public class AuthenticationView : MonoBehaviour
                     message = "Account does not exist";
                     break;
             }
-            warningLoginText.text = message;
+            warningLoginText.text = message.ToUpper();
             warningRegisterText.color = Color.red;
         }
         else
@@ -134,8 +140,7 @@ public class AuthenticationView : MonoBehaviour
             User = LoginTask.Result;
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
-            confirmLoginText.text = "Logged In";
-            confirmLoginText.color = Color.green;
+            SignedIn(User.Email);
         }
     }
 
@@ -261,10 +266,7 @@ public class AuthenticationView : MonoBehaviour
                 infoDisplay.gameObject.SetActive(true);
 
                 //load game into skip
-                methodSelect.SetActive(false);
-                PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
-                gameplayView.instance.isTryout = false;
-                GetComponentInParent<NFTGetView>().Skip();
+                SignedIn(User.Email);
 
             });
         }
@@ -276,6 +278,7 @@ public class AuthenticationView : MonoBehaviour
     void SignedIn(string info)
     {
         infoDisplay.text = info.ToUpper();
+        infoDisplay.color = Color.green;
         currentOpenWindiow.SetActive(false);
         PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
         gameplayView.instance.isTryout = false;

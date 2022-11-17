@@ -84,15 +84,21 @@ public class FireBaseWebGLAuth : MonoBehaviour
         FirebaseAuth.CreateUserWithEmailAndPassword(emailRegisterField.text, passwordRegisterField.text, gameObject.name, "SignedIn", "DisplayError");
 
     public void SignInWithGoogle() =>
-           FirebaseAuth.SignInWithGoogle(gameObject.name, "DisplayInfo", "DisplayErrorObject");
+           FirebaseAuth.SignInWithGoogle(gameObject.name, "SignedIn", "DisplayError");
 
 
 
-
-
+    void DisplayInfo(string info)
+    {
+        Debug.Log(info);
+    }
+    void DisplayUserInfo(string info)
+    {
+        Debug.Log(info);
+    }
     void SignedIn(string info)
     {
-        InfoDisplay.text = info;
+        InfoDisplay.text = info.ToUpper();
         currentOpenWindiow.SetActive(false);
         PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
         gameplayView.instance.isTryout = false;
@@ -102,7 +108,6 @@ public class FireBaseWebGLAuth : MonoBehaviour
     void DisplayError(string error)
     {
         var parsedError = StringSerializationAPI.Deserialize(typeof(FirebaseError), error) as FirebaseError;
-        warningLoginText.text = parsedError.message;
         if (currentOpenWindiow.name == "Login")
         {
 
@@ -113,6 +118,8 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
             warningRegisterText.text = parsedError.message.ToUpper();
         }
+        else
+            Debug.Log(parsedError.message);
     }
 
 

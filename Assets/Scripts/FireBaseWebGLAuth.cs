@@ -5,7 +5,16 @@ using TMPro;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using DG.Tweening;
+using System;
 
+public struct LoginObject
+{
+    public string uid;
+    public string email;
+    public string emailVerified;
+    public string displayName;
+
+}
 
 public class FireBaseWebGLAuth : MonoBehaviour
 {
@@ -32,6 +41,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
     private void Start()
     {
+        currentOpenWindiow = methodSelect;
         if (Application.platform != RuntimePlatform.WebGLPlayer)
         {
             Debug.Log("The code is not running on a WebGL build; as such, the Javascript functions will not be recognized.");
@@ -39,6 +49,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
         }
 
         FirebaseAuth.OnAuthStateChanged(gameObject.name, "DisplayUserInfo", "DisplayInfo");
+        
     }
 
     public void OnSignInClick()
@@ -83,8 +94,11 @@ public class FireBaseWebGLAuth : MonoBehaviour
     public void CreateUserWithEmailAndPassword() =>
         FirebaseAuth.CreateUserWithEmailAndPassword(emailRegisterField.text, passwordRegisterField.text, gameObject.name, "SignedIn", "DisplayError");
 
-    public void SignInWithGoogle() =>
-           FirebaseAuth.SignInWithGoogle(gameObject.name, "SignedIn", "DisplayError");
+    public void SignInWithGoogle()
+    {
+        PlayerPrefs.SetString("LastLogin", System.DateTime.Now.ToBinary().ToString());
+        FirebaseAuth.SignInWithGoogle(gameObject.name, "SignedIn", "DisplayError");
+    }
 
 
 
@@ -94,15 +108,29 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
     void DisplayUserInfo(string info)
     {
-        Debug.Log(info);
+        if (info != "" && CheckIfloginValid())
+        {
+            LoginObject pl = JsonUtility.FromJson<LoginObject>(info);
+            /*Debug.Log(pl.email);
+            Debug.Log(pl.uid);
+            Debug.Log(pl.emailVerified);
+            Debug.Log(pl.displayName);*/
+            SignedIn("Signed in as ".ToUpper()+pl.email.ToUpper());
+        }
+
     }
     void SignedIn(string info)
     {
+
         InfoDisplay.text = info.ToUpper();
         currentOpenWindiow.SetActive(false);
         PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
         gameplayView.instance.isTryout = false;
+        //change what loads when mint nft added and stuff linked
         GetComponentInParent<NFTGetView>().Skip();
+        PlayerPrefs.SetString("LastLogin", System.DateTime.Now.ToBinary().ToString());
+        //Debug.Log(PlayerPrefs.GetString("LastLogin"));
+
     }
 
     void DisplayError(string error)
@@ -162,5 +190,25 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
     #endregion utility
 
+    bool CheckIfloginValid()
+    {
+        if (PlayerPrefs.HasKey("LastLogin"))
+        {
+            DateTime currentDate = System.DateTime.Now;
+
+            long temp = Convert.ToInt64(PlayerPrefs.GetString("LastLogin"));
+            DateTime oldDate = DateTime.FromBinary(temp);
+            TimeSpan difference = currentDate.Subtract(oldDate);
+            if (difference.TotalMinutes >= 5)
+                return false;
+            else
+                return true;
+        }
+        else
+            return false;
+
+    }
+
+       
 }
 

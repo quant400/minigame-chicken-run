@@ -49,7 +49,6 @@ public class FireBaseWebGLAuth : MonoBehaviour
         }
 
         FirebaseAuth.OnAuthStateChanged(gameObject.name, "DisplayUserInfo", "DisplayInfo");
-        
     }
 
     public void OnSignInClick()
@@ -97,6 +96,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     public void SignInWithGoogle()
     {
         PlayerPrefs.SetString("LastLogin", System.DateTime.Now.ToBinary().ToString());
+        PlayerPrefs.SetInt("SignOut",0);
         FirebaseAuth.SignInWithGoogle(gameObject.name, "SignedIn", "DisplayError");
     }
 
@@ -108,20 +108,21 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
     void DisplayUserInfo(string info)
     {
-        if (info != "" && CheckIfloginValid())
+        if (info != "" && CheckIfloginValid() && (!PlayerPrefs.HasKey("SignOut") || PlayerPrefs.GetInt("SignOut") == 0))
         {
-            LoginObject pl = JsonUtility.FromJson<LoginObject>(info);
-            /*Debug.Log(pl.email);
-            Debug.Log(pl.uid);
-            Debug.Log(pl.emailVerified);
-            Debug.Log(pl.displayName);*/
-            SignedIn("Signed in as ".ToUpper()+pl.email.ToUpper());
+            Debug.Log(info);
+            FirebaseUser pl = JsonUtility.FromJson<FirebaseUser>(info);
+            /*ebug.Log(pl.email);
+             Debug.Log(pl.uid);
+             Debug.Log(pl.isEmailVerified);
+             Debug.Log(pl.displayName);*/
+            SignedIn("Signed in as ".ToUpper()+pl.email.ToUpper()+"\n\n"+pl.providerData);
         }
 
     }
     void SignedIn(string info)
     {
-
+        PlayerPrefs.SetInt("SignOut", 0);
         InfoDisplay.text = info.ToUpper();
         currentOpenWindiow.SetActive(false);
         PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
@@ -131,6 +132,13 @@ public class FireBaseWebGLAuth : MonoBehaviour
         PlayerPrefs.SetString("LastLogin", System.DateTime.Now.ToBinary().ToString());
         //Debug.Log(PlayerPrefs.GetString("LastLogin"));
 
+    }
+    
+    public void SignOut()
+    {
+        PlayerPrefs.SetInt("SignOut", 1);
+        GetComponentInParent<uiView>().goToMenu("login");
+        InfoDisplay.text = "";
     }
 
     void DisplayError(string error)

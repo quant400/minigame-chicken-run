@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 public class WebGLTransfer1155: MonoBehaviour
 {
-    [SerializeField]
+    /*[SerializeField]
     private string contract = "0x8207ba6852ee561f0786e2d876b1a20fef916e46";
     [SerializeField]
     private string toAccount = "0xdA064B1Cef52e19caFF22ae2Cc1A4e8873B8bAB0";
@@ -34,5 +34,5 @@ public class WebGLTransfer1155: MonoBehaviour
         } catch (Exception e) {
             Debug.LogException(e, this);
         };
-    }
+    }*/
 }

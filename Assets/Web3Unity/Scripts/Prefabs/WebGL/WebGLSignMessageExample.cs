@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WebGLSignMessageExample : MonoBehaviour
 {
-    async public void OnSignMessage()
+   /* async public void OnSignMessage()
     {
         try {
             string message = "hello";
@@ -14,5 +14,5 @@ public class WebGLSignMessageExample : MonoBehaviour
         } catch (Exception e) {
             Debug.LogException(e, this);
         }
-    }
+    }*/
 }

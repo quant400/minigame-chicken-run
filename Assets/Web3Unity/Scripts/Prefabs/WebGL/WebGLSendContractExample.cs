@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WebGLSendContractExample : MonoBehaviour
 {
-    async public void OnSendContract()
+   /* async public void OnSendContract()
     {
         // smart contract method to call
         string method = "increment";
@@ -26,5 +26,5 @@ public class WebGLSendContractExample : MonoBehaviour
         } catch (Exception e) {
             Debug.LogException(e, this);
         }
-    }
+    }*/
 }

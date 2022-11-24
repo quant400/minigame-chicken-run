@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WebGLSendTransactionExample : MonoBehaviour
 {
-    async public void OnSendTransaction()
+  /*  async public void OnSendTransaction()
     {
         // account to send to
         string to = "0x428066dd8A212104Bc9240dCe3cdeA3D3A0f7979";
@@ -20,5 +20,5 @@ public class WebGLSendTransactionExample : MonoBehaviour
         } catch (Exception e) {
             Debug.LogException(e, this);
         }
-    }
+    }*/
 }

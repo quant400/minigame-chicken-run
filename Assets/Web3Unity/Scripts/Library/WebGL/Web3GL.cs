@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Web3GL
 {
-    [DllImport("__Internal")]
+   /* [DllImport("__Internal")]
     private static extern void SendContractJs(string method, string abi, string contract, string args, string value, string gas);
 
     [DllImport("__Internal")]
@@ -110,5 +110,5 @@ public class Web3GL
     {
         return GetNetwork();
     }
-
+   */
 }

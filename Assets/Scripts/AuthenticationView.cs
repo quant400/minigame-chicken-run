@@ -44,7 +44,7 @@ public class AuthenticationView : MonoBehaviour
     public string GoogleWebAPI;
     private GoogleSignInConfiguration configuration;
 
- void Awake()
+    void Awake()
     {
         //for Google
         configuration = new GoogleSignInConfiguration
@@ -69,6 +69,10 @@ public class AuthenticationView : MonoBehaviour
         });
 
         currentOpenWindiow = methodSelect;
+
+
+
+
     }
 
     private void InitializeFirebase()
@@ -76,6 +80,37 @@ public class AuthenticationView : MonoBehaviour
         Debug.Log("Setting up Firebase Auth");
         //Set the authentication instance object
         auth = FirebaseAuth.DefaultInstance;
+        auth.StateChanged += AuthStateChanged;
+        Invoke("Test", 1f);
+        
+    }
+    void Test()
+    {
+        AuthStateChanged(this, null);
+    }
+    void AuthStateChanged(object sender, System.EventArgs eventArgs)
+    {
+        if (auth.CurrentUser != User)
+        {
+            bool signedIn = User != auth.CurrentUser && auth.CurrentUser != null;
+            if (!signedIn && User != null)
+            {
+                Debug.Log("Signed out " + User.UserId);
+            }
+            User = auth.CurrentUser;
+            if (signedIn)
+            {
+                Debug.Log("Signed in " + User.UserId);
+                Debug.Log(User.Email);
+                Debug.Log(0);
+                SignedIn(User.Email);
+            }
+        }
+    }
+
+    void OnDisable()
+    {
+        auth.StateChanged -= AuthStateChanged;
     }
 
 
@@ -291,6 +326,10 @@ public class AuthenticationView : MonoBehaviour
         {
             currentOpenWindiow = methodSelect;
         }
+        emailRegisterField.text = "";
+        passwordRegisterField.text = "";
+        passwordRegisterVerifyField.text = "";
+        warningRegisterText.text = "";
         currentOpenWindiow.SetActive(false);
         currentOpenWindiow = SignInPanel.gameObject;
         SignInPanel.gameObject.SetActive(true);
@@ -302,6 +341,9 @@ public class AuthenticationView : MonoBehaviour
         {
             currentOpenWindiow = methodSelect;
         }
+        emailLoginField.text = "";
+        passwordLoginField.text = "";
+        warningLoginText.text = "";
         currentOpenWindiow.SetActive(false);
         currentOpenWindiow = registerPanel.gameObject;
         registerPanel.gameObject.SetActive(true);
@@ -312,7 +354,21 @@ public class AuthenticationView : MonoBehaviour
         {
             currentOpenWindiow.SetActive(false);
             currentOpenWindiow = methodSelect;
+            emailRegisterField.text = "";
+            passwordRegisterField.text = "";
+            passwordRegisterVerifyField.text = "";
+            warningRegisterText.text = "";
+            emailLoginField.text = "";
+            passwordLoginField.text = "";
+            warningLoginText.text = "";
         }
+    }
+
+    public void SignOut()
+    {
+        auth.SignOut();
+        infoDisplay.text = "";
+        GetComponentInParent<uiView>().goToMenu("login");
     }
     bool IsValidEmail(string email)
     {

@@ -368,6 +368,13 @@ public class AuthenticationView : MonoBehaviour
     {
         auth.SignOut();
         infoDisplay.text = "";
+        emailRegisterField.text = "";
+        passwordRegisterField.text = "";
+        passwordRegisterVerifyField.text = "";
+        warningRegisterText.text = "";
+        emailLoginField.text = "";
+        passwordLoginField.text = "";
+        warningLoginText.text = "";
         GetComponentInParent<uiView>().goToMenu("login");
     }
     bool IsValidEmail(string email)

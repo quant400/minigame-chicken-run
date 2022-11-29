@@ -139,6 +139,13 @@ public class FireBaseWebGLAuth : MonoBehaviour
         PlayerPrefs.SetInt("SignOut", 1);
         GetComponentInParent<uiView>().goToMenu("login");
         InfoDisplay.text = "";
+        emailRegisterField.text = "";
+        passwordRegisterField.text = "";
+        passwordRegisterVerifyField.text = "";
+        warningRegisterText.text = "";
+        emailLoginField.text = "";
+        passwordLoginField.text = "";
+        warningLoginText.text = "";
     }
 
     void DisplayError(string error)
@@ -167,6 +174,10 @@ public class FireBaseWebGLAuth : MonoBehaviour
         {
             currentOpenWindiow = methodSelect;
         }
+        emailRegisterField.text = "";
+        passwordRegisterField.text = "";
+        passwordRegisterVerifyField.text = "";
+        warningRegisterText.text = "";
         currentOpenWindiow.SetActive(false);
         currentOpenWindiow = SignInPanel.gameObject;
         SignInPanel.gameObject.SetActive(true);
@@ -178,6 +189,9 @@ public class FireBaseWebGLAuth : MonoBehaviour
         {
             currentOpenWindiow = methodSelect;
         }
+        emailLoginField.text = "";
+        passwordLoginField.text = "";
+        warningLoginText.text = "";
         currentOpenWindiow.SetActive(false);
         currentOpenWindiow = registerPanel.gameObject;
         registerPanel.gameObject.SetActive(true);
@@ -188,6 +202,13 @@ public class FireBaseWebGLAuth : MonoBehaviour
         {
             currentOpenWindiow.SetActive(false);
             currentOpenWindiow = methodSelect;
+            emailRegisterField.text = "";
+            passwordRegisterField.text = "";
+            passwordRegisterVerifyField.text = "";
+            warningRegisterText.text = "";
+            emailLoginField.text = "";
+            passwordLoginField.text = "";
+            warningLoginText.text = "";
         }
     }
     bool IsValidEmail(string email)
@@ -196,7 +217,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
         return emailRegex.IsMatch(email);
     }
-    #endregion utility
+   
 
     bool CheckIfloginValid()
     {
@@ -216,7 +237,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
             return false;
 
     }
-
+ #endregion utility
        
 }
 

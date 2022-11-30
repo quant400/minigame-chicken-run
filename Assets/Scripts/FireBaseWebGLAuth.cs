@@ -125,6 +125,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
         PlayerPrefs.SetInt("SignOut", 0);
         InfoDisplay.text = info.ToUpper();
         currentOpenWindiow.SetActive(false);
+        currentOpenWindiow = methodSelect;
         PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
         gameplayView.instance.isTryout = false;
         //change what loads when mint nft added and stuff linked

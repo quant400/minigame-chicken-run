@@ -38,7 +38,6 @@ public class characterSelectionView : MonoBehaviour
     //for skip
     bool skipping;
     UnityEngine.Object[] info;
-    bool freeMint;
     public void Start()
     {
         observeCharacterSelectionBtns();
@@ -117,7 +116,7 @@ public class characterSelectionView : MonoBehaviour
                 leftButton.gameObject.SetActive(true);
             SkipDisplayChars(currentStartIndex);
         }
-        else if (freeMint)
+        else if (gameplayView.instance.usingFreemint)
         {
             if (currentStartIndex + 4 > info.Length - 1)
                 rightButton.gameObject.SetActive(false);
@@ -155,7 +154,7 @@ public class characterSelectionView : MonoBehaviour
                 rightButton.gameObject.SetActive(true);
             SkipDisplayChars(currentStartIndex);
         }
-        else if(freeMint)
+        else if(gameplayView.instance.usingFreemint)
         {
             if (currentStartIndex - 4 < 0)
                 leftButton.gameObject.SetActive(false);

@@ -53,17 +53,18 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
     public void OnSignInClick()
     {
-        warningLoginText.text = "";
-        if (emailLoginField.text == "" || !IsValidEmail(emailLoginField.text))
-        {
-            SignInPanel.DOShakePosition(1, 1);
-            warningLoginText.text = "Please enter a valid email".ToUpper();
-            warningLoginText.color = Color.red;
-        }
-        else
-        {
-            SignInWithEmailAndPassword();
-        }
+         warningLoginText.text = "";
+         if (emailLoginField.text == "" || !IsValidEmail(emailLoginField.text))
+         {
+             SignInPanel.DOShakePosition(1, 1);
+             warningLoginText.text = "Please enter a valid email".ToUpper();
+             warningLoginText.color = Color.red;
+         }
+         else
+         {
+             SignInWithEmailAndPassword();
+         }
+       
     }
 
     public void OnRegisterClick()
@@ -129,7 +130,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
         PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
         gameplayView.instance.isTryout = false;
         //change what loads when mint nft added and stuff linked
-        GetComponentInParent<NFTGetView>().Skip();
+        GetComponentInParent<NFTGetView>().Display(new NFTInfo[0]);
         PlayerPrefs.SetString("LastLogin", System.DateTime.Now.ToBinary().ToString());
         //Debug.Log(PlayerPrefs.GetString("LastLogin"));
 

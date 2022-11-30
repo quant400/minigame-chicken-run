@@ -318,7 +318,8 @@ public class AuthenticationView : MonoBehaviour
         currentOpenWindiow = methodSelect;
         PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
         gameplayView.instance.isTryout = false;
-        GetComponentInParent<NFTGetView>().Skip();
+        //GetComponentInParent<NFTGetView>().Skip();
+        GetComponentInParent<NFTGetView>().Display(new NFTInfo[0]);
     }
 
     public void OpenSingin()

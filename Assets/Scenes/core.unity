@@ -1547,7 +1547,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 40678502}
         m_TargetAssemblyTypeName: FireBaseWebGLAuth, Assembly-CSharp
-        m_MethodName: SignOut
+        m_MethodName: LogOut
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3172,7 +3172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4381750605995796525, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4037172.8
+      value: -4072485.8
       objectReference: {fileID: 0}
     - target: {fileID: 8126445880756587034, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_IsActive

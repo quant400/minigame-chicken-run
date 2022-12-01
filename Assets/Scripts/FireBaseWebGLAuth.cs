@@ -97,7 +97,6 @@ public class FireBaseWebGLAuth : MonoBehaviour
     public void SignInWithGoogle()
     {
         PlayerPrefs.SetString("LastLogin", System.DateTime.Now.ToBinary().ToString());
-        PlayerPrefs.SetInt("SignOut",0);
         FirebaseAuth.SignInWithGoogle(gameObject.name, "SignedIn", "DisplayError");
     }
 
@@ -109,7 +108,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
     void DisplayUserInfo(string info)
     {
-        if (info != "" && CheckIfloginValid() && (!PlayerPrefs.HasKey("SignOut") || PlayerPrefs.GetInt("SignOut") == 0))
+        if (info != "" && CheckIfloginValid())
         {
             Debug.Log(info);
             FirebaseUser pl = JsonUtility.FromJson<FirebaseUser>(info);
@@ -123,7 +122,6 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
     void SignedIn(string info)
     {
-        PlayerPrefs.SetInt("SignOut", 0);
         InfoDisplay.text = info.ToUpper();
         currentOpenWindiow.SetActive(false);
         currentOpenWindiow = methodSelect;
@@ -136,9 +134,9 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
     }
     
-    public void SignOut()
+    public void LogOut()
     {
-        PlayerPrefs.SetInt("SignOut", 1);
+        FirebaseAuth.SignOut();
         GetComponentInParent<uiView>().goToMenu("login");
         InfoDisplay.text = "";
         emailRegisterField.text = "";

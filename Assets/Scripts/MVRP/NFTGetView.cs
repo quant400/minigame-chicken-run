@@ -58,8 +58,11 @@ public class NFTGetView : MonoBehaviour
         }
         if (used.Length == 0)
         {
-            noNFTCanvas.SetActive(true);
-            chickenGameModel.userIsLogged.Value = false;
+            /*noNFTCanvas.SetActive(true);
+            chickenGameModel.userIsLogged.Value = false;*/
+            gameplayView.instance.usingFreemint = true;
+            characterSelectView.FreeMint();
+            chickenGameModel.userIsLogged.Value = true;
         }
         else
         {

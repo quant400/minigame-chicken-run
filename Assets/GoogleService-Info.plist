@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>335488712723-glgan3d7q3ava2h8j5h94ts3p0a6asj1.apps.googleusercontent.com</string>
+	<string>335488712723-r3mjujhmftm1tublom61do62nk2930bv.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.335488712723-glgan3d7q3ava2h8j5h94ts3p0a6asj1</string>
+	<string>com.googleusercontent.apps.335488712723-r3mjujhmftm1tublom61do62nk2930bv</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>335488712723-jouipp2je0rj83auriot148cgesmnalf.apps.googleusercontent.com</string>
+	<string>335488712723-j0ms0iu46vc7iqe4tj3tltsb521rj617.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAaXT9bqC8m5WvrYFc-9h0CeKBnTr_rbi0</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.cryptofightclub.chickenrun</string>
+	<string>com.cfcinc.chickenrun</string>
 	<key>PROJECT_ID</key>
 	<string>cfc-servers-333812</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:335488712723:ios:7c578a1bf164b2f8063fe6</string>
+	<string>1:335488712723:ios:6d246aa9b2c180b3063fe6</string>
 	<key>DATABASE_URL</key>
 	<string>https://cfc-servers-333812-default-rtdb.firebaseio.com</string>
 </dict>

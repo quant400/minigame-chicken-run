@@ -71,7 +71,12 @@ public class ButtonInfoHolder : MonoBehaviour
     {
         if(charName=="null")
         {
-            Application.OpenURL("https://app.cryptofightclub.io/mint");
+            string link = "https://app.cryptofightclub.io/mint";
+#if UNITY_IOS || UNITY_ANDROID
+            link = "https://app.cryptofightclub.io";
+#endif
+
+            Application.OpenURL(link);
         }
         else
         {

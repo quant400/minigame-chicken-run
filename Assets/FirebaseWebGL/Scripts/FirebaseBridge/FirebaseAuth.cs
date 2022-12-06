@@ -62,5 +62,8 @@ namespace FirebaseWebGL.Scripts.FirebaseBridge
 
         [DllImport("__Internal")]
         public static extern void SignOut();
+
+        [DllImport("__Internal")]
+        public static extern void ResetPassword(string email, string objectName, string callback,string fallback);
     }
 }

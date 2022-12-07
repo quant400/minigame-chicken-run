@@ -31,6 +31,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     public TMP_InputField passwordRegisterField;
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
+    public bool accpetedTos;
 
     [Header("PasswordReset")]
     public Transform passwordResetPanel;
@@ -85,6 +86,12 @@ public class FireBaseWebGLAuth : MonoBehaviour
         {
             registerPanel.DOShakePosition(1, 1);
             warningRegisterText.text = "Password does not match".ToUpper();
+            warningRegisterText.color = Color.red;
+        }
+        else if(!accpetedTos)
+        {
+            registerPanel.DOShakePosition(1, 1);
+            warningRegisterText.text = "please read and accept the terms of servive and privacy policy".ToUpper();
             warningRegisterText.color = Color.red;
         }
         else
@@ -243,6 +250,20 @@ public class FireBaseWebGLAuth : MonoBehaviour
         Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$",RegexOptions.IgnoreCase);
 
         return emailRegex.IsMatch(email);
+    }
+
+
+    public void ToggleTos(bool val)
+    {
+        accpetedTos = val;
+    }
+    public void LoadTos()
+    {
+        Application.OpenURL("cryptofightclub.io/terms-of-service");
+    }
+    public void LoadPrivacy()
+    {
+        Application.OpenURL("cryptofightclub.io/privacy-policy");
     }
  #endregion utility
        

@@ -35,6 +35,8 @@ public class gameplayView : MonoBehaviour
     public static bool playerLogged;
     public GameObject gameOverObject;
 
+    public Texture[] ads;
+
     bool sfxMuted = false;
 
     public bool isTryout=false;

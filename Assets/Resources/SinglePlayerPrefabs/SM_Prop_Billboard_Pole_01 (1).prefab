@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 3223831525281315239}
   - component: {fileID: 3223831525280282665}
   - component: {fileID: 3195601510937967781}
+  - component: {fileID: 8972750338233680450}
   m_Layer: 0
   m_Name: SM_Prop_Billboard_Pole_01 (1)
   m_TagString: Untagged
@@ -228,6 +229,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43176369994635486, guid: f9d9572d16f20704dbcee3f14452563f, type: 2}
+--- !u!114 &8972750338233680450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223831525282320917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee6c6dce76d80b04e8bf379c33d9c284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boards:
+  - {fileID: 4442987887997696303}
+  - {fileID: 7664271098296498512}
+  - {fileID: 2712655783611612496}
 --- !u!1 &4913076495135838116
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +484,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2a53a2e1585ac7439ff035b5b626d46, type: 3}
+--- !u!1 &2712655783611612496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 116062, guid: a2a53a2e1585ac7439ff035b5b626d46, type: 3}
+  m_PrefabInstance: {fileID: 2712655783611725838}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4442987887997578983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -516,6 +538,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 017a6f5ce43f6d74ca746ed804873917, type: 3}
+--- !u!1 &4442987887997696303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 153544, guid: 017a6f5ce43f6d74ca746ed804873917, type: 3}
+  m_PrefabInstance: {fileID: 4442987887997578983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4960197545523482350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -689,6 +716,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2a53a2e1585ac7439ff035b5b626d46, type: 3}
+--- !u!1 &7664271098296498512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 116062, guid: a2a53a2e1585ac7439ff035b5b626d46, type: 3}
+  m_PrefabInstance: {fileID: 7664271098296450062}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9119827772264174270
 PrefabInstance:
   m_ObjectHideFlags: 0

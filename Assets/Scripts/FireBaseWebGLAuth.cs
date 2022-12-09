@@ -259,11 +259,11 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
     public void LoadTos()
     {
-        Application.OpenURL("cryptofightclub.io/terms-of-service");
+        Application.OpenURL("https://www.cryptofightclub.io/terms-of-service");
     }
     public void LoadPrivacy()
     {
-        Application.OpenURL("cryptofightclub.io/privacy-policy");
+        Application.OpenURL("https://www.cryptofightclub.io/privacy-policy");
     }
  #endregion utility
        

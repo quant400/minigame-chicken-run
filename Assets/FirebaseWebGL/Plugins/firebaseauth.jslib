@@ -96,5 +96,24 @@ mergeInto(LibraryManager.library, {
         function(error) {
         console.error('Sign Out Error', error);
         });
+    },
+
+     ResetPassword: function (email,objectName, callback, fallback) {
+        var parsedEmail = Pointer_stringify(email);
+        var parsedObjectName = Pointer_stringify(objectName);
+        var parsedCallback = Pointer_stringify(callback);
+        var parsedFallback = Pointer_stringify(fallback);
+
+        try {
+
+            firebase.auth().sendPasswordResetEmail(parsedEmail).then(function (unused) {
+                unityInstance.Module.SendMessage(parsedObjectName, parsedCallback, "Success: Password reset email sent to " + parsedEmail);
+            }).catch(function (error) {
+                unityInstance.Module.SendMessage(parsedObjectName, parsedFallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+            });
+
+        } catch (error) {
+            unityInstance.Module.SendMessage(parsedObjectName, parsedFallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+        }
     }
 });

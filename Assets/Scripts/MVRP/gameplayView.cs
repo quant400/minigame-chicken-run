@@ -50,6 +50,8 @@ public class gameplayView : MonoBehaviour
     public bool usingFreemint = false;
 
     public GameObject juiceText, CoinText;
+
+    public (string, string) logedPlayer;
     private void Awake()
     {
         if (instance != null && instance != this)

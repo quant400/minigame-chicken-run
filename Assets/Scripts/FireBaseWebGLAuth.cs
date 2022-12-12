@@ -128,8 +128,8 @@ public class FireBaseWebGLAuth : MonoBehaviour
     {
         if (info != "")
         {
-            Debug.Log(info);
             FirebaseUser pl = JsonUtility.FromJson<FirebaseUser>(info);
+            gameplayView.instance.logedPlayer = (pl.email, pl.uid);
             /*ebug.Log(pl.email);
              Debug.Log(pl.uid);
              Debug.Log(pl.isEmailVerified);
@@ -143,7 +143,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
         InfoDisplay.text = info.ToUpper();
         currentOpenWindiow.SetActive(false);
         currentOpenWindiow = methodSelect;
-        PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
+        //PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
         gameplayView.instance.isTryout = false;
         //change what loads when mint nft added and stuff linked
         GetComponentInParent<NFTGetView>().Display(new NFTInfo[0]);
@@ -264,6 +264,12 @@ public class FireBaseWebGLAuth : MonoBehaviour
     public void LoadPrivacy()
     {
         Application.OpenURL("https://www.cryptofightclub.io/privacy-policy");
+    }
+
+    public void Skip()
+    {
+        gameplayView.instance.logedPlayer = ("hassan.iqbal@quids.tech", "0tuICf75vGOsrhtbpYWaLKeTugg2");
+        GetComponentInParent<NFTGetView>().Skip();
     }
  #endregion utility
        

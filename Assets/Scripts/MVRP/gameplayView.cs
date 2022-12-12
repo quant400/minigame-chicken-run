@@ -48,6 +48,8 @@ public class gameplayView : MonoBehaviour
     public bool usingOtherChainNft=false;
 
     public bool usingFreemint = false;
+
+    public (string,string) logedPlayer;
     private void Awake()
     {
         if (instance != null && instance != this)

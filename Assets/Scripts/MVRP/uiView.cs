@@ -168,4 +168,5 @@ public class uiView : MonoBehaviour
             tryagain.gameObject.SetActive(state);
 
     }
+   
 }

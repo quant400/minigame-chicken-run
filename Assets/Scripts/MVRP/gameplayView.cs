@@ -48,6 +48,8 @@ public class gameplayView : MonoBehaviour
     public bool usingOtherChainNft=false;
 
     public bool usingFreemint = false;
+
+    public GameObject juiceText, CoinText;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -175,6 +177,16 @@ public class gameplayView : MonoBehaviour
     {
         EndGame();
         SinglePlayerScoreBoardScript.instance.DisplayScore();
+    }
+
+    public void UpdateJuiceBalance(string val)
+    {
+        juiceText.GetComponent<TMPro.TMP_Text>().text = val;
+    }
+
+    public void UpdateCoinBalance(string val)
+    {
+        CoinText.GetComponent<TMPro.TMP_Text>().text = val;
     }
 }
 

@@ -41,6 +41,8 @@ public class FireBaseWebGLAuth : MonoBehaviour
     [Header ("Others")]
     [SerializeField]
     GameObject methodSelect;
+    [SerializeField]
+    GameObject BackgroundBlur;
     GameObject currentOpenWindiow;
     [SerializeField]
     TMP_Text InfoDisplay;
@@ -198,6 +200,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
         currentOpenWindiow.SetActive(false);
         currentOpenWindiow = SignInPanel.gameObject;
         SignInPanel.gameObject.SetActive(true);
+        BackgroundBlur.SetActive(true);
     }
 
     public void OpenRegister()
@@ -212,6 +215,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
         currentOpenWindiow.SetActive(false);
         currentOpenWindiow = registerPanel.gameObject;
         registerPanel.gameObject.SetActive(true);
+        BackgroundBlur.SetActive(true);
     }
 
     public void OpenPasswordReset()
@@ -227,6 +231,12 @@ public class FireBaseWebGLAuth : MonoBehaviour
         currentOpenWindiow.SetActive(false);
         currentOpenWindiow = passwordResetPanel.gameObject;
         passwordResetPanel.gameObject.SetActive(true);
+        BackgroundBlur.SetActive(true);
+    }
+    public void OpenMethodSelect()
+    {
+        methodSelect.SetActive(true);
+        BackgroundBlur.SetActive(true);
     }
     public void Close()
     {
@@ -244,6 +254,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
             emailPasswordReset.text = "";
             warningEmailReset.text = "";
         }
+        BackgroundBlur.SetActive(false);
     }
     bool IsValidEmail(string email)
     {

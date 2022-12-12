@@ -114,6 +114,8 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
 
     }
+
+
    
     /*public IEnumerator setScoreInLeaderBoeardRestApi(int id,  int scoreAdded)
      
@@ -192,6 +194,41 @@ public class DatabaseManagerRestApi : MonoBehaviour
 
         }
     }
+
+    public void getJuiceFromRestApi(int assetId)
+    {
+        StartCoroutine(getJuiceRestApi(assetId));
+    }
+    struct reply
+    {
+        public string id;
+        public string balance;
+    };
+    IEnumerator getJuiceRestApi(int assetId)
+    {
+        using (UnityWebRequest request = UnityWebRequest.Get("https://staging-api.cryptofightclub.io/game/sdk/juice/balance/"+assetId))
+        {
+            request.SetRequestHeader("Accept", "application/json");
+            request.SetRequestHeader("Content-Type", "application/json");
+            yield return request.SendWebRequest();
+            if (request.error == null)
+            {
+                string result = Encoding.UTF8.GetString(request.downloadHandler.data);
+                reply r = JsonUtility.FromJson<reply>(request.downloadHandler.text);
+
+                Debug.Log(request.downloadHandler.text);
+                gameplayView.instance.UpdateJuiceBalance(r.balance) ;
+
+            }
+            else
+            {
+                Debug.Log("error in server");
+            }
+
+
+        }
+    }
+
     public IEnumerator startSessionApi(string url, int assetId)
     {
         leaderboardModel.userGetDataModel idData = new leaderboardModel.userGetDataModel();

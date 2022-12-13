@@ -84,8 +84,15 @@ public class gameplayView : MonoBehaviour
         player.GetComponent<ThirdPersonController>().SetStarted(true);
         GetScores();
         Debug.Log(chosenNFT.id);
-        if(!instance.isTryout && !usingOtherChainNft)
-            DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id);
+        if(!instance.isTryout && !usingOtherChainNft && !usingFreemint)
+        {
+            //DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id.ToString());
+        }
+        else if(usingFreemint)
+        {
+            DatabaseManagerRestApi._instance.startSessionFromRestApi(logedPlayer.Item1+"$$$"+logedPlayer.Item2);
+        }
+            
         chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameRunning;
 
     }
@@ -163,7 +170,10 @@ public class gameplayView : MonoBehaviour
     }
     void GetSoresRestApi()
     {
-        DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id);
+        if(usingFreemint)
+            DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id);
+        //else
+            //DatabaseManagerRestApi._instance.getDataFromRestApi(GetLoggedPlayerString());
 
     }
     void observeReactiveSession()
@@ -181,6 +191,10 @@ public class gameplayView : MonoBehaviour
         SinglePlayerScoreBoardScript.instance.DisplayScore();
     }
 
+    public string GetLoggedPlayerString()
+    {
+        return logedPlayer.Item1 + "$$$" + logedPlayer.Item2;
+    }
     public void UpdateJuiceBalance(string val)
     {
         juiceText.GetComponent<TMPro.TMP_Text>().text = val;

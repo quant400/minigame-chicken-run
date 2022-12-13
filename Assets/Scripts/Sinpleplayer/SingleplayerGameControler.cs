@@ -70,7 +70,7 @@ public class SingleplayerGameControler : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetStarted(true);
         GetScores();
-        DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id);
+        DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id.ToString());
 
     }
     public void EndGame()

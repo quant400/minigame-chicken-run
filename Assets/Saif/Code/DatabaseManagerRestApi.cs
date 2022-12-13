@@ -53,10 +53,9 @@ public class DatabaseManagerRestApi : MonoBehaviour
     }
     public void setScoreRestApiMain(string _assetID, int _score)
     {
-        int id = int.Parse(_assetID);
-        setScoreWithRestApi(id, _score);
+        setScoreWithRestApi(_assetID, _score);
     }
-    public void setScoreWithRestApi(int assetID,int score)
+    public void setScoreWithRestApi(string assetID,int score)
     {
         if (sessionCounterReactive.Value <= 10)
         {
@@ -68,7 +67,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
         }
     }
   
-    public void startSessionFromRestApi(int _assetID)
+    public void startSessionFromRestApi(string _assetID)
     {
         scoreUpdateTried = 0;
         // change url later

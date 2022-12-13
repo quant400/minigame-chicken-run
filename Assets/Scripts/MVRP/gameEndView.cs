@@ -77,8 +77,14 @@ public class gameEndView : MonoBehaviour
             if (gameplayView.instance.isRestApi && !gameplayView.instance.usingOtherChainNft && !gameplayView.instance.usingFreemint)
             {
                 Debug.Log("before Score");
-
                 DatabaseManagerRestApi._instance.setScoreRestApiMain(currentNFT.id.ToString(), SinglePlayerScoreBoardScript.instance.GetScore());
+                Debug.Log("posted Score");
+            }
+            else if(gameplayView.instance.usingFreemint)
+            {
+                Debug.Log("before Score");
+                string id = gameplayView.instance.logedPlayer.Item1 + "$$$" + gameplayView.instance.logedPlayer.Item2;
+                DatabaseManagerRestApi._instance.setScoreRestApiMain(id, SinglePlayerScoreBoardScript.instance.GetScore());
                 Debug.Log("posted Score");
             }
             else

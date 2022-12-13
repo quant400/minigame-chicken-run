@@ -131,7 +131,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
         if (info != "")
         {
             FirebaseUser pl = JsonUtility.FromJson<FirebaseUser>(info);
-            gameplayView.instance.logedPlayer = (pl.email, pl.uid);
+            gameplayView.instance.logedPlayer = (pl.email.ToLower(), pl.uid.ToLower());
             /*ebug.Log(pl.email);
              Debug.Log(pl.uid);
              Debug.Log(pl.isEmailVerified);
@@ -279,8 +279,11 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
     public void Skip()
     {
-        gameplayView.instance.logedPlayer = ("hassan.iqbal@quids.tech", "0tuICf75vGOsrhtbpYWaLKeTugg2");
-        GetComponentInParent<NFTGetView>().Skip();
+        Debug.Log(1);
+        gameplayView.instance.logedPlayer = ("hassan.iqbal@quids.tech".ToLower(), "0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower());
+        Debug.Log("0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower());
+        //GetComponentInParent<NFTGetView>().Skip();
+        StartCoroutine(KeyMaker.instance.GetRequest());
     }
  #endregion utility
        

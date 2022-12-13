@@ -118,7 +118,7 @@ public class KeyMaker : MonoBehaviour
         return xSeq;
     }
 
-    public string GetGameEndKey(int score, int nftID, int seq)
+    public string GetGameEndKey(int score, string nftID, int seq)
     {
         string tmst = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
         currentGameEndSequence = seq;
@@ -132,7 +132,7 @@ public class KeyMaker : MonoBehaviour
         string xSeq = SHA256Cal(endB + score.ToString() + masterKeys[masterKeyNum]);
 
         currentEndObj = new GameEndObj();
-        currentEndObj.id = nftID.ToString();
+        currentEndObj.id = nftID;
         currentEndObj.address = currentAddress;
         currentEndObj.score = score.ToString();
         currentEndObj.r = endR;
@@ -171,6 +171,7 @@ public class KeyMaker : MonoBehaviour
         int sequence = UnityEngine.Random.Range(1, 8);
         string xseq = GetXSeqConnect(gameplayView.instance.logedPlayer.Item1+"$$$"+gameplayView.instance.logedPlayer.Item2, sequence);
         string uri = "";
+        Debug.Log(2);
         if (buildType == BuildType.staging)
             uri = "https://staging-api.cryptofightclub.io/game/sdk/connect";
         else if (buildType == BuildType.production)
@@ -204,6 +205,7 @@ public class KeyMaker : MonoBehaviour
                 case UnityWebRequest.Result.Success:
                     ResponseObject temp = JsonUtility.FromJson<ResponseObject>(webRequest.downloadHandler.text);
                     SetCode(temp.code);
+                    Debug.Log(webRequest.downloadHandler.text);
                     gameplayView.instance.GetComponent<NFTGetView>().Display(temp.nfts);
                     break;
             }
@@ -243,11 +245,11 @@ public class KeyMaker : MonoBehaviour
         }
     }
 
-    public IEnumerator startSessionApi(int assetId)
+    public IEnumerator startSessionApi(string assetId)
     {
         leaderboardModel.userGetDataModel idData = new leaderboardModel.userGetDataModel();
         startObj strt = new startObj();
-        strt.id = assetId.ToString();
+        strt.id = assetId;
         strt.address = gameplayView.instance.logedPlayer.Item1 + "$$$" + gameplayView.instance.logedPlayer.Item2;
         string uri = "";
         if (buildType == BuildType.staging)
@@ -283,7 +285,7 @@ public class KeyMaker : MonoBehaviour
 
     }
 
-    public IEnumerator endSessionApi(int id, int scoreAdded)
+    public IEnumerator endSessionApi(string id, int scoreAdded)
     {
         leaderboardModel.userPostedData postedData = new leaderboardModel.userPostedData();
         int sequence = UnityEngine.Random.Range(1, 8);
@@ -337,6 +339,7 @@ public class KeyMaker : MonoBehaviour
         int sequence = UnityEngine.Random.Range(1, 8);
         string xseq = GetXSeqConnect(gameplayView.instance.logedPlayer.Item1 + "$$$" + gameplayView.instance.logedPlayer.Item2, sequence);
         string uri = "";
+        Debug.Log(3);
         if (buildType == BuildType.staging)
             uri = "https://staging-api.cryptofightclub.io/game/sdk/connect";
         else if (buildType == BuildType.production)

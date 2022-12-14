@@ -196,7 +196,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
         }
     }
 
-    public void getJuiceFromRestApi(int assetId)
+    public void getJuiceFromRestApi(string assetId)
     {
         StartCoroutine(getJuiceRestApi(assetId));
     }
@@ -205,7 +205,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
         public string id;
         public string balance;
     };
-    IEnumerator getJuiceRestApi(int assetId)
+    IEnumerator getJuiceRestApi(string assetId)
     {
         using (UnityWebRequest request = UnityWebRequest.Get("https://staging-api.cryptofightclub.io/game/sdk/juice/balance/"+assetId))
         {
@@ -218,7 +218,7 @@ public class DatabaseManagerRestApi : MonoBehaviour
                 reply r = JsonUtility.FromJson<reply>(request.downloadHandler.text);
 
                 Debug.Log(request.downloadHandler.text);
-                gameplayView.instance.UpdateJuiceBalance(r.balance) ;
+                gameplayView.instance.SetJuiceBal(r.balance) ;
 
             }
             else

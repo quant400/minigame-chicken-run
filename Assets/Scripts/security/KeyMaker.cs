@@ -171,7 +171,6 @@ public class KeyMaker : MonoBehaviour
         int sequence = UnityEngine.Random.Range(1, 8);
         string xseq = GetXSeqConnect(gameplayView.instance.logedPlayer.Item1+"$$$"+gameplayView.instance.logedPlayer.Item2, sequence);
         string uri = "";
-        Debug.Log(2);
         if (buildType == BuildType.staging)
             uri = "https://staging-api.cryptofightclub.io/game/sdk/connect";
         else if (buildType == BuildType.production)

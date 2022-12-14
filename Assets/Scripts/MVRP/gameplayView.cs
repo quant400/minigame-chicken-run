@@ -52,6 +52,8 @@ public class gameplayView : MonoBehaviour
     public GameObject juiceText, CoinText;
 
     public (string, string) logedPlayer;
+    string juiceBal;
+    string coinBal="0";
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -170,12 +172,10 @@ public class gameplayView : MonoBehaviour
     }
     void GetSoresRestApi()
     {
-        Debug.Log(1);
         if(!usingFreemint)
             DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id.ToString());
         else
         {
-            Debug.Log(2);
             DatabaseManagerRestApi._instance.getDataFromRestApi(GetLoggedPlayerString());
         }
             
@@ -200,14 +200,29 @@ public class gameplayView : MonoBehaviour
     {
         return logedPlayer.Item1 + "$$$" + logedPlayer.Item2;
     }
-    public void UpdateJuiceBalance(string val)
+
+    public void SetJuiceBal(string val)
     {
-        juiceText.GetComponent<TMPro.TMP_Text>().text = val;
+        juiceBal = val;
+    }
+    public void SetCoinBal(string val)
+    {
+        coinBal = val;
+    }
+    public void UpdateJuiceBalance()
+    {
+        if(juiceBal=="")
+            juiceText.GetComponent<TMPro.TMP_Text>().text = "0";
+        else
+            juiceText.GetComponent<TMPro.TMP_Text>().text = juiceBal;
     }
 
-    public void UpdateCoinBalance(string val)
+    public void UpdateCoinBalance()
     {
-        CoinText.GetComponent<TMPro.TMP_Text>().text = val;
+        if (coinBal == "")
+            CoinText.GetComponent<TMPro.TMP_Text>().text = "0";
+        else
+            CoinText.GetComponent<TMPro.TMP_Text>().text = coinBal;
     }
 }
 

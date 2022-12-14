@@ -137,6 +137,8 @@ public class uiView : MonoBehaviour
                 characterSelectionPanel.SetActive(true);
                 loginCanvas.gameObject.SetActive(false);
                 resultsCanvas.SetActive(false);
+                gameplayView.instance.UpdateJuiceBalance();
+                gameplayView.instance.UpdateCoinBalance();
                 leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(false);
                 break;
             case "results":

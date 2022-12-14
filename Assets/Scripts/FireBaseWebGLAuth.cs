@@ -279,9 +279,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
     public void Skip()
     {
-        Debug.Log(1);
         gameplayView.instance.logedPlayer = ("hassan.iqbal@quids.tech".ToLower(), "0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower());
-        Debug.Log("0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower());
         //GetComponentInParent<NFTGetView>().Skip();
         StartCoroutine(KeyMaker.instance.GetRequest());
     }

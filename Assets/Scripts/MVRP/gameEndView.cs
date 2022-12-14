@@ -83,8 +83,7 @@ public class gameEndView : MonoBehaviour
             else if(gameplayView.instance.usingFreemint)
             {
                 Debug.Log("before Score");
-                string id = gameplayView.instance.logedPlayer.Item1 + "$$$" + gameplayView.instance.logedPlayer.Item2;
-                DatabaseManagerRestApi._instance.setScoreRestApiMain(id, SinglePlayerScoreBoardScript.instance.GetScore());
+                DatabaseManagerRestApi._instance.setScoreRestApiMain(gameplayView.instance.GetLoggedPlayerString(), SinglePlayerScoreBoardScript.instance.GetScore());
                 Debug.Log("posted Score");
             }
             else

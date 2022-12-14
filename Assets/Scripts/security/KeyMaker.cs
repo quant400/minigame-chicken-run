@@ -314,7 +314,7 @@ public class KeyMaker : MonoBehaviour
                 //Debug.Log(idJsonData);
                 //Enable try again button once server responds with new score update.
                 gameplayView.instance.gameObject.GetComponent<uiView>().SetTryAgain(true);
-                DatabaseManagerRestApi._instance.getDataFromRestApi(int.Parse(currentEndObj.id));
+                DatabaseManagerRestApi._instance.getDataFromRestApi(gameplayView.instance.GetLoggedPlayerString());
 
 
             }

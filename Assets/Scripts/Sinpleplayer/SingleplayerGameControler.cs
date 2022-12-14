@@ -145,7 +145,7 @@ public class SingleplayerGameControler : MonoBehaviour
     }
     void GetSoresRestApi()
     {
-        DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id);
+        DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id.ToString());
 
     }
     void observeReactiveSession()

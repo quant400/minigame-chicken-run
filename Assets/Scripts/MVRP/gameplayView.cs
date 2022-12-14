@@ -170,10 +170,15 @@ public class gameplayView : MonoBehaviour
     }
     void GetSoresRestApi()
     {
-        if(usingFreemint)
-            DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id);
-        //else
-            //DatabaseManagerRestApi._instance.getDataFromRestApi(GetLoggedPlayerString());
+        Debug.Log(1);
+        if(!usingFreemint)
+            DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id.ToString());
+        else
+        {
+            Debug.Log(2);
+            DatabaseManagerRestApi._instance.getDataFromRestApi(GetLoggedPlayerString());
+        }
+            
 
     }
     void observeReactiveSession()

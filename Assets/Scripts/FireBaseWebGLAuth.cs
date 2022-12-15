@@ -157,6 +157,10 @@ public class FireBaseWebGLAuth : MonoBehaviour
         GetComponentInParent<uiView>().goToMenu("login");
         chickenGameModel.userIsLogged.Value = false;
         chickenGameModel.currentNFTArray = null;
+        gameplayView.instance.usingFreemint = false;
+        gameplayView.instance.usingMeta = false;
+        gameplayView.instance.isTryout = false;
+        gameplayView.instance.usingOtherChainNft = false;
         InfoDisplay.text = "";
         emailRegisterField.text = "";
         passwordRegisterField.text = "";

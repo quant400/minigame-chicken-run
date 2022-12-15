@@ -93,7 +93,7 @@ public class KeyMaker : MonoBehaviour
     #region CodesGenerators
     public string GetAuthString()
     {
-        string auth = gameplayView.instance.logedPlayer.Item1 + "$$$" + gameplayView.instance.logedPlayer.Item2 + ":" + currentCode;
+        string auth = gameplayView.instance.GetLoggedPlayerString() + ":" + currentCode;
         return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(auth));
     }
     public string GetXSeqConnect(string addr, int seq)
@@ -169,7 +169,7 @@ public class KeyMaker : MonoBehaviour
     public IEnumerator GetRequest()
     {
         int sequence = UnityEngine.Random.Range(1, 8);
-        string xseq = GetXSeqConnect(gameplayView.instance.logedPlayer.Item1+"$$$"+gameplayView.instance.logedPlayer.Item2, sequence);
+        string xseq = GetXSeqConnect(gameplayView.instance.GetLoggedPlayerString(), sequence);
         string uri = "";
         if (buildType == BuildType.staging)
             uri = "https://staging-api.cryptofightclub.io/game/sdk/connect";
@@ -249,7 +249,8 @@ public class KeyMaker : MonoBehaviour
         leaderboardModel.userGetDataModel idData = new leaderboardModel.userGetDataModel();
         startObj strt = new startObj();
         strt.id = assetId;
-        strt.address = gameplayView.instance.logedPlayer.Item1 + "$$$" + gameplayView.instance.logedPlayer.Item2;
+        strt.address = gameplayView.instance.GetLoggedPlayerString();
+        //Debug.Log((strt.id, strt.address));
         string uri = "";
         if (buildType == BuildType.staging)
             uri = "https://staging-api.cryptofightclub.io/game/sdk/" + game + "/start-session";
@@ -313,7 +314,10 @@ public class KeyMaker : MonoBehaviour
                 //Debug.Log(idJsonData);
                 //Enable try again button once server responds with new score update.
                 gameplayView.instance.gameObject.GetComponent<uiView>().SetTryAgain(true);
-                DatabaseManagerRestApi._instance.getDataFromRestApi(gameplayView.instance.GetLoggedPlayerString());
+                if(gameplayView.instance.usingFreemint)
+                    DatabaseManagerRestApi._instance.getDataFromRestApi(gameplayView.instance.GetLoggedPlayerString());
+                else
+                    DatabaseManagerRestApi._instance.getDataFromRestApi(gameplayView.instance.chosenNFT.id.ToString());
 
 
             }
@@ -336,7 +340,7 @@ public class KeyMaker : MonoBehaviour
     public IEnumerator GetRequestSkip()
     {
         int sequence = UnityEngine.Random.Range(1, 8);
-        string xseq = GetXSeqConnect(gameplayView.instance.logedPlayer.Item1 + "$$$" + gameplayView.instance.logedPlayer.Item2, sequence);
+        string xseq = GetXSeqConnect(gameplayView.instance.GetLoggedPlayerString(), sequence);
         string uri = "";
         Debug.Log(3);
         if (buildType == BuildType.staging)

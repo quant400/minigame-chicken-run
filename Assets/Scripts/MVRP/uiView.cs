@@ -18,7 +18,7 @@ public class uiView : MonoBehaviour
 
 
     public Button loginBtn, PlayMode, Play, LeaderBoard, BackToCharacterSelection, Skip, tryout, backFromLeaderboard , tryagain;
-    //[SerializeField] webLoginView webloginView;
+    [SerializeField] webLoginView webloginView;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class uiView : MonoBehaviour
     public void ObserveBtns()
     {
         loginBtn.OnClickAsObservable()
-            //.Do(_=> webloginView.OnLogin(loginBtn, Skip, tryout))
+            .Do(_=> webloginView.OnLogin(loginBtn, Skip, tryout))
             .Where(_ => PlaySounds.instance != null)
             .Do(_ => PlaySounds.instance.Play())
             .Subscribe()

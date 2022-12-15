@@ -86,15 +86,10 @@ public class gameEndView : MonoBehaviour
                 DatabaseManagerRestApi._instance.setScoreRestApiMain(gameplayView.instance.GetLoggedPlayerString(), SinglePlayerScoreBoardScript.instance.GetScore());
                 Debug.Log("posted Score");
             }
-            else
-            {
-                // DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
-
-            }
         }
-        gameplayView.instance.GetScores();
+        //gameplayView.instance.GetScores();
         SetSkin();
-        Invoke("setScoreResutls", 1);
+        //Invoke("setScoreResutls", 1);
         //setScoreResutls();
 
     }

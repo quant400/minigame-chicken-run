@@ -49,10 +49,14 @@ public class gameplayView : MonoBehaviour
 
     public bool usingFreemint = false;
 
+    public bool usingMeta;
+
+    public bool ended;
+
     public GameObject juiceText, CoinText;
 
     public (string, string) logedPlayer;
-    string juiceBal;
+    string juiceBal="0";
     string coinBal="0";
     private void Awake()
     {
@@ -81,6 +85,7 @@ public class gameplayView : MonoBehaviour
 
     public void StartGame()
     {
+        ended = false;
         SinglePlayerScoreBoardScript.instance.StartGame(GetTimeForGame());
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetStarted(true);
@@ -88,11 +93,11 @@ public class gameplayView : MonoBehaviour
         Debug.Log(chosenNFT.id);
         if(!instance.isTryout && !usingOtherChainNft && !usingFreemint)
         {
-            //DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id.ToString());
+            DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id.ToString());
         }
         else if(usingFreemint)
         {
-            DatabaseManagerRestApi._instance.startSessionFromRestApi(logedPlayer.Item1+"$$$"+logedPlayer.Item2);
+            DatabaseManagerRestApi._instance.startSessionFromRestApi(GetLoggedPlayerString());
         }
             
         chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameRunning;
@@ -100,6 +105,7 @@ public class gameplayView : MonoBehaviour
     }
     public void EndGame()
     {
+        ended = true;
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetEnded(true);
     }
@@ -174,12 +180,9 @@ public class gameplayView : MonoBehaviour
     {
         if(!usingFreemint)
             DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id.ToString());
-        else
-        {
-            DatabaseManagerRestApi._instance.getDataFromRestApi(GetLoggedPlayerString());
-        }
             
-
+        else
+            DatabaseManagerRestApi._instance.getDataFromRestApi(GetLoggedPlayerString());
     }
     void observeReactiveSession()
     {
@@ -198,7 +201,10 @@ public class gameplayView : MonoBehaviour
 
     public string GetLoggedPlayerString()
     {
-        return logedPlayer.Item1 + "$$$" + logedPlayer.Item2;
+        if (usingMeta)
+            return PlayerPrefs.GetString("Account");
+        else
+            return logedPlayer.Item1 + "$$$" + logedPlayer.Item2;
     }
 
     public void SetJuiceBal(string val)

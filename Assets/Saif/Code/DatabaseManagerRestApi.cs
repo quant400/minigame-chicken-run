@@ -183,8 +183,12 @@ public class DatabaseManagerRestApi : MonoBehaviour
             if (request.error == null)
             {
                 string result = Encoding.UTF8.GetString(request.downloadHandler.data);
+                gameEndView gev = GetComponentInChildren<gameEndView>();
+                if(gev!=null)
+                    gev.setScoreResutls();
                 checkSessionCounter(result);
-                //Debug.Log(request.downloadHandler.text);
+                if(KeyMaker.instance.buildType==BuildType.staging)
+                    Debug.Log(request.downloadHandler.text);
 
             }
             else
@@ -207,7 +211,12 @@ public class DatabaseManagerRestApi : MonoBehaviour
     };
     IEnumerator getJuiceRestApi(string assetId)
     {
-        using (UnityWebRequest request = UnityWebRequest.Get("https://staging-api.cryptofightclub.io/game/sdk/juice/balance/"+assetId))
+        string url = "";
+        if (KeyMaker.instance.buildType == BuildType.staging)
+            url= "https://staging-api.cryptofightclub.io/game/sdk/juice/balance/";
+        else if(KeyMaker.instance.buildType == BuildType.production)
+            url = "https://api.cryptofightclub.io/game/sdk/juice/balance/";
+        using (UnityWebRequest request = UnityWebRequest.Get(url+assetId))
         {
             request.SetRequestHeader("Accept", "application/json");
             request.SetRequestHeader("Content-Type", "application/json");
@@ -216,8 +225,8 @@ public class DatabaseManagerRestApi : MonoBehaviour
             {
                 string result = Encoding.UTF8.GetString(request.downloadHandler.data);
                 reply r = JsonUtility.FromJson<reply>(request.downloadHandler.text);
-
-                Debug.Log(request.downloadHandler.text);
+                if(KeyMaker.instance.buildType==BuildType.staging)
+                    Debug.Log(request.downloadHandler.text);
                 gameplayView.instance.SetJuiceBal(r.balance) ;
 
             }

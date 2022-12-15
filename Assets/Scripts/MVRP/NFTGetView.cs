@@ -56,10 +56,16 @@ public class NFTGetView : MonoBehaviour
             chickenGameModel.currentNFTArray = NFTData;
             used = NFTData;
         }
-        if (used.Length == 0)
+        if (gameplayView.instance.hasOtherChainNft && used.Length == 1)
         {
             /*noNFTCanvas.SetActive(true);
             chickenGameModel.userIsLogged.Value = false;*/
+            gameplayView.instance.usingFreemint = true;
+            characterSelectView.FreeMint();
+            chickenGameModel.userIsLogged.Value = true;
+        }
+        else if (used.Length == 0)
+        {
             gameplayView.instance.usingFreemint = true;
             characterSelectView.FreeMint();
             chickenGameModel.userIsLogged.Value = true;
@@ -77,8 +83,8 @@ public class NFTGetView : MonoBehaviour
     {
         if (gameplayView.nftDataArray.Length == 0)
         {
-            noNFTCanvas.SetActive(true);
-            chickenGameModel.userIsLogged.Value = false;
+            Display(new NFTInfo[0]);
+            chickenGameModel.userIsLogged.Value = true;
         }
         else
         {

@@ -132,6 +132,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
         {
             FirebaseUser pl = JsonUtility.FromJson<FirebaseUser>(info);
             gameplayView.instance.logedPlayer = (pl.email.ToLower(), pl.uid.ToLower());
+            gameplayView.instance.usingMeta = false;
             DatabaseManagerRestApi._instance.getJuiceFromRestApi(pl.email);
             SignedIn("Signed in as ".ToUpper()+pl.email.ToUpper()+"\n\n"+pl.providerData);
         }
@@ -139,6 +140,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
     void SignedIn(string info)
     {
+        Close();
         InfoDisplay.text = info.ToUpper();
         currentOpenWindiow.SetActive(false);
         currentOpenWindiow = methodSelect;
@@ -153,6 +155,8 @@ public class FireBaseWebGLAuth : MonoBehaviour
     {
         FirebaseAuth.SignOut();
         GetComponentInParent<uiView>().goToMenu("login");
+        chickenGameModel.userIsLogged.Value = false;
+        chickenGameModel.currentNFTArray = null;
         InfoDisplay.text = "";
         emailRegisterField.text = "";
         passwordRegisterField.text = "";
@@ -276,9 +280,15 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
     public void Skip()
     {
-        gameplayView.instance.logedPlayer = ("test@test.com".ToLower(), "05uU1JCypYMT3EGWTzK3I2EhHqpC3".ToLower());
-        //GetComponentInParent<NFTGetView>().Skip();
-        DatabaseManagerRestApi._instance.getJuiceFromRestApi(gameplayView.instance.logedPlayer.Item1);
+        //for email login
+        //gameplayView.instance.logedPlayer = ("test@test.com".ToLower(), "5uU1JCypYMT3EGWTzK3I2EhHqpC3".ToLower());
+        // DatabaseManagerRestApi._instance.getJuiceFromRestApi(gameplayView.instance.logedPlayer.Item1);
+
+        //for meta login
+        gameplayView.instance.usingMeta = true;
+        PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
+        
+       
         StartCoroutine(KeyMaker.instance.GetRequest());
     }
  #endregion utility

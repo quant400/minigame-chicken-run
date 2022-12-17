@@ -90,7 +90,6 @@ public class gameplayView : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetStarted(true);
         GetScores();
-        Debug.Log(chosenNFT.id);
         if(!instance.isTryout && !usingOtherChainNft && !usingFreemint)
         {
             DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id.ToString());
@@ -201,8 +200,11 @@ public class gameplayView : MonoBehaviour
 
     public string GetLoggedPlayerString()
     {
-        if (usingMeta)
+       /* if(usingFreemint)
+            return "hassan.iqbal@quids.tech".ToLower() + "$$$" + "0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower();*/
+         if (usingMeta)
             return PlayerPrefs.GetString("Account");
+
         else
             return logedPlayer.Item1 + "$$$" + logedPlayer.Item2;
     }

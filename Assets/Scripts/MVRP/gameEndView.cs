@@ -14,6 +14,8 @@ public class gameEndView : MonoBehaviour
 {
     [SerializeField]
     Transform characterDisplay;
+    [SerializeField]
+    GameObject charDisplayPrefab;
     GameObject[] characters;
     [SerializeField]
     TMP_Text currentScore, dailyScore, allTimeScore, sessionCounterText;
@@ -240,6 +242,7 @@ public class gameEndView : MonoBehaviour
     void SetSkin()
     {
         Destroy(GameObject.FindGameObjectWithTag("Player"));
+        endCharDisplay=Instantiate(charDisplayPrefab, characterDisplay);
         endCharDisplay.GetComponent<SetUpSkin>().SetUpChar(NameToSlugConvert(gameplayView.instance.chosenNFT.name));
         endCharDisplay.GetComponent<Animator>().SetBool("Ended", true);
 

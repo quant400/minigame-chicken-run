@@ -37,6 +37,8 @@ public class gameEndView : MonoBehaviour
     GameObject tryoutCanvas;
     [SerializeField]
     GameObject endCharDisplay;
+    [SerializeField]
+    TMP_Text gameOverNftId;
     private void OnEnable()
     {
         if (gameplayView.instance.isTryout)
@@ -250,6 +252,14 @@ public class gameEndView : MonoBehaviour
         endCharDisplay.transform.localRotation = Quaternion.identity;
         endCharDisplay.transform.localScale = Vector3.one * 2;
         localDisplay = endCharDisplay;
+
+        //set nft ID Display 
+        string x = "NFT ID: ";
+        string n = NameToSlugConvert(gameplayView.instance.chosenNFT.name);
+        if (n == "average-joe" || n == "billy-basic" || n == "mary-jane")
+            gameOverNftId.text = x + "FREE NFT";
+        else
+            gameOverNftId.text = x + gameplayView.instance.chosenNFT.id;
     }
 
     string NameToSlugConvert(string name)

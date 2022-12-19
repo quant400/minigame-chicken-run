@@ -74,7 +74,7 @@ public class restApiDataView : MonoBehaviour
                     checkLeadboardAllTime(request.downloadHandler.text);
 
                 }
-                Debug.Log(request.downloadHandler.text);
+                //Debug.Log(request.downloadHandler.text);
 
             }
             else
@@ -93,7 +93,7 @@ public class restApiDataView : MonoBehaviour
     {
 
         string MatchData = fixJsonName(url);
-        Debug.Log(MatchData);
+        //Debug.Log(MatchData);
         leaderboardArray = JsonUtil.fromJson<leaderboardModel.assetClass[]>(url);
         if (leaderboardArray != null)
         {

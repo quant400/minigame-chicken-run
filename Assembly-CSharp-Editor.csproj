@@ -56,12 +56,12 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FullSerializer\Source\Aot\Editor\fsAotConfigurationEditor.cs" />
     <Compile Include="Assets\StarterAssets\Editor\ScriptingDefineUtils.cs" />
     <Compile Include="Assets\StarterAssets\Editor\ThirdPersonStarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\StarterAssets\Editor\StarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Compile Include="Assets\StarterAssets\Editor\PackageChecker\PackageChecker.cs" />
-    <Compile Include="Assets\FullSerializer\Source\Aot\Editor\fsAotConfigurationEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalDependencyManager\Editor\Google.VersionHandler.dll" />
@@ -376,14 +376,14 @@
     <Reference Include="Google.MiniJson">
       <HintPath>Assets\Firebase\Plugins\Google.MiniJson.dll</HintPath>
     </Reference>
+    <Reference Include="AssetStoreTools">
+      <HintPath>Assets\AssetStoreTools\Editor\AssetStoreTools.dll</HintPath>
+    </Reference>
     <Reference Include="Firebase.Platform">
       <HintPath>Assets\Firebase\Plugins\Firebase.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.Auth">
       <HintPath>Assets\Firebase\Plugins\Firebase.Auth.dll</HintPath>
-    </Reference>
-    <Reference Include="AssetStoreTools">
-      <HintPath>Assets\AssetStoreTools\Editor\AssetStoreTools.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>

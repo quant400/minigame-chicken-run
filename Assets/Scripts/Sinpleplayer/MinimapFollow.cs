@@ -9,7 +9,7 @@ public class MinimapFollow : MonoBehaviour
     float storedShadowDistance;
     private void LateUpdate()
     {
-        if(player==null)
+        if(player==null&& !gameplayView.instance.ended)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }

@@ -38,7 +38,7 @@ public class gameEndView : MonoBehaviour
     [SerializeField]
     GameObject endCharDisplay;
     [SerializeField]
-    TMP_Text gameOverNftId;
+    TMP_Text gameOverNftId, GameOverEmail;
     private void OnEnable()
     {
         if (gameplayView.instance.isTryout)
@@ -70,6 +70,7 @@ public class gameEndView : MonoBehaviour
     }
     public void setScoreAtStart()
     {
+        
         tryAgain.gameObject.SetActive(false);
         if (canvasToDisable == null)
         {
@@ -91,10 +92,9 @@ public class gameEndView : MonoBehaviour
                 Debug.Log("posted Score");
             }
         }
-        //gameplayView.instance.GetScores();
+        if (endCharDisplay != null)
+            Destroy(endCharDisplay);
         SetSkin();
-        //Invoke("setScoreResutls", 1);
-        //setScoreResutls();
 
     }
     public void initializeValues()
@@ -254,12 +254,19 @@ public class gameEndView : MonoBehaviour
         localDisplay = endCharDisplay;
 
         //set nft ID Display 
-        string x = "NFT ID: ";
         string n = NameToSlugConvert(gameplayView.instance.chosenNFT.name);
         if (n == "average-joe" || n == "billy-basic" || n == "mary-jane")
-            gameOverNftId.text = x + "FREE NFT";
+        {
+            gameOverNftId.text = "";
+            string email = gameplayView.instance.chosenNFT.id.Split('$')[0].ToUpper();
+            string[] emailParts = email.Split('@');
+            GameOverEmail.text = emailParts[0] + "<font=\"LiberationSans SDF\">@</font>" + emailParts[1];
+        }
         else
-            gameOverNftId.text = x + gameplayView.instance.chosenNFT.id;
+        {
+            GameOverEmail.text = "";
+            gameOverNftId.text = "NFT ID: " + gameplayView.instance.chosenNFT.id;
+        }
     }
 
     string NameToSlugConvert(string name)

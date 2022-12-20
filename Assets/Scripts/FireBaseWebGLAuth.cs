@@ -10,12 +10,14 @@ using Firebase.Extensions;
 using Google;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Collections;
 #endif
 using TMPro;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using DG.Tweening;
 using System;
+
 
 public struct LoginObject
 {
@@ -33,6 +35,9 @@ public class FireBaseWebGLAuth : MonoBehaviour
     public DependencyStatus dependencyStatus;
     public FirebaseAuth auth;
     public FirebaseUser User;
+    //for google
+    public string GoogleWebAPI;
+    private GoogleSignInConfiguration configuration;
 #endif
 
     [Header("Login")]
@@ -95,7 +100,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
 
     }
-     private void InitializeFirebase()
+    private void InitializeFirebase()
     {
         Debug.Log("Setting up Firebase Auth");
         //Set the authentication instance object
@@ -164,7 +169,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
             SignInWithEmailAndPassword();
 #endif
 #if UNITY_ANDROID || UNITY_IOS
- StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
+            StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
 #endif
 
         }
@@ -198,7 +203,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
             CreateUserWithEmailAndPassword();
 #endif
 #if UNITY_ANDROID || UNITY_IOS
-StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text));
+            StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text));
 #endif
         }
     }
@@ -233,7 +238,7 @@ StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text));
 
 
 #if UNITY_ANDROID || UNITY_IOS //Login functions 
-private IEnumerator Login(string _email, string _password)
+    private IEnumerator Login(string _email, string _password)
     {
         if (!IsValidEmail(_email))
         {
@@ -363,22 +368,22 @@ private IEnumerator Login(string _email, string _password)
 
     private void PasswordResetReset()
     {
-       
-            auth.SendPasswordResetEmailAsync(emailPasswordReset).ContinueWith(task => {
-                if (task.IsCanceled)
-                {
-                   warningEmailReset.text = "Password Reset Failed";
-                    return;
-                }
-                if (task.IsFaulted)
-                {
-                    warningEmailReset.text="Reset encountered an error: " + task.Exception);
-                    return;
-                }
+        auth.SendPasswordResetEmailAsync(emailPasswordReset.text).ContinueWith(task =>
+        {
+            if (task.IsCanceled)
+            {
+                warningEmailReset.text = "Password Reset Failed";
+                return;
+            }
+            if (task.IsFaulted)
+            {
+                warningEmailReset.text = "Reset encountered an error: " + task.Exception;
+                return;
+            }
 
-                warningEmailReset.text="Password reset email sent successfully.");
-            });
-        
+            warningEmailReset.text = "Password reset email sent successfully.";
+        });
+
     }
 
     //Google stuff
@@ -413,11 +418,6 @@ private IEnumerator Login(string _email, string _password)
                     Debug.LogError("SigninWithCredentials got error" + task.Exception);
                 }
                 User = auth.CurrentUser;
-                Debug.Log(User.Email);
-                Debug.Log(User.DisplayName);
-                infoDisplay.text = User.Email.ToUpper() + "\n\n" + User.DisplayName.ToUpper();
-                infoDisplay.color = Color.green;
-                infoDisplay.gameObject.SetActive(true);
 
                 //load game into skip
                 SignedIn(User.Email);
@@ -442,10 +442,18 @@ private IEnumerator Login(string _email, string _password)
         if (info != "")
         {
             FirebaseUser pl = JsonUtility.FromJson<FirebaseUser>(info);
+#if UNITY_WEBGL
             gameplayView.instance.logedPlayer = (pl.email.ToLower(), pl.uid.ToLower());
             gameplayView.instance.usingMeta = false;
             DatabaseManagerRestApi._instance.getJuiceFromRestApi(pl.email);
-            SignedIn("Signed in as ".ToUpper()+pl.email.ToUpper()+"\n\n"+pl.providerData);
+            SignedIn("Signed in as ".ToUpper() + pl.email.ToUpper() + "\n\n" + pl.providerData);
+#endif
+#if UNITY_ANDROID || UNITY_IOS
+            gameplayView.instance.logedPlayer = (pl.Email.ToLower(), pl.UserId.ToLower());
+            gameplayView.instance.usingMeta = false;
+            DatabaseManagerRestApi._instance.getJuiceFromRestApi(pl.Email);
+            SignedIn("Signed in as ".ToUpper() + pl.Email.ToUpper() + "\n\n" + pl.ProviderData);
+#endif
         }
 
     }
@@ -461,14 +469,14 @@ private IEnumerator Login(string _email, string _password)
         StartCoroutine(KeyMaker.instance.GetRequest());
 
     }
-    
+
     public void LogOut()
     {
 #if UNITY_WEBGL
         FirebaseAuth.SignOut();
 #endif
 #if UNITY_ANDROID || UNITY_IOS
-      auth.SignOut();
+        auth.SignOut();
 #endif
         GetComponentInParent<uiView>().goToMenu("login");
         chickenGameModel.userIsLogged.Value = false;
@@ -490,7 +498,9 @@ private IEnumerator Login(string _email, string _password)
 
     void DisplayError(string error)
     {
+#if unity_WEBGL
         var parsedError = StringSerializationAPI.Deserialize(typeof(FirebaseError), error) as FirebaseError;
+       
         if (currentOpenWindiow.name == "Login")
         {
 
@@ -502,15 +512,16 @@ private IEnumerator Login(string _email, string _password)
             warningRegisterText.text = parsedError.message.ToUpper();
         }
         else
-            Debug.Log(parsedError.message);
+            Debug.Log(parsedError.message); 
+#endif
     }
 
 
-#region utility
+    #region utility
 
     public void OpenSingin()
     {
-        if(currentOpenWindiow==null)
+        if (currentOpenWindiow == null)
         {
             currentOpenWindiow = methodSelect;
         }
@@ -579,7 +590,7 @@ private IEnumerator Login(string _email, string _password)
     }
     bool IsValidEmail(string email)
     {
-        Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$",RegexOptions.IgnoreCase);
+        Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
 
         return emailRegex.IsMatch(email);
     }
@@ -607,11 +618,11 @@ private IEnumerator Login(string _email, string _password)
         //for meta login
         gameplayView.instance.usingMeta = true;
         PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
-        
-       
+
+
         StartCoroutine(KeyMaker.instance.GetRequest());
     }
-#endregion utility
-       
+    #endregion utility
+
 }
 

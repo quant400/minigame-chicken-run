@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace FirebaseWebGL.Examples.Auth
 {
+#if UNITY_WEBGL
     public class AuthExampleHandler : MonoBehaviour
     {
         public TMP_InputField emailInputField;
@@ -69,4 +70,5 @@ namespace FirebaseWebGL.Examples.Auth
             Debug.LogError(error);
         }
     }
+#endif
 }

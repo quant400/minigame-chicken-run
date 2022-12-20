@@ -126,9 +126,6 @@ public class FireBaseWebGLAuth : MonoBehaviour
             User = auth.CurrentUser;
             if (signedIn)
             {
-                Debug.Log("Signed in " + User.UserId);
-                Debug.Log(User.Email);
-                Debug.Log(0);
                 SignedIn(User.Email);
             }
         }
@@ -420,6 +417,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
                 User = auth.CurrentUser;
 
                 //load game into skip
+                gameplayView.instance.usingMeta = false;
                 SignedIn(User.Email);
 
             });
@@ -448,17 +446,16 @@ public class FireBaseWebGLAuth : MonoBehaviour
             DatabaseManagerRestApi._instance.getJuiceFromRestApi(pl.email);
             SignedIn("Signed in as ".ToUpper() + pl.email.ToUpper() + "\n\n" + pl.providerData);
 #endif
-#if UNITY_ANDROID || UNITY_IOS
-            gameplayView.instance.logedPlayer = (pl.Email.ToLower(), pl.UserId.ToLower());
-            gameplayView.instance.usingMeta = false;
-            DatabaseManagerRestApi._instance.getJuiceFromRestApi(pl.Email);
-            SignedIn("Signed in as ".ToUpper() + pl.Email.ToUpper() + "\n\n" + pl.ProviderData);
-#endif
+
         }
 
     }
     void SignedIn(string info)
     {
+#if UNITY_ANDROID || UNITY_IOS
+            gameplayView.instance.logedPlayer = (User.Email.ToLower(), User.UserId.ToLower());
+            DatabaseManagerRestApi._instance.getJuiceFromRestApi(User.Email);
+#endif
         Close();
         InfoDisplay.text = info.ToUpper();
         currentOpenWindiow.SetActive(false);

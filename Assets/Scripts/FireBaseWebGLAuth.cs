@@ -1,6 +1,16 @@
+#if UNITY_WEBGL
 using FirebaseWebGL.Examples.Utils;
 using FirebaseWebGL.Scripts.FirebaseBridge;
 using FirebaseWebGL.Scripts.Objects;
+#endif
+#if UNITY_ANDROID || UNITY_IOS
+using Firebase;
+using Firebase.Auth;
+using Firebase.Extensions;
+using Google;
+using System.Net.Http;
+using System.Threading.Tasks;
+#endif
 using TMPro;
 using UnityEngine;
 using System.Text.RegularExpressions;
@@ -18,6 +28,13 @@ public struct LoginObject
 
 public class FireBaseWebGLAuth : MonoBehaviour
 {
+#if UNITY_ANDROID || UNITY_IOS
+    [Header("Firebase")]
+    public DependencyStatus dependencyStatus;
+    public FirebaseAuth auth;
+    public FirebaseUser User;
+#endif
+
     [Header("Login")]
     public Transform SignInPanel;
     public TMP_InputField emailLoginField;
@@ -38,7 +55,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     public TMP_InputField emailPasswordReset;
     public TMP_Text warningEmailReset;
 
-    [Header ("Others")]
+    [Header("Others")]
     [SerializeField]
     GameObject methodSelect;
     [SerializeField]
@@ -47,6 +64,78 @@ public class FireBaseWebGLAuth : MonoBehaviour
     [SerializeField]
     TMP_Text InfoDisplay;
 
+#if UNITY_ANDROID || UNITY_IOS
+    void Awake()
+    {
+        //for Google
+        configuration = new GoogleSignInConfiguration
+        {
+            WebClientId = GoogleWebAPI,
+            RequestIdToken = true
+        };
+
+        //Check that all of the necessary dependencies for Firebase are present on the system
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+        {
+            dependencyStatus = task.Result;
+            if (dependencyStatus == DependencyStatus.Available)
+            {
+                //If they are avalible Initialize Firebase
+                InitializeFirebase();
+            }
+            else
+            {
+                Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
+            }
+        });
+
+        currentOpenWindiow = methodSelect;
+
+
+
+
+    }
+     private void InitializeFirebase()
+    {
+        Debug.Log("Setting up Firebase Auth");
+        //Set the authentication instance object
+        auth = FirebaseAuth.DefaultInstance;
+        auth.StateChanged += AuthStateChanged;
+        Invoke("Test", 1f);
+
+    }
+    void Test()
+    {
+        AuthStateChanged(this, null);
+    }
+
+    void AuthStateChanged(object sender, System.EventArgs eventArgs)
+    {
+        if (auth.CurrentUser != User)
+        {
+            bool signedIn = User != auth.CurrentUser && auth.CurrentUser != null;
+            if (!signedIn && User != null)
+            {
+                Debug.Log("Signed out " + User.UserId);
+            }
+            User = auth.CurrentUser;
+            if (signedIn)
+            {
+                Debug.Log("Signed in " + User.UserId);
+                Debug.Log(User.Email);
+                Debug.Log(0);
+                SignedIn(User.Email);
+            }
+        }
+    }
+
+    void OnDisable()
+    {
+        auth.StateChanged -= AuthStateChanged;
+    }
+
+#endif
+#if UNITY_WEBGL
     private void Start()
     {
         currentOpenWindiow = methodSelect;
@@ -58,39 +147,46 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
         FirebaseAuth.OnAuthStateChanged(gameObject.name, "DisplayUserInfo", "DisplayInfo");
     }
+#endif
 
     public void OnSignInClick()
     {
-         warningLoginText.text = "";
-         if (emailLoginField.text == "" || !IsValidEmail(emailLoginField.text))
-         {
-             SignInPanel.DOShakePosition(1, 1);
-             warningLoginText.text = "Please enter a valid email".ToUpper();
-             warningLoginText.color = Color.red;
-         }
-         else
-         {
-             SignInWithEmailAndPassword();
-         }
-       
+        warningLoginText.text = "";
+        if (emailLoginField.text == "" || !IsValidEmail(emailLoginField.text))
+        {
+            SignInPanel.DOShakePosition(1, 1);
+            warningLoginText.text = "Please enter a valid email".ToUpper();
+            warningLoginText.color = Color.red;
+        }
+        else
+        {
+#if UNITY_WEBGL
+            SignInWithEmailAndPassword();
+#endif
+#if UNITY_ANDROID || UNITY_IOS
+ StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
+#endif
+
+        }
+
     }
 
     public void OnRegisterClick()
     {
         warningRegisterText.text = "";
-        if(emailRegisterField.text=="" || !IsValidEmail(emailRegisterField.text))
+        if (emailRegisterField.text == "" || !IsValidEmail(emailRegisterField.text))
         {
-            registerPanel.DOShakePosition(1,1);
+            registerPanel.DOShakePosition(1, 1);
             warningRegisterText.text = "Please enter a valid email".ToUpper();
             warningRegisterText.color = Color.red;
         }
-        else if(passwordRegisterField.text!=passwordRegisterVerifyField.text)
+        else if (passwordRegisterField.text != passwordRegisterVerifyField.text)
         {
             registerPanel.DOShakePosition(1, 1);
             warningRegisterText.text = "Password does not match".ToUpper();
             warningRegisterText.color = Color.red;
         }
-        else if(!accpetedTos)
+        else if (!accpetedTos)
         {
             registerPanel.DOShakePosition(1, 1);
             warningRegisterText.text = "please read and accept the terms of servive and privacy policy".ToUpper();
@@ -98,24 +194,239 @@ public class FireBaseWebGLAuth : MonoBehaviour
         }
         else
         {
+#if UNITY_WEBGL
             CreateUserWithEmailAndPassword();
+#endif
+#if UNITY_ANDROID || UNITY_IOS
+StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text));
+#endif
         }
     }
 
-
+#if UNITY_WEBGL
     public void SignInWithEmailAndPassword() =>
           FirebaseAuth.SignInWithEmailAndPassword(emailLoginField.text, passwordLoginField.text, gameObject.name, "SignedIn", "DisplayError");
     public void CreateUserWithEmailAndPassword() =>
         FirebaseAuth.CreateUserWithEmailAndPassword(emailRegisterField.text, passwordRegisterField.text, gameObject.name, "SignedIn", "DisplayError");
-
-    public void SignInWithGoogle()=>
+#endif
+    public void SignInWithGoogle()
+    {
+#if UNITY_WEBGL
         FirebaseAuth.SignInWithGoogle(gameObject.name, "SignedIn", "DisplayError");
+#endif
+#if UNITY_ANDROID || UNITY_IOS
+        GoogleSignInClick();
+#endif
+    }
 
-    
-    public void ResetPasswordEmail()=>
+
+    public void ResetPasswordEmail()
+    {
+#if UNITY_WEBGL
         FirebaseAuth.ResetPassword(emailPasswordReset.text, gameObject.name, "DisplayResetReply", "DisplayResetReply");
+#endif
+#if UNITY_ANDROID || UNITY_IOS
+#endif
+    }
 
 
+
+
+#if UNITY_ANDROID || UNITY_IOS //Login functions 
+private IEnumerator Login(string _email, string _password)
+    {
+        if (!IsValidEmail(_email))
+        {
+            warningLoginText.text = "Please enter a valid email!".ToUpper();
+        }
+        //Call the Firebase auth signin function passing the email and password
+        var LoginTask = auth.SignInWithEmailAndPasswordAsync(_email, _password);
+        //Wait until the task completes
+        yield return new WaitUntil(predicate: () => LoginTask.IsCompleted);
+
+        if (LoginTask.Exception != null)
+        {
+            //If there are errors handle them
+            Debug.LogWarning(message: $"Failed to register task with {LoginTask.Exception}");
+            FirebaseException firebaseEx = LoginTask.Exception.GetBaseException() as FirebaseException;
+            AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
+
+            string message = "Login Failed!";
+            switch (errorCode)
+            {
+                case AuthError.MissingEmail:
+                    message = "Missing Email";
+                    break;
+                case AuthError.MissingPassword:
+                    message = "Missing Password";
+                    break;
+                case AuthError.WrongPassword:
+                    message = "Wrong Password";
+                    break;
+                case AuthError.InvalidEmail:
+                    message = "Invalid Email";
+                    break;
+                case AuthError.UserNotFound:
+                    message = "Account does not exist";
+                    break;
+            }
+            warningLoginText.text = message.ToUpper();
+            warningRegisterText.color = Color.red;
+        }
+        else
+        {
+            warningLoginText.text = "";
+            SignedIn(User.Email);
+        }
+    }
+
+    private IEnumerator Register(string _email, string _password)
+    {
+        if (!IsValidEmail(_email))
+        {
+            warningRegisterText.text = "Please enter a valid email!".ToUpper();
+        }
+        if (passwordRegisterField.text != passwordRegisterVerifyField.text)
+        {
+            //If the password does not match show a warning
+            warningRegisterText.text = "Password Does Not Match!".ToUpper();
+        }
+        else
+        {
+            //Call the Firebase auth signin function passing the email and password
+            var RegisterTask = auth.CreateUserWithEmailAndPasswordAsync(_email, _password);
+            //Wait until the task completes
+            yield return new WaitUntil(predicate: () => RegisterTask.IsCompleted);
+
+            if (RegisterTask.Exception != null)
+            {
+                //If there are errors handle them
+                Debug.LogWarning(message: $"Failed to register task with {RegisterTask.Exception}");
+                FirebaseException firebaseEx = RegisterTask.Exception.GetBaseException() as FirebaseException;
+                AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
+
+                string message = "Register Failed!";
+                switch (errorCode)
+                {
+                    case AuthError.MissingEmail:
+                        message = "Missing Email";
+                        break;
+                    case AuthError.MissingPassword:
+                        message = "Missing Password";
+                        break;
+                    case AuthError.WeakPassword:
+                        message = "Weak Password";
+                        break;
+                    case AuthError.EmailAlreadyInUse:
+                        message = "Email Already In Use";
+                        break;
+                }
+                warningRegisterText.text = message.ToUpper();
+                warningRegisterText.color = Color.red;
+            }
+            else
+            {
+                //User has now been created
+                //Now get the result
+                User = RegisterTask.Result;
+
+                if (User != null)
+                {
+                    //Create a user profile and set the username
+                    UserProfile profile = new UserProfile();
+
+                    //Call the Firebase auth update user profile function passing the profile with the username
+                    var ProfileTask = User.UpdateUserProfileAsync(profile);
+                    //Wait until the task completes
+                    yield return new WaitUntil(predicate: () => ProfileTask.IsCompleted);
+
+                    if (ProfileTask.Exception != null)
+                    {
+                        //If there are errors handle them
+                        Debug.LogWarning(message: $"Failed to register task with {ProfileTask.Exception}");
+                        FirebaseException firebaseEx = ProfileTask.Exception.GetBaseException() as FirebaseException;
+                        AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
+                        warningRegisterText.text = "Username Set Failed!".ToUpper();
+                        warningRegisterText.color = Color.red;
+                    }
+                    else
+                    {
+                        //Username is now set
+                        //Now return to login screen
+                        SignedIn(User.Email);
+                        warningRegisterText.text = "";
+                    }
+                }
+            }
+        }
+    }
+
+    private void PasswordResetReset()
+    {
+       
+            auth.SendPasswordResetEmailAsync(emailPasswordReset).ContinueWith(task => {
+                if (task.IsCanceled)
+                {
+                   warningEmailReset.text = "Password Reset Failed";
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    warningEmailReset.text="Reset encountered an error: " + task.Exception);
+                    return;
+                }
+
+                warningEmailReset.text="Password reset email sent successfully.");
+            });
+        
+    }
+
+    //Google stuff
+    public void GoogleSignInClick()
+    {
+        GoogleSignIn.Configuration = configuration;
+        GoogleSignIn.Configuration.UseGameSignIn = false;
+        GoogleSignIn.Configuration.RequestIdToken = true;
+        GoogleSignIn.Configuration.RequestEmail = true;
+
+        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnGoogleAuthFinish);
+    }
+
+    void OnGoogleAuthFinish(Task<GoogleSignInUser> task)
+    {
+        if (task.IsFaulted)
+            Debug.LogError("Fault" + task.Exception);
+        else if (task.IsCanceled)
+            Debug.Log("Login canceled");
+        else
+        {
+            Firebase.Auth.Credential credential = Firebase.Auth.GoogleAuthProvider.GetCredential(task.Result.IdToken, null);
+            auth.SignInAndRetrieveDataWithCredentialAsync(credential).ContinueWithOnMainThread(Task =>
+            {
+                if (task.IsCanceled)
+                {
+                    Debug.LogError("SigninWithCredentials Was Cancled");
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.LogError("SigninWithCredentials got error" + task.Exception);
+                }
+                User = auth.CurrentUser;
+                Debug.Log(User.Email);
+                Debug.Log(User.DisplayName);
+                infoDisplay.text = User.Email.ToUpper() + "\n\n" + User.DisplayName.ToUpper();
+                infoDisplay.color = Color.green;
+                infoDisplay.gameObject.SetActive(true);
+
+                //load game into skip
+                SignedIn(User.Email);
+
+            });
+        }
+    }
+
+#endif
 
     void DisplayInfo(string info)
     {
@@ -153,7 +464,12 @@ public class FireBaseWebGLAuth : MonoBehaviour
     
     public void LogOut()
     {
+#if UNITY_WEBGL
         FirebaseAuth.SignOut();
+#endif
+#if UNITY_ANDROID || UNITY_IOS
+      auth.SignOut();
+#endif
         GetComponentInParent<uiView>().goToMenu("login");
         chickenGameModel.userIsLogged.Value = false;
         chickenGameModel.currentNFTArray = null;
@@ -190,7 +506,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
 
 
-    #region utility
+#region utility
 
     public void OpenSingin()
     {
@@ -295,7 +611,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
        
         StartCoroutine(KeyMaker.instance.GetRequest());
     }
- #endregion utility
+#endregion utility
        
 }
 

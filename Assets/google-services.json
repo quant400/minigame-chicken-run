@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:335488712723:android:fa368d99785028d3063fe6",
+        "mobilesdk_app_id": "1:335488712723:android:d9c0037581b3be1c063fe6",
         "android_client_info": {
-          "package_name": "com.cryptofightclub.chickenrun"
+          "package_name": "com.cfcinc.chickenrun"
         }
       },
       "oauth_client": [
         {
-          "client_id": "335488712723-qk1f5kqraqhipmua4unocefc14q8vb86.apps.googleusercontent.com",
+          "client_id": "335488712723-j0ms0iu46vc7iqe4tj3tltsb521rj617.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.cryptofightclub.chickenrun",
+            "package_name": "com.cfcinc.chickenrun",
             "certificate_hash": "9d593393136f0b2c0d2f412ccce4d49cad767729"
           }
         },

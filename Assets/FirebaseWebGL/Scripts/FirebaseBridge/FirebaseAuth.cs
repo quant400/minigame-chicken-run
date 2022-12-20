@@ -2,6 +2,7 @@
 
 namespace FirebaseWebGL.Scripts.FirebaseBridge
 {
+#if UNITY_WEBGL
     public static class FirebaseAuth
     {
         /// <summary>
@@ -66,4 +67,5 @@ namespace FirebaseWebGL.Scripts.FirebaseBridge
         [DllImport("__Internal")]
         public static extern void ResetPassword(string email, string objectName, string callback,string fallback);
     }
+#endif
 }

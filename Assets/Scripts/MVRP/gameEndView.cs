@@ -14,6 +14,8 @@ public class gameEndView : MonoBehaviour
 {
     [SerializeField]
     Transform characterDisplay;
+    [SerializeField]
+    GameObject charDisplayPrefab;
     GameObject[] characters;
     [SerializeField]
     TMP_Text currentScore, dailyScore, allTimeScore, sessionCounterText;
@@ -35,6 +37,8 @@ public class gameEndView : MonoBehaviour
     GameObject tryoutCanvas;
     [SerializeField]
     GameObject endCharDisplay;
+    [SerializeField]
+    TMP_Text gameOverNftId, GameOverEmail;
     private void OnEnable()
     {
         if (gameplayView.instance.isTryout)
@@ -66,6 +70,7 @@ public class gameEndView : MonoBehaviour
     }
     public void setScoreAtStart()
     {
+        
         tryAgain.gameObject.SetActive(false);
         if (canvasToDisable == null)
         {
@@ -77,20 +82,19 @@ public class gameEndView : MonoBehaviour
             if (gameplayView.instance.isRestApi && !gameplayView.instance.usingOtherChainNft && !gameplayView.instance.usingFreemint)
             {
                 Debug.Log("before Score");
-
                 DatabaseManagerRestApi._instance.setScoreRestApiMain(currentNFT.id.ToString(), SinglePlayerScoreBoardScript.instance.GetScore());
                 Debug.Log("posted Score");
             }
-            else
+            else if(gameplayView.instance.usingFreemint)
             {
-                // DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
-
+                Debug.Log("before Score");
+                DatabaseManagerRestApi._instance.setScoreRestApiMain(gameplayView.instance.GetLoggedPlayerString(), SinglePlayerScoreBoardScript.instance.GetScore());
+                Debug.Log("posted Score");
             }
         }
-        gameplayView.instance.GetScores();
+        if (endCharDisplay != null)
+            Destroy(endCharDisplay);
         SetSkin();
-        Invoke("setScoreResutls", 1);
-        //setScoreResutls();
 
     }
     public void initializeValues()
@@ -240,6 +244,7 @@ public class gameEndView : MonoBehaviour
     void SetSkin()
     {
         Destroy(GameObject.FindGameObjectWithTag("Player"));
+        endCharDisplay=Instantiate(charDisplayPrefab, characterDisplay);
         endCharDisplay.GetComponent<SetUpSkin>().SetUpChar(NameToSlugConvert(gameplayView.instance.chosenNFT.name));
         endCharDisplay.GetComponent<Animator>().SetBool("Ended", true);
 
@@ -247,6 +252,21 @@ public class gameEndView : MonoBehaviour
         endCharDisplay.transform.localRotation = Quaternion.identity;
         endCharDisplay.transform.localScale = Vector3.one * 2;
         localDisplay = endCharDisplay;
+
+        //set nft ID Display 
+        string n = NameToSlugConvert(gameplayView.instance.chosenNFT.name);
+        if (n == "average-joe" || n == "billy-basic" || n == "mary-jane")
+        {
+            gameOverNftId.text = "";
+            string email = gameplayView.instance.chosenNFT.id.Split('$')[0].ToUpper();
+            string[] emailParts = email.Split('@');
+            GameOverEmail.text = emailParts[0] + "<font=\"LiberationSans SDF\">@</font>" + emailParts[1];
+        }
+        else
+        {
+            GameOverEmail.text = "";
+            gameOverNftId.text = "NFT ID: " + gameplayView.instance.chosenNFT.id;
+        }
     }
 
     string NameToSlugConvert(string name)

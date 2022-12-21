@@ -60,6 +60,8 @@ public class gameEndView : MonoBehaviour
         ad.loop = false;
         ad.volume = 0.2f;
         ad.Play();
+
+        SinglePlayerScoreBoardScript.instance.gamePad.SetActive(false);
     }
     public void Start()
     {

@@ -329,7 +329,7 @@ public class characterSelectionView : MonoBehaviour
             {
                 string name = info[i + startingindex].name;
                 charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(name);
-                characterNFTMap[i + startingindex] = new NFTInfo { id = 00000.ToString(), name = name };
+                characterNFTMap[i + startingindex] = new NFTInfo { id = gameplayView.instance.GetLoggedPlayerString(), name = name };
             }
         }
         ResetAvalaibleColors();

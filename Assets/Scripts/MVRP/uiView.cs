@@ -25,10 +25,14 @@ public class uiView : MonoBehaviour
     private void Awake()
     {
         scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
+
     }
     void Start()
     {
         ObserveBtns();
+#if UNITY_ANDROID || UNITY_IOS
+        loginBtn.gameObject.SetActive(false);
+#endif
     }
     public void observeLogin()
     {

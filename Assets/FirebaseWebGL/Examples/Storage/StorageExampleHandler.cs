@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_WEBGL
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FirebaseWebGL.Examples.Utils;
@@ -67,3 +68,4 @@ namespace FirebaseWebGL.Examples.Storage
         }
     }
 }
+#endif

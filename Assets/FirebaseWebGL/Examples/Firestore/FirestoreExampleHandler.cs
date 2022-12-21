@@ -1,4 +1,5 @@
-﻿using FirebaseWebGL.Examples.Utils;
+﻿#if UNITY_WEBGL
+using FirebaseWebGL.Examples.Utils;
 using FirebaseWebGL.Scripts.FirebaseBridge;
 using FirebaseWebGL.Scripts.Objects;
 using TMPro;
@@ -93,3 +94,4 @@ namespace FirebaseWebGL.Examples.Firestore
         }
     }
 }
+#endif

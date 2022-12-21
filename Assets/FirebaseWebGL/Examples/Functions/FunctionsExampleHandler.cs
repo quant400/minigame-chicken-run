@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_WEBGL
+using System;
 using System.Collections.Generic;
 using FirebaseWebGL.Examples.Utils;
 using FirebaseWebGL.Scripts.FirebaseBridge;
@@ -70,3 +71,4 @@ namespace FirebaseWebGL.Examples.Functions
         }
     }
 }
+#endif

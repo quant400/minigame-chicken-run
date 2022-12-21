@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_WEBGL
+using System;
 using FullSerializer;
 
 namespace FirebaseWebGL.Examples.Utils
@@ -29,3 +30,4 @@ namespace FirebaseWebGL.Examples.Utils
         }
     }
 }
+#endif

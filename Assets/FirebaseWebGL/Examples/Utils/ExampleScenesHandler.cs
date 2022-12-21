@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_WEBGL
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace FirebaseWebGL.Examples.Utils
@@ -16,3 +17,4 @@ namespace FirebaseWebGL.Examples.Utils
         public void GoToFirestoreScene() => SceneManager.LoadScene("FirestoreExampleScene");
     }
 }
+#endif

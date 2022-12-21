@@ -196,17 +196,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 40678502, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: GoogleWebAPI
-      value: 335488712723-2hqciv7mto3c7eic8vnpphla02ic9qeq.apps.googleusercontent.com
-      objectReference: {fileID: 0}
-    - target: {fileID: 1021727872, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914055550, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: m_Interactable
-      value: 1
+    - target: {fileID: 760607292, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
+      propertyPath: m_text
+      value: SIGN-IN WITH
       objectReference: {fileID: 0}
     - target: {fileID: 4381750604183219818, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -278,7 +270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4381750605995796525, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10555781
+      value: -10412309
       objectReference: {fileID: 0}
     - target: {fileID: 8126445882098143849, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_Name
@@ -359,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502898bb83029474ca1d621343b84355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildType: 0
+  buildType: 1
   game: chicken
 --- !u!4 &1411705273
 Transform:

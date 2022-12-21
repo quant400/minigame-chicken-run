@@ -1,5 +1,4 @@
 #if UNITY_WEBGL
-using FirebaseWebGL.Examples.Utils;
 using FirebaseWebGL.Scripts.FirebaseBridge;
 using FirebaseWebGL.Scripts.Objects;
 #endif
@@ -482,6 +481,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
         gameplayView.instance.usingMeta = false;
         gameplayView.instance.isTryout = false;
         gameplayView.instance.usingOtherChainNft = false;
+        gameplayView.instance.hasOtherChainNft = false;
         InfoDisplay.text = "";
         emailRegisterField.text = "";
         passwordRegisterField.text = "";

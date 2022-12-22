@@ -2,6 +2,7 @@
 
 namespace FirebaseWebGL.Scripts.FirebaseBridge
 {
+#if UNITY_WEBGL
     public static class FirebaseDatabase
     {
         /// <summary>
@@ -174,4 +175,5 @@ namespace FirebaseWebGL.Scripts.FirebaseBridge
         public static extern void ToggleBooleanWithTransaction(string path, string objectName, string callback,
             string fallback);
     }
+#endif
 }

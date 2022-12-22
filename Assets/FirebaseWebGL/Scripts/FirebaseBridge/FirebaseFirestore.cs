@@ -2,6 +2,7 @@
 
 namespace FirebaseWebGL.Scripts.FirebaseBridge
 {
+#if UNITY_WEBGL
     public static class FirebaseFirestore
     {
         /// <summary>
@@ -186,4 +187,5 @@ namespace FirebaseWebGL.Scripts.FirebaseBridge
         public static extern void StopListeningForCollectionChange(string collectionPath, string objectName,
             string callback, string fallback);
     }
+#endif
 }

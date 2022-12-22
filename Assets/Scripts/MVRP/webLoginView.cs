@@ -7,9 +7,10 @@ using UnityEngine.UI;
 using UniRx.Operators;
 using UniRx;
 using UniRx.Triggers;
-#if UNITY_WEBGL
 public class webLoginView : MonoBehaviour
 {
+    #if UNITY_WEBGL
+
     [DllImport("__Internal")]
     private static extern void Web3Connect();
 
@@ -108,7 +109,7 @@ public class webLoginView : MonoBehaviour
         tryoutCanvas.SetActive(true);
        
     }
-
-}
 #endif
+}
+
 

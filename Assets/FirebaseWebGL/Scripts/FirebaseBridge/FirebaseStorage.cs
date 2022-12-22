@@ -2,6 +2,7 @@
 
 namespace FirebaseWebGL.Scripts.FirebaseBridge
 {
+#if UNITY_WEBGL
     public static class FirebaseStorage
     {
         /// <summary>
@@ -25,4 +26,5 @@ namespace FirebaseWebGL.Scripts.FirebaseBridge
         [DllImport("__Internal")]
         public static extern void DownloadFile(string path, string objectName, string callback, string fallback);
     }
+#endif
 }

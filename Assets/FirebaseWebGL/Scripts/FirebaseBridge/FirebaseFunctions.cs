@@ -5,6 +5,7 @@ using Proyecto26;
 
 namespace FirebaseWebGL.Scripts.FirebaseBridge
 {
+#if UNITY_WEBGL
     public static class FirebaseFunctions
     {
         /// <summary>
@@ -35,4 +36,5 @@ namespace FirebaseWebGL.Scripts.FirebaseBridge
         [DllImport("__Internal")]
         private static extern string GetCurrentProjectId();
     }
+#endif
 }

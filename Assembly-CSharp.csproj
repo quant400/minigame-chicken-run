@@ -67,6 +67,7 @@
     <Compile Include="Assets\FullSerializer\Source\fsConverter.cs" />
     <Compile Include="Assets\Scripts\MVRP\webLoginView.cs" />
     <Compile Include="Assets\Scripts\MVRP\chickenGameModel.cs" />
+    <Compile Include="Assets\FirebaseWebGL\Scripts\FirebaseBridge\FirebaseDatabase.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLTransfer721.cs" />
     <Compile Include="Assets\GoogleSignIn\Impl\BaseObject.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\ERC721OwnerOfExample.cs" />
@@ -118,12 +119,14 @@
     <Compile Include="Assets\GoogleSignIn\Impl\NativeFuture.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\ERC20\ERC20TotalSupplyExample.cs" />
     <Compile Include="Assets\FullSerializer\Source\Converters\fsDictionaryConverter.cs" />
+    <Compile Include="Assets\FirebaseWebGL\Scripts\FirebaseBridge\FirebaseFunctions.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\TryoutScript.cs" />
     <Compile Include="Assets\Saif\MarkApi\restApiDataView.cs" />
     <Compile Include="Assets\FullSerializer\Source\Internal\fsVersionManager.cs" />
     <Compile Include="Assets\Web3Unity\Prefabs\ERC1155\ImportNFTTextureExample.cs" />
     <Compile Include="Assets\FullSerializer\Source\Reflection\fsTypeCache.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\CustomRPCExample.cs" />
+    <Compile Include="Assets\FirebaseWebGL\Scripts\FirebaseBridge\FirebaseAuth.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\RestClient\Packages\RSG.Promise\Exceptions\PromiseException.cs" />
     <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
@@ -192,6 +195,7 @@
     <Compile Include="Assets\FullSerializer\Source\Reflection\fsReflectionUtility.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SinglePlayerScoreBoardScript.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\EthBalanceOfExample.cs" />
+    <Compile Include="Assets\FirebaseWebGL\Scripts\FirebaseBridge\FirebaseStorage.cs" />
     <Compile Include="Assets\FullSerializer\Source\Internal\fsPortableReflection.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\FullSerializer\Source\Converters\fsEnumConverter.cs" />
@@ -228,6 +232,7 @@
     <Compile Include="Assets\Scripts\AuthenticationView.cs" />
     <Compile Include="Assets\FullSerializer\Source\Converters\fsIEnumerableConverter.cs" />
     <Compile Include="Assets\FullSerializer\Source\Converters\Unity\UnityEvent_Converter.cs" />
+    <Compile Include="Assets\FirebaseWebGL\Scripts\FirebaseBridge\FirebaseFirestore.cs" />
     <Compile Include="Assets\RestClient\DemoScene\Scripts\Model\Todo.cs" />
     <Compile Include="Assets\FullSerializer\Source\fsObjectProcessor.cs" />
     <Compile Include="Assets\RestClient\Packages\Proyecto26.RestClient\RestClient.cs" />
@@ -256,11 +261,7 @@
     <Compile Include="Assets\Scripts\MVRP\gameplayView.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\FirebaseWebGL\Scripts\FirebaseBridge\FirebaseAuth.cs" />
-    <Compile Include="Assets\FirebaseWebGL\Scripts\FirebaseBridge\FirebaseDatabase.cs" />
-    <Compile Include="Assets\FirebaseWebGL\Scripts\FirebaseBridge\FirebaseFirestore.cs" />
-    <Compile Include="Assets\FirebaseWebGL\Scripts\FirebaseBridge\FirebaseFunctions.cs" />
-    <Compile Include="Assets\FirebaseWebGL\Scripts\FirebaseBridge\FirebaseStorage.cs" />
+    <Compile Include="Assets\Scripts\JuiceDisplayScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\36.56120f7d.chunk.js.LICENSE.txt" />

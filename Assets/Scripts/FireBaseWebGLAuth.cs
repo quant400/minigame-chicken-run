@@ -608,9 +608,10 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
     public void Skip()
     {
+        Debug.Log("skip clicked");
         //for email login
         //gameplayView.instance.logedPlayer = ("test@test.com".ToLower(), "5uU1JCypYMT3EGWTzK3I2EhHqpC3".ToLower());
-        // DatabaseManagerRestApi._instance.getJuiceFromRestApi(gameplayView.instance.logedPlayer.Item1);
+        //gameplayView.instance.logedPlayer = ("hassan.iqbal@quids.tech".ToLower(), "0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower());
 
         //for meta login
         gameplayView.instance.usingMeta = true;

@@ -204,6 +204,9 @@ public class KeyMaker : MonoBehaviour
                 case UnityWebRequest.Result.Success:
                     ResponseObject temp = JsonUtility.FromJson<ResponseObject>(webRequest.downloadHandler.text);
                     SetCode(temp.code);
+                    Debug.Log(webRequest.downloadHandler.text);
+                    if (gameplayView.instance.usingMeta)
+                        DatabaseManagerRestApi._instance.getFightFromRestApi(gameplayView.instance.GetLoggedPlayerString());
                     gameplayView.instance.GetComponent<NFTGetView>().Display(temp.nfts);
                     break;
             }

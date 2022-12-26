@@ -247,7 +247,7 @@ public class gameEndView : MonoBehaviour
     {
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         endCharDisplay=Instantiate(charDisplayPrefab, characterDisplay);
-        endCharDisplay.GetComponent<SetUpSkin>().SetUpChar("santa");//(NameToSlugConvert(gameplayView.instance.chosenNFT.name));
+        endCharDisplay.GetComponent<SetUpSkin>().SetUpChar(NameToSlugConvert(gameplayView.instance.chosenNFT.name));//(NameToSlugConvert(gameplayView.instance.chosenNFT.name));
         endCharDisplay.GetComponent<Animator>().SetBool("Ended", true);
 
         endCharDisplay.transform.localPosition = Vector3.zero;

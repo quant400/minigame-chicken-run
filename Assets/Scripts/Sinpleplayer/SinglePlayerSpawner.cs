@@ -46,7 +46,7 @@ public class SinglePlayerSpawner : MonoBehaviour
        
         chosenNFTName = NameToSlugConvert(gameplayView.instance.chosenNFT.name); 
         GameObject temp = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
-        temp.GetComponent<SetUpSkin>().SetUpChar("santa");// (chosenNFTName) changed for special events that need character replacement
+        temp.GetComponent<SetUpSkin>().SetUpChar(chosenNFTName);// (chosenNFTName) changed for special events that need character replacement
     }
 
     void SpawnChickens()

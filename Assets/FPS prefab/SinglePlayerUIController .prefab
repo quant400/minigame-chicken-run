@@ -2149,6 +2149,7 @@ MonoBehaviour:
   reactiveTime:
     value: 0
   settingsPanel: {fileID: 5647917735894952549}
+  gamePad: {fileID: 2838281310651023651}
 --- !u!1 &251470971984791477
 GameObject:
   m_ObjectHideFlags: 0
@@ -5897,6 +5898,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f7f3dde7ae722a4aafffe20691ad702, type: 3}
+--- !u!1 &2838281310651023651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6751388636123340836, guid: 2f7f3dde7ae722a4aafffe20691ad702, type: 3}
+  m_PrefabInstance: {fileID: 8850235044283916551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8257430377932121389 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 597308369130767402, guid: 2f7f3dde7ae722a4aafffe20691ad702, type: 3}

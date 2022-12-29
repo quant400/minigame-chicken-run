@@ -278,7 +278,7 @@ public class characterSelectionView : MonoBehaviour
         }
         else
         {
-            gameplayView.instance.chosenNFT = new NFTInfo { name = "grane", id = 175 };
+            gameplayView.instance.chosenNFT = new NFTInfo { name = "grane", id = 175.ToString() };
             selected = true;
         }
     }
@@ -294,7 +294,7 @@ public class characterSelectionView : MonoBehaviour
             {
                 string name = info[i + startingindex].name;
                 charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(name);
-                characterNFTMap[i + startingindex] = new NFTInfo { id = 175, name = name };
+                characterNFTMap[i + startingindex] = new NFTInfo { id = 175.ToString(), name = name };
             }
         }
         ResetAvalaibleColors();
@@ -310,16 +310,26 @@ public class characterSelectionView : MonoBehaviour
 
     void FreeMintDisplayChars(int startingindex)
     {
-        for (int i = 0; i < 4; i++)
+        int x = 0;
+        if (gameplayView.instance.hasOtherChainNft)
+            x = 5;
+        else
+            x = 4;
+        for (int i = 0; i < x; i++)
         {
-
-            if (i + startingindex >= info.Length)
+            if(gameplayView.instance.hasOtherChainNft && i==0)
+            {
+                string name = "grane";
+                charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(name);
+                characterNFTMap[i + startingindex] = new NFTInfo { id = 00000.ToString(), name = name };
+            }
+            else if (i + startingindex >= info.Length)
                 charButtons[i].GetComponent<ButtonInfoHolder>().SetChar("null");
             else
             {
                 string name = info[i + startingindex].name;
                 charButtons[i].GetComponent<ButtonInfoHolder>().SetChar(name);
-                characterNFTMap[i + startingindex] = new NFTInfo { id = 00000, name = name };
+                characterNFTMap[i + startingindex] = new NFTInfo { id = gameplayView.instance.GetLoggedPlayerString(), name = name };
             }
         }
         ResetAvalaibleColors();

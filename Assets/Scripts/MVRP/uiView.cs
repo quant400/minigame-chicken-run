@@ -18,15 +18,21 @@ public class uiView : MonoBehaviour
 
 
     public Button loginBtn, PlayMode, Play, LeaderBoard, BackToCharacterSelection, Skip, tryout, backFromLeaderboard , tryagain;
-    //[SerializeField] webLoginView webloginView;
+#if UNITY_WEBGL
+    [SerializeField] webLoginView webloginView;
+#endif
     // Start is called before the first frame update
     private void Awake()
     {
         scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
+
     }
     void Start()
     {
         ObserveBtns();
+#if UNITY_ANDROID || UNITY_IOS
+        loginBtn.gameObject.SetActive(false);
+#endif
     }
     public void observeLogin()
     {
@@ -44,7 +50,9 @@ public class uiView : MonoBehaviour
     public void ObserveBtns()
     {
         loginBtn.OnClickAsObservable()
-            //.Do(_=> webloginView.OnLogin(loginBtn, Skip, tryout))
+#if UNITY_WEBGL
+            .Do(_=> webloginView.OnLogin(loginBtn, Skip, tryout))
+#endif
             .Where(_ => PlaySounds.instance != null)
             .Do(_ => PlaySounds.instance.Play())
             .Subscribe()
@@ -118,7 +126,7 @@ public class uiView : MonoBehaviour
                 characterSelectionPanel.SetActive(false);
                 loginCanvas.gameObject.SetActive(true);
                 startCanvas.gameObject.SetActive(true);
-
+                gameplayView.instance.juiceDisplay.DeactivateJuiceDisplay();
                 leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(false);
                 resultsCanvas.SetActive(false);
 
@@ -129,6 +137,7 @@ public class uiView : MonoBehaviour
                 characterSelectionPanel.SetActive(false);
                 loginCanvas.gameObject.SetActive(false);
                 resultsCanvas.SetActive(false);
+                gameplayView.instance.juiceDisplay.DeactivateJuiceDisplay();
                 leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(false);
                 break;
             case "characterSelection":
@@ -137,6 +146,9 @@ public class uiView : MonoBehaviour
                 characterSelectionPanel.SetActive(true);
                 loginCanvas.gameObject.SetActive(false);
                 resultsCanvas.SetActive(false);
+                gameplayView.instance.juiceDisplay.UpdateJuiceBalance();
+                gameplayView.instance.juiceDisplay.UpdateCoinBalance();
+                gameplayView.instance.juiceDisplay.ActivateJuiceDisplay();
                 leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(false);
                 break;
             case "results":
@@ -146,7 +158,7 @@ public class uiView : MonoBehaviour
                 loginCanvas.gameObject.SetActive(false);
                 resultsCanvas.SetActive(true);
                 startCanvas.gameObject.SetActive(false);
-
+                gameplayView.instance.juiceDisplay.ActivateJuiceDisplay();
                 break;
             case "leaderboeard":
                 break;
@@ -156,6 +168,7 @@ public class uiView : MonoBehaviour
                 loginCanvas.gameObject.SetActive(false);
                 startCanvas.gameObject.SetActive(false);
                 resultsCanvas.SetActive(false);
+                gameplayView.instance.juiceDisplay.DeactivateJuiceDisplay();
                 leaderBoeardCanvas.GetComponent<LeaderBoardControllerRestApi>().ToggleLeaderBoard(false);
                 break;
 
@@ -168,4 +181,5 @@ public class uiView : MonoBehaviour
             tryagain.gameObject.SetActive(state);
 
     }
+   
 }

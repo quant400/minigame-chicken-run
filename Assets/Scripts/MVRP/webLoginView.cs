@@ -7,9 +7,10 @@ using UnityEngine.UI;
 using UniRx.Operators;
 using UniRx;
 using UniRx.Triggers;
-#if UNITY_WEBGL
 public class webLoginView : MonoBehaviour
 {
+    #if UNITY_WEBGL
+
     [DllImport("__Internal")]
     private static extern void Web3Connect();
 
@@ -52,7 +53,7 @@ public class webLoginView : MonoBehaviour
     {
         if (chickenGameModel.userIsLogged.Value)
         {
-            loginBtn.GetComponent<Button>().interactable = false;
+            //loginBtn.GetComponent<Button>().interactable = false;
             skipBtn.GetComponent<Button>().interactable = false;
             tryoutBtn.GetComponent<Button>().interactable = false;
             nftGetter.savedLoggedDisplay();
@@ -79,9 +80,11 @@ public class webLoginView : MonoBehaviour
         SetConnectAccount("");
         // load next scene
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        loginButton.GetComponent<Button>().interactable = false;
+        //loginButton.GetComponent<Button>().interactable = false;
         skipButton.GetComponent<Button>().interactable = false;
         tryoutButton.GetComponent<Button>().interactable = false;
+        gameplayView.instance.usingMeta = true;
+        loginButton.GetComponentInParent<FireBaseWebGLAuth>().Close();
         nftGetter.GetNFT();
 
 
@@ -106,7 +109,7 @@ public class webLoginView : MonoBehaviour
         tryoutCanvas.SetActive(true);
        
     }
-
-}
 #endif
+}
+
 

@@ -35,6 +35,10 @@ public class gameplayView : MonoBehaviour
     public static bool playerLogged;
     public GameObject gameOverObject;
 
+    public Texture[] ads;
+    
+    public JuiceDisplayScript juiceDisplay;
+
     bool sfxMuted = false;
 
     public bool isTryout=false;
@@ -46,6 +50,15 @@ public class gameplayView : MonoBehaviour
     public bool usingOtherChainNft=false;
 
     public bool usingFreemint = false;
+
+    public bool usingMeta;
+
+    public bool ended;
+
+   
+
+    public (string, string) logedPlayer;
+   
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -73,18 +86,26 @@ public class gameplayView : MonoBehaviour
 
     public void StartGame()
     {
+        ended = false;
         SinglePlayerScoreBoardScript.instance.StartGame(GetTimeForGame());
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetStarted(true);
         GetScores();
-        Debug.Log(chosenNFT.id);
-        if(!instance.isTryout && !usingOtherChainNft)
-            DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id);
+        if(!instance.isTryout && !usingOtherChainNft && !usingFreemint)
+        {
+            DatabaseManagerRestApi._instance.startSessionFromRestApi(chosenNFT.id.ToString());
+        }
+        else if(usingFreemint)
+        {
+            DatabaseManagerRestApi._instance.startSessionFromRestApi(GetLoggedPlayerString());
+        }
+            
         chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameRunning;
 
     }
     public void EndGame()
     {
+        ended = true;
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<ThirdPersonController>().SetEnded(true);
     }
@@ -157,8 +178,11 @@ public class gameplayView : MonoBehaviour
     }
     void GetSoresRestApi()
     {
-        DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id);
-
+        if(!usingFreemint)
+            DatabaseManagerRestApi._instance.getDataFromRestApi(chosenNFT.id.ToString());
+            
+        else
+            DatabaseManagerRestApi._instance.getDataFromRestApi(GetLoggedPlayerString());
     }
     void observeReactiveSession()
     {
@@ -174,5 +198,18 @@ public class gameplayView : MonoBehaviour
         EndGame();
         SinglePlayerScoreBoardScript.instance.DisplayScore();
     }
+
+    public string GetLoggedPlayerString()
+    {
+       /* if(usingFreemint)
+            return "hassan.iqbal@quids.tech".ToLower() + "$$$" + "0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower();*/
+         if (usingMeta)
+            return PlayerPrefs.GetString("Account");
+
+        else
+            return logedPlayer.Item1 + "$$$" + logedPlayer.Item2;
+    }
+
+   
 }
 

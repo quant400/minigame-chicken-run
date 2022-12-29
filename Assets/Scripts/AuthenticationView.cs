@@ -1,4 +1,5 @@
-using System.Collections;
+
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase;
@@ -351,7 +352,7 @@ public class AuthenticationView : MonoBehaviour
     #endregion Google*/
 
 
-    #region utility
+  /*  #region utility
     void SignedIn(string info)
     {
         infoDisplay.text = info.ToUpper();
@@ -455,4 +456,4 @@ public class AuthenticationView : MonoBehaviour
         Application.OpenURL("https://www.cryptofightclub.io/privacy-policy");
     }
     #endregion utility 
-}
+}*/

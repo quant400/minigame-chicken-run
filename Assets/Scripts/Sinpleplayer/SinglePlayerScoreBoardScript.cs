@@ -39,6 +39,7 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
 
     [SerializeField]
     GameObject settingsPanel;
+    public GameObject gamePad;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -50,7 +51,13 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
             instance = this;
         }
         timeIsUp.Value = true;
+#if UNITY_WEBGL
+        gamePad.SetActive(false);
+#endif
 
+#if UNITY_ANDROID || UNITY_IOS
+        gamePad.SetActive(true);
+#endif
 
     }
     public void StartGame(float timeOfGame)

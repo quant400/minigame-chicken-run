@@ -39,6 +39,10 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
 
     [SerializeField]
     GameObject settingsPanel;
+    [SerializeField]
+    Transform minimap;
+    [SerializeField]
+    Transform miniMapPos;
     public GameObject gamePad;
     private void Awake()
     {
@@ -53,10 +57,14 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         timeIsUp.Value = true;
 #if UNITY_WEBGL
         gamePad.SetActive(false);
+        minimap.position = miniMapPos.GetChild(0).position;
+        transform.GetChild(0).GetComponent<CanvasScaler>().matchWidthOrHeight=0.5f;
 #endif
 
 #if UNITY_ANDROID || UNITY_IOS
         gamePad.SetActive(true);
+         minimap.position = miniMapPos.GetChild(1).position;
+         transform.GetChild(0).GetComponent<CanvasScaler>().matchWidthOrHeight = 0f;
 #endif
 
     }

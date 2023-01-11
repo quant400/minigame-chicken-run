@@ -36,7 +36,8 @@ public class FireBaseWebGLAuth : MonoBehaviour
     public FirebaseAuth auth;
     public FirebaseUser User;
     //for google
-    public string GoogleWebAPI = "335488712723-2hqciv7mto3c7eic8vnpphla02ic9qeq.apps.googleusercontent.com";
+    [SerializeField]
+    string GoogleWebAPI;
     private GoogleSignInConfiguration configuration;
 #endif
 
@@ -75,6 +76,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     void Awake()
     {
         //for Google
+        GoogleWebAPI = "335488712723-2hqciv7mto3c7eic8vnpphla02ic9qeq.apps.googleusercontent.com";
         configuration = new GoogleSignInConfiguration
         {
             WebClientId = GoogleWebAPI,

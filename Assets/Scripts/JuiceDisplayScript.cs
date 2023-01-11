@@ -7,7 +7,14 @@ public class JuiceDisplayScript : MonoBehaviour
     public GameObject juiceText, CoinText, display;
     string juiceBal = "0";
     string coinBal = "0";
+    private void Start()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        if(transform.GetChild(0).GetComponent<UnityEngine.UI.VerticalLayoutGroup>().padding.right == 10)
+                transform.GetChild(0).GetComponent<UnityEngine.UI.VerticalLayoutGroup>().padding.right = 30;
 
+#endif
+    }
     public void ActivateJuiceDisplay()
     {
         display.SetActive(true);

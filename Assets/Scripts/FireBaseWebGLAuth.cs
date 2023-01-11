@@ -1,6 +1,7 @@
 #if UNITY_WEBGL
 using FirebaseWebGL.Scripts.FirebaseBridge;
 using FirebaseWebGL.Scripts.Objects;
+using FirebaseWebGL.Examples.Utils;
 #endif
 #if UNITY_ANDROID || UNITY_IOS
 using Firebase;
@@ -35,7 +36,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     public FirebaseAuth auth;
     public FirebaseUser User;
     //for google
-    public string GoogleWebAPI;
+    public string GoogleWebAPI = "335488712723-2hqciv7mto3c7eic8vnpphla02ic9qeq.apps.googleusercontent.com";
     private GoogleSignInConfiguration configuration;
 #endif
 
@@ -499,7 +500,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
     void DisplayError(string error)
     {
-#if unity_WEBGL
+#if UNITY_WEBGL
         var parsedError = StringSerializationAPI.Deserialize(typeof(FirebaseError), error) as FirebaseError;
        
         if (currentOpenWindiow.name == "Login")
@@ -615,11 +616,11 @@ public class FireBaseWebGLAuth : MonoBehaviour
         Debug.Log("skip clicked");
         //for email login
         //gameplayView.instance.logedPlayer = ("test@test.com".ToLower(), "5uU1JCypYMT3EGWTzK3I2EhHqpC3".ToLower());
-        gameplayView.instance.logedPlayer = ("hassan.iqbal@quids.tech".ToLower(), "0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower());
+        //gameplayView.instance.logedPlayer = ("hassan.iqbal@quids.tech".ToLower(), "0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower());
 
         //for meta login
-        //gameplayView.instance.usingMeta = true;
-        //PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
+        gameplayView.instance.usingMeta = true;
+        PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
 
 
         StartCoroutine(KeyMaker.instance.GetRequest());

@@ -32,7 +32,10 @@ public class ButtonInfoHolder : MonoBehaviour
         CSV = transform.GetComponentInParent<characterSelectionView>();
         ResetSlot();
     }
-
+    private void OnEnable()
+    {
+        ResetDisplay();
+    }
     public void SetCurrent(Sprite img, int index)
     {
         //background.sprite = bg[index];
@@ -96,7 +99,14 @@ public class ButtonInfoHolder : MonoBehaviour
         charPic.sprite = defaultImg;
         charPic.color = new Color(225, 225, 225, 0);
     }
-
+    public void ResetDisplay()
+    {
+        display.sprite = null;
+        display.color = new Color(225, 225, 225, 0.01f);
+        CSV.DisablePlay();
+        nameText.text = "";
+        info.text = "";
+    }
 
     void UpdateInfo()
     {

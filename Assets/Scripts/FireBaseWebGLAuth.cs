@@ -195,7 +195,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
         else if (!accpetedTos)
         {
             registerPanel.DOShakePosition(1, 1);
-            warningRegisterText.text = "please read and accept the terms of servive and privacy policy".ToUpper();
+            warningRegisterText.text = "please read and accept the terms of service and privacy policy".ToUpper();
             warningRegisterText.color = Color.red;
         }
         else

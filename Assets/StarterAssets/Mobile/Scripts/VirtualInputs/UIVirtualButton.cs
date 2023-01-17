@@ -13,6 +13,10 @@ public class UIVirtualButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public UnityEvent buttonClickOutputEvent;
     public bool toggle;
     public bool currentToggleValue;
+    [SerializeField]
+    Sprite toggledImg;
+    [SerializeField]
+    Sprite nonToggleImg;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -21,6 +25,13 @@ public class UIVirtualButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             currentToggleValue = !currentToggleValue;
             GetComponent<Button>().interactable = !currentToggleValue;
             OutputButtonStateValue(currentToggleValue);
+            if(toggledImg!=null)
+            {
+                if (currentToggleValue)
+                    GetComponent<Image>().sprite = toggledImg;
+                else
+                    GetComponent<Image>().sprite = nonToggleImg;
+            }
         }
         else
         {

@@ -63,8 +63,9 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
 
 #if UNITY_ANDROID || UNITY_IOS
         gamePad.SetActive(true);
-         minimap.position = miniMapPos.GetChild(1).position;
-         transform.GetChild(0).GetComponent<CanvasScaler>().matchWidthOrHeight = 0f;
+        /* minimap.position = miniMapPos.GetChild(1).position;
+         transform.GetChild(0).GetComponent<CanvasScaler>().matchWidthOrHeight = 0f;*/
+         minimap.gameObject.SetActive(false);
 #endif
 
     }

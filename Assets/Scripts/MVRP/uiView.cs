@@ -31,7 +31,7 @@ public class uiView : MonoBehaviour
     {
         ObserveBtns();
 #if UNITY_ANDROID || UNITY_IOS
-        loginBtn.gameObject.SetActive(false);
+       // loginBtn.gameObject.SetActive(false);
 #endif
     }
     public void observeLogin()

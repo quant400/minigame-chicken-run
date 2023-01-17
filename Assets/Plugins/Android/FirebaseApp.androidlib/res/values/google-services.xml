@@ -6,7 +6,7 @@
   <string name="project_id" translatable="false">cfc-servers-333812</string>
   <string name="google_api_key" translatable="false">AIzaSyBOSSqgypeYl2q5UiLmQUoHIdbOhXemvhM</string>
   <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBOSSqgypeYl2q5UiLmQUoHIdbOhXemvhM</string>
-  <string name="google_app_id" translatable="false">1:335488712723:android:fa368d99785028d3063fe6</string>
-  <string name="default_android_client_id" translatable="false">335488712723-qk1f5kqraqhipmua4unocefc14q8vb86.apps.googleusercontent.com</string>
+  <string name="google_app_id" translatable="false">1:335488712723:android:d9c0037581b3be1c063fe6</string>
+  <string name="default_android_client_id" translatable="false">335488712723-j0ms0iu46vc7iqe4tj3tltsb521rj617.apps.googleusercontent.com</string>
   <string name="default_web_client_id" translatable="false">335488712723-2hqciv7mto3c7eic8vnpphla02ic9qeq.apps.googleusercontent.com</string>
 </resources>

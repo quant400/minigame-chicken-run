@@ -33,6 +33,12 @@ public class AuthenticationView : MonoBehaviour
     public TMP_InputField passwordRegisterField;
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
+    public bool accpetedTos;
+
+    [Header("PasswordReset")]
+    public Transform passwordResetPanel;
+    public TMP_InputField emailPasswordReset;
+    public TMP_Text warningEmailReset;
 
     [Header("Others")]
     [SerializeField]
@@ -129,6 +135,11 @@ public class AuthenticationView : MonoBehaviour
         StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text));
     }
 
+    public void ResetPasswordButton()
+    {
+        StartCoroutine(ResetPassword(emailPasswordReset.text));
+    }
+
     private IEnumerator Login(string _email, string _password)
     {
         if(!IsValidEmail(_email))
@@ -182,14 +193,18 @@ public class AuthenticationView : MonoBehaviour
 
     private IEnumerator Register(string _email, string _password)
     {
-        if(!IsValidEmail(_email))
+        if (!IsValidEmail(_email))
         {
             warningRegisterText.text = "Please enter a valid email!".ToUpper();
         }
-         if (passwordRegisterField.text != passwordRegisterVerifyField.text)
+        if (passwordRegisterField.text != passwordRegisterVerifyField.text)
         {
             //If the password does not match show a warning
             warningRegisterText.text = "Password Does Not Match!".ToUpper();
+        }
+        else if (!accpetedTos)
+        {
+            warningRegisterText.text = "please read and accept the terms of servive and privacy policy".ToUpper();
         }
         else
         {
@@ -258,6 +273,33 @@ public class AuthenticationView : MonoBehaviour
                     }
                 }
             }
+        }
+
+    }
+    private IEnumerator ResetPassword(string _email)
+    {
+        if (!IsValidEmail(_email))
+        {
+           warningEmailReset.text = "Please enter a valid email!".ToUpper();
+        }
+        var ResetTask = auth.SendPasswordResetEmailAsync(_email);
+        yield return new WaitUntil(predicate: () => ResetTask.IsCompleted);
+
+        if (ResetTask.Exception != null)
+        {
+            //If there are errors handle them
+            Debug.LogWarning(message: $"Failed to register task with {ResetTask.Exception}");
+            FirebaseException firebaseEx = ResetTask.Exception.GetBaseException() as FirebaseException;
+            AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
+
+            string message = errorCode.ToString();
+            warningEmailReset.text = message.ToUpper();
+            warningEmailReset.color = Color.red;
+        }
+        else
+        {
+            warningEmailReset.text = "Password reset email sent".ToUpper();
+            warningEmailReset.color = Color.green;
         }
     }
     #endregion email/pass
@@ -351,6 +393,20 @@ public class AuthenticationView : MonoBehaviour
         currentOpenWindiow = registerPanel.gameObject;
         registerPanel.gameObject.SetActive(true);
     }
+    public void OpenPasswordReset()
+    {
+        if (currentOpenWindiow == null)
+        {
+            currentOpenWindiow = methodSelect;
+        }
+        emailRegisterField.text = "";
+        passwordRegisterField.text = "";
+        passwordRegisterVerifyField.text = "";
+        warningRegisterText.text = "";
+        currentOpenWindiow.SetActive(false);
+        currentOpenWindiow = passwordResetPanel.gameObject;
+        passwordResetPanel.gameObject.SetActive(true);
+    }
     public void Close()
     {
         if (currentOpenWindiow != null)
@@ -385,6 +441,19 @@ public class AuthenticationView : MonoBehaviour
         Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
 
         return emailRegex.IsMatch(email);
+    }
+
+    public void ToggleTos(bool val)
+    {
+        accpetedTos = val;
+    }
+    public void LoadTos()
+    {
+        Application.OpenURL("https://www.cryptofightclub.io/terms-of-service");
+    }
+    public void LoadPrivacy()
+    {
+        Application.OpenURL("https://www.cryptofightclub.io/privacy-policy");
     }
     #endregion utility 
 }*/

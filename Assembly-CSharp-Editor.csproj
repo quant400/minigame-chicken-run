@@ -810,6 +810,10 @@
       <Project>{278B4A2E-C559-6B84-7694-E4DEB37DD5D9}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="AppleAuth.Editor.csproj">
+      <Project>{8E8E47E0-0865-6D62-DC9D-A2C6709312CC}</Project>
+      <Name>AppleAuth.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UniRx.csproj">
       <Project>{9F1F11A5-275C-9965-9764-6C3ADB8A7C88}</Project>
       <Name>UniRx</Name>
@@ -817,10 +821,6 @@
     <ProjectReference Include="AppleAuth.csproj">
       <Project>{D0464F16-49B1-EE4E-F3B5-6707E74EED43}</Project>
       <Name>AppleAuth</Name>
-    </ProjectReference>
-    <ProjectReference Include="AppleAuth.Editor.csproj">
-      <Project>{8E8E47E0-0865-6D62-DC9D-A2C6709312CC}</Project>
-      <Name>AppleAuth.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

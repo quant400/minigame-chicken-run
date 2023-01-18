@@ -15,6 +15,7 @@ using System.Collections;
 using AppleAuth;
 using AppleAuth.Enums;
 using AppleAuth.Interfaces;
+using AppleAuth.Native;
 #endif
 #endif
 using TMPro;
@@ -25,7 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-using AppleAuth.Native;
+
 
 public struct LoginObject
 {
@@ -79,6 +80,10 @@ public class FireBaseWebGLAuth : MonoBehaviour
     TMP_Text InfoDisplay;
     [SerializeField]
     GameObject loginButton;
+    [SerializeField]
+    GameObject deleteButton;
+    [SerializeField]
+    GameObject DeleteCanvas;
 
 #if UNITY_ANDROID || UNITY_IOS
     void Awake()
@@ -107,7 +112,6 @@ public class FireBaseWebGLAuth : MonoBehaviour
         });
 
         currentOpenWindiow = methodSelect;
-
 
 
 
@@ -613,7 +617,11 @@ public class FireBaseWebGLAuth : MonoBehaviour
             gameplayView.instance.logedPlayer = (User.Email.ToLower(), User.UserId.ToLower());
             DatabaseManagerRestApi._instance.getJuiceFromRestApi(User.Email);
 #endif
+#if UNITY_WEBGL
+        deleteButton.SetActive(false);
+#endif
         Close();
+
         loginButton.GetComponent<UnityEngine.UI.Button>().interactable = false;
         InfoDisplay.text = info.ToUpper();
         currentOpenWindiow.SetActive(false);
@@ -674,7 +682,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
 
 
-    #region utility
+#region utility
 
     public void OpenSingin()
     {
@@ -722,6 +730,51 @@ public class FireBaseWebGLAuth : MonoBehaviour
         passwordResetPanel.gameObject.SetActive(true);
         BackgroundBlur.SetActive(true);
     }
+    public void OpenDelete()
+    {
+        if (currentOpenWindiow == null)
+        {
+            currentOpenWindiow = methodSelect;
+        }
+        emailRegisterField.text = "";
+        passwordRegisterField.text = "";
+        passwordRegisterVerifyField.text = "";
+        warningRegisterText.text = "";
+        currentOpenWindiow.SetActive(false);
+        currentOpenWindiow = DeleteCanvas;
+        DeleteCanvas.gameObject.SetActive(true);
+        BackgroundBlur.SetActive(true);
+    }
+
+    public void DeleteUser()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
+        if (user != null)
+        {
+            user.DeleteAsync().ContinueWith(task => {
+                if (task.IsCanceled)
+                {
+                    Debug.LogError("DeleteAsync was canceled.");
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.LogError("DeleteAsync encountered an error: " + task.Exception);
+                    return;
+                }
+                
+                Debug.Log("User deleted successfully.");
+               
+
+            });
+            Close();
+            chickenGameModel.userIsLogged.Value = false;
+            chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnLogin;
+            loginButton.GetComponent<UnityEngine.UI.Button>().interactable = true;
+        }
+#endif
+    }
     public void OpenMethodSelect()
     {
         methodSelect.SetActive(true);
@@ -729,6 +782,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
     public void Close()
     {
+
         if (currentOpenWindiow != null)
         {
             currentOpenWindiow.SetActive(false);
@@ -780,7 +834,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
         StartCoroutine(KeyMaker.instance.GetRequest());
     }
-    #endregion utility
+#endregion utility
 
 }
 

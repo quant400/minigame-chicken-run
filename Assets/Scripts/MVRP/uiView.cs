@@ -17,7 +17,7 @@ public class uiView : MonoBehaviour
     [SerializeField] GameObject startCanvas;
 
 
-    public Button loginBtn, PlayMode, Play, LeaderBoard, BackToCharacterSelection, Skip, tryout, backFromLeaderboard , tryagain;
+    public Button loginBtn, PlayMode, Play, LeaderBoard, BackToCharacterSelection, Skip, tryout, backFromLeaderboard , tryagain, appleLogin;
 #if UNITY_WEBGL
     [SerializeField] webLoginView webloginView;
 #endif
@@ -31,7 +31,11 @@ public class uiView : MonoBehaviour
     {
         ObserveBtns();
 #if UNITY_ANDROID || UNITY_IOS
-       // loginBtn.gameObject.SetActive(false);
+        loginBtn.gameObject.SetActive(false);
+
+#if UNITY_IOS
+        appleLogin.gameObject.SetActive(true);
+#endif
 #endif
     }
     public void observeLogin()

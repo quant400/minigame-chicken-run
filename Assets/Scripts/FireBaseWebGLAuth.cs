@@ -11,9 +11,11 @@ using Google;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections;
+#if UNITY_IOS
 using AppleAuth;
 using AppleAuth.Enums;
 using AppleAuth.Interfaces;
+#endif
 #endif
 using TMPro;
 using UnityEngine;
@@ -435,6 +437,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
     }
 
     //for ios
+#if UNITY_IOS
     private IAppleAuthManager appleAuthManager;
 
     void Start()
@@ -577,7 +580,7 @@ public class FireBaseWebGLAuth : MonoBehaviour
             SignedIn(newUser.Email);
         });
     }
-
+#endif
 #endif
 
     void DisplayInfo(string info)

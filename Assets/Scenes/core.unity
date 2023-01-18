@@ -216,38 +216,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1127282139, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: m_text
-      value: APPLE
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515957482, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515957482, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515957482, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1788439547}
-    - target: {fileID: 1515957482, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515957482, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PerformLoginWithAppleIdAndFirebase
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515957482, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: FireBaseWebGLAuth, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515957482, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 1792037212, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -267,10 +235,6 @@ PrefabInstance:
     - target: {fileID: 1792037212, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2250354019524316657, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-      propertyPath: timeForOneGame
-      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4381750604183219818, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -342,7 +306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4381750605995796525, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10731957
+      value: -10757157
       objectReference: {fileID: 0}
     - target: {fileID: 8126445882098143849, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_Name
@@ -423,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502898bb83029474ca1d621343b84355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildType: 0
+  buildType: 1
   game: chicken
 --- !u!4 &1411705273
 Transform:
@@ -439,14 +403,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1788439547 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 40678502, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
-  m_PrefabInstance: {fileID: 922326783}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94fe7556ce38d644080c1fae1e52631e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

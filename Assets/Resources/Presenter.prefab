@@ -719,8 +719,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94fe7556ce38d644080c1fae1e52631e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependencyStatus: 0
-  GoogleWebAPI: 
   SignInPanel: {fileID: 161218421}
   emailLoginField: {fileID: 1146393449}
   passwordLoginField: {fileID: 1250857700}
@@ -3725,9 +3723,9 @@ RectTransform:
   m_Father: {fileID: 2099451436}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326.84, y: -75}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 326.84, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &453097061
@@ -15608,9 +15606,9 @@ RectTransform:
   m_Father: {fileID: 2099451436}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326.84, y: -35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 326.84, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1792037215
@@ -23735,7 +23733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8126445881918332674
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24311,6 +24309,7 @@ MonoBehaviour:
   backFromLeaderboard: {fileID: 4381750605815337154}
   tryagain: {fileID: 8126445881769203818}
   appleLogin: {fileID: 5254389498421381285}
+  webloginView: {fileID: 922326791}
 --- !u!114 &6924860310091710693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24433,6 +24432,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d799eee4ff66b047b0b2c98084da192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nftGetter: {fileID: 6897592449384792998}
+  loginButton: {fileID: 161218420}
+  skipButton: {fileID: 8126445882378478319}
+  tryoutButton: {fileID: 6324823}
+  tryoutCanvas: {fileID: 12794220}
 --- !u!1 &8126445882110012919
 GameObject:
   m_ObjectHideFlags: 0
@@ -27573,7 +27577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5479180407007317759, guid: dcade7979c3da534db27311c23ab15d5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10958869
+      value: -10983621
       objectReference: {fileID: 0}
     - target: {fileID: 5479180407079113686, guid: dcade7979c3da534db27311c23ab15d5, type: 3}
       propertyPath: m_fontAsset

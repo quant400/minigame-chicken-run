@@ -36,6 +36,8 @@ public class webLoginView : MonoBehaviour
     GameObject tryoutButton;
     [SerializeField]
     GameObject tryoutCanvas;
+    [SerializeField]
+    GameObject deleteButton;
 
     public void checkUSerLoggedAtStart()
     {
@@ -85,6 +87,7 @@ public class webLoginView : MonoBehaviour
         tryoutButton.GetComponent<Button>().interactable = false;
         gameplayView.instance.usingMeta = true;
         loginButton.GetComponentInParent<FireBaseWebGLAuth>().Close();
+        deleteButton.SetActive(false);
         nftGetter.GetNFT();
 
 

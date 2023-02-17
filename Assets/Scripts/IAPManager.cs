@@ -6,8 +6,10 @@ using UnityEngine.Purchasing;
 public class IAPManager : MonoBehaviour//, IStoreListener
 {
     public TMPro.TMP_Text tempText;
-    public void DailyRuns5Completed()
+
+    public void DailyRuns5Completed(Product p)
     {
+        Debug.Log("Unity_IAP:"+p.receipt);
         tempText.text = (int.Parse(tempText.text) + 5).ToString();
         Debug.Log("success");
     }
@@ -15,4 +17,6 @@ public class IAPManager : MonoBehaviour//, IStoreListener
     {
         Debug.Log("Fail");
     }
+
+   
 }

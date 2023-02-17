@@ -685,7 +685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4381750605995796525, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -11559189
+      value: -11589653
       objectReference: {fileID: 0}
     - target: {fileID: 8126445882098143849, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_Name
@@ -1263,7 +1263,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1065958540}
         m_TargetAssemblyTypeName: IAPManager, Assembly-CSharp
         m_MethodName: DailyRuns5Completed
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

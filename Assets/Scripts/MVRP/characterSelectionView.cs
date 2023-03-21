@@ -35,6 +35,8 @@ public class characterSelectionView : MonoBehaviour
     Transform[] charButtons;
     bool[] avaliableColors = new bool[] { true, true, true, true, true };
     int currentStartIndex;
+
+    public GameObject StoreButton;
     //for skip
     bool skipping;
     UnityEngine.Object[] info;
@@ -195,6 +197,7 @@ public class characterSelectionView : MonoBehaviour
     public void DisablePlay()
     {
         select.interactable = false;
+        StoreButton.SetActive(false);
     }
 
     public void Selected()

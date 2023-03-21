@@ -88,6 +88,10 @@ public class ButtonInfoHolder : MonoBehaviour
             displayBG.sprite = selectedCharBG[int.Parse(background.sprite.name)];
             CSV.DisablePlay();
             CSV.UpdateSelected(transform.GetSiblingIndex());
+#if UNITY_IOS || UNITY_ANDROID
+            CSV.StoreButton.SetActive(true);
+#endif
+
             UpdateInfo();
             //currentSelected.SetCurrent(charPic.sprite, bgIndex);
         }

@@ -1,35 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class MinimapFollow : MonoBehaviour
+namespace ChickenRun
 {
-    [SerializeField]
-    Transform player;
-    float storedShadowDistance;
-    private void LateUpdate()
+    public class MinimapFollow : MonoBehaviour
     {
-        if(player==null&& !gameplayView.instance.ended)
+        [SerializeField]
+        Transform player;
+        float storedShadowDistance;
+        private void LateUpdate()
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            if (player == null && !gameplayView.instance.ended)
+            {
+                player = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+
+            if (player != null)
+            {
+                transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            }
+
+        }
+        /*
+        void OnPreRender()
+        {
+            storedShadowDistance = QualitySettings.shadowDistance;
+            QualitySettings.shadowDistance = 0;
         }
 
-        if(player!=null)
+        void OnPostRender()
         {
-            transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            QualitySettings.shadowDistance = storedShadowDistance;
         }
-        
+        */
     }
-    /*
-    void OnPreRender()
-    {
-        storedShadowDistance = QualitySettings.shadowDistance;
-        QualitySettings.shadowDistance = 0;
-    }
-
-    void OnPostRender()
-    {
-        QualitySettings.shadowDistance = storedShadowDistance;
-    }
-    */
 }

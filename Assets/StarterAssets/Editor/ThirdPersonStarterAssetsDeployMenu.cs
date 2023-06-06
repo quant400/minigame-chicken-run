@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEditor;
 using UnityEngine;
-
+using ChickenRun.StarterAssets;
 namespace StarterAssets
 {
     public partial class StarterAssetsDeployMenu : ScriptableObject

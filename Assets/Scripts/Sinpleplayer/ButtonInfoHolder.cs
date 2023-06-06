@@ -4,121 +4,123 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-public class ButtonInfoHolder : MonoBehaviour
+namespace ChickenRun
 {
-    [SerializeField]
-    Sprite [] bg, selectedCharBG;
-    Image background;
-    Image charPic;
-    int bgIndex;
-    string charName;
-    [SerializeField]
-    Image display;
-    Image displayBG;
-    [SerializeField]
-    Sprite defaultImg;
-    [SerializeField]
-    TMP_Text nameText, info;
-    characterSelectionView CSV;
-    [SerializeField]
-    ButtonInfoHolder currentSelected;
-    private void Awake()
+    public class ButtonInfoHolder : MonoBehaviour
     {
-        //bgIndex = Random.Range(0, bg.Length);
-        background = gameObject.GetComponent<Image>();
-        charPic = transform.GetChild(0).GetChild(0).GetComponent<Image>();
-        displayBG=display.transform.parent.GetComponent<Image>();
-        CSV = transform.GetComponentInParent<characterSelectionView>();
-        ResetSlot();
-    }
-    private void OnEnable()
-    {
-        ResetDisplay();
-    }
-    public void SetCurrent(Sprite img, int index)
-    {
-        //background.sprite = bg[index];
-        //charPic.sprite = img;
-        //charPic.color = new Color(225, 225, 225, 225);
-    }
-    public void SetChar(string name)
-    {
-        charName = name;
-        if (charName == "null")
+        [SerializeField]
+        Sprite[] bg, selectedCharBG;
+        Image background;
+        Image charPic;
+        int bgIndex;
+        string charName;
+        [SerializeField]
+        Image display;
+        Image displayBG;
+        [SerializeField]
+        Sprite defaultImg;
+        [SerializeField]
+        TMP_Text nameText, info;
+        characterSelectionView CSV;
+        [SerializeField]
+        ButtonInfoHolder currentSelected;
+        private void Awake()
         {
-            background.sprite = defaultImg;
-            charPic.color = new Color(225, 225, 225, 0);
+            //bgIndex = Random.Range(0, bg.Length);
+            background = gameObject.GetComponent<Image>();
+            charPic = transform.GetChild(0).GetChild(0).GetComponent<Image>();
+            displayBG = display.transform.parent.GetComponent<Image>();
+            CSV = transform.GetComponentInParent<characterSelectionView>();
+            ResetSlot();
         }
-        else
+        private void OnEnable()
         {
-            bgIndex = Random.Range(0, bg.Length);
-            background.sprite = bg[CSV.GetavaliableColor()];
-            if (gameplayView.instance.usingFreemint)
-
-                charPic.sprite = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplaySprites/FreeMint/HeadShots", name), typeof(Sprite)) as Sprite;
-
+            ResetDisplay();
+        }
+        public void SetCurrent(Sprite img, int index)
+        {
+            //background.sprite = bg[index];
+            //charPic.sprite = img;
+            //charPic.color = new Color(225, 225, 225, 225);
+        }
+        public void SetChar(string name)
+        {
+            charName = name;
+            if (charName == "null")
+            {
+                background.sprite = defaultImg;
+                charPic.color = new Color(225, 225, 225, 0);
+            }
             else
-                charPic.sprite = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplaySprites/HeadShots", name), typeof(Sprite)) as Sprite;
+            {
+                bgIndex = Random.Range(0, bg.Length);
+                background.sprite = bg[CSV.GetavaliableColor()];
+                if (gameplayView.instance.usingFreemint)
 
-            charPic.color = new Color(225, 225, 225, 225);
+                    charPic.sprite = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplaySprites/FreeMint/HeadShots", name), typeof(Sprite)) as Sprite;
+
+                else
+                    charPic.sprite = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplaySprites/HeadShots", name), typeof(Sprite)) as Sprite;
+
+                charPic.color = new Color(225, 225, 225, 225);
+            }
+
+
+
+
+
         }
-        
 
-
-
-
-    }
-
-    public void OnClick()
-    {
-        if(charName=="null")
+        public void OnClick()
         {
-            string link = "https://app.cryptofightclub.io/mint";
+            if (charName == "null")
+            {
+                string link = "https://app.cryptofightclub.io/mint";
 #if UNITY_IOS || UNITY_ANDROID
             link = "https://app.cryptofightclub.io";
 #endif
 
-            Application.OpenURL(link);
+                Application.OpenURL(link);
+            }
+            else
+            {
+                display.sprite = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplaySprites/Display", charName), typeof(Sprite)) as Sprite;
+                display.color = new Color(225, 225, 225, 225);
+                displayBG.sprite = selectedCharBG[int.Parse(background.sprite.name)];
+                CSV.DisablePlay();
+                CSV.UpdateSelected(transform.GetSiblingIndex());
+                UpdateInfo();
+                //currentSelected.SetCurrent(charPic.sprite, bgIndex);
+            }
+
         }
-        else
+
+        private void ResetSlot()
         {
-            display.sprite = Resources.Load(Path.Combine("SinglePlayerPrefabs/DisplaySprites/Display", charName), typeof(Sprite)) as Sprite;
-            display.color = new Color(225, 225, 225, 225);
-            displayBG.sprite = selectedCharBG[int.Parse(background.sprite.name)];
-            CSV.DisablePlay();
-            CSV.UpdateSelected(transform.GetSiblingIndex());
-            UpdateInfo();
-            //currentSelected.SetCurrent(charPic.sprite, bgIndex);
+            charPic.sprite = defaultImg;
+            charPic.color = new Color(225, 225, 225, 0);
         }
-       
-    }
+        public void ResetDisplay()
+        {
+            display.sprite = null;
+            display.color = new Color(225, 225, 225, 0.01f);
+            CSV.DisablePlay();
+            nameText.text = "";
+            info.text = "";
+        }
 
-    private void ResetSlot()
-    {
-        charPic.sprite = defaultImg;
-        charPic.color = new Color(225, 225, 225, 0);
-    }
-    public void ResetDisplay()
-    {
-        display.sprite = null;
-        display.color = new Color(225, 225, 225, 0.01f);
-        CSV.DisablePlay();
-        nameText.text = "";
-        info.text = "";
-    }
+        void UpdateInfo()
+        {
+            nameText.text = charName.ToUpper();
+            Invoke("UpdateSessionInfo", 1.5f);
 
-    void UpdateInfo()
-    {
-        nameText.text = charName.ToUpper();
-        Invoke("UpdateSessionInfo", 1.5f);
-       
-    }
+        }
 
-    void UpdateSessionInfo()
-    {
-        if (chickenGameModel.currentNFTSession<10)
-            CSV.EnablePlay();
-        info.text = "PLAYED " + chickenGameModel.currentNFTSession + " OUT OF 10 DAILY GAMES";
+        void UpdateSessionInfo()
+        {
+            if (chickenGameModel.currentNFTSession < 10)
+                CSV.EnablePlay();
+            info.text = "PLAYED " + chickenGameModel.currentNFTSession + " OUT OF 10 DAILY GAMES";
+        }
     }
 }

@@ -27,18 +27,19 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-
-public struct LoginObject
+namespace ChickenRun
 {
-    public string uid;
-    public string email;
-    public string emailVerified;
-    public string displayName;
+    public struct LoginObject
+    {
+        public string uid;
+        public string email;
+        public string emailVerified;
+        public string displayName;
 
-}
+    }
 
-public class FireBaseWebGLAuth : MonoBehaviour
-{
+    public class FireBaseWebGLAuth : MonoBehaviour
+    {
 #if UNITY_ANDROID || UNITY_IOS
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -50,40 +51,40 @@ public class FireBaseWebGLAuth : MonoBehaviour
     private GoogleSignInConfiguration configuration;
 #endif
 
-    [Header("Login")]
-    public Transform SignInPanel;
-    public TMP_InputField emailLoginField;
-    public TMP_InputField passwordLoginField;
-    public TMP_Text warningLoginText;
+        [Header("Login")]
+        public Transform SignInPanel;
+        public TMP_InputField emailLoginField;
+        public TMP_InputField passwordLoginField;
+        public TMP_Text warningLoginText;
 
-    //Register variables
-    [Header("Register")]
-    public Transform registerPanel;
-    public TMP_InputField emailRegisterField;
-    public TMP_InputField passwordRegisterField;
-    public TMP_InputField passwordRegisterVerifyField;
-    public TMP_Text warningRegisterText;
-    public bool accpetedTos;
+        //Register variables
+        [Header("Register")]
+        public Transform registerPanel;
+        public TMP_InputField emailRegisterField;
+        public TMP_InputField passwordRegisterField;
+        public TMP_InputField passwordRegisterVerifyField;
+        public TMP_Text warningRegisterText;
+        public bool accpetedTos;
 
-    [Header("PasswordReset")]
-    public Transform passwordResetPanel;
-    public TMP_InputField emailPasswordReset;
-    public TMP_Text warningEmailReset;
+        [Header("PasswordReset")]
+        public Transform passwordResetPanel;
+        public TMP_InputField emailPasswordReset;
+        public TMP_Text warningEmailReset;
 
-    [Header("Others")]
-    [SerializeField]
-    GameObject methodSelect;
-    [SerializeField]
-    GameObject BackgroundBlur;
-    GameObject currentOpenWindiow;
-    [SerializeField]
-    TMP_Text InfoDisplay;
-    [SerializeField]
-    GameObject loginButton;
-    [SerializeField]
-    GameObject deleteButton;
-    [SerializeField]
-    GameObject DeleteCanvas;
+        [Header("Others")]
+        [SerializeField]
+        GameObject methodSelect;
+        [SerializeField]
+        GameObject BackgroundBlur;
+        GameObject currentOpenWindiow;
+        [SerializeField]
+        TMP_Text InfoDisplay;
+        [SerializeField]
+        GameObject loginButton;
+        [SerializeField]
+        GameObject deleteButton;
+        [SerializeField]
+        GameObject DeleteCanvas;
 
 #if UNITY_ANDROID || UNITY_IOS
     void Awake()
@@ -154,98 +155,98 @@ public class FireBaseWebGLAuth : MonoBehaviour
 
 #endif
 #if UNITY_WEBGL
-    private void Start()
-    {
-        currentOpenWindiow = methodSelect;
-        if (Application.platform != RuntimePlatform.WebGLPlayer)
+        private void Start()
         {
-            Debug.Log("The code is not running on a WebGL build; as such, the Javascript functions will not be recognized.");
-            return;
-        }
+            currentOpenWindiow = methodSelect;
+            if (Application.platform != RuntimePlatform.WebGLPlayer)
+            {
+                Debug.Log("The code is not running on a WebGL build; as such, the Javascript functions will not be recognized.");
+                return;
+            }
 
-        FirebaseAuth.OnAuthStateChanged(gameObject.name, "DisplayUserInfo", "DisplayInfo");
-    }
+            FirebaseAuth.OnAuthStateChanged(gameObject.name, "DisplayUserInfo", "DisplayInfo");
+        }
 #endif
 
-    public void OnSignInClick()
-    {
-        warningLoginText.text = "";
-        if (emailLoginField.text == "" || !IsValidEmail(emailLoginField.text))
+        public void OnSignInClick()
         {
-            SignInPanel.DOShakePosition(1, 1);
-            warningLoginText.text = "Please enter a valid email".ToUpper();
-            warningLoginText.color = Color.red;
-        }
-        else
-        {
+            warningLoginText.text = "";
+            if (emailLoginField.text == "" || !IsValidEmail(emailLoginField.text))
+            {
+                SignInPanel.DOShakePosition(1, 1);
+                warningLoginText.text = "Please enter a valid email".ToUpper();
+                warningLoginText.color = Color.red;
+            }
+            else
+            {
 #if UNITY_WEBGL
-            SignInWithEmailAndPassword();
+                SignInWithEmailAndPassword();
 #endif
 #if UNITY_ANDROID || UNITY_IOS
             StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
 #endif
 
+            }
+
         }
 
-    }
-
-    public void OnRegisterClick()
-    {
-        warningRegisterText.text = "";
-        if (emailRegisterField.text == "" || !IsValidEmail(emailRegisterField.text))
+        public void OnRegisterClick()
         {
-            registerPanel.DOShakePosition(1, 1);
-            warningRegisterText.text = "Please enter a valid email".ToUpper();
-            warningRegisterText.color = Color.red;
-        }
-        else if (passwordRegisterField.text != passwordRegisterVerifyField.text)
-        {
-            registerPanel.DOShakePosition(1, 1);
-            warningRegisterText.text = "Password does not match".ToUpper();
-            warningRegisterText.color = Color.red;
-        }
-        else if (!accpetedTos)
-        {
-            registerPanel.DOShakePosition(1, 1);
-            warningRegisterText.text = "please read and accept the terms of service and privacy policy".ToUpper();
-            warningRegisterText.color = Color.red;
-        }
-        else
-        {
+            warningRegisterText.text = "";
+            if (emailRegisterField.text == "" || !IsValidEmail(emailRegisterField.text))
+            {
+                registerPanel.DOShakePosition(1, 1);
+                warningRegisterText.text = "Please enter a valid email".ToUpper();
+                warningRegisterText.color = Color.red;
+            }
+            else if (passwordRegisterField.text != passwordRegisterVerifyField.text)
+            {
+                registerPanel.DOShakePosition(1, 1);
+                warningRegisterText.text = "Password does not match".ToUpper();
+                warningRegisterText.color = Color.red;
+            }
+            else if (!accpetedTos)
+            {
+                registerPanel.DOShakePosition(1, 1);
+                warningRegisterText.text = "please read and accept the terms of service and privacy policy".ToUpper();
+                warningRegisterText.color = Color.red;
+            }
+            else
+            {
 #if UNITY_WEBGL
-            CreateUserWithEmailAndPassword();
+                CreateUserWithEmailAndPassword();
 #endif
 #if UNITY_ANDROID || UNITY_IOS
             StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text));
 #endif
+            }
         }
-    }
 
 #if UNITY_WEBGL
-    public void SignInWithEmailAndPassword() =>
-          FirebaseAuth.SignInWithEmailAndPassword(emailLoginField.text, passwordLoginField.text, gameObject.name, "SignedIn", "DisplayError");
-    public void CreateUserWithEmailAndPassword() =>
-        FirebaseAuth.CreateUserWithEmailAndPassword(emailRegisterField.text, passwordRegisterField.text, gameObject.name, "SignedIn", "DisplayError");
+        public void SignInWithEmailAndPassword() =>
+              FirebaseAuth.SignInWithEmailAndPassword(emailLoginField.text, passwordLoginField.text, gameObject.name, "SignedIn", "DisplayError");
+        public void CreateUserWithEmailAndPassword() =>
+            FirebaseAuth.CreateUserWithEmailAndPassword(emailRegisterField.text, passwordRegisterField.text, gameObject.name, "SignedIn", "DisplayError");
 #endif
-    public void SignInWithGoogle()
-    {
+        public void SignInWithGoogle()
+        {
 #if UNITY_WEBGL
-        FirebaseAuth.SignInWithGoogle(gameObject.name, "SignedIn", "DisplayError");
+            FirebaseAuth.SignInWithGoogle(gameObject.name, "SignedIn", "DisplayError");
 #endif
 #if UNITY_ANDROID || UNITY_IOS
         GoogleSignInClick();
 #endif
-    }
+        }
 
 
-    public void ResetPasswordEmail()
-    {
+        public void ResetPasswordEmail()
+        {
 #if UNITY_WEBGL
-        FirebaseAuth.ResetPassword(emailPasswordReset.text, gameObject.name, "DisplayResetReply", "DisplayResetReply");
+            FirebaseAuth.ResetPassword(emailPasswordReset.text, gameObject.name, "DisplayResetReply", "DisplayResetReply");
 #endif
 #if UNITY_ANDROID || UNITY_IOS
 #endif
-    }
+        }
 
 
 
@@ -587,167 +588,167 @@ public class FireBaseWebGLAuth : MonoBehaviour
 #endif
 #endif
 
-    void DisplayInfo(string info)
-    {
-        Debug.Log(info);
-    }
-
-    void DisplayResetReply(string info)
-    {
-        warningEmailReset.text = info.ToUpper();
-    }
-    void DisplayUserInfo(string info)
-    {
-        if (info != "")
+        void DisplayInfo(string info)
         {
-            FirebaseUser pl = JsonUtility.FromJson<FirebaseUser>(info);
-#if UNITY_WEBGL
-            gameplayView.instance.logedPlayer = (pl.email.ToLower(), pl.uid.ToLower());
-            gameplayView.instance.usingMeta = false;
-            DatabaseManagerRestApi._instance.getJuiceFromRestApi(pl.email);
-            SignedIn("Signed in as ".ToUpper() + pl.email.ToUpper() + "\n\n" + pl.providerData);
-#endif
-
+            Debug.Log(info);
         }
 
-    }
-    void SignedIn(string info)
-    {
+        void DisplayResetReply(string info)
+        {
+            warningEmailReset.text = info.ToUpper();
+        }
+        void DisplayUserInfo(string info)
+        {
+            if (info != "")
+            {
+                FirebaseUser pl = JsonUtility.FromJson<FirebaseUser>(info);
+#if UNITY_WEBGL
+                gameplayView.instance.logedPlayer = (pl.email.ToLower(), pl.uid.ToLower());
+                gameplayView.instance.usingMeta = false;
+                DatabaseManagerRestApi._instance.getJuiceFromRestApi(pl.email);
+                SignedIn("Signed in as ".ToUpper() + pl.email.ToUpper() + "\n\n" + pl.providerData);
+#endif
+
+            }
+
+        }
+        void SignedIn(string info)
+        {
 #if UNITY_ANDROID || UNITY_IOS
             gameplayView.instance.logedPlayer = (User.Email.ToLower(), User.UserId.ToLower());
             DatabaseManagerRestApi._instance.getJuiceFromRestApi(User.Email);
 #endif
 #if UNITY_WEBGL
-        deleteButton.SetActive(false);
+            deleteButton.SetActive(false);
 #endif
-        Close();
+            Close();
 
-        loginButton.GetComponent<UnityEngine.UI.Button>().interactable = false;
-        InfoDisplay.text = info.ToUpper();
-        currentOpenWindiow.SetActive(false);
-        currentOpenWindiow = methodSelect;
-        //PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
-        gameplayView.instance.isTryout = false;
-        //change what loads when mint nft added and stuff linked
-        StartCoroutine(KeyMaker.instance.GetRequest());
+            loginButton.GetComponent<UnityEngine.UI.Button>().interactable = false;
+            InfoDisplay.text = info.ToUpper();
+            currentOpenWindiow.SetActive(false);
+            currentOpenWindiow = methodSelect;
+            //PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
+            gameplayView.instance.isTryout = false;
+            //change what loads when mint nft added and stuff linked
+            StartCoroutine(KeyMaker.instance.GetRequest());
 
-    }
+        }
 
-    public void LogOut()
-    {
+        public void LogOut()
+        {
 #if UNITY_WEBGL
-        FirebaseAuth.SignOut();
+            FirebaseAuth.SignOut();
 #endif
 #if UNITY_ANDROID || UNITY_IOS
         auth.SignOut();
 #endif
-        GetComponentInParent<uiView>().goToMenu("login");
-        loginButton.GetComponent<UnityEngine.UI.Button>().interactable = true;
-        chickenGameModel.userIsLogged.Value = false;
-        chickenGameModel.currentNFTArray = null;
-        gameplayView.instance.usingFreemint = false;
-        gameplayView.instance.usingMeta = false;
-        gameplayView.instance.isTryout = false;
-        gameplayView.instance.usingOtherChainNft = false;
-        gameplayView.instance.hasOtherChainNft = false;
-        InfoDisplay.text = "";
-        emailRegisterField.text = "";
-        passwordRegisterField.text = "";
-        passwordRegisterVerifyField.text = "";
-        warningRegisterText.text = "";
-        emailLoginField.text = "";
-        passwordLoginField.text = "";
-        warningLoginText.text = "";
-        warningEmailReset.text = "";
-    }
+            GetComponentInParent<uiView>().goToMenu("login");
+            loginButton.GetComponent<UnityEngine.UI.Button>().interactable = true;
+            chickenGameModel.userIsLogged.Value = false;
+            chickenGameModel.currentNFTArray = null;
+            gameplayView.instance.usingFreemint = false;
+            gameplayView.instance.usingMeta = false;
+            gameplayView.instance.isTryout = false;
+            gameplayView.instance.usingOtherChainNft = false;
+            gameplayView.instance.hasOtherChainNft = false;
+            InfoDisplay.text = "";
+            emailRegisterField.text = "";
+            passwordRegisterField.text = "";
+            passwordRegisterVerifyField.text = "";
+            warningRegisterText.text = "";
+            emailLoginField.text = "";
+            passwordLoginField.text = "";
+            warningLoginText.text = "";
+            warningEmailReset.text = "";
+        }
 
-    void DisplayError(string error)
-    {
+        void DisplayError(string error)
+        {
 #if UNITY_WEBGL
-        var parsedError = StringSerializationAPI.Deserialize(typeof(FirebaseError), error) as FirebaseError;
-       
-        if (currentOpenWindiow.name == "Login")
-        {
+            var parsedError = StringSerializationAPI.Deserialize(typeof(FirebaseError), error) as FirebaseError;
 
-            warningLoginText.text = parsedError.message.ToUpper();
-        }
-        else if (currentOpenWindiow.name == "Register")
-        {
+            if (currentOpenWindiow.name == "Login")
+            {
 
-            warningRegisterText.text = parsedError.message.ToUpper();
-        }
-        else
-            Debug.Log(parsedError.message); 
+                warningLoginText.text = parsedError.message.ToUpper();
+            }
+            else if (currentOpenWindiow.name == "Register")
+            {
+
+                warningRegisterText.text = parsedError.message.ToUpper();
+            }
+            else
+                Debug.Log(parsedError.message);
 #endif
-    }
-
-
-#region utility
-
-    public void OpenSingin()
-    {
-        if (currentOpenWindiow == null)
-        {
-            currentOpenWindiow = methodSelect;
         }
-        emailRegisterField.text = "";
-        passwordRegisterField.text = "";
-        passwordRegisterVerifyField.text = "";
-        warningRegisterText.text = "";
-        currentOpenWindiow.SetActive(false);
-        currentOpenWindiow = SignInPanel.gameObject;
-        SignInPanel.gameObject.SetActive(true);
-        BackgroundBlur.SetActive(true);
-    }
 
-    public void OpenRegister()
-    {
-        if (currentOpenWindiow == null)
-        {
-            currentOpenWindiow = methodSelect;
-        }
-        emailLoginField.text = "";
-        passwordLoginField.text = "";
-        warningLoginText.text = "";
-        currentOpenWindiow.SetActive(false);
-        currentOpenWindiow = registerPanel.gameObject;
-        registerPanel.gameObject.SetActive(true);
-        BackgroundBlur.SetActive(true);
-    }
 
-    public void OpenPasswordReset()
-    {
-        if (currentOpenWindiow == null)
-        {
-            currentOpenWindiow = methodSelect;
-        }
-        emailRegisterField.text = "";
-        passwordRegisterField.text = "";
-        passwordRegisterVerifyField.text = "";
-        warningRegisterText.text = "";
-        currentOpenWindiow.SetActive(false);
-        currentOpenWindiow = passwordResetPanel.gameObject;
-        passwordResetPanel.gameObject.SetActive(true);
-        BackgroundBlur.SetActive(true);
-    }
-    public void OpenDelete()
-    {
-        if (currentOpenWindiow == null)
-        {
-            currentOpenWindiow = methodSelect;
-        }
-        emailRegisterField.text = "";
-        passwordRegisterField.text = "";
-        passwordRegisterVerifyField.text = "";
-        warningRegisterText.text = "";
-        currentOpenWindiow.SetActive(false);
-        currentOpenWindiow = DeleteCanvas;
-        DeleteCanvas.gameObject.SetActive(true);
-        BackgroundBlur.SetActive(true);
-    }
+        #region utility
 
-    public void DeleteUser()
-    {
+        public void OpenSingin()
+        {
+            if (currentOpenWindiow == null)
+            {
+                currentOpenWindiow = methodSelect;
+            }
+            emailRegisterField.text = "";
+            passwordRegisterField.text = "";
+            passwordRegisterVerifyField.text = "";
+            warningRegisterText.text = "";
+            currentOpenWindiow.SetActive(false);
+            currentOpenWindiow = SignInPanel.gameObject;
+            SignInPanel.gameObject.SetActive(true);
+            BackgroundBlur.SetActive(true);
+        }
+
+        public void OpenRegister()
+        {
+            if (currentOpenWindiow == null)
+            {
+                currentOpenWindiow = methodSelect;
+            }
+            emailLoginField.text = "";
+            passwordLoginField.text = "";
+            warningLoginText.text = "";
+            currentOpenWindiow.SetActive(false);
+            currentOpenWindiow = registerPanel.gameObject;
+            registerPanel.gameObject.SetActive(true);
+            BackgroundBlur.SetActive(true);
+        }
+
+        public void OpenPasswordReset()
+        {
+            if (currentOpenWindiow == null)
+            {
+                currentOpenWindiow = methodSelect;
+            }
+            emailRegisterField.text = "";
+            passwordRegisterField.text = "";
+            passwordRegisterVerifyField.text = "";
+            warningRegisterText.text = "";
+            currentOpenWindiow.SetActive(false);
+            currentOpenWindiow = passwordResetPanel.gameObject;
+            passwordResetPanel.gameObject.SetActive(true);
+            BackgroundBlur.SetActive(true);
+        }
+        public void OpenDelete()
+        {
+            if (currentOpenWindiow == null)
+            {
+                currentOpenWindiow = methodSelect;
+            }
+            emailRegisterField.text = "";
+            passwordRegisterField.text = "";
+            passwordRegisterVerifyField.text = "";
+            warningRegisterText.text = "";
+            currentOpenWindiow.SetActive(false);
+            currentOpenWindiow = DeleteCanvas;
+            DeleteCanvas.gameObject.SetActive(true);
+            BackgroundBlur.SetActive(true);
+        }
+
+        public void DeleteUser()
+        {
 #if UNITY_ANDROID || UNITY_IOS
         Firebase.Auth.FirebaseUser user = auth.CurrentUser;
         if (user != null)
@@ -774,67 +775,68 @@ public class FireBaseWebGLAuth : MonoBehaviour
             loginButton.GetComponent<UnityEngine.UI.Button>().interactable = true;
         }
 #endif
-    }
-    public void OpenMethodSelect()
-    {
-        methodSelect.SetActive(true);
-        BackgroundBlur.SetActive(true);
-    }
-    public void Close()
-    {
-
-        if (currentOpenWindiow != null)
-        {
-            currentOpenWindiow.SetActive(false);
-            currentOpenWindiow = methodSelect;
-            emailRegisterField.text = "";
-            passwordRegisterField.text = "";
-            passwordRegisterVerifyField.text = "";
-            warningRegisterText.text = "";
-            emailLoginField.text = "";
-            passwordLoginField.text = "";
-            warningLoginText.text = "";
-            emailPasswordReset.text = "";
-            warningEmailReset.text = "";
         }
-        BackgroundBlur.SetActive(false);
+        public void OpenMethodSelect()
+        {
+            methodSelect.SetActive(true);
+            BackgroundBlur.SetActive(true);
+        }
+        public void Close()
+        {
+
+            if (currentOpenWindiow != null)
+            {
+                currentOpenWindiow.SetActive(false);
+                currentOpenWindiow = methodSelect;
+                emailRegisterField.text = "";
+                passwordRegisterField.text = "";
+                passwordRegisterVerifyField.text = "";
+                warningRegisterText.text = "";
+                emailLoginField.text = "";
+                passwordLoginField.text = "";
+                warningLoginText.text = "";
+                emailPasswordReset.text = "";
+                warningEmailReset.text = "";
+            }
+            BackgroundBlur.SetActive(false);
+        }
+        bool IsValidEmail(string email)
+        {
+            Regex emailRegex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]+$", RegexOptions.IgnoreCase);
+
+            return emailRegex.IsMatch(email);
+        }
+
+
+        public void ToggleTos(bool val)
+        {
+            accpetedTos = val;
+        }
+        public void LoadTos()
+        {
+            Application.OpenURL("https://www.cryptofightclub.io/terms-of-service");
+        }
+        public void LoadPrivacy()
+        {
+            Application.OpenURL("https://www.cryptofightclub.io/privacy-policy");
+        }
+
+        public void Skip()
+        {
+            Debug.Log("skip clicked");
+            //for email login
+            //gameplayView.instance.logedPlayer = ("test@test.com".ToLower(), "5uU1JCypYMT3EGWTzK3I2EhHqpC3".ToLower());
+            //gameplayView.instance.logedPlayer = ("hassan.iqbal@quids.tech".ToLower(), "0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower());
+
+            //for meta login
+            gameplayView.instance.usingMeta = true;
+            PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
+
+
+            StartCoroutine(KeyMaker.instance.GetRequest());
+        }
+        #endregion utility
+
     }
-    bool IsValidEmail(string email)
-    {
-        Regex emailRegex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]+$", RegexOptions.IgnoreCase);
-
-        return emailRegex.IsMatch(email);
-    }
-
-
-    public void ToggleTos(bool val)
-    {
-        accpetedTos = val;
-    }
-    public void LoadTos()
-    {
-        Application.OpenURL("https://www.cryptofightclub.io/terms-of-service");
-    }
-    public void LoadPrivacy()
-    {
-        Application.OpenURL("https://www.cryptofightclub.io/privacy-policy");
-    }
-
-    public void Skip()
-    {
-        Debug.Log("skip clicked");
-        //for email login
-        //gameplayView.instance.logedPlayer = ("test@test.com".ToLower(), "5uU1JCypYMT3EGWTzK3I2EhHqpC3".ToLower());
-        //gameplayView.instance.logedPlayer = ("hassan.iqbal@quids.tech".ToLower(), "0tuICf75vGOsrhtbpYWaLKeTugg2".ToLower());
-
-        //for meta login
-        gameplayView.instance.usingMeta = true;
-        PlayerPrefs.SetString("Account", "0xD408B954A1Ec6c53BE4E181368F1A54ca434d2f3");
-
-
-        StartCoroutine(KeyMaker.instance.GetRequest());
-    }
-#endregion utility
 
 }
-

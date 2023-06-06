@@ -1,29 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerAccount : MonoBehaviour
+namespace ChickenRun
 {
-    [SerializeField]
-    GameObject[] players;
-    NFTInfo[] myNFT;
-
-
-    public void SetData(NFTInfo[] Pdata)
+    public class PlayerAccount : MonoBehaviour
     {
-        myNFT = Pdata;
-        SetDefault();
-           
-    }
+        [SerializeField]
+        GameObject[] players;
+        NFTInfo[] myNFT;
 
 
-    void SetDefault()
-    {
-        if (myNFT[0].id == 538.ToString())
-            players[1].SetActive(true);
+        public void SetData(NFTInfo[] Pdata)
+        {
+            myNFT = Pdata;
+            SetDefault();
 
-        else
-            players[0].SetActive(true);
+        }
 
+
+        void SetDefault()
+        {
+            if (myNFT[0].id == 538.ToString())
+                players[1].SetActive(true);
+
+            else
+                players[0].SetActive(true);
+
+        }
     }
 }

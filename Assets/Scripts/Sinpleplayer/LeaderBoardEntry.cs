@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
-public class LeaderBoardEntry : MonoBehaviour
+namespace ChickenRun
 {
-    [SerializeField]
-    TMP_Text rank, fighter, nftID, score;
-
-
-    public void Set(string Rank,string Fighter,string ID,string Score)
+    public class LeaderBoardEntry : MonoBehaviour
     {
-        rank.text = Rank;
-        fighter.text = Fighter.ToUpper(); 
-        nftID.text = ID;
-        score.text = Score;
+        [SerializeField]
+        TMP_Text rank, fighter, nftID, score;
+
+
+        public void Set(string Rank, string Fighter, string ID, string Score)
+        {
+            rank.text = Rank;
+            fighter.text = Fighter.ToUpper();
+            nftID.text = ID;
+            score.text = Score;
+
+        }
 
     }
-        
 }

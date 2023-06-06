@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlaySounds : MonoBehaviour
+namespace ChickenRun
 {
-    public static PlaySounds instance;
-    private void Awake()
+    public class PlaySounds : MonoBehaviour
     {
-        if (instance != null && instance != this)
+        public static PlaySounds instance;
+        private void Awake()
         {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
+            if (instance != null && instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                instance = this;
 
+            }
         }
-    }
-    public void Play()
-    {
-        GetComponent<AudioSource>().Play();
+        public void Play()
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
 }

@@ -1,85 +1,87 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using StarterAssets;
-
-public class PowerUpMushroom : MonoBehaviour
+using ChickenRun.StarterAssets;
+namespace ChickenRun
 {
-    [SerializeField]
-    float PowerupSpeedMultiplier, jumpMultiplier, powerUpDuration;
-    AudioSource audioS;
-    private void Start()
+    public class PowerUpMushroom : MonoBehaviour
     {
-        audioS = GetComponent<AudioSource>();
-        int chance = Random.Range(0 , 100);
-        if (chance > gameplayView.instance.GetMushroomPowerUpChance())
+        [SerializeField]
+        float PowerupSpeedMultiplier, jumpMultiplier, powerUpDuration;
+        AudioSource audioS;
+        private void Start()
         {
-            GetComponent<BoxCollider>().enabled = false;
-            GetComponent<Light>().enabled = false;
-        }
-        else if (tag == "Manhole")
-        {
-            transform.GetChild(0).GetComponent<ParticleSystem>().startColor = GetComponent<Light>().color;
-            transform.GetChild(0).gameObject.SetActive(true);
-            
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        if (other.CompareTag("Player"))
-        {
-            
-            if (tag == "Manhole")
+            audioS = GetComponent<AudioSource>();
+            int chance = Random.Range(0, 100);
+            if (chance > gameplayView.instance.GetMushroomPowerUpChance())
             {
-                transform.GetChild(0).gameObject.SetActive(false);
+                GetComponent<BoxCollider>().enabled = false;
+                GetComponent<Light>().enabled = false;
             }
-            else
+            else if (tag == "Manhole")
             {
-                GetComponent<MeshRenderer>().enabled = false;
+                transform.GetChild(0).GetComponent<ParticleSystem>().startColor = GetComponent<Light>().color;
+                transform.GetChild(0).gameObject.SetActive(true);
 
             }
-            GetComponent<BoxCollider>().enabled = false;
-            GetComponent<Light>().enabled = false;
-            StartCoroutine(Powerup(other.gameObject));
         }
-    }
 
-    public void PlayPowerUp()
-    {
-        if(!gameplayView.instance.GetSFXMuted())
-            audioS.Play();
-    }
-
-    IEnumerator Powerup(GameObject player)
-    {
-        PlayPowerUp();
-        ThirdPersonController TPC = player.GetComponent<ThirdPersonController>();
-        TPC.MoveSpeed *= PowerupSpeedMultiplier;
-        TPC.JumpHeight *= jumpMultiplier;
-        TPC.SprintSpeed = TPC.MoveSpeed;
-        //for testing 
-        if (player != null)
+        private void OnTriggerEnter(Collider other)
         {
-            player.transform.GetChild(3).gameObject.SetActive(true);
 
+            if (other.CompareTag("Player"))
+            {
+
+                if (tag == "Manhole")
+                {
+                    transform.GetChild(0).gameObject.SetActive(false);
+                }
+                else
+                {
+                    GetComponent<MeshRenderer>().enabled = false;
+
+                }
+                GetComponent<BoxCollider>().enabled = false;
+                GetComponent<Light>().enabled = false;
+                StartCoroutine(Powerup(other.gameObject));
+            }
         }
 
-        yield return new WaitForSeconds(powerUpDuration);
-
-        TPC.MoveSpeed /= PowerupSpeedMultiplier;
-        TPC.JumpHeight /= jumpMultiplier;
-        TPC.SprintSpeed = TPC.MoveSpeed*1.5f;
-        //for testing 
-        if (player != null)
+        public void PlayPowerUp()
         {
-            player.transform.GetChild(3).gameObject.SetActive(false);
+            if (!gameplayView.instance.GetSFXMuted())
+                audioS.Play();
         }
-        if(tag!="Manhole")
-            Destroy(gameObject);
+
+        IEnumerator Powerup(GameObject player)
+        {
+            PlayPowerUp();
+            ThirdPersonController TPC = player.GetComponent<ThirdPersonController>();
+            TPC.MoveSpeed *= PowerupSpeedMultiplier;
+            TPC.JumpHeight *= jumpMultiplier;
+            TPC.SprintSpeed = TPC.MoveSpeed;
+            //for testing 
+            if (player != null)
+            {
+                player.transform.GetChild(3).gameObject.SetActive(true);
+
+            }
+
+            yield return new WaitForSeconds(powerUpDuration);
+
+            TPC.MoveSpeed /= PowerupSpeedMultiplier;
+            TPC.JumpHeight /= jumpMultiplier;
+            TPC.SprintSpeed = TPC.MoveSpeed * 1.5f;
+            //for testing 
+            if (player != null)
+            {
+                player.transform.GetChild(3).gameObject.SetActive(false);
+            }
+            if (tag != "Manhole")
+                Destroy(gameObject);
+
+        }
+
 
     }
-
-
 }

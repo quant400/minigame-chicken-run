@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using StarterAssets;
+using ChickenRun.StarterAssets;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,177 +10,180 @@ using System.IO;
 using UniRx;
 using UniRx.Triggers;
 using UniRx.Operators;
-public class GameOverScript : MonoBehaviour
+namespace ChickenRun
 {
-    [SerializeField]
-    Transform characterDisplay;
-    GameObject[] characters;
-    [SerializeField]
-    TMP_Text currentScore, dailyScore, allTimeScore , sessionCounterText;
-    [SerializeField]
-    GameObject canvasToDisable;
-    [SerializeField]
-    AudioClip gameOverClip;
-    NFTInfo currentNFT;
-    [SerializeField]
-    GameObject sessionsLeft, sessionsNotLeft;
-    ReactiveProperty<int> scorereactive = new ReactiveProperty<int>();
-    ReactiveProperty<int> sessions = new ReactiveProperty<int>();
-    ReactiveProperty<bool> gameEnded = new ReactiveProperty<bool>();
-    [SerializeField] Button tryAgain, back;
-    // [SerializeField]
-    //SinglePlayerSpawner spawner;
-    public void Start()
+    public class GameOverScript : MonoBehaviour
     {
-        observeScoreChange();
-        endGameAfterValueChange();
-    }
-    private void OnEnable()
-    {
-        if (canvasToDisable == null)
+        [SerializeField]
+        Transform characterDisplay;
+        GameObject[] characters;
+        [SerializeField]
+        TMP_Text currentScore, dailyScore, allTimeScore, sessionCounterText;
+        [SerializeField]
+        GameObject canvasToDisable;
+        [SerializeField]
+        AudioClip gameOverClip;
+        NFTInfo currentNFT;
+        [SerializeField]
+        GameObject sessionsLeft, sessionsNotLeft;
+        ReactiveProperty<int> scorereactive = new ReactiveProperty<int>();
+        ReactiveProperty<int> sessions = new ReactiveProperty<int>();
+        ReactiveProperty<bool> gameEnded = new ReactiveProperty<bool>();
+        [SerializeField] Button tryAgain, back;
+        // [SerializeField]
+        //SinglePlayerSpawner spawner;
+        public void Start()
         {
-            canvasToDisable = SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject;
+            observeScoreChange();
+            endGameAfterValueChange();
         }
-        currentNFT = SingleplayerGameControler.instance.chosenNFT;
-        if (SingleplayerGameControler.instance.GetSessions() <=10 && !gameplayView.instance.isTryout)
+        private void OnEnable()
         {
-            if (SingleplayerGameControler.instance.isRestApi)
+            if (canvasToDisable == null)
             {
-                DatabaseManagerRestApi._instance.setScoreRestApiMain(currentNFT.id.ToString(), SinglePlayerScoreBoardScript.instance.GetScore());
+                canvasToDisable = SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject;
+            }
+            currentNFT = SingleplayerGameControler.instance.chosenNFT;
+            if (SingleplayerGameControler.instance.GetSessions() <= 10 && !gameplayView.instance.isTryout)
+            {
+                if (SingleplayerGameControler.instance.isRestApi)
+                {
+                    DatabaseManagerRestApi._instance.setScoreRestApiMain(currentNFT.id.ToString(), SinglePlayerScoreBoardScript.instance.GetScore());
+
+                }
+                else
+                {
+                    // DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
+
+                }
+            }
+            SingleplayerGameControler.instance.GetScores();
+
+
+        }
+        public void ObserveGameObverBtns()
+        {
+
+            tryAgain.OnClickAsObservable()
+                .Do(_ => TryAgain())
+                .Where(_ => PlaySounds.instance != null)
+                .Do(_ => PlaySounds.instance.Play())
+                .Subscribe()
+                .AddTo(this);
+            back.OnClickAsObservable()
+               .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnPlayMenu)
+               .Where(_ => PlaySounds.instance != null)
+               .Do(_ => PlaySounds.instance.Play())
+               .Subscribe()
+               .AddTo(this);
+        }
+        public void setScoreResutls()
+        {
+
+            if (SingleplayerGameControler.instance.GetSessions() < 10)
+            {
+
+                sessionsLeft.SetActive(true);
+                sessionsNotLeft.SetActive(false);
+                currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
+                dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
+                allTimeScore.text = "WEEKLY SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore());
+                sessionCounterText.text = "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions()) + "/10";
 
             }
-            else
+            else if (SingleplayerGameControler.instance.GetSessions() >= 10)
             {
-               // DatabaseManager._instance.setScore(currentNFT.id.ToString(), currentNFT.name, SinglePlayerScoreBoardScript.instance.GetScore());
+                sessionsLeft.SetActive(false);
+                sessionsNotLeft.SetActive(true);
+                dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
+                allTimeScore.text = "WEEKLY SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore());
+                sessionCounterText.text = "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions()) + "/10";
 
             }
+
+
+            AudioSource ad = GameObject.FindGameObjectWithTag("SFXPlayer").GetComponent<AudioSource>();
+            ad.clip = gameOverClip;
+            ad.loop = false;
+            ad.volume = 0.2f;
+            ad.Play();
+            //characters = spawner.GetCharacterList();
+            Destroy(GameObject.FindGameObjectWithTag("Player"));
+            GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", NameToSlugConvert(currentNFT.name))) as GameObject;
+            var temp = Instantiate(displayChar, characterDisplay.position, Quaternion.identity, characterDisplay);
+
+            //destroying all player related components
+            Destroy(temp.transform.GetChild(1).gameObject);
+            Destroy(temp.transform.GetChild(0).gameObject);
+            Destroy(temp.transform.GetChild(2).gameObject);
+            Destroy(temp.transform.GetChild(3).gameObject);
+            Destroy(temp.GetComponent<StarterAssetsInputs>());
+            Destroy(temp.GetComponent<ThirdPersonController>());
+            Destroy(temp.GetComponent<CharacterController>());
+            Destroy(temp.GetComponent<PlayerInput>());
+            temp.GetComponent<Animator>().SetBool("Ended", true);
+
+            temp.transform.localPosition = Vector3.zero;
+            temp.transform.localRotation = Quaternion.identity;
+            temp.transform.localScale = Vector3.one * 2;
+
+            //upddate other values here form leaderboard
+            SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
-        SingleplayerGameControler.instance.GetScores();
-      
-
-    }
-    public void ObserveGameObverBtns()
-    {
-
-        tryAgain.OnClickAsObservable()
-            .Do(_ => TryAgain())
-            .Where(_ => PlaySounds.instance != null)
-            .Do(_ => PlaySounds.instance.Play())
-            .Subscribe()
-            .AddTo(this);
-        back.OnClickAsObservable()
-           .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnPlayMenu)
-           .Where(_ => PlaySounds.instance != null)
-           .Do(_ => PlaySounds.instance.Play())
-           .Subscribe()
-           .AddTo(this);
-    }
-    public void setScoreResutls()
-    {
-       
-        if (SingleplayerGameControler.instance.GetSessions() < 10)
+        public void endGameAfterValueChange()
         {
-            
-            sessionsLeft.SetActive(true);
-            sessionsNotLeft.SetActive(false);
+            gameEnded
+                .Where(_ => _ == true)
+                .Do(_ => setScoreResutls())
+                .Subscribe()
+                .AddTo(this);
+        }
+        public void observeScoreChange()
+        {
+            scorereactive
+                .Do(_ => setScoreToUI())
+                .Subscribe()
+                .AddTo(this);
+
+            sessions
+                .Do(_ => setScoreToUI())
+                .Subscribe()
+                .AddTo(this);
+
+        }
+        private void Update()
+        {
+            if (chickenGameModel.gameCurrentStep.Value == chickenGameModel.GameSteps.OnGameEnded)
+            {
+                scorereactive.Value = SingleplayerGameControler.instance.dailyScore;
+                sessions.Value = SingleplayerGameControler.instance.sessions;
+            }
+        }
+        public void setScoreToUI()
+        {
+            gameEnded.Value = true;
             currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
-            dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
-            allTimeScore.text = "WEEKLY SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() );
-            sessionCounterText.text = "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions()) + "/10";
-
-        }
-        else if (SingleplayerGameControler.instance.GetSessions() >= 10)
-        {
-            sessionsLeft.SetActive(false);
-            sessionsNotLeft.SetActive(true);
             dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore());
             allTimeScore.text = "WEEKLY SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore());
             sessionCounterText.text = "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions()) + "/10";
-
         }
-
-
-        AudioSource ad = GameObject.FindGameObjectWithTag("SFXPlayer").GetComponent<AudioSource>();
-        ad.clip = gameOverClip;
-        ad.loop = false;
-        ad.volume = 0.2f;
-        ad.Play();
-        //characters = spawner.GetCharacterList();
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
-        GameObject displayChar = Resources.Load(Path.Combine("SinglePlayerPrefabs/Characters", NameToSlugConvert(currentNFT.name))) as GameObject;
-        var temp = Instantiate(displayChar, characterDisplay.position, Quaternion.identity, characterDisplay);
-
-        //destroying all player related components
-        Destroy(temp.transform.GetChild(1).gameObject);
-        Destroy(temp.transform.GetChild(0).gameObject);
-        Destroy(temp.transform.GetChild(2).gameObject);
-        Destroy(temp.transform.GetChild(3).gameObject);
-        Destroy(temp.GetComponent<StarterAssetsInputs>());
-        Destroy(temp.GetComponent<ThirdPersonController>());
-        Destroy(temp.GetComponent<CharacterController>());
-        Destroy(temp.GetComponent<PlayerInput>());
-        temp.GetComponent<Animator>().SetBool("Ended", true);
-
-        temp.transform.localPosition = Vector3.zero;
-        temp.transform.localRotation = Quaternion.identity;
-        temp.transform.localScale = Vector3.one * 2;
-
-        //upddate other values here form leaderboard
-        SinglePlayerScoreBoardScript.instance.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-    }
-    public void endGameAfterValueChange()
-    {
-        gameEnded
-            .Where(_ => _ == true)
-            .Do(_ => setScoreResutls())
-            .Subscribe()
-            .AddTo(this);
-    }
-    public void observeScoreChange()
-    {
-        scorereactive
-            .Do(_ => setScoreToUI())
-            .Subscribe()
-            .AddTo(this);
-
-        sessions
-            .Do(_ => setScoreToUI())
-            .Subscribe()
-            .AddTo(this);
-
-    }
-    private void Update()
-    {
-        if (chickenGameModel.gameCurrentStep.Value == chickenGameModel.GameSteps.OnGameEnded)
+        public void TryAgain()
         {
-            scorereactive.Value = SingleplayerGameControler.instance.dailyScore;
-            sessions.Value = SingleplayerGameControler.instance.sessions;
+            scenesView.loadSinglePlayerScene();
+
         }
-    }
-    public void setScoreToUI()
-    {
-        gameEnded.Value = true;
-        currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString() ;
-        dailyScore.text = "DAILY SCORE : " + (SingleplayerGameControler.instance.GetDailyScore() );
-        allTimeScore.text = "WEEKLY SCORE : " + (SingleplayerGameControler.instance.GetAllTimeScore() );
-        sessionCounterText.text= "NFT DAILY RUNS : " + (SingleplayerGameControler.instance.GetSessions())+"/10";
-    }
-    public void TryAgain()
-    {
-        scenesView.loadSinglePlayerScene();
+        public void goToMain()
+        {
+            scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
+            chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnBackToMenu;
 
-    }
-    public void goToMain()
-    {
-        scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
-        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnBackToMenu;
-       
-    }
+        }
 
-    string NameToSlugConvert(string name)
-    {
-        string slug;
-        slug = name.ToLower().Replace(".", "").Replace("'", "").Replace(" ", "-");
-        return slug;
+        string NameToSlugConvert(string name)
+        {
+            string slug;
+            slug = name.ToLower().Replace(".", "").Replace("'", "").Replace(" ", "-");
+            return slug;
+        }
     }
 }

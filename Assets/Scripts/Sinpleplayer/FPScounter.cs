@@ -2,26 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
-public class FPScounter : MonoBehaviour
+namespace ChickenRun
 {
-    [SerializeField]
-    TMP_Text counter,averageFps,minFps;
-    float min = Mathf.Infinity;
-    int framesPassed;
-    float totalFps;
-    void Update()
+    public class FPScounter : MonoBehaviour
     {
-        float fps = 1 / Time.unscaledDeltaTime;
-        counter.text = "FPS:" + (int)fps;
-        totalFps += fps;
-        framesPassed++;
-        averageFps.text = "Avg:" + (int)(totalFps / framesPassed);
-        if (fps < min && framesPassed > 10)
+        [SerializeField]
+        TMP_Text counter, averageFps, minFps;
+        float min = Mathf.Infinity;
+        int framesPassed;
+        float totalFps;
+        void Update()
         {
-            min = fps;
-            minFps.text = "Min: " + (int)min;
+            float fps = 1 / Time.unscaledDeltaTime;
+            counter.text = "FPS:" + (int)fps;
+            totalFps += fps;
+            framesPassed++;
+            averageFps.text = "Avg:" + (int)(totalFps / framesPassed);
+            if (fps < min && framesPassed > 10)
+            {
+                min = fps;
+                minFps.text = "Min: " + (int)min;
+            }
         }
-    }
 
+    }
 }

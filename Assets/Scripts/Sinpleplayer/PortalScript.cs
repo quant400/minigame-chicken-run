@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PortalScript : MonoBehaviour
+namespace ChickenRun
 {
-    private void OnTriggerEnter(Collider other)
+    public class PortalScript : MonoBehaviour
     {
-        if(other.CompareTag("Player"))
+        private void OnTriggerEnter(Collider other)
         {
-            int portal = Random.Range(0, 2);
-            other.GetComponent<CharacterController>().enabled = false;
-            other.transform.position = transform.GetChild(portal).position;
-            other.GetComponent<CharacterController>().enabled = true;
+            if (other.CompareTag("Player"))
+            {
+                int portal = Random.Range(0, 2);
+                other.GetComponent<CharacterController>().enabled = false;
+                other.transform.position = transform.GetChild(portal).position;
+                other.GetComponent<CharacterController>().enabled = true;
 
+            }
         }
     }
 }

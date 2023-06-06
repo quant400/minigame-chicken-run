@@ -7,48 +7,49 @@ using UniRx.Triggers;
 using UniRx.Operators;
 using System;
 using UnityEngine.SceneManagement;
-
+namespace ChickenRun
+{
     public class mainPresenter : MonoBehaviour
     {
-    [SerializeField] gameplayView gameView;
-    //[SerializeField] webLoginView webView;
-    [SerializeField] characterSelectionView characterSelectionView;
-    [SerializeField] uiView uiView;
-    [SerializeField] gameEndView gameEndView;
-    [SerializeField] DatabaseManagerRestApi dataView;
+        [SerializeField] gameplayView gameView;
+        //[SerializeField] webLoginView webView;
+        [SerializeField] characterSelectionView characterSelectionView;
+        [SerializeField] uiView uiView;
+        [SerializeField] gameEndView gameEndView;
+        [SerializeField] DatabaseManagerRestApi dataView;
 
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if ((scene.name == chickenGameModel.singlePlayerScene1.sceneName)||(scene.name == chickenGameModel.singlePlayerScene2.sceneName) || (scene.name == chickenGameModel.singlePlayerScene3.sceneName) || (scene.name == chickenGameModel.singlePlayerScene4.sceneName) || (scene.name == chickenGameModel.singlePlayerScene5.sceneName)) 
+        private void Awake()
         {
-            Observable.Timer(TimeSpan.Zero)
-                        .DelayFrame(2)
-                        .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnStartGame)
-                        .Subscribe()
-                        .AddTo(this);
+            DontDestroyOnLoad(this.gameObject);
         }
-    }
-    // Start is called before the first frame update
-    void Start()
+        public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-        ObservePanelsStatus();
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
-    }
-
-    // Update is called once per frame
-    void Update()
+            if ((scene.name == chickenGameModel.singlePlayerScene1.sceneName) || (scene.name == chickenGameModel.singlePlayerScene2.sceneName) || (scene.name == chickenGameModel.singlePlayerScene3.sceneName) || (scene.name == chickenGameModel.singlePlayerScene4.sceneName) || (scene.name == chickenGameModel.singlePlayerScene5.sceneName))
+            {
+                Observable.Timer(TimeSpan.Zero)
+                            .DelayFrame(2)
+                            .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnStartGame)
+                            .Subscribe()
+                            .AddTo(this);
+            }
+        }
+        // Start is called before the first frame update
+        void Start()
         {
+            ObservePanelsStatus();
+            SceneManager.sceneLoaded += OnSceneLoaded;
 
         }
 
-    void ObservePanelsStatus()
-    {
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        void ObservePanelsStatus()
+        {
             chickenGameModel.gameCurrentStep
                    .Subscribe(procedeGame)
                    .AddTo(this);
@@ -58,87 +59,88 @@ using UnityEngine.SceneManagement;
                 switch (status)
                 {
                     case chickenGameModel.GameSteps.OnLogin:
-                       
+
                         if (chickenGameModel.userIsLogged.Value)
                         {
-                        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnCharacterSelection;
+                            chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnCharacterSelection;
 
                         }
 
-                    else
+                        else
                         {
-                        uiView.goToMenu("login");
-                        uiView.observeLogin();
+                            uiView.goToMenu("login");
+                            uiView.observeLogin();
                         }
-                    break;
-                case chickenGameModel.GameSteps.Onlogged:
+                        break;
+                    case chickenGameModel.GameSteps.Onlogged:
 
-                    uiView.goToMenu("main");
-                    break;
-                case chickenGameModel.GameSteps.OnPlayMenu:
+                        uiView.goToMenu("main");
+                        break;
+                    case chickenGameModel.GameSteps.OnPlayMenu:
 
-                    uiView.goToMenu("main");
+                        uiView.goToMenu("main");
 
-                    break;
-                case chickenGameModel.GameSteps.OnLeaderBoard:
+                        break;
+                    case chickenGameModel.GameSteps.OnLeaderBoard:
 
-                    uiView.goToMenu("leaderboeard");
-                    break;
-                case chickenGameModel.GameSteps.OnCharacterSelection:
-                    uiView.goToMenu("characterSelection");
-                    if (!gameplayView.instance.isTryout)
-                    {
-                        characterSelectionView.MoveRight();
-                        characterSelectionView.MoveLeft();
-                    }
+                        uiView.goToMenu("leaderboeard");
+                        break;
+                    case chickenGameModel.GameSteps.OnCharacterSelection:
+                        uiView.goToMenu("characterSelection");
+                        if (!gameplayView.instance.isTryout)
+                        {
+                            characterSelectionView.MoveRight();
+                            characterSelectionView.MoveLeft();
+                        }
 
-                    //webView.checkUSerLoggedAtStart(); /// condisder when start load again .....  !!!! 
-                    break;
-                case chickenGameModel.GameSteps.OnCharacterSelected:
-                    uiView.goToMenu("characterSelected");
-                    gameEndView.resetDisplay();
-                    scenesView.loadSinglePlayerScene();
+                        //webView.checkUSerLoggedAtStart(); /// condisder when start load again .....  !!!! 
+                        break;
+                    case chickenGameModel.GameSteps.OnCharacterSelected:
+                        uiView.goToMenu("characterSelected");
+                        gameEndView.resetDisplay();
+                        scenesView.loadSinglePlayerScene();
 
-                    break;
-                case chickenGameModel.GameSteps.OnStartGame:
-                    Observable.Timer(TimeSpan.Zero)
-                        .DelayFrame(2)
-                        .Do(_ => gameView.StartGame())
-                        .Subscribe()
-                        .AddTo(this);
+                        break;
+                    case chickenGameModel.GameSteps.OnStartGame:
+                        Observable.Timer(TimeSpan.Zero)
+                            .DelayFrame(2)
+                            .Do(_ => gameView.StartGame())
+                            .Subscribe()
+                            .AddTo(this);
 
-                    chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameRunning;
+                        chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnGameRunning;
 
-                    break;
-                case chickenGameModel.GameSteps.OnGameRunning:
-                    Debug.Log("game Is running");
-                    break;
-                case chickenGameModel.GameSteps.OnGameEnded:
-                    uiView.goToMenu("results");
-                    if(!gameplayView.instance.isTryout)
-                    gameEndView.setScoreAtStart();
-                    gameView.EndGame();
-                    break;
-                case chickenGameModel.GameSteps.OnBackToCharacterSelection:
-                    gameEndView.initializeValues();
-                    gameEndView.resetDisplay();
-                    dataView.initilizeValues();
-                    scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
-                    Observable.Timer(TimeSpan.Zero)
-                       .DelayFrame(2)
-                       .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnCharacterSelection)
-                       .Subscribe()
-                       .AddTo(this);
-                    break;
-                case chickenGameModel.GameSteps.onSceneLoaded:
-                    Debug.Log("sceneLoaded");
-                    break;
+                        break;
+                    case chickenGameModel.GameSteps.OnGameRunning:
+                        Debug.Log("game Is running");
+                        break;
+                    case chickenGameModel.GameSteps.OnGameEnded:
+                        uiView.goToMenu("results");
+                        if (!gameplayView.instance.isTryout)
+                            gameEndView.setScoreAtStart();
+                        gameView.EndGame();
+                        break;
+                    case chickenGameModel.GameSteps.OnBackToCharacterSelection:
+                        gameEndView.initializeValues();
+                        gameEndView.resetDisplay();
+                        dataView.initilizeValues();
+                        scenesView.LoadScene(chickenGameModel.mainSceneLoadname.sceneName);
+                        Observable.Timer(TimeSpan.Zero)
+                           .DelayFrame(2)
+                           .Do(_ => chickenGameModel.gameCurrentStep.Value = chickenGameModel.GameSteps.OnCharacterSelection)
+                           .Subscribe()
+                           .AddTo(this);
+                        break;
+                    case chickenGameModel.GameSteps.onSceneLoaded:
+                        Debug.Log("sceneLoaded");
+                        break;
 
 
-            }
+                }
 
             }
         }
     }
 
 
+}

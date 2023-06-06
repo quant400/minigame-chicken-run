@@ -1,23 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class BillBoardScript : MonoBehaviour
+namespace ChickenRun
 {
-    [SerializeField]
-    GameObject[] boards;
-    Texture[] avalaibleAds;
-
-    private void Start()
+    public class BillBoardScript : MonoBehaviour
     {
-        if (Random.Range(0, 101) > 50)
-            gameObject.SetActive(false);
-        else
+        [SerializeField]
+        GameObject[] boards;
+        Texture[] avalaibleAds;
+
+        private void Start()
         {
-            avalaibleAds = gameplayView.instance.ads;
-            foreach (GameObject b in boards)
+            if (Random.Range(0, 101) > 50)
+                gameObject.SetActive(false);
+            else
             {
-                b.GetComponent<MeshRenderer>().material.mainTexture= avalaibleAds[Random.Range(0, avalaibleAds.Length)];
+                avalaibleAds = gameplayView.instance.ads;
+                foreach (GameObject b in boards)
+                {
+                    b.GetComponent<MeshRenderer>().material.mainTexture = avalaibleAds[Random.Range(0, avalaibleAds.Length)];
+                }
             }
         }
     }

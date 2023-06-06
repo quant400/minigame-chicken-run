@@ -2,52 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using StarterAssets;
-public class setFollowSettings : MonoBehaviour
+using ChickenRun.StarterAssets;
+namespace ChickenRun
 {
-    [SerializeField] CinemachineVirtualCamera followCameraSettings;
-    [SerializeField] GameObject player;
-    [SerializeField] StarterAssetsInputs _input;
-    Cinemachine3rdPersonFollow thirdperson;
-    // Start is called before the first frame update
-    void Start()
+    public class setFollowSettings : MonoBehaviour
     {
-        if (player == null)
+        [SerializeField] CinemachineVirtualCamera followCameraSettings;
+        [SerializeField] GameObject player;
+        [SerializeField] StarterAssetsInputs _input;
+        Cinemachine3rdPersonFollow thirdperson;
+        // Start is called before the first frame update
+        void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
-        if (_input == null)
-        {
-            _input = player.GetComponent<StarterAssetsInputs>();
-        }
-        if (followCameraSettings == null)
-        {
-            followCameraSettings = GetComponent<CinemachineVirtualCamera>();
-        }
-       
-        if (followCameraSettings != null)
-        {
-            followCameraSettings.LookAt = followCameraSettings.Follow;
-             thirdperson = followCameraSettings.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-            followCameraSettings.AddCinemachineComponent<CinemachineHardLookAt>();
-            thirdperson.Damping.z = 0.5f;
-        }
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (followCameraSettings != null)
-        {
-
-            if (_input.sprint)
+            if (player == null)
             {
-                thirdperson.Damping.z = 1.2f;
+                player = GameObject.FindGameObjectWithTag("Player");
             }
-            else
+            if (_input == null)
             {
+                _input = player.GetComponent<StarterAssetsInputs>();
+            }
+            if (followCameraSettings == null)
+            {
+                followCameraSettings = GetComponent<CinemachineVirtualCamera>();
+            }
+
+            if (followCameraSettings != null)
+            {
+                followCameraSettings.LookAt = followCameraSettings.Follow;
+                thirdperson = followCameraSettings.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+                followCameraSettings.AddCinemachineComponent<CinemachineHardLookAt>();
                 thirdperson.Damping.z = 0.5f;
+            }
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (followCameraSettings != null)
+            {
+
+                if (_input.sprint)
+                {
+                    thirdperson.Damping.z = 1.2f;
+                }
+                else
+                {
+                    thirdperson.Damping.z = 0.5f;
+                }
             }
         }
     }

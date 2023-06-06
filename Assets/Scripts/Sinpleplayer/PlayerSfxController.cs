@@ -1,139 +1,142 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using StarterAssets;
-public class PlayerSfxController : MonoBehaviour
+using ChickenRun.StarterAssets;
+namespace ChickenRun
 {
-    [SerializeField]
-    AudioClip[] grassWalk;
-    [SerializeField]
-    AudioClip Jump, land, waterWalk, waterEnter, waterExit ,bump, powerUp;
-
-   
-    AudioSource playerAudio;
-
-    CharacterController cC;
-    ThirdPersonController tPC;
-
-    bool inWater=false;
-  
-    private float m_StepCycle;
-    private float m_NextStep;
-    [SerializeField] private float m_StepInterval;
-    private void Start()
+    public class PlayerSfxController : MonoBehaviour
     {
-        cC = GetComponent<CharacterController>();
-        tPC = GetComponent<ThirdPersonController>();
-        playerAudio = GetComponent<AudioSource>();
-    }
+        [SerializeField]
+        AudioClip[] grassWalk;
+        [SerializeField]
+        AudioClip Jump, land, waterWalk, waterEnter, waterExit, bump, powerUp;
 
-    public void PlayJump()
-    {
-        if (Jump != null && !gameplayView.instance.GetSFXMuted())
+
+        AudioSource playerAudio;
+
+        CharacterController cC;
+        ThirdPersonController tPC;
+
+        bool inWater = false;
+
+        private float m_StepCycle;
+        private float m_NextStep;
+        [SerializeField] private float m_StepInterval;
+        private void Start()
         {
-            playerAudio.clip = Jump;
+            cC = GetComponent<CharacterController>();
+            tPC = GetComponent<ThirdPersonController>();
+            playerAudio = GetComponent<AudioSource>();
+        }
+
+        public void PlayJump()
+        {
+            if (Jump != null && !gameplayView.instance.GetSFXMuted())
+            {
+                playerAudio.clip = Jump;
+                playerAudio.Play();
+            }
+        }
+
+        public void PlayLand()
+        {
+            playerAudio.clip = land;
             playerAudio.Play();
         }
-    }
 
-    public void PlayLand()
-    {
-        playerAudio.clip = land;
-        playerAudio.Play();
-    }
-
-    public void PlayBump()
-    {
-        playerAudio.clip = bump;
-        playerAudio.Play();
-    }
-
-    public void PlayWaterEnter()
-    {
-        if (!gameplayView.instance.GetSFXMuted())
+        public void PlayBump()
         {
-            playerAudio.clip = waterEnter;
+            playerAudio.clip = bump;
             playerAudio.Play();
         }
-    }
 
-    public void PlayeWaterExit()
-    {
+        public void PlayWaterEnter()
+        {
+            if (!gameplayView.instance.GetSFXMuted())
+            {
+                playerAudio.clip = waterEnter;
+                playerAudio.Play();
+            }
+        }
 
-        if (!gameplayView.instance.GetSFXMuted())
-        {
-            playerAudio.clip = waterExit;
-            playerAudio.Play();
-        }
-    }
-
-   
-    public void PlayStep()
-    {
-        if (!tPC.Grounded)
-        {
-            return;
-        }
-        if(inWater)
-        {
-            //playerAudio.clip = waterWalk;
-            //playerAudio.PlayOneShot(playerAudio.clip);
-        }
-        else
+        public void PlayeWaterExit()
         {
 
             if (!gameplayView.instance.GetSFXMuted())
             {
-                int n = Random.Range(1, grassWalk.Length);
-                playerAudio.clip = grassWalk[n];
-                playerAudio.PlayOneShot(playerAudio.clip);
-
-                grassWalk[n] = grassWalk[0];
-                grassWalk[0] = playerAudio.clip;
+                playerAudio.clip = waterExit;
+                playerAudio.Play();
             }
         }
-       
-    }
 
-    public void ProgressStepCycle(float speed,float x, float y)
-    {
-       
-        if (cC.velocity.sqrMagnitude > 0 && (x!=0||y!=0))
+
+        public void PlayStep()
         {
-            m_StepCycle += (cC.velocity.magnitude+speed) *Time.fixedDeltaTime;
+            if (!tPC.Grounded)
+            {
+                return;
+            }
+            if (inWater)
+            {
+                //playerAudio.clip = waterWalk;
+                //playerAudio.PlayOneShot(playerAudio.clip);
+            }
+            else
+            {
+
+                if (!gameplayView.instance.GetSFXMuted())
+                {
+                    int n = Random.Range(1, grassWalk.Length);
+                    playerAudio.clip = grassWalk[n];
+                    playerAudio.PlayOneShot(playerAudio.clip);
+
+                    grassWalk[n] = grassWalk[0];
+                    grassWalk[0] = playerAudio.clip;
+                }
+            }
+
         }
 
-        if (!(m_StepCycle > m_NextStep))
+        public void ProgressStepCycle(float speed, float x, float y)
         {
-            return;
+
+            if (cC.velocity.sqrMagnitude > 0 && (x != 0 || y != 0))
+            {
+                m_StepCycle += (cC.velocity.magnitude + speed) * Time.fixedDeltaTime;
+            }
+
+            if (!(m_StepCycle > m_NextStep))
+            {
+                return;
+            }
+
+            m_NextStep = m_StepCycle + m_StepInterval;
+
+            PlayStep();
         }
 
-        m_NextStep = m_StepCycle + m_StepInterval;
 
-        PlayStep();
-    }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Water") && !inWater)
+        private void OnTriggerEnter(Collider other)
         {
-            PlayWaterEnter();
-            inWater = true;
+            if (other.CompareTag("Water") && !inWater)
+            {
+                PlayWaterEnter();
+                inWater = true;
+            }
+
+            else if (other.CompareTag("Bump"))
+            {
+                PlayBump();
+            }
         }
 
-        else if (other.CompareTag("Bump"))
+        private void OnTriggerExit(Collider other)
         {
-            PlayBump();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.CompareTag("Water") && inWater)
-        {
-            PlayeWaterExit();
-            inWater = false;
+            if (other.CompareTag("Water") && inWater)
+            {
+                PlayeWaterExit();
+                inWater = false;
+            }
         }
     }
 }

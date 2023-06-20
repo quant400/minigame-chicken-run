@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UniRx;
 using UniRx.Triggers;
 using UniRx.Operators;
+using System.Runtime.InteropServices;
 public class SinglePlayerScoreBoardScript : MonoBehaviour
 {
     public static SinglePlayerScoreBoardScript instance;
@@ -44,6 +45,25 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
     [SerializeField]
     Transform miniMapPos;
     public GameObject gamePad;
+
+    #region WebGL is on mobile check
+
+    [DllImport(dllName: "__Internal")]
+    private static extern bool IsMobile();
+
+    public bool isMobile()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+
+        return IsMobile();
+
+#endif
+        return false;
+    }
+
+    #endregion
+
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -59,6 +79,11 @@ public class SinglePlayerScoreBoardScript : MonoBehaviour
         gamePad.SetActive(false);
         minimap.position = miniMapPos.GetChild(0).position;
         transform.GetChild(0).GetComponent<CanvasScaler>().matchWidthOrHeight=0.5f;
+        if (isMobile())
+        {
+            gamePad.SetActive(true);
+            minimap.gameObject.SetActive(false);
+        }
 #endif
 
 #if UNITY_ANDROID || UNITY_IOS

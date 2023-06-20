@@ -29,7 +29,7 @@ public class NFTGetView : MonoBehaviour
     }
     public void GetNFT()
     {
-        StartCoroutine(KeyMaker.instance.GetOtherNft());
+        //StartCoroutine(KeyMaker.instance.GetOtherNft());
         StartCoroutine(KeyMaker.instance.GetRequest());
     }
 

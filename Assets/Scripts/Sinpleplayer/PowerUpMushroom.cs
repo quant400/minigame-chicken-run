@@ -72,10 +72,10 @@ public class PowerUpMushroom : MonoBehaviour
         TPC.JumpHeight /= jumpMultiplier;
         TPC.SprintSpeed = TPC.MoveSpeed*1.5f;
         //for testing 
-        if (player != null)
+     /*   if (player != null)
         {
             player.transform.GetChild(3).gameObject.SetActive(false);
-        }
+        }*/
         if(tag!="Manhole")
             Destroy(gameObject);
 

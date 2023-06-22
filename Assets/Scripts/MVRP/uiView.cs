@@ -20,6 +20,8 @@ public class uiView : MonoBehaviour
     public Button loginBtn, PlayMode, Play, LeaderBoard, BackToCharacterSelection, Skip, tryout, backFromLeaderboard , tryagain, appleLogin;
 #if UNITY_WEBGL
     [SerializeField] webLoginView webloginView;
+
+    public GameObject TryagainBackground;
 #endif
     // Start is called before the first frame update
     private void Awake()
@@ -181,8 +183,11 @@ public class uiView : MonoBehaviour
 
     public void SetTryAgain(bool state)
     {
-        if(gameplayView.instance.GetSessions()<10)
+        if (gameplayView.instance.GetSessions() < 10)
+        {
             tryagain.gameObject.SetActive(state);
+            TryagainBackground.SetActive(state);
+        }
 
     }
    

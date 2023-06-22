@@ -39,6 +39,8 @@ public class gameEndView : MonoBehaviour
     GameObject endCharDisplay;
     [SerializeField]
     TMP_Text gameOverNftId, GameOverEmail;
+    [SerializeField]
+    GameObject TryagainBackground;
     private void OnEnable()
     {
         if (gameplayView.instance.isTryout)
@@ -46,6 +48,7 @@ public class gameEndView : MonoBehaviour
         if (gameplayView.instance.isTryout)
         {
             tryAgain.gameObject.SetActive(false);
+            TryagainBackground.SetActive(false);
             currentScore.text = "CHICKENS CAUGHT : " + SinglePlayerScoreBoardScript.instance.GetScore().ToString();
             dailyScore.text = "DAILY SCORE : " + 0;
             allTimeScore.text = "WEEKLY SCORE : " + 0;
@@ -54,6 +57,7 @@ public class gameEndView : MonoBehaviour
         else
         {
             tryAgain.gameObject.SetActive(true);
+            TryagainBackground.SetActive(true);
         }
         AudioSource ad = GetComponent<AudioSource>();
         ad.clip = gameOverClip;
@@ -74,6 +78,7 @@ public class gameEndView : MonoBehaviour
     {
         
         tryAgain.gameObject.SetActive(false);
+        TryagainBackground.SetActive(false);
         if (canvasToDisable == null)
         {
             canvasToDisable = gameplayView.instance.gameObject.transform.GetChild(0).gameObject;

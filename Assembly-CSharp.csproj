@@ -245,6 +245,7 @@
     <Compile Include="Assets\Scripts\MVRP\scenesView.cs" />
     <Compile Include="Assets\GoogleSignIn\GoogleSignInUser.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\PortalScript.cs" />
+    <Compile Include="Assets\Scripts\HoverButton.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Library\WebGL\Web3GL.cs" />
     <Compile Include="Assets\FirebaseWebGL\Examples\Storage\StorageExampleHandler.cs" />
     <Compile Include="Assets\FullSerializer\Source\Converters\fsGuidConverter.cs" />
@@ -265,7 +266,13 @@
     <Compile Include="Assets\Scripts\MVRP\gameplayView.cs" />
     <Compile Include="Assets\Scripts\Sinpleplayer\SingleplayerCountdown.cs" />
     <Compile Include="Assets\Web3Unity\Scripts\Prefabs\EVM\NonceExample.cs" />
-    <Compile Include="Assets\Scripts\HoverButton.cs" />
+    <Compile Include="Assets\WebGLSupport\WebGLInput\WebGLInput.cs" />
+    <Compile Include="Assets\WebGLSupport\WebGLInput\Detail\RebuildChecker.cs" />
+    <Compile Include="Assets\WebGLSupport\WebGLInput\Wrapper\IInputField.cs" />
+    <Compile Include="Assets\WebGLSupport\WebGLInput\Mobile\WebGLInputMobile.cs" />
+    <Compile Include="Assets\WebGLSupport\WebGLInput\Wrapper\WrappedTMPInputField.cs" />
+    <Compile Include="Assets\WebGLSupport\WebGLInput\Wrapper\WrappedInputField.cs" />
+    <Compile Include="Assets\WebGLSupport\WebGLWindow\WebGLWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\WebGLTemplates\Tamarin\static\js\36.56120f7d.chunk.js.LICENSE.txt" />

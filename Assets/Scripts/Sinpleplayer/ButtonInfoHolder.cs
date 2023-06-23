@@ -111,6 +111,8 @@ public class ButtonInfoHolder : MonoBehaviour
     void UpdateInfo()
     {
         nameText.text = charName.ToUpper();
+        if (charName == "neurotica")
+            nameText.text = "RED-VELVET";
         Invoke("UpdateSessionInfo", 1.5f);
        
     }

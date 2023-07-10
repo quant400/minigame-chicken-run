@@ -7,6 +7,7 @@ namespace StarterAssets
 
         [Header("Output")]
         public StarterAssetsInputs starterAssetsInputs;
+        SinglePlayerScoreBoardScript sb;
         private void Start()
         {
             Invoke("GetRefrence", 1f);
@@ -14,6 +15,7 @@ namespace StarterAssets
         void GetRefrence()
         {
             starterAssetsInputs = GameObject.FindGameObjectWithTag("Player").GetComponent<StarterAssetsInputs>();
+            sb = SinglePlayerScoreBoardScript.instance;
         }
 
         public void VirtualMoveInput(Vector2 virtualMoveDirection)
@@ -53,7 +55,10 @@ namespace StarterAssets
                     {
                         if (screenTouch.phase == TouchPhase.Moved)
                         {
-                            VirtualLookInput(new Vector2(screenTouch.deltaPosition.x, -screenTouch.deltaPosition.y) * 3f);
+                            float m = 3f;
+                            if (sb.isMobile())
+                                m = -50f;
+                            VirtualLookInput(new Vector2(screenTouch.deltaPosition.x, -screenTouch.deltaPosition.y) * m);
                         }
                         else
                             VirtualLookInput(Vector2.zero);

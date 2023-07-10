@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 102bbc8e5fc75b0458a16337894a949f, type: 3}
+    - target: {fileID: 1155434584, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1180513208, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -406,7 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4381750605995796525, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -11412693
+      value: -11420981
       objectReference: {fileID: 0}
     - target: {fileID: 8126445881918332686, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_IsActive
@@ -458,6 +462,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8126445882098143854, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126445882378478319, guid: 0a974a8ad789e9c43a3d08fe44cd8f2f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -527,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502898bb83029474ca1d621343b84355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildType: 0
+  buildType: 1
   game: chicken
 --- !u!4 &1411705273
 Transform:
